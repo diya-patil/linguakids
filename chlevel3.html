@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="google" content="notranslate">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Language" content="en">
+  <title>LinguaKids - Level 3 (Chinese)</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       LINGUAKIDS LEVEL 3 — MEGA FUN CSS (Chinese Version)
+    ============================================================ */
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Nunito', 'Quicksand', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+      background-color: #fffbf0;
+      background-image:
+        radial-gradient(circle at 8%  12%, #ff6bb540 0%, transparent 28%),
+        radial-gradient(circle at 92% 8%,  #43e97b40 0%, transparent 28%),
+        radial-gradient(circle at 50% 50%, #f9ca2440 0%, transparent 40%),
+        radial-gradient(circle at 15% 88%, #38f9d740 0%, transparent 28%),
+        radial-gradient(circle at 88% 85%, #4facfe40 0%, transparent 28%),
+        radial-gradient(circle at 70% 30%, #fa709a30 0%, transparent 22%);
+    }
+
+    /* Floating confetti dots */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        radial-gradient(circle, #ff6bb5 2px, transparent 2px),
+        radial-gradient(circle, #43e97b 2px, transparent 2px),
+        radial-gradient(circle, #f9ca24 2px, transparent 2px),
+        radial-gradient(circle, #4facfe 2px, transparent 2px),
+        radial-gradient(circle, #fa709a 2px, transparent 2px),
+        radial-gradient(circle, #ff6b6b 2px, transparent 2px);
+      background-size: 120px 120px, 97px 97px, 143px 143px, 83px 83px, 107px 107px, 131px 131px;
+      background-position: 10px 15px, 55px 70px, 30px 40px, 80px 10px, 50px 100px, 100px 55px;
+      opacity: 0.45;
+      animation: driftDots 18s linear infinite alternate;
+    }
+
+    @keyframes driftDots {
+      from { background-position: 10px 15px, 55px 70px, 30px 40px, 80px 10px, 50px 100px, 100px 55px; }
+      to   { background-position: 22px 38px, 44px 52px, 52px 62px, 62px 28px, 68px 82px, 82px 72px; }
+    }
+
+    /* ---- HEADING ---- */
+    h2 {
+      text-align: center;
+      font-family: 'Baloo 2', cursive;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #f472b6;
+      text-shadow: 3px 3px 0 #fce7f3, 5px 5px 0 rgba(244,114,182,0.15);
+      margin: 16px 0 8px;
+      position: relative;
+      z-index: 1;
+      animation: titleWobble 3.5s ease-in-out infinite;
+    }
+
+    @keyframes titleWobble {
+      0%,100% { transform: rotate(-1deg) scale(1); }
+      25%      { transform: rotate(1.5deg) scale(1.02); }
+      75%      { transform: rotate(-0.5deg) scale(0.98); }
+    }
+
+    /* ---- GRID ---- */
+    .item-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin: 20px auto;
+      padding: 0 18px;
+      max-width: 1000px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ---- ITEM CARDS ---- */
+    .item-card {
+      background: white;
+      padding: 20px 16px 16px;
+      border-radius: 24px;
+      text-align: center;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border: 3px solid transparent;
+      transition: transform 0.22s cubic-bezier(.34,1.7,.64,1), box-shadow 0.2s;
+      box-shadow: 0 7px 0 #c0c0c0, 0 10px 20px rgba(0,0,0,0.08);
+      animation: cardPop 0.4s cubic-bezier(.34,1.56,.64,1) both;
+    }
+
+    @keyframes cardPop {
+      from { transform: scale(0.5) rotate(-8deg); opacity: 0; }
+      to   { transform: scale(1)   rotate(0deg);  opacity: 1; }
+    }
+
+    /* Rainbow card colors cycling through 6 themes */
+    .item-card:nth-child(6n+1) { background:#fff0f6; border-color:#ff6bb5; box-shadow:0 7px 0 #e05a9f, 0 10px 20px rgba(255,107,181,0.15); }
+    .item-card:nth-child(6n+2) { background:#f0fff4; border-color:#43e97b; box-shadow:0 7px 0 #28c25e, 0 10px 20px rgba(67,233,123,0.15);  }
+    .item-card:nth-child(6n+3) { background:#fffbf0; border-color:#f9ca24; box-shadow:0 7px 0 #d4a800, 0 10px 20px rgba(249,202,36,0.15);  }
+    .item-card:nth-child(6n+4) { background:#f0f8ff; border-color:#4facfe; box-shadow:0 7px 0 #2280d4, 0 10px 20px rgba(79,172,254,0.15);  }
+    .item-card:nth-child(6n+5) { background:#fff0f9; border-color:#f472b6; box-shadow:0 7px 0 #be185d, 0 10px 20px rgba(244,114,182,0.15); }
+    .item-card:nth-child(6n+6) { background:#fff4ee; border-color:#fb923c; box-shadow:0 7px 0 #c2620d, 0 10px 20px rgba(251,146,60,0.15);  }
+
+    /* Stagger pop-in animation */
+    .item-card:nth-child(1)  { animation-delay:.02s }
+    .item-card:nth-child(2)  { animation-delay:.05s }
+    .item-card:nth-child(3)  { animation-delay:.08s }
+    .item-card:nth-child(4)  { animation-delay:.11s }
+    .item-card:nth-child(5)  { animation-delay:.14s }
+    .item-card:nth-child(6)  { animation-delay:.17s }
+    .item-card:nth-child(7)  { animation-delay:.20s }
+    .item-card:nth-child(8)  { animation-delay:.23s }
+    .item-card:nth-child(9)  { animation-delay:.26s }
+    .item-card:nth-child(10) { animation-delay:.29s }
+
+    .item-card:hover {
+      transform: translateY(-8px) rotate(-1deg) scale(1.06);
+    }
+
+    .item-card:active {
+      transform: translateY(5px) scale(0.96);
+      box-shadow: 0 2px 0 #aaa, 0 4px 8px rgba(0,0,0,0.1) !important;
+      transition: transform 0.07s, box-shadow 0.07s;
+    }
+
+    /* ---- TEXT STYLES ---- */
+    .question {
+      font-weight: 800;
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.3rem;
+      color: #0ea5e9;
+      margin-bottom: 8px;
+    }
+
+    .hanzi {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #333;
+      font-family: 'Baloo 2', cursive;
+      margin-bottom: 4px;
+    }
+
+    .pinyin {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #4facfe;
+      margin-bottom: 4px;
+    }
+
+    .english {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #fb923c;
+      margin-bottom: 6px;
+    }
+
+    .answer {
+      color: #f472b6;
+      font-weight: 700;
+      margin: 8px 0;
+      font-size: 1.1rem;
+      font-family: 'Baloo 2', cursive;
+    }
+
+    /* ---- SPEAK BUTTONS ---- */
+    .speak-btn {
+      background: linear-gradient(160deg, #f9ca24, #f0932b);
+      border: none;
+      border-bottom: 4px solid #c07800;
+      border-right: 2px solid #c07800;
+      color: white;
+      padding: 6px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-family: 'Baloo 2', cursive;
+      font-weight: 700;
+      margin: 4px;
+      min-width: 50px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      box-shadow: 0 3px 10px rgba(249,202,36,0.35);
+      transition: transform 0.15s cubic-bezier(.34,1.56,.64,1), border-bottom 0.1s;
+    }
+
+    .speak-btn:hover  { transform: translateY(-2px) scale(1.08); }
+    .speak-btn:active { transform: translateY(2px); border-bottom-width: 1px; border-right-width: 1px; }
+    .speak-btn i      { font-size: 0.9rem; }
+
+    .lesson-controls {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* ---- BACK BUTTON ---- */
+    .btn {
+      background: linear-gradient(160deg, #43e97b, #38f9d7);
+      border: none;
+      border-bottom: 5px solid #1db863;
+      border-right: 3px solid #1db863;
+      color: white;
+      padding: 11px 26px;
+      border-radius: 999px;
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin: 12px 8px;
+      display: inline-block;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.15);
+      box-shadow: 0 6px 18px rgba(67,233,123,0.35);
+      transition: transform 0.15s cubic-bezier(.34,1.56,.64,1), box-shadow 0.15s, border-bottom 0.1s;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn:hover  { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 24px rgba(67,233,123,0.45); }
+    .btn:active { transform: translateY(4px) scale(0.97); border-bottom-width: 1px; border-right-width: 1px; box-shadow: none; }
+
+    /* ---- BACK BUTTON CONTAINER ---- */
+    .back-button-container {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      z-index: 1000;
+    }
+
+    .back-button-container .btn {
+      margin: 0;
+      box-shadow: 0 5px 16px rgba(67,233,123,0.35);
+    }
+
+    /* ---- MAIN CONTENT AREA ---- */
+    #content {
+      padding-top: 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ---- TOAST NOTIFICATION ---- */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #58cc02, #1cb0f6);
+      color: white;
+      padding: 15px 20px;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(88,204,2,0.3);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: transform 0.3s cubic-bezier(.34,1.56,.64,1), opacity 0.3s;
+      border: 2px solid #fff;
+      font-family: 'Baloo 2', cursive;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast i {
+      font-size: 1.8rem;
+      color: #FFD700;
+    }
+
+    #toastTitle {
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    #toastDesc {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    /* ---- CATEGORY NAVIGATION ---- */
+    .category-nav {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+
+    .category-btn {
+      background: #e0e0e0;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .category-btn.active {
+      background: #58cc02;
+      color: white;
+    }
+
+    .category-btn:hover {
+      background: #d0d0d0;
+    }
+
+    .category-btn.active:hover {
+      background: #4bb802;
+    }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 900px) {
+      .item-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    
+    @media (max-width: 600px) {
+      .item-grid { 
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 0 15px;
+      }
+      h2 { 
+        font-size: 1.6rem;
+        margin-top: 60px;
+      }
+      .back-button-container {
+        top: 10px;
+        left: 10px;
+      }
+      .back-button-container .btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+      }
+      #content {
+        padding-top: 50px;
+      }
+      .question { font-size: 1.2rem; }
+      .hanzi { font-size: 1.3rem; }
+      .answer { font-size: 1rem; }
+    }
+
+    @media (max-width: 380px) {
+      .question { font-size: 1.1rem; }
+      .hanzi { font-size: 1.2rem; }
+      .pinyin { font-size: 0.9rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="back-button-container">
+    <button onclick="goBack()" class="btn" id="backBtn">Back</button>
+  </div>
+  
+  <div id="content">
+    <h2 id="categoryTitle"></h2>
+    
+    <div class="item-grid" id="itemGrid"></div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="achievementToast" class="toast">
+    <i class="fas fa-trophy"></i>
+    <div>
+      <div id="toastTitle">Achievement Unlocked!</div>
+      <div id="toastDesc">You've earned a new badge.</div>
+    </div>
+  </div>
+
+<script>
+// ===== TRANSLATIONS =====
+const translations = {
+  english: {
+    back: "Back",
+    categoryTitles: {
+      greetings: "Greetings & Expressions",
+      activities: "Daily Activities",
+      questions: "Simple Q&A"
+    },
+    achievements: {
+      title: "Achievement Unlocked!",
+      desc: "You've earned a new badge."
+    },
+    speakQuestion: "🔊 Q",
+    speakAnswer: "🔊 A",
+    speak: "🔊"
+  },
+  marathi: {
+    back: "मागे",
+    categoryTitles: {
+      greetings: "अभिवादन आणि भाव",
+      activities: "दैनंदिन क्रिया",
+      questions: "साधे प्रश्नोत्तर"
+    },
+    achievements: {
+      title: "यश मिळवले!",
+      desc: "तुम्ही नवीन बॅज मिळवला आहे."
+    },
+    speakQuestion: "🔊 Q",
+    speakAnswer: "🔊 A",
+    speak: "🔊"
+  },
+  hindi: {
+    back: "वापस",
+    categoryTitles: {
+      greetings: "अभिवादन और अभिव्यक्तियाँ",
+      activities: "दैनिक गतिविधियाँ",
+      questions: "सरल प्रश्नोत्तर"
+    },
+    achievements: {
+      title: "उपलब्धि अनलॉक!",
+      desc: "आपने एक नया बैज प्राप्त किया है।"
+    },
+    speakQuestion: "🔊 Q",
+    speakAnswer: "🔊 A",
+    speak: "🔊"
+  }
+};
+
+// Enhanced data with translations
+const DATA = {
+  greetings: [
+    { char: "你好！", pinyin: "nǐ hǎo!", english: "Hello! 👋", marathi: "नमस्कार! 👋", hindi: "नमस्ते! 👋" },
+    { char: "早上好！", pinyin: "zǎoshang hǎo!", english: "Good morning! ☀️", marathi: "शुभ प्रभात! ☀️", hindi: "शुभ प्रभात! ☀️" },
+    { char: "下午好！", pinyin: "xiàwǔ hǎo!", english: "Good afternoon! 🌞", marathi: "शुभ दुपार! 🌞", hindi: "शुभ दोपहर! 🌞" },
+    { char: "晚上好！", pinyin: "wǎnshàng hǎo!", english: "Good evening! 🌙", marathi: "शुभ संध्याकाळ! 🌙", hindi: "शुभ संध्या! 🌙" },
+    { char: "晚安！", pinyin: "wǎn'ān!", english: "Good night! 🌜", marathi: "शुभ रात्री! 🌜", hindi: "शुभ रात्रि! 🌜" },
+    { char: "你好吗？", pinyin: "nǐ hǎo ma?", english: "How are you?", marathi: "तू कसा आहेस?", hindi: "आप कैसे हैं?" },
+    { char: "你叫什么名字？", pinyin: "nǐ jiào shénme míngzi?", english: "What's your name?", marathi: "तुझे नाव काय आहे?", hindi: "आपका नाम क्या है?" },
+    { char: "很高兴认识你！", pinyin: "hěn gāoxìng rènshi nǐ!", english: "Nice to meet you!", marathi: "तुला भेटून आनंद झाला!", hindi: "आपसे मिलकर खुशी हुई!" },
+    { char: "再见！", pinyin: "zàijiàn!", english: "See you later 👋", marathi: "पुन्हा भेटू 👋", hindi: "फिर मिलेंगे 👋" },
+    { char: "谢谢！", pinyin: "xièxiè!", english: "Thank you 😊", marathi: "धन्यवाद 😊", hindi: "धन्यवाद 😊" },
+    { char: "欢迎！", pinyin: "huānyíng!", english: "Welcome! 🤗", marathi: "स्वागत आहे! 🤗", hindi: "स्वागत है! 🤗" },
+    { char: "我很好！", pinyin: "wǒ hěn hǎo!", english: "I am good! 😄", marathi: "मी ठीक आहे! 😄", hindi: "मैं ठीक हूँ! 😄" },
+    { char: "太谢谢你了！", pinyin: "tài xièxie nǐ le!", english: "Thank you so much! 🙏", marathi: "खूप खूप धन्यवाद! 🙏", hindi: "बहुत बहुत धन्यवाद! 🙏" },
+    { char: "不客气！", pinyin: "bú kèqi!", english: "You're welcome! 😊", marathi: "आपले स्वागत आहे! 😊", hindi: "आपका स्वागत है! 😊" },
+    { char: "对不起！", pinyin: "duìbuqǐ!", english: "Sorry! 😞", marathi: "क्षमस्व! 😞", hindi: "माफ़ कीजिए! 😞" },
+    { char: "没关系！", pinyin: "méi guānxi!", english: "It's okay! 😊", marathi: "ठीक आहे! 😊", hindi: "कोई बात नहीं! 😊" },
+    { char: "祝你快乐！", pinyin: "zhù nǐ kuàilè!", english: "Wish you happiness! 🎉", marathi: "तुला आनंद मिळो! 🎉", hindi: "आपको खुशी मिले! 🎉" },
+    { char: "请等一下！", pinyin: "qǐng děng yíxià!", english: "Please wait a moment! ⏳", marathi: "कृपया थांबा! ⏳", hindi: "कृपया रुकिए! ⏳" },
+    { char: "加油！", pinyin: "jiāyóu!", english: "You can do it! 💪", marathi: "तू हे करू शकतोस! 💪", hindi: "आप यह कर सकते हैं! 💪" }
+  ],
+
+  activities: [
+    { char: "我吃苹果 🍎", pinyin: "wǒ chī píngguǒ", english: "I eat an apple 🍎", marathi: "मी सफरचंद खातो 🍎", hindi: "मैं सेब खाता हूँ 🍎" },
+    { char: "我去学校 🏫", pinyin: "wǒ qù xuéxiào", english: "I go to school 🏫", marathi: "मी शाळेत जातो 🏫", hindi: "मैं स्कूल जाता हूँ 🏫" },
+    { char: "我和朋友玩 👫", pinyin: "wǒ hé péngyǒu wán", english: "I play with friends 👫", marathi: "मी मित्रांसोबत खेळतो 👫", hindi: "मैं दोस्तों के साथ खेलता हूँ 👫" },
+    { char: "我看书 📚", pinyin: "wǒ kàn shū", english: "I read books 📚", marathi: "मी पुस्तके वाचतो 📚", hindi: "मैं किताबें पढ़ता हूँ 📚" },
+    { char: "我看电视 📺", pinyin: "wǒ kàn diànshì", english: "I watch TV 📺", marathi: "मी टीव्ही पाहतो 📺", hindi: "मैं टीवी देखता हूँ 📺" },
+    { char: "我帮妈妈 👩", pinyin: "wǒ bāng māmā", english: "I help my mom 👩", marathi: "मी आईला मदत करतो 👩", hindi: "मैं माँ की मदद करता हूँ 👩" },
+    { char: "我洗澡 🛁", pinyin: "wǒ xǐzǎo", english: "I take a bath 🛁", marathi: "मी आंघोळ करतो 🛁", hindi: "मैं नहाता हूँ 🛁" },
+    { char: "我刷牙 🦷", pinyin: "wǒ shuā yá", english: "I brush my teeth 🦷", marathi: "मी दात घासतो 🦷", hindi: "मैं दाँत साफ करता हूँ 🦷" },
+    { char: "我晚上睡觉 😴", pinyin: "wǒ wǎnshàng shuìjiào", english: "I sleep at night 😴", marathi: "मी रात्री झोपतो 😴", hindi: "मैं रात को सोता हूँ 😴" },
+    { char: "我喝水 💧", pinyin: "wǒ hē shuǐ", english: "I drink water 💧", marathi: "मी पाणी पितो 💧", hindi: "मैं पानी पीता हूँ 💧" },
+    { char: "我画画 🎨", pinyin: "wǒ huàhuà", english: "I draw 🎨", marathi: "मी चित्र काढतो 🎨", hindi: "मैं चित्र बनाता हूँ 🎨" },
+    { char: "我骑自行车 🚲", pinyin: "wǒ qí zìxíngchē", english: "I ride my bicycle 🚲", marathi: "मी सायकल चालवतो 🚲", hindi: "मैं साइकिल चलाता हूँ 🚲" },
+    { char: "我玩游戏 🎮", pinyin: "wǒ wán yóuxì", english: "I play games 🎮", marathi: "मी खेळ खेळतो 🎮", hindi: "मैं खेल खेलता हूँ 🎮" },
+    { char: "我唱歌 🎤", pinyin: "wǒ chànggē", english: "I sing songs 🎤", marathi: "मी गाणी गातो 🎤", hindi: "मैं गाने गाता हूँ 🎤" },
+    { char: "我跳舞 💃", pinyin: "wǒ tiàowǔ", english: "I dance 💃", marathi: "मी नाचतो 💃", hindi: "मैं नाचता हूँ 💃" },
+    { char: "我打扫房间 🧹", pinyin: "wǒ dǎsǎo fángjiān", english: "I clean my room 🧹", marathi: "मी खोली साफ करतो 🧹", hindi: "मैं कमरा साफ करता हूँ 🧹" },
+    { char: "我和妈妈一起做饭 🍳", pinyin: "wǒ hé māmā yìqǐ zuòfàn", english: "I cook with my mom 🍳", marathi: "मी आईसोबत स्वयंपाक करतो 🍳", hindi: "मैं माँ के साथ खाना बनाता हूँ 🍳" },
+    { char: "我给植物浇水 🌱", pinyin: "wǒ gěi zhíwù jiāoshuǐ", english: "I water the plants 🌱", marathi: "मी झाडांना पाणी देतो 🌱", hindi: "मैं पौधों को पानी देता हूँ 🌱" },
+    { char: "我在公园玩 🌳", pinyin: "wǒ zài gōngyuán wán", english: "I play in the park 🌳", marathi: "मी बागेत खेळतो 🌳", hindi: "मैं पार्क में खेलता हूँ 🌳" },
+    { char: "我喂我的宠物 🐶", pinyin: "wǒ wèi wǒ de chǒngwù", english: "I feed my pet 🐶", marathi: "मी माझ्या पाळीव प्राण्याला खायला देतो 🐶", hindi: "मैं अपने पालतू जानवर को खाना देता हूँ 🐶" }
+  ],
+
+  questions: [
+    { 
+      q: "你叫什么名字？", 
+      pinyin_q: "nǐ jiào shénme míngzi?",
+      a: "我叫约翰。",
+      pinyin_a: "wǒ jiào yuēhàn.",
+      english_q: "What is your name?",
+      english_a: "My name is John.",
+      marathi_q: "तुझे नाव काय आहे?",
+      marathi_a: "माझे नाव जॉन आहे.",
+      hindi_q: "आपका नाम क्या है?",
+      hindi_a: "मेरा नाम जॉन है."
+    },
+    { 
+      q: "你几岁？", 
+      pinyin_q: "nǐ jǐ suì?",
+      a: "我六岁。",
+      pinyin_a: "wǒ liù suì.",
+      english_q: "How old are you?",
+      english_a: "I am 6 years old.",
+      marathi_q: "तू किती वर्षांचा आहेस?",
+      marathi_a: "मी ६ वर्षांचा आहे.",
+      hindi_q: "आपकी उम्र क्या है?",
+      hindi_a: "मैं ६ साल का हूँ."
+    },
+    { 
+      q: "你住在哪里？", 
+      pinyin_q: "nǐ zhù zài nǎlǐ?",
+      a: "我住在印度。",
+      pinyin_a: "wǒ zhù zài yìndù.",
+      english_q: "Where do you live?",
+      english_a: "I live in India.",
+      marathi_q: "तू कुठे राहतोस?",
+      marathi_a: "मी भारतात राहतो.",
+      hindi_q: "आप कहाँ रहते हैं?",
+      hindi_a: "मैं भारत में रहता हूँ."
+    },
+    { 
+      q: "你喜欢吃水果吗？", 
+      pinyin_q: "nǐ xǐhuan chī shuǐguǒ ma?",
+      a: "是的，我喜欢苹果。",
+      pinyin_a: "shì de, wǒ xǐhuan píngguǒ.",
+      english_q: "Do you like fruits?",
+      english_a: "Yes, I like apples.",
+      marathi_q: "तुला फळे आवडतात का?",
+      marathi_a: "हो, मला सफरचंद आवडतात.",
+      hindi_q: "क्या आपको फल पसंद हैं?",
+      hindi_a: "हाँ, मुझे सेब पसंद हैं."
+    },
+    { 
+      q: "这是什么？ 🍎", 
+      pinyin_q: "zhè shì shénme?",
+      a: "这是苹果。",
+      pinyin_a: "zhè shì píngguǒ.",
+      english_q: "What is this? 🍎",
+      english_a: "This is an apple.",
+      marathi_q: "हे काय आहे? 🍎",
+      marathi_a: "हे सफरचंद आहे.",
+      hindi_q: "यह क्या है? 🍎",
+      hindi_a: "यह सेब है."
+    },
+    { 
+      q: "你最喜欢的颜色是什么？", 
+      pinyin_q: "nǐ zuì xǐhuan de yánsè shì shénme?",
+      a: "我最喜欢的颜色是蓝色。",
+      pinyin_a: "wǒ zuì xǐhuan de yánsè shì lánsè.",
+      english_q: "What is your favorite color?",
+      english_a: "My favorite color is blue.",
+      marathi_q: "तुझा आवडता रंग कोणता आहे?",
+      marathi_a: "माझा आवडता रंग निळा आहे.",
+      hindi_q: "आपका पसंदीदा रंग क्या है?",
+      hindi_a: "मेरा पसंदीदा रंग नीला है."
+    },
+    { 
+      q: "你今天吃了什么？", 
+      pinyin_q: "nǐ jīntiān chī le shénme?",
+      a: "我吃了米饭和蔬菜。",
+      pinyin_a: "wǒ chī le mǐfàn hé shūcài.",
+      english_q: "What did you eat today?",
+      english_a: "I ate rice and vegetables.",
+      marathi_q: "आज तू काय खाल्लेस?",
+      marathi_a: "मी भात आणि भाज्या खाल्ल्या.",
+      hindi_q: "आज आपने क्या खाया?",
+      hindi_a: "मैंने चावल और सब्जियाँ खाईं."
+    },
+    { 
+      q: "你有宠物吗？", 
+      pinyin_q: "nǐ yǒu chǒngwù ma?",
+      a: "是的，我有一只狗。",
+      pinyin_a: "shì de, wǒ yǒu yī zhī gǒu.",
+      english_q: "Do you have a pet?",
+      english_a: "Yes, I have a dog.",
+      marathi_q: "तुझ्याकडे पाळीव प्राणी आहे का?",
+      marathi_a: "हो, माझ्याकडे एक कुत्रा आहे.",
+      hindi_q: "क्या आपके पास पालतू जानवर है?",
+      hindi_a: "हाँ, मेरे पास एक कुत्ता है."
+    },
+    { 
+      q: "你喜欢做什么？", 
+      pinyin_q: "nǐ xǐhuan zuò shénme?",
+      a: "我喜欢玩和画画。",
+      pinyin_a: "wǒ xǐhuan wán hé huàhuà.",
+      english_q: "What do you like to do?",
+      english_a: "I like to play and draw.",
+      marathi_q: "तुला काय करायला आवडते?",
+      marathi_a: "मला खेळायला आणि चित्र काढायला आवडते.",
+      hindi_q: "आपको क्या करना पसंद है?",
+      hindi_a: "मुझे खेलना और चित्र बनाना पसंद है."
+    },
+    { 
+      q: "你去哪里？", 
+      pinyin_q: "nǐ qù nǎlǐ?",
+      a: "我去学校。",
+      pinyin_a: "wǒ qù xuéxiào.",
+      english_q: "Where are you going?",
+      english_a: "I am going to school.",
+      marathi_q: "तू कुठे जात आहेस?",
+      marathi_a: "मी शाळेत जात आहे.",
+      hindi_q: "आप कहाँ जा रहे हैं?",
+      hindi_a: "मैं स्कूल जा रहा हूँ."
+    },
+    { 
+      q: "你开心吗？", 
+      pinyin_q: "nǐ kāixīn ma?",
+      a: "是的，我很开心！ 😄",
+      pinyin_a: "shì de, wǒ hěn kāixīn!",
+      english_q: "Are you happy?",
+      english_a: "Yes, I am very happy! 😄",
+      marathi_q: "तू आनंदी आहेस का?",
+      marathi_a: "हो, मी खूप आनंदी आहे! 😄",
+      hindi_q: "क्या आप खुश हैं?",
+      hindi_a: "हाँ, मैं बहुत खुश हूँ! 😄"
+    },
+    { 
+      q: "你几点睡觉？", 
+      pinyin_q: "nǐ jǐ diǎn shuìjiào?",
+      a: "我晚上九点睡觉。",
+      pinyin_a: "wǒ wǎnshàng jiǔ diǎn shuìjiào.",
+      english_q: "What time do you sleep?",
+      english_a: "I sleep at 9 PM.",
+      marathi_q: "तू किती वाजता झोपतोस?",
+      marathi_a: "मी रात्री ९ वाजता झोपतो.",
+      hindi_q: "आप कितने बजे सोते हैं?",
+      hindi_a: "मैं रात ९ बजे सोता हूँ."
+    },
+    { 
+      q: "谁是你最好的朋友？", 
+      pinyin_q: "shéi shì nǐ zuì hǎo de péngyǒu?",
+      a: "我最好的朋友是[朋友的名字]。",
+      pinyin_a: "wǒ zuì hǎo de péngyǒu shì [péngyǒu de míngzi].",
+      english_q: "Who is your best friend?",
+      english_a: "My best friend is [Friend's Name].",
+      marathi_q: "तुझा सर्वात चांगला मित्र कोण आहे?",
+      marathi_a: "माझा सर्वात चांगला मित्र [मित्राचे नाव] आहे.",
+      hindi_q: "आपका सबसे अच्छा दोस्त कौन है?",
+      hindi_a: "मेरा सबसे अच्छा दोस्त [दोस्त का नाम] है।"
+    },
+    { 
+      q: "你最喜欢的食物是什么？", 
+      pinyin_q: "nǐ zuì xǐhuan de shíwù shì shénme?",
+      a: "我最喜欢的食物是披萨。",
+      pinyin_a: "wǒ zuì xǐhuan de shíwù shì pīsà.",
+      english_q: "What is your favorite food?",
+      english_a: "My favorite food is pizza.",
+      marathi_q: "तुझे आवडते अन्न कोणते आहे?",
+      marathi_a: "माझे आवडते अन्न पिझ्झा आहे.",
+      hindi_q: "आपका पसंदीदा भोजन क्या है?",
+      hindi_a: "मेरा पसंदीदा भोजन पिज़्ज़ा है।"
+    },
+    { 
+      q: "你能帮我吗？", 
+      pinyin_q: "nǐ néng bāng wǒ ma?",
+      a: "是的，我能帮你！",
+      pinyin_a: "shì de, wǒ néng bāng nǐ!",
+      english_q: "Can you help me?",
+      english_a: "Yes, I can help you!",
+      marathi_q: "तू मला मदत करू शकतोस का?",
+      marathi_a: "हो, मी तुला मदत करू शकतो!",
+      hindi_q: "क्या आप मेरी मदद कर सकते हैं?",
+      hindi_a: "हाँ, मैं आपकी मदद कर सकता हूँ!"
+    }
+  ]
+};
+
+let currentCategory = 'greetings';
+let interfaceLang = 'english';
+
+// ===== USER MANAGEMENT FUNCTIONS =====
+function getUserLanguageKey() {
+  const username = getCurrentUser();
+  return `linguaKids_${username}_chineseInterfaceLang`;
+}
+
+function getCurrentUser() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlUser = urlParams.get('user');
+  if (urlUser) {
+    sessionStorage.setItem('currentUser', urlUser);
+    return urlUser;
+  }
+  
+  const sessionUser = sessionStorage.getItem('currentUser');
+  if (sessionUser) {
+    return sessionUser;
+  }
+  
+  return 'guest';
+}
+
+function loadInterfaceLanguage() {
+  const storageKey = getUserLanguageKey();
+  const savedLang = localStorage.getItem(storageKey);
+  
+  if (savedLang && (savedLang === 'english' || savedLang === 'marathi' || savedLang === 'hindi')) {
+    interfaceLang = savedLang;
+  } else {
+    interfaceLang = 'english';
+  }
+  
+  // Check URL for language parameter (overrides saved preference)
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlLang = urlParams.get('lang');
+  if (urlLang && (urlLang === 'english' || urlLang === 'marathi' || urlLang === 'hindi')) {
+    interfaceLang = urlLang;
+  }
+  
+  return interfaceLang;
+}
+
+function getCategory(){
+  const params = new URLSearchParams(window.location.search);
+  return params.get("category") || 'greetings';
+}
+
+function getCategoryTitle(category) {
+  const t = translations[interfaceLang];
+  return t.categoryTitles[category] || "Category";
+}
+
+function getTranslatedText(item, field) {
+  if (!item) return '';
+  
+  if (field === 'english' || field === 'marathi' || field === 'hindi') {
+    return item[field] || item.english;
+  }
+  
+  return item[field] || '';
+}
+
+function getTranslatedQuestionAnswer(item, type) {
+  if (!item) return '';
+  
+  if (type === 'q') {
+    if (interfaceLang === 'marathi') return item.marathi_q || item.english_q;
+    if (interfaceLang === 'hindi') return item.hindi_q || item.english_q;
+    return item.english_q;
+  } else if (type === 'a') {
+    if (interfaceLang === 'marathi') return item.marathi_a || item.english_a;
+    if (interfaceLang === 'hindi') return item.hindi_a || item.english_a;
+    return item.english_a;
+  }
+  
+  return '';
+}
+
+function loadCategory(category = null){
+  if (category) {
+    currentCategory = category;
+    const newUrl = `${window.location.pathname}?category=${category}&lang=${interfaceLang}`;
+    window.history.replaceState({}, '', newUrl);
+  } else {
+    currentCategory = getCategory();
+  }
+  
+  const items = DATA[currentCategory] || [];
+  const t = translations[interfaceLang];
+  
+  // Update back button text
+  document.getElementById('backBtn').textContent = t.back;
+
+  document.getElementById("categoryTitle").textContent = getCategoryTitle(currentCategory);
+
+  let html = '';
+  
+  if (currentCategory === 'questions') {
+    // Special formatting for Q&A category with translations
+    html = items.map(i => `
+      <div class="item-card">
+        <div class="question">Q: ${i.q}</div>
+        <div class="pinyin">${i.pinyin_q || ''}</div>
+        <div class="english">${getTranslatedQuestionAnswer(i, 'q')}</div>
+        <div class="answer">A: ${i.a}</div>
+        <div class="pinyin">${i.pinyin_a || ''}</div>
+        <div class="english">${getTranslatedQuestionAnswer(i, 'a')}</div>
+        <div class="lesson-controls">
+          <button class="speak-btn" onclick="speakChinese('${i.q}', '${currentCategory}')"><i class="fas fa-volume-up"></i> Q</button>
+          <button class="speak-btn" onclick="speakChinese('${i.a}', '${currentCategory}')"><i class="fas fa-volume-up"></i> A</button>
+        </div>
+      </div>
+    `).join("");
+  } else {
+    // Regular formatting for greetings and activities with translations
+    html = items.map(i => `
+      <div class="item-card">
+        <div class="hanzi">${i.char}</div>
+        <div class="pinyin">${i.pinyin}</div>
+        <div class="english">${getTranslatedText(i, interfaceLang)}</div>
+        <div class="lesson-controls">
+          <button class="speak-btn" onclick="speakChinese('${i.char}', '${currentCategory}')"><i class="fas fa-volume-up"></i> ${t.speak}</button>
+        </div>
+      </div>
+    `).join("");
+  }
+  
+  document.getElementById("itemGrid").innerHTML = html;
+}
+
+function changeCategory(category) {
+  loadCategory(category);
+}
+
+function speakChinese(characters, category){
+  const utter = new SpeechSynthesisUtterance(characters);
+  utter.lang = "zh-CN";
+  utter.rate = 0.8; // Slightly slower for better clarity
+  
+  speechSynthesis.speak(utter);
+  
+  trackSentenceInteraction(category);
+}
+
+function trackSentenceInteraction(category) {
+  const interactionKey = `sentence_interaction_${category}_${new Date().toDateString()}`;
+  let interactions = parseInt(sessionStorage.getItem(interactionKey) || '0');
+  
+  interactions++;
+  sessionStorage.setItem(interactionKey, interactions.toString());
+  
+  if (interactions % 2 === 0 && typeof updateProgress === 'function') {
+    updateProgress('level3', category, 1);
+  }
+}
+
+function goBack(){
+  // Preserve language when going back
+  window.location.href = `chinese.html?lang=${interfaceLang}`;
+}
+
+function showAchievementToast(title, description) {
+  const t = translations[interfaceLang];
+  const toast = document.getElementById("achievementToast");
+  if(!toast) return;
+  toast.querySelector("#toastTitle").textContent = title || t.achievements.title;
+  toast.querySelector("#toastDesc").textContent = description || t.achievements.desc;
+  toast.classList.add("show");
+  setTimeout(() => { toast.classList.remove("show"); }, 3000);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  loadInterfaceLanguage();
+  loadCategory();
+});
+
+// Make functions globally accessible
+window.goBack = goBack;
+window.changeCategory = changeCategory;
+window.speakChinese = speakChinese;
+window.showAchievementToast = showAchievementToast;
+</script>
+
+<script src="chprogress.js"></script>
+
+</body>
+</html>

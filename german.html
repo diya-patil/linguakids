@@ -1,0 +1,2382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinguaKids - German</title>
+<!-- Add meta tag to prevent Google Translate -->
+<meta name="google" content="notranslate">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   LINGUAKIDS — MEGA FUN CSS OVERHAUL (SAME AS ENGLISH) 🎉
+============================================================ */
+
+body {
+  font-family: 'Nunito', 'Quicksand', sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: #fffbf0;
+  background-image:
+    radial-gradient(circle at 8%  12%, #ff6bb540 0%, transparent 28%),
+    radial-gradient(circle at 92% 8%,  #43e97b40 0%, transparent 28%),
+    radial-gradient(circle at 50% 50%, #f9ca2440 0%, transparent 40%),
+    radial-gradient(circle at 15% 88%, #38f9d740 0%, transparent 28%),
+    radial-gradient(circle at 88% 85%, #4facfe40 0%, transparent 28%),
+    radial-gradient(circle at 70% 30%, #fa709a30 0%, transparent 22%);
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(circle, #ff6bb5 2px, transparent 2px),
+    radial-gradient(circle, #43e97b 2px, transparent 2px),
+    radial-gradient(circle, #f9ca24 2px, transparent 2px),
+    radial-gradient(circle, #4facfe 2px, transparent 2px),
+    radial-gradient(circle, #fa709a 2px, transparent 2px),
+    radial-gradient(circle, #ff6b6b 2px, transparent 2px);
+  background-size: 120px 120px, 97px 97px, 143px 143px, 83px 83px, 107px 107px, 131px 131px;
+  background-position: 10px 15px, 55px 70px, 30px 40px, 80px 10px, 50px 100px, 100px 55px;
+  opacity: 0.45;
+  animation: driftDots 18s linear infinite alternate;
+}
+
+@keyframes driftDots {
+  from { background-position: 10px 15px, 55px 70px, 30px 40px, 80px 10px, 50px 100px, 100px 55px; }
+  to   { background-position: 22px 38px, 44px 52px, 52px 62px, 62px 28px, 68px 82px, 82px 72px; }
+}
+
+#app { 
+  max-width: 1020px; 
+  margin: auto; 
+  padding: 15px 18px; 
+  padding-top: 80px;
+  position: relative;
+  z-index: 1;
+}
+
+h1 {
+  text-align: center;
+  font-family: 'Baloo 2', cursive;
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0 0 6px;
+  line-height: 1;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ffd93d 35%, #6bcb77 65%, #4d96ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(3px 4px 0px rgba(0,0,0,0.12));
+  animation: titleWobble 3.5s ease-in-out infinite;
+}
+
+@keyframes titleWobble {
+  0%,100% { transform: rotate(-1deg) scale(1); }
+  25%      { transform: rotate(1.5deg) scale(1.02); }
+  75%      { transform: rotate(-0.5deg) scale(0.98); }
+}
+
+h2 { 
+  text-align: center; 
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: #0ea5e9;
+  text-shadow: 3px 3px 0 #bae6fd, 5px 5px 0 rgba(14,165,233,0.15);
+  margin: 10px 0 5px;
+}
+
+.sub-container, .letters-grid, .numbers-grid {
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(95px, 1fr));
+  gap: 18px; 
+  margin-top: 22px;
+}
+
+.sub-card, .letter-card, .number-card {
+  background: white; 
+  padding: 18px 10px 14px; 
+  border-radius: 24px;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border: 3px solid transparent;
+  transition: transform 0.22s cubic-bezier(.34,1.7,.64,1), box-shadow 0.2s;
+  box-shadow: 0 7px 0 #c0c0c0, 0 10px 20px rgba(0,0,0,0.08);
+  animation: cardPop 0.4s cubic-bezier(.34,1.56,.64,1) both;
+}
+
+@keyframes cardPop {
+  from { transform: scale(0.5) rotate(-8deg); opacity: 0; }
+  to   { transform: scale(1)   rotate(0deg);  opacity: 1; }
+}
+
+.letter-card:nth-child(6n+1) { background:#fff0f6; border-color:#ff6bb5; box-shadow:0 7px 0 #e05a9f,  0 10px 20px rgba(255,107,181,0.15); }
+.letter-card:nth-child(6n+2) { background:#f0fff4; border-color:#43e97b; box-shadow:0 7px 0 #28c25e,  0 10px 20px rgba(67,233,123,0.15);  }
+.letter-card:nth-child(6n+3) { background:#fffbf0; border-color:#f9ca24; box-shadow:0 7px 0 #d4a800,  0 10px 20px rgba(249,202,36,0.15);  }
+.letter-card:nth-child(6n+4) { background:#f0f8ff; border-color:#4facfe; box-shadow:0 7px 0 #2280d4,  0 10px 20px rgba(79,172,254,0.15);  }
+.letter-card:nth-child(6n+5) { background:#fff0f9; border-color:#f472b6; box-shadow:0 7px 0 #be185d,  0 10px 20px rgba(244,114,182,0.15); }
+.letter-card:nth-child(6n+6) { background:#fff4ee; border-color:#fb923c; box-shadow:0 7px 0 #c2620d,  0 10px 20px rgba(251,146,60,0.15);  }
+
+.number-card:nth-child(4n+1) { background:#f0fff4; border-color:#43e97b; box-shadow:0 7px 0 #28c25e, 0 10px 20px rgba(67,233,123,0.15);  }
+.number-card:nth-child(4n+2) { background:#f0f8ff; border-color:#4facfe; box-shadow:0 7px 0 #2280d4, 0 10px 20px rgba(79,172,254,0.15);  }
+.number-card:nth-child(4n+3) { background:#fff0f6; border-color:#ff6bb5; box-shadow:0 7px 0 #e05a9f, 0 10px 20px rgba(255,107,181,0.15); }
+.number-card:nth-child(4n+4) { background:#fffbf0; border-color:#f9ca24; box-shadow:0 7px 0 #d4a800, 0 10px 20px rgba(249,202,36,0.15);  }
+
+.sub-card { background:#f0f9ff; border-color:#0ea5e9; box-shadow:0 7px 0 #0369a1, 0 10px 20px rgba(14,165,233,0.15); }
+
+/* ---- PER-SECTION CARD COLOURS ---- */
+/* My Progress — golden yellow */
+.sub-card.card-progress {
+  background: #fffbeb; border-color: #f9ca24;
+  box-shadow: 0 7px 0 #d4a800, 0 10px 20px rgba(249,202,36,0.2);
+}
+.sub-card.card-progress h3 { color: #b45309; }
+
+/* Level 1 — fresh green */
+.sub-card.card-level1 {
+  background: #f0fff4; border-color: #43e97b;
+  box-shadow: 0 7px 0 #1db863, 0 10px 20px rgba(67,233,123,0.2);
+}
+.sub-card.card-level1 h3 { color: #166534; }
+
+/* Level 2 — sky blue */
+.sub-card.card-level2 {
+  background: #f0f9ff; border-color: #38bdf8;
+  box-shadow: 0 7px 0 #0369a1, 0 10px 20px rgba(56,189,248,0.2);
+}
+.sub-card.card-level2 h3 { color: #075985; }
+
+/* Level 3 — hot pink */
+.sub-card.card-level3 {
+  background: #fff0f8; border-color: #f472b6;
+  box-shadow: 0 7px 0 #be185d, 0 10px 20px rgba(244,114,182,0.2);
+}
+.sub-card.card-level3 h3 { color: #9d174d; }
+
+/* Games — orange */
+.sub-card.card-games {
+  background: #fff7ed; border-color: #fb923c;
+  box-shadow: 0 7px 0 #c2620d, 0 10px 20px rgba(251,146,60,0.2);
+}
+.sub-card.card-games h3 { color: #9a3412; }
+
+.letter-card:nth-child(1),.number-card:nth-child(1)  { animation-delay:.02s }
+.letter-card:nth-child(2),.number-card:nth-child(2)  { animation-delay:.05s }
+.letter-card:nth-child(3),.number-card:nth-child(3)  { animation-delay:.08s }
+.letter-card:nth-child(4),.number-card:nth-child(4)  { animation-delay:.11s }
+.letter-card:nth-child(5),.number-card:nth-child(5)  { animation-delay:.14s }
+.letter-card:nth-child(6),.number-card:nth-child(6)  { animation-delay:.17s }
+.letter-card:nth-child(7)  { animation-delay:.20s }
+.letter-card:nth-child(8)  { animation-delay:.23s }
+.letter-card:nth-child(9)  { animation-delay:.26s }
+.letter-card:nth-child(10) { animation-delay:.29s }
+
+.sub-card:hover, .letter-card:hover, .number-card:hover {
+  transform: translateY(-8px) rotate(-1deg) scale(1.06);
+}
+
+.sub-card:active, .letter-card:active, .number-card:active {
+  transform: translateY(5px) scale(0.96);
+  box-shadow: 0 2px 0 #aaa, 0 4px 8px rgba(0,0,0,0.1) !important;
+  transition: transform 0.07s, box-shadow 0.07s;
+}
+
+.main-char { 
+  font-size: 2.4rem; 
+  font-weight: 900; 
+  font-family: 'Baloo 2', cursive;
+  background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1;
+  filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.1));
+}
+
+.small-char { font-size:1.3rem; font-weight:800; color:#4facfe; }
+.example    { margin-top:4px; font-size:0.78rem; font-weight:700; color:#333; line-height:1.3; }
+.translation{ font-size:0.88rem; font-weight:800; color:#fb923c; margin-top:3px; }
+.spelling   { margin-top:3px; font-size:0.8rem; color:#999; font-style:italic; }
+
+.btn {
+  background: linear-gradient(160deg, #43e97b, #38f9d7);
+  border: none;
+  border-bottom: 5px solid #1db863;
+  border-right: 3px solid #1db863;
+  color: white;
+  padding: 11px 26px;
+  border-radius: 999px;
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin: 8px 5px;
+  display: inline-block;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.18);
+  box-shadow: 0 6px 18px rgba(67,233,123,0.35);
+  transition: transform 0.15s cubic-bezier(.34,1.56,.64,1), box-shadow 0.15s, border-bottom 0.1s;
+}
+
+.btn:hover  { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 24px rgba(67,233,123,0.45); }
+.btn:active { transform: translateY(4px) scale(0.97); border-bottom-width:1px; border-right-width:1px; box-shadow:none; }
+
+.lesson-controls {
+  display: flex; 
+  justify-content: center; 
+  gap: 10px; 
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+canvas {
+  border: 5px dashed #43e97b;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #f0fff4 0%, #f0f8ff 100%);
+  display: block;
+  margin: 15px auto;
+  touch-action: none; /* Prevents scrolling while drawing on touch devices */
+  box-shadow: 0 8px 30px rgba(67,233,123,0.2), inset 0 2px 8px rgba(67,233,123,0.08);
+}
+
+.lesson-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 20px;
+  background: rgba(255,255,255,0.88);
+  border-radius: 32px;
+  padding: 24px 20px;
+  border: 3px solid #fde68a;
+  box-shadow: 0 12px 40px rgba(249,202,36,0.12);
+  backdrop-filter: blur(8px);
+  position: relative;
+}
+
+.lesson-container .main-char {
+  font-size: 4rem;
+  margin-top: 0;
+}
+
+.lesson-container .example {
+  font-size: 1.35rem;
+  margin: 10px 0;
+}
+
+.lesson-container .spelling {
+  font-size: 1.1rem;
+  margin: 5px 0;
+  color: #f472b6;
+  font-weight: 700;
+}
+
+.trace-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.clear-btn {
+  background: linear-gradient(160deg, #ff6b6b, #ee5a24);
+  border: none; border-bottom: 4px solid #c0392b; border-right: 2px solid #c0392b;
+  color: white; padding: 8px 20px; font-size: 0.95rem; border-radius: 999px;
+  margin-top: 8px; cursor: pointer; font-family: 'Baloo 2', cursive; font-weight: 700;
+  box-shadow: 0 4px 14px rgba(255,107,107,0.35);
+  transition: transform 0.15s cubic-bezier(.34,1.56,.64,1), border-bottom 0.1s;
+}
+
+.clear-btn:hover  { transform: translateY(-2px) scale(1.06); }
+.clear-btn:active { transform: translateY(3px); border-bottom-width:1px; border-right-width:1px; }
+
+.sub-card h3 {
+  font-size: 1.15rem;
+  margin: 5px 0;
+  font-family: 'Baloo 2', cursive;
+  font-weight: 800;
+  color: #0ea5e9;
+}
+
+.sub-card p {
+  font-size: 0.9rem;
+  margin: 0;
+  line-height: 1.3;
+  color: #777;
+}
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #58cc02;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.sound-btn {
+  background: linear-gradient(160deg, #f9ca24, #f0932b);
+  border: none; border-bottom: 4px solid #c07800; border-right: 2px solid #c07800;
+  color: white; padding: 9px 18px; border-radius: 999px; cursor: pointer; margin: 5px;
+  font-size: 0.95rem; font-family: 'Baloo 2', cursive; font-weight: 700;
+  display: inline-flex; align-items: center; gap: 6px;
+  box-shadow: 0 4px 14px rgba(249,202,36,0.4);
+  transition: transform 0.15s cubic-bezier(.34,1.56,.64,1), border-bottom 0.1s;
+}
+
+.sound-btn:hover  { transform: translateY(-2px) scale(1.06); }
+.sound-btn:active { transform: translateY(3px); border-bottom-width:1px; }
+
+/* Global back button styling */
+#globalBack {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 1000;
+  margin: 0;
+  background: linear-gradient(160deg, #43e97b, #38f9d7);
+  border: none; border-bottom: 4px solid #1db863; border-right: 2px solid #1db863;
+  color: white; padding: 10px 20px; border-radius: 999px;
+  font-family: 'Baloo 2', cursive; font-size: 1rem; font-weight: 700; cursor: pointer;
+  box-shadow: 0 5px 16px rgba(67,233,123,0.35);
+  transition: transform 0.18s cubic-bezier(.34,1.56,.64,1), box-shadow 0.15s;
+}
+
+#globalBack:hover  { transform: translateY(-3px) scale(1.07); box-shadow: 0 8px 22px rgba(67,233,123,0.45); }
+#globalBack:active { transform: translateY(3px); border-bottom-width:1px; }
+
+/* Global logout button for teacher mode */
+#globalLogout {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 1000;
+  margin: 0;
+  background: linear-gradient(160deg, #ff6b6b, #ee5a24);
+  border: none; border-bottom: 4px solid #c0392b; border-right: 2px solid #c0392b;
+  color: white; padding: 10px 18px; border-radius: 999px;
+  font-family: 'Baloo 2', cursive; font-size: 0.95rem; font-weight: 700; cursor: pointer;
+  box-shadow: 0 5px 16px rgba(255,107,107,0.35);
+  transition: transform 0.18s cubic-bezier(.34,1.56,.64,1), box-shadow 0.15s;
+  display: flex; align-items: center; gap: 6px;
+}
+
+#globalLogout:hover  { transform: translateY(-3px) scale(1.07); box-shadow: 0 8px 22px rgba(255,107,107,0.45); }
+#globalLogout:active { transform: translateY(3px); border-bottom-width:1px; }
+#globalLogout i { font-size: 1rem; }
+
+/* Chatbot button */
+#chatbotBtn {
+  position: fixed;
+  top: 14px;
+  right: 112px;
+  z-index: 1000;
+  background: linear-gradient(135deg, #43e97b, #38f9d7);
+  border: none; border-bottom: 4px solid #1db863;
+  color: white; width: 46px; height: 46px; border-radius: 50%;
+  cursor: pointer; box-shadow: 0 5px 18px rgba(67,233,123,0.45);
+  display: flex; align-items: center; justify-content: center; font-size: 1.25rem;
+  transition: transform 0.2s cubic-bezier(.34,1.56,.64,1), box-shadow 0.2s;
+  animation: robotWiggle 5s ease-in-out infinite;
+}
+
+@keyframes robotWiggle {
+  0%,85%,100% { transform:rotate(0deg) scale(1); }
+  87%          { transform:rotate(-12deg) scale(1.1); }
+  91%          { transform:rotate(12deg) scale(1.1); }
+  95%          { transform:rotate(-6deg) scale(1.05); }
+}
+
+#chatbotBtn:hover  { transform:scale(1.18) rotate(0deg) !important; box-shadow:0 8px 26px rgba(67,233,123,0.55); animation:none; }
+#chatbotBtn:active { transform:scale(0.9) !important; border-bottom-width:1px; }
+
+/* Language icon button */
+#langIconBtn {
+  position: fixed;
+  top: 14px;
+  right: 60px;
+  z-index: 1000;
+  background: white; border: 3px solid #43e97b; border-bottom: 5px solid #1db863;
+  color: #1db863; width: 46px; height: 46px; border-radius: 50%; cursor: pointer;
+  box-shadow: 0 5px 16px rgba(67,233,123,0.3);
+  display: flex; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 900;
+  transition: transform 0.2s cubic-bezier(.34,1.56,.64,1), background 0.2s, color 0.2s;
+}
+
+#langIconBtn:hover  { transform: scale(1.18) rotate(10deg); background: #43e97b; color: white; }
+#langIconBtn:active { transform: scale(0.9); }
+
+/* Right side logout button (for self-study mode) */
+#logoutBtn {
+  position: fixed;
+  top: 14px;
+  right: 10px;
+  z-index: 1000;
+  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+  border: none; border-bottom: 4px solid #c0392b;
+  color: white; width: 46px; height: 46px; border-radius: 50%; cursor: pointer;
+  box-shadow: 0 5px 16px rgba(255,107,107,0.35);
+  display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+  transition: transform 0.2s cubic-bezier(.34,1.56,.64,1), box-shadow 0.2s;
+}
+
+#logoutBtn:hover  { transform: scale(1.18); box-shadow: 0 8px 24px rgba(255,107,107,0.45); }
+#logoutBtn:active { transform: scale(0.9); }
+
+/* Logout Confirmation Modal */
+.modal-overlay {
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%;
+  background: rgba(249,202,36,0.18);
+  backdrop-filter: blur(10px);
+  display: none;
+  align-items: center; 
+  justify-content: center;
+  z-index: 2000;
+}
+
+.modal-box {
+  background: linear-gradient(160deg, #fffef0 0%, #f0fffe 100%);
+  max-width: 380px;
+  width: 92%;
+  padding: 32px 26px;
+  border-radius: 36px;
+  text-align: center;
+  box-shadow: 0 0 0 5px #f472b6, 0 0 0 9px #f9ca24, 0 0 0 13px #43e97b, 0 25px 60px rgba(0,0,0,0.12);
+  animation: modalBounceIn 0.45s cubic-bezier(.34,1.56,.64,1) both;
+  position: relative;
+}
+
+@keyframes modalBounceIn {
+  0%   { transform:scale(0.4) rotate(-8deg); opacity:0; }
+  70%  { transform:scale(1.06) rotate(2deg); opacity:1; }
+  100% { transform:scale(1)    rotate(0deg); opacity:1; }
+}
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #ccc;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: color 0.2s, transform 0.2s, background 0.2s;
+}
+
+.modal-close:hover {
+  color: #ff6b6b;
+  background: #ffeeee;
+  transform: rotate(90deg) scale(1.15);
+}
+
+/* Modal styles for language selection */
+.modal-box h2 {
+  font-size: 2rem; 
+  margin: 5px 0 12px; 
+  font-family: 'Baloo 2', cursive;
+  font-weight: 800;
+  color: #ff5a5f;
+  text-shadow: 2px 2px 0 #ffe0b2, 4px 4px 0 rgba(255,90,95,0.15);
+  -webkit-text-fill-color: unset;
+  background: none;
+}
+
+.modal-box h2 .emoji {
+  -webkit-text-fill-color: initial;
+  background: none;
+  text-shadow: none;
+}
+
+.modal-box p {
+  font-size: 1.15rem; 
+  color: #0ea5e9; 
+  margin-bottom: 22px; 
+  font-weight: 700;
+}
+
+.lang-option {
+  background: linear-gradient(135deg, #fffbf0, #f0f8ff);
+  border: 3px solid #e0e0e0; border-bottom: 5px solid #ccc; border-radius: 999px;
+  padding: 16px 24px; margin: 14px 0; font-size: 1.4rem; font-weight: 800; color: #2c3e50;
+  cursor: pointer; transition: transform 0.2s cubic-bezier(.34,1.56,.64,1), border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  display: flex; align-items: center; justify-content: center; gap: 14px; font-family: 'Baloo 2', cursive;
+}
+
+.lang-option:hover  { transform:scale(1.06) translateY(-3px); box-shadow:0 10px 30px rgba(0,0,0,0.12); background:linear-gradient(135deg,#fffde7,#e8fff0); }
+.lang-option:active { transform:scale(0.97) translateY(2px); }
+.lang-option i      { font-size:1.8rem; width:34px; }
+
+.modal-note {
+  font-size: 0.85rem; 
+  color: #94a3b8; 
+  margin-top: 22px;
+  font-weight: 700;
+}
+
+/* Chatbot Modal Styles */
+.chatbot-modal {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 385px;
+  background: white;
+  border-radius: 28px;
+  box-shadow: 0 0 0 4px #f9ca24, 0 20px 60px rgba(249,202,36,0.2);
+  display: none;
+  flex-direction: column;
+  z-index: 2000;
+  overflow: hidden;
+  animation: chatSlideUp 0.4s cubic-bezier(.34,1.56,.64,1) both;
+}
+
+@keyframes chatSlideUp {
+  from { transform:translateY(60px) scale(0.9); opacity:0; }
+  to   { transform:translateY(0)    scale(1);   opacity:1; }
+}
+@keyframes slideIn {
+  from { transform:translateY(20px) scale(0.95); opacity:0; }
+  to   { transform:translateY(0)    scale(1);    opacity:1; }
+}
+
+#chatbotContainer {
+  padding: 0;
+  background: white;
+  min-height: 400px;
+}
+
+/* LinguaKids Chatbot Inner Styles */
+.linguakids-chatbot {
+  width: 100% !important;
+  font-family: 'Nunito', sans-serif !important;
+  border: none !important;
+  border-radius: 18px !important;
+  padding: 0 !important;
+  background: white !important;
+  box-shadow: none !important;
+  overflow: hidden;
+}
+
+.linguakids-chatbot-header {
+  background: linear-gradient(135deg, #0ea5e9, #43e97b) !important;
+  color: white !important;
+  padding: 16px 18px !important;
+  font-weight: 800 !important;
+  font-size: 1.2rem !important;
+  font-family: 'Baloo 2', cursive !important;
+  letter-spacing: 0.5px;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  border-bottom: 2px solid rgba(255,255,255,0.25) !important;
+}
+
+.linguakids-chatbot-header i {
+  margin-right: 8px;
+  color: #ffd93d;
+  font-size: 1.3rem;
+}
+
+.chatbot-close {
+  cursor: pointer;
+  font-size: 1.3rem;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s;
+  background: rgba(255,255,255,0.2);
+  color: white;
+}
+
+.chatbot-close:hover {
+  background: rgba(255,255,255,0.35);
+  transform: rotate(90deg);
+}
+
+.linguakids-chat-messages {
+  height: 280px !important;
+  overflow-y: auto !important;
+  background: #fdf4ff !important;
+  padding: 15px !important;
+  border-bottom: 1px solid #ffe0d0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+
+.linguakids-chat-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.linguakids-chat-messages::-webkit-scrollbar-track {
+  background: #fff0e0;
+}
+
+.linguakids-chat-messages::-webkit-scrollbar-thumb {
+  background: #0ea5e9;
+  border-radius: 10px;
+}
+
+.linguakids-message {
+  margin: 0 !important;
+  padding: 10px 14px !important;
+  border-radius: 18px !important;
+  max-width: 85% !important;
+  word-wrap: break-word !important;
+  font-size: 0.95rem !important;
+  line-height: 1.4 !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06) !important;
+  animation: messagePop 0.3s cubic-bezier(.34,1.56,.64,1);
+}
+
+@keyframes messagePop {
+  from { opacity:0; transform:translateY(12px) scale(0.9); }
+  to   { opacity:1; transform:translateY(0)    scale(1);   }
+}
+
+.linguakids-user-message {
+  background: linear-gradient(135deg, #43e97b, #38f9d7) !important;
+  color: white !important;
+  align-self: flex-end !important;
+  border-bottom-right-radius: 4px !important;
+}
+
+.linguakids-bot-message {
+  background: white !important;
+  color: #333 !important;
+  align-self: flex-start !important;
+  border-bottom-left-radius: 4px !important;
+  border: 2px solid #ffe0d0 !important;
+}
+
+.linguakids-chat-input-area {
+  display: flex !important;
+  padding: 14px !important;
+  background: white !important;
+  gap: 8px !important;
+  align-items: center !important;
+  border-top: 1px solid #fff0e0 !important;
+}
+
+.linguakids-chat-input {
+  flex: 1 !important;
+  padding: 12px 18px !important;
+  border: 2.5px solid #ffe0d0 !important;
+  border-radius: 30px !important;
+  font-family: 'Nunito', sans-serif !important;
+  font-size: 0.95rem !important;
+  outline: none !important;
+  transition: all 0.2s !important;
+  background: #fff8f0 !important;
+}
+
+.linguakids-chat-input:focus {
+  border-color: #0ea5e9 !important;
+  background: white !important;
+  box-shadow: 0 0 0 3px rgba(14,165,233,0.15) !important;
+}
+
+.linguakids-chat-input::placeholder {
+  color: #7dd3fc;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.linguakids-send-btn {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 50% !important;
+  border: none !important;
+  background: linear-gradient(135deg, #f472b6, #e879f9) !important;
+  color: white !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s !important;
+  box-shadow: 0 4px 12px rgba(244,114,182,0.4) !important;
+  flex-shrink: 0 !important;
+}
+
+.linguakids-send-btn i {
+  font-size: 1.2rem !important;
+  transition: transform 0.2s !important;
+}
+
+.linguakids-send-btn:hover {
+  transform: scale(1.12) !important;
+  box-shadow: 0 6px 18px rgba(244,114,182,0.5) !important;
+}
+
+.linguakids-send-btn:hover i {
+  transform: translateX(2px) !important;
+}
+
+.linguakids-send-btn:active {
+  transform: scale(0.93) !important;
+}
+
+.linguakids-typing-indicator {
+  display: flex !important;
+  gap: 5px !important;
+  padding: 12px 16px !important;
+  background: white !important;
+  border-radius: 18px !important;
+  align-self: flex-start !important;
+  margin: 5px 0 !important;
+  border: 2px solid #e9d5ff !important;
+}
+
+.linguakids-typing-indicator span {
+  width: 9px;
+  height: 9px;
+  background: #0ea5e9;
+  border-radius: 50%;
+  animation: typingBounce 1.4s infinite ease-in-out;
+}
+
+.linguakids-typing-indicator span:nth-child(1) { animation-delay: 0s; }
+.linguakids-typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.linguakids-typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-11px); }
+}
+
+/* Back button within content for lessons - additional style */
+.back-btn-in-content {
+  margin: 10px 0 20px 0;
+  display: inline-block;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  #app { 
+    padding-top: 65px; 
+  }
+  
+  .sub-container { 
+    grid-template-columns: repeat(2, 1fr); 
+  }
+  
+  #globalBack, #globalLogout { 
+    top: 10px; 
+    left: 10px; 
+    padding: 7px 14px; 
+    font-size: 0.9rem; 
+  }
+  
+  #chatbotBtn { 
+    top: 10px; 
+    right: 104px; 
+    width: 38px; 
+    height: 38px; 
+    font-size: 1rem; 
+  }
+  
+  #langIconBtn { 
+    top: 10px; 
+    right: 58px; 
+    width: 38px; 
+    height: 38px; 
+    font-size: 1rem; 
+  }
+  
+  #logoutBtn { 
+    top: 10px; 
+    right: 10px; 
+    width: 38px; 
+    height: 38px; 
+    font-size: 1rem; 
+  }
+  
+  .chatbot-modal { 
+    width: 96%; 
+    right: 2%; 
+    left: 2%; 
+    bottom: 10px; 
+  }
+  
+  .linguakids-chat-messages { 
+    height: 350px !important; 
+  }
+  
+  .linguakids-send-btn { 
+    width: 44px !important; 
+    height: 44px !important; 
+  }
+  
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  /* TRACING PAGES - Made to fit perfectly without scrolling with larger canvas */
+  .lesson-container {
+    height: 100vh;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    justify-content: flex-start;
+    padding-top: 5px;
+    min-height: auto;
+    max-height: 100vh;
+    box-sizing: border-box;
+  }
+  
+  .lesson-container .main-char {
+    font-size: 2.2rem;
+    margin: 2px 0;
+    line-height: 1.2;
+  }
+  
+  .lesson-container .example {
+    font-size: 1.1rem;
+    margin: 2px 0;
+    line-height: 1.2;
+  }
+  
+  .lesson-container .spelling {
+    font-size: 1rem;
+    margin: 2px 0;
+    color: #4facfe;
+  }
+  
+  .lesson-container .translation {
+    font-size: 1rem;
+    margin: 2px 0;
+  }
+  
+  .lesson-container .sound-btn {
+    width: 36px;
+    height: 36px;
+    margin: 2px auto;
+    font-size: 1rem;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .lesson-container canvas {
+    width: 220px;
+    height: 220px;
+    margin: 2px auto;
+    border-radius: 16px;
+    border: 5px dashed #43e97b;
+  }
+  
+  .lesson-container .trace-area {
+    margin: 2px 0;
+    padding: 0;
+  }
+  
+  .lesson-container .clear-btn {
+    padding: 5px 15px;
+    font-size: 0.9rem;
+    margin-top: 4px;
+    min-width: 70px;
+  }
+  
+  .lesson-container .lesson-controls {
+    margin-top: 4px;
+    gap: 10px;
+    padding: 0;
+  }
+  
+  .lesson-container .lesson-controls .btn {
+    padding: 6px 16px;
+    font-size: 0.9rem;
+    min-width: 70px;
+    margin: 0;
+  }
+  
+  /* Ensure body and app container don't interfere with tracing pages */
+  body:has(.lesson-container) {
+    overflow: hidden;
+    height: 100vh;
+  }
+  
+  #app:has(.lesson-container) {
+    padding-top: 45px;
+    height: 100vh;
+    overflow: hidden;
+    padding-bottom: 0;
+  }
+}
+
+/* For smaller screens (under 380px) */
+@media (max-width: 380px) {
+  .lesson-container .main-char {
+    font-size: 2rem;
+  }
+  
+  .lesson-container .example {
+    font-size: 1rem;
+  }
+  
+  .lesson-container .spelling {
+    font-size: 0.9rem;
+  }
+  
+  .lesson-container canvas {
+    width: 190px;
+    height: 190px;
+  }
+  
+  .lesson-container .lesson-controls .btn {
+    padding: 5px 14px;
+    font-size: 0.85rem;
+    min-width: 65px;
+  }
+  
+  .lesson-container .clear-btn {
+    padding: 4px 12px;
+    font-size: 0.85rem;
+  }
+}
+
+/* For medium screens (380px - 450px) */
+@media (min-width: 381px) and (max-width: 450px) {
+  .lesson-container canvas {
+    width: 210px;
+    height: 210px;
+  }
+}
+
+/* For taller screens, adjust vertical spacing and canvas size */
+@media (min-height: 700px) and (max-width: 600px) {
+  .lesson-container {
+    padding-top: 15px;
+  }
+  
+  .lesson-container canvas {
+    width: 240px;
+    height: 240px;
+  }
+  
+  .lesson-container .main-char {
+    font-size: 2.4rem;
+  }
+}
+
+/* For very tall screens */
+@media (min-height: 800px) and (max-width: 600px) {
+  .lesson-container {
+    padding-top: 25px;
+  }
+  
+  .lesson-container canvas {
+    width: 260px;
+    height: 260px;
+  }
+  
+  .lesson-container .main-char {
+    font-size: 2.6rem;
+  }
+  
+  .lesson-container .example {
+    font-size: 1.2rem;
+  }
+}
+
+/* For landscape orientation on mobile */
+@media (max-height: 500px) and (max-width: 900px) {
+  .lesson-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding-top: 5px;
+  }
+  
+  .lesson-container .main-char {
+    font-size: 2rem;
+    width: 100%;
+  }
+  
+  .lesson-container .example {
+    font-size: 1rem;
+    margin: 0 5px;
+  }
+  
+  .lesson-container .spelling {
+    font-size: 0.9rem;
+    margin: 0 5px;
+  }
+  
+  .lesson-container .translation {
+    font-size: 0.9rem;
+    margin: 0 5px;
+  }
+  
+  .lesson-container canvas {
+    width: 180px;
+    height: 180px;
+    margin: 0;
+  }
+  
+  .lesson-container .sound-btn {
+    margin: 0;
+  }
+  
+  .lesson-container .trace-area {
+    margin: 0;
+  }
+  
+  .lesson-container .lesson-controls {
+    margin: 0;
+    width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+  <!-- Back button (for self-study mode) - FIXED: Only one global back button -->
+  <button id="globalBack" onclick="goBack()" style="display: none;">Back</button>
+  
+  <!-- Logout button for teacher mode (top left) -->
+  <button id="globalLogout" onclick="showTeacherLogoutConfirmation()" style="display: none;">
+    <i class="fas fa-sign-out-alt"></i> Logout
+  </button>
+  
+  <!-- Chatbot button -->
+  <button id="chatbotBtn" onclick="openChatbot()" style="display: none;">
+    <i class="fas fa-robot"></i>
+  </button>
+  
+  <!-- Language icon button -->
+  <button id="langIconBtn" onclick="showLanguageModal()" style="display: none;">
+    <i class="fas fa-language"></i>
+  </button>
+  
+  <!-- Right side logout button (for self-study mode) -->
+  <button id="logoutBtn" onclick="showLogoutConfirmation()" style="display: none;">
+    <i class="fas fa-sign-out-alt"></i>
+  </button>
+
+  <!-- Logout Confirmation Modal (for both self-study and teacher mode) -->
+  <div id="logoutConfirmModal" class="modal-overlay" style="display: none;">
+    <div class="modal-box" style="max-width: 300px;">
+      <h3 style="color: #ff5252; margin-bottom: 15px; font-family: 'Baloo 2', cursive;">Logout</h3>
+      <p style="margin-bottom: 20px;">Are you sure you want to logout?</p>
+      <div style="display: flex; gap: 10px; justify-content: center;">
+        <button class="btn" onclick="confirmLogout()" style="background: #ff5252; padding: 8px 20px;">Yes</button>
+        <button class="btn btn-secondary" onclick="closeLogoutModal()" style="padding: 8px 20px;">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+<div id="app">
+  <div id="learning-content"></div>
+</div>
+
+<div id="achievementToast" class="toast">
+  <i class="fas fa-trophy"></i>
+  <div>
+    <div id="toastTitle">Erfolg freigeschaltet! (Achievement Unlocked!)</div>
+    <div id="toastDesc">Du hast eine neue Auszeichnung erhalten. (You've earned a new badge.)</div>
+  </div>
+</div>
+
+<!-- Language Modal -->
+<div id="languageModal" class="modal-overlay">
+  <div class="modal-box">
+    <div class="modal-close" onclick="closeLanguageModal()">✕</div>
+    <h2><span class="emoji">🌎</span> Choose Language! <span class="emoji">👋</span></h2>
+    <p>In what language do you want to learn German?</p>
+    
+    <div class="lang-option" id="chooseEnglish" style="background:linear-gradient(135deg,#fffbf0,#f0f8ff); border-color:#4facfe; border-bottom-color:#2280d4; color:#0a2472;">
+      <i class="fas fa-language" style="color:#1cb0f6;"></i> English
+    </div>
+    <div class="lang-option" id="chooseHindi" style="background:linear-gradient(135deg,#fffbeb,#fef9c3); border-color:#f9ca24; border-bottom-color:#d4a800; color:#92400e;">
+      <i class="fas fa-language" style="color:#ff9933;"></i> हिंदी (Hindi)
+    </div>
+    <div class="lang-option" id="chooseMarathi" style="background:linear-gradient(135deg,#f0fff4,#dcfce7); border-color:#43e97b; border-bottom-color:#1db863; color:#166534;">
+      <i class="fas fa-language" style="color:#0f9d58;"></i> मराठी (Marathi)
+    </div>
+    
+    <div class="modal-note">
+      <i class="fas fa-info-circle"></i> Lessons will be taught in your selected language.
+    </div>
+  </div>
+</div>
+
+<!-- Chatbot Modal -->
+<div id="chatbotModal" class="chatbot-modal">
+  <div id="chatbotContainer"></div>
+</div>
+
+<script>
+// Add JavaScript to further prevent Google Translate
+(function() {
+  document.documentElement.setAttribute('translate', 'no');
+  const meta = document.createElement('meta');
+  meta.name = 'google';
+  meta.content = 'notranslate';
+  document.getElementsByTagName('head')[0].appendChild(meta);
+})();
+
+/* === German Letters with Translations === */
+const LETTERS = [
+  {upper:"A", lower:"a", germanWord: "Apfel 🍎", englishWord: "Apple", hindiWord: "सेब 🍎", marathiWord: "सफरचंद 🍎"},
+  {upper:"B", lower:"b", germanWord: "Ball ⚽", englishWord: "Ball", hindiWord: "गेंद ⚽", marathiWord: "चेंडू ⚽"},
+  {upper:"C", lower:"c", germanWord: "Clown 🤡", englishWord: "Clown", hindiWord: "जोकर 🤡", marathiWord: "विदूषक 🤡"},
+  {upper:"D", lower:"d", germanWord: "Delfin 🐬", englishWord: "Dolphin", hindiWord: "डॉल्फिन 🐬", marathiWord: "डॉल्फिन 🐬"},
+  {upper:"E", lower:"e", germanWord: "Elefant 🐘", englishWord: "Elephant", hindiWord: "हाथी 🐘", marathiWord: "हत्ती 🐘"},
+  {upper:"F", lower:"f", germanWord: "Fisch 🐟", englishWord: "Fish", hindiWord: "मछली 🐟", marathiWord: "मासा 🐟"},
+  {upper:"G", lower:"g", germanWord: "Giraffe 🦒", englishWord: "Giraffe", hindiWord: "जिराफ 🦒", marathiWord: "जिराफ 🦒"},
+  {upper:"H", lower:"h", germanWord: "Haus 🏠", englishWord: "House", hindiWord: "घर 🏠", marathiWord: "घर 🏠"},
+  {upper:"I", lower:"i", germanWord: "Igel 🦔", englishWord: "Hedgehog", hindiWord: "साही 🦔", marathiWord: "साळू 🦔"},
+  {upper:"J", lower:"j", germanWord: "Jaguar 🐆", englishWord: "Jaguar", hindiWord: "जगुआर 🐆", marathiWord: "जॅग्वार 🐆"},
+  {upper:"K", lower:"k", germanWord: "Katze 🐱", englishWord: "Cat", hindiWord: "बिल्ली 🐱", marathiWord: "मांजर 🐱"},
+  {upper:"L", lower:"l", germanWord: "Löwe 🦁", englishWord: "Lion", hindiWord: "शेर 🦁", marathiWord: "सिंह 🦁"},
+  {upper:"M", lower:"m", germanWord: "Mond 🌙", englishWord: "Moon", hindiWord: "चाँद 🌙", marathiWord: "चंद्र 🌙"},
+  {upper:"N", lower:"n", germanWord: "Nase 👃", englishWord: "Nose", hindiWord: "नाक 👃", marathiWord: "नाक 👃"},
+  {upper:"O", lower:"o", germanWord: "Orange 🍊", englishWord: "Orange", hindiWord: "संतरा 🍊", marathiWord: "संत्रे 🍊"},
+  {upper:"P", lower:"p", germanWord: "Pferd 🐴", englishWord: "Horse", hindiWord: "घोड़ा 🐴", marathiWord: "घोडा 🐴"},
+  {upper:"Q", lower:"q", germanWord: "Qualle 🐋", englishWord: "Jellyfish", hindiWord: "जेलीफिश 🐋", marathiWord: "जेलीफिश 🐋"},
+  {upper:"R", lower:"r", germanWord: "Regen 🌧️", englishWord: "Rain", hindiWord: "बारिश 🌧️", marathiWord: "पाऊस 🌧️"},
+  {upper:"S", lower:"s", germanWord: "Sonne ☀️", englishWord: "Sun", hindiWord: "सूरज ☀️", marathiWord: "सूर्य ☀️"},
+  {upper:"T", lower:"t", germanWord: "Tiger 🐯", englishWord: "Tiger", hindiWord: "बाघ 🐯", marathiWord: "वाघ 🐯"},
+  {upper:"U", lower:"u", germanWord: "Uhr ⏰", englishWord: "Clock", hindiWord: "घड़ी ⏰", marathiWord: "घड्याळ ⏰"},
+  {upper:"V", lower:"v", germanWord: "Vogel 🐦", englishWord: "Bird", hindiWord: "पक्षी 🐦", marathiWord: "पक्षी 🐦"},
+  {upper:"W", lower:"w", germanWord: "Wasser 💧", englishWord: "Water", hindiWord: "पानी 💧", marathiWord: "पाणी 💧"},
+  {upper:"X", lower:"x", germanWord: "Xylophon 🎶", englishWord: "Xylophone", hindiWord: "ज़ाइलोफोन 🎶", marathiWord: "झायलोफोन 🎶"},
+  {upper:"Y", lower:"y", germanWord: "Yacht ⛵", englishWord: "Yacht", hindiWord: "नौका ⛵", marathiWord: "बोट ⛵"},
+  {upper:"Z", lower:"z", germanWord: "Zebra 🦓", englishWord: "Zebra", hindiWord: "ज़ेबरा 🦓", marathiWord: "झेब्रा 🦓"},
+  {upper:"Ä", lower:"ä", germanWord: "Äpfel 🍏", englishWord: "Apples", hindiWord: "सेब 🍏", marathiWord: "सफरचंदे 🍏"},
+  {upper:"Ö", lower:"ö", germanWord: "Öl 🛢️", englishWord: "Oil", hindiWord: "तेल 🛢️", marathiWord: "तेल 🛢️"},
+  {upper:"Ü", lower:"ü", germanWord: "Überraschung 🎁", englishWord: "Surprise", hindiWord: "आश्चर्य 🎁", marathiWord: "आश्चर्य 🎁"},
+  {upper:"ß", lower:"ß", germanWord: "Straße 🛣️", englishWord: "Street", hindiWord: "सड़क 🛣️", marathiWord: "रस्ता 🛣️"}
+];
+
+/* === Number Helper with Translations === */
+function numberToWords(num, lang = 'english') {
+  const ones = {
+    english: ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"],
+    hindi: ["", "एक", "दो", "तीन", "चार", "पाँच", "छह", "सात", "आठ", "नौ", "दस", "ग्यारह", "बारह", "तेरह", "चौदह", "पंद्रह", "सोलह", "सत्रह", "अठारह", "उन्नीस"],
+    marathi: ["", "एक", "दोन", "तीन", "चार", "पाच", "सहा", "सात", "आठ", "नऊ", "दहा", "अकरा", "बारा", "तेरा", "चौदा", "पंधरा", "सोळा", "सतरा", "अठरा", "एकोणीस"]
+  };
+  
+  const tens = {
+    english: ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"],
+    hindi: ["", "", "बीस", "तीस", "चालीस", "पचास", "साठ", "सत्तर", "अस्सी", "नब्बे"],
+    marathi: ["", "", "वीस", "तीस", "चाळीस", "पन्नास", "साठ", "सत्तर", "ऐंशी", "नव्वद"]
+  };
+  
+  if (num < 20) return ones[lang][num];
+  if (num < 100) {
+    const ten = Math.floor(num / 10);
+    const one = num % 10;
+    if (one === 0) return tens[lang][ten];
+    return tens[lang][ten] + " " + ones[lang][one];
+  }
+  if (num === 100) {
+    if (lang === 'english') return "One Hundred";
+    if (lang === 'hindi') return "एक सौ";
+    if (lang === 'marathi') return "एकशे";
+  }
+  return "";
+}
+
+// Get German word for number
+function getGermanNumberWord(num) {
+  const ones = ["", "Eins", "Zwei", "Drei", "Vier", "Fünf", "Sechs", "Sieben", "Acht", "Neun",
+  "Zehn", "Elf", "Zwölf", "Dreizehn", "Vierzehn", "Fünfzehn", "Sechzehn", "Siebzehn", "Achtzehn", "Neunzehn"];
+  const tens = ["", "", "Zwanzig", "Dreißig", "Vierzig", "Fünfzig", "Sechzig", "Siebzig", "Achtzig", "Neunzig"];
+  if (num < 20) return ones[num];
+  if (num < 100) {
+    const ten = Math.floor(num / 10);
+    const one = num % 10;
+    if (one === 0) return tens[ten];
+    return ones[one] + "und" + tens[ten];
+  }
+  if (num === 100) return "Einhundert";
+  return "";
+}
+
+function splitGermanWord(word) {
+  const idx = word.indexOf("und");
+  if (idx > 0) return word.slice(0, idx + 3) + '<br>' + word.slice(idx + 3);
+  return word;
+}
+
+const NUMBERS = [
+  { digit: 1, germanWord: getGermanNumberWord(1), englishWord: "One", hindiWord: "एक", marathiWord: "एक" },
+  { digit: 2, germanWord: getGermanNumberWord(2), englishWord: "Two", hindiWord: "दो", marathiWord: "दोन" },
+  { digit: 3, germanWord: getGermanNumberWord(3), englishWord: "Three", hindiWord: "तीन", marathiWord: "तीन" },
+  { digit: 4, germanWord: getGermanNumberWord(4), englishWord: "Four", hindiWord: "चार", marathiWord: "चार" },
+  { digit: 5, germanWord: getGermanNumberWord(5), englishWord: "Five", hindiWord: "पाँच", marathiWord: "पाच" },
+  { digit: 6, germanWord: getGermanNumberWord(6), englishWord: "Six", hindiWord: "छह", marathiWord: "सहा" },
+  { digit: 7, germanWord: getGermanNumberWord(7), englishWord: "Seven", hindiWord: "सात", marathiWord: "सात" },
+  { digit: 8, germanWord: getGermanNumberWord(8), englishWord: "Eight", hindiWord: "आठ", marathiWord: "आठ" },
+  { digit: 9, germanWord: getGermanNumberWord(9), englishWord: "Nine", hindiWord: "नौ", marathiWord: "नऊ" },
+  { digit: 10, germanWord: getGermanNumberWord(10), englishWord: "Ten", hindiWord: "दस", marathiWord: "दहा" },
+  { digit: 11, germanWord: getGermanNumberWord(11), englishWord: "Eleven", hindiWord: "ग्यारह", marathiWord: "अकरा" },
+  { digit: 12, germanWord: getGermanNumberWord(12), englishWord: "Twelve", hindiWord: "बारह", marathiWord: "बारा" },
+  { digit: 13, germanWord: getGermanNumberWord(13), englishWord: "Thirteen", hindiWord: "तेरह", marathiWord: "तेरा" },
+  { digit: 14, germanWord: getGermanNumberWord(14), englishWord: "Fourteen", hindiWord: "चौदह", marathiWord: "चौदा" },
+  { digit: 15, germanWord: getGermanNumberWord(15), englishWord: "Fifteen", hindiWord: "पंद्रह", marathiWord: "पंधरा" },
+  { digit: 16, germanWord: getGermanNumberWord(16), englishWord: "Sixteen", hindiWord: "सोलह", marathiWord: "सोळा" },
+  { digit: 17, germanWord: getGermanNumberWord(17), englishWord: "Seventeen", hindiWord: "सत्रह", marathiWord: "सतरा" },
+  { digit: 18, germanWord: getGermanNumberWord(18), englishWord: "Eighteen", hindiWord: "अठारह", marathiWord: "अठरा" },
+  { digit: 19, germanWord: getGermanNumberWord(19), englishWord: "Nineteen", hindiWord: "उन्नीस", marathiWord: "एकोणीस" },
+  { digit: 20, germanWord: getGermanNumberWord(20), englishWord: "Twenty", hindiWord: "बीस", marathiWord: "वीस" },
+  { digit: 21, germanWord: getGermanNumberWord(21), englishWord: "Twenty One", hindiWord: "इक्कीस", marathiWord: "एकवीस" },
+  { digit: 22, germanWord: getGermanNumberWord(22), englishWord: "Twenty Two", hindiWord: "बाईस", marathiWord: "बावीस" },
+  { digit: 23, germanWord: getGermanNumberWord(23), englishWord: "Twenty Three", hindiWord: "तेईस", marathiWord: "तेवीस" },
+  { digit: 24, germanWord: getGermanNumberWord(24), englishWord: "Twenty Four", hindiWord: "चौबीस", marathiWord: "चोवीस" },
+  { digit: 25, germanWord: getGermanNumberWord(25), englishWord: "Twenty Five", hindiWord: "पच्चीस", marathiWord: "पंचवीस" },
+  { digit: 26, germanWord: getGermanNumberWord(26), englishWord: "Twenty Six", hindiWord: "छब्बीस", marathiWord: "सव्वीस" },
+  { digit: 27, germanWord: getGermanNumberWord(27), englishWord: "Twenty Seven", hindiWord: "सत्ताईस", marathiWord: "सत्तावीस" },
+  { digit: 28, germanWord: getGermanNumberWord(28), englishWord: "Twenty Eight", hindiWord: "अट्ठाईस", marathiWord: "अठ्ठावीस" },
+  { digit: 29, germanWord: getGermanNumberWord(29), englishWord: "Twenty Nine", hindiWord: "उनतीस", marathiWord: "एकोणतीस" },
+  { digit: 30, germanWord: getGermanNumberWord(30), englishWord: "Thirty", hindiWord: "तीस", marathiWord: "तीस" },
+  { digit: 31, germanWord: getGermanNumberWord(31), englishWord: "Thirty One", hindiWord: "इकतीस", marathiWord: "एकतीस" },
+  { digit: 32, germanWord: getGermanNumberWord(32), englishWord: "Thirty Two", hindiWord: "बत्तीस", marathiWord: "बत्तीस" },
+  { digit: 33, germanWord: getGermanNumberWord(33), englishWord: "Thirty Three", hindiWord: "तैंतीस", marathiWord: "तेहेतीस" },
+  { digit: 34, germanWord: getGermanNumberWord(34), englishWord: "Thirty Four", hindiWord: "चौंतीस", marathiWord: "चौतीस" },
+  { digit: 35, germanWord: getGermanNumberWord(35), englishWord: "Thirty Five", hindiWord: "पैंतीस", marathiWord: "पस्तीस" },
+  { digit: 36, germanWord: getGermanNumberWord(36), englishWord: "Thirty Six", hindiWord: "छत्तीस", marathiWord: "छत्तीस" },
+  { digit: 37, germanWord: getGermanNumberWord(37), englishWord: "Thirty Seven", hindiWord: "सैंतीस", marathiWord: "सदतीस" },
+  { digit: 38, germanWord: getGermanNumberWord(38), englishWord: "Thirty Eight", hindiWord: "अड़तीस", marathiWord: "अडतीस" },
+  { digit: 39, germanWord: getGermanNumberWord(39), englishWord: "Thirty Nine", hindiWord: "उनतालीस", marathiWord: "एकोणचाळीस" },
+  { digit: 40, germanWord: getGermanNumberWord(40), englishWord: "Forty", hindiWord: "चालीस", marathiWord: "चाळीस" },
+  { digit: 41, germanWord: getGermanNumberWord(41), englishWord: "Forty One", hindiWord: "इकतालीस", marathiWord: "एक्केचाळीस" },
+  { digit: 42, germanWord: getGermanNumberWord(42), englishWord: "Forty Two", hindiWord: "बयालीस", marathiWord: "बेचाळीस" },
+  { digit: 43, germanWord: getGermanNumberWord(43), englishWord: "Forty Three", hindiWord: "तैंतालीस", marathiWord: "त्रेचाळीस" },
+  { digit: 44, germanWord: getGermanNumberWord(44), englishWord: "Forty Four", hindiWord: "चौवालीस", marathiWord: "चव्वेचाळीस" },
+  { digit: 45, germanWord: getGermanNumberWord(45), englishWord: "Forty Five", hindiWord: "पैंतालीस", marathiWord: "पंचेचाळीस" },
+  { digit: 46, germanWord: getGermanNumberWord(46), englishWord: "Forty Six", hindiWord: "छियालीस", marathiWord: "सेहेचाळीस" },
+  { digit: 47, germanWord: getGermanNumberWord(47), englishWord: "Forty Seven", hindiWord: "सैंतालीस", marathiWord: "सत्तेचाळीस" },
+  { digit: 48, germanWord: getGermanNumberWord(48), englishWord: "Forty Eight", hindiWord: "अड़तालीस", marathiWord: "अठ्ठेचाळीस" },
+  { digit: 49, germanWord: getGermanNumberWord(49), englishWord: "Forty Nine", hindiWord: "उनचास", marathiWord: "एकोणपन्नास" },
+  { digit: 50, germanWord: getGermanNumberWord(50), englishWord: "Fifty", hindiWord: "पचास", marathiWord: "पन्नास" },
+  { digit: 51, germanWord: getGermanNumberWord(51), englishWord: "Fifty One", hindiWord: "इक्यावन", marathiWord: "एक्कावन्न" },
+  { digit: 52, germanWord: getGermanNumberWord(52), englishWord: "Fifty Two", hindiWord: "बावन", marathiWord: "बावन्न" },
+  { digit: 53, germanWord: getGermanNumberWord(53), englishWord: "Fifty Three", hindiWord: "तिरपन", marathiWord: "त्रेपन्न" },
+  { digit: 54, germanWord: getGermanNumberWord(54), englishWord: "Fifty Four", hindiWord: "चौवन", marathiWord: "चोपन्न" },
+  { digit: 55, germanWord: getGermanNumberWord(55), englishWord: "Fifty Five", hindiWord: "पचपन", marathiWord: "पंचावन्न" },
+  { digit: 56, germanWord: getGermanNumberWord(56), englishWord: "Fifty Six", hindiWord: "छप्पन", marathiWord: "छप्पन्न" },
+  { digit: 57, germanWord: getGermanNumberWord(57), englishWord: "Fifty Seven", hindiWord: "सत्तावन", marathiWord: "सत्तावन्न" },
+  { digit: 58, germanWord: getGermanNumberWord(58), englishWord: "Fifty Eight", hindiWord: "अट्ठावन", marathiWord: "अठ्ठावन्न" },
+  { digit: 59, germanWord: getGermanNumberWord(59), englishWord: "Fifty Nine", hindiWord: "उनसठ", marathiWord: "एकोणसाठ" },
+  { digit: 60, germanWord: getGermanNumberWord(60), englishWord: "Sixty", hindiWord: "साठ", marathiWord: "साठ" },
+  { digit: 61, germanWord: getGermanNumberWord(61), englishWord: "Sixty One", hindiWord: "इकसठ", marathiWord: "एकसष्ठ" },
+  { digit: 62, germanWord: getGermanNumberWord(62), englishWord: "Sixty Two", hindiWord: "बासठ", marathiWord: "बासष्ठ" },
+  { digit: 63, germanWord: getGermanNumberWord(63), englishWord: "Sixty Three", hindiWord: "तिरसठ", marathiWord: "त्रेसष्ठ" },
+  { digit: 64, germanWord: getGermanNumberWord(64), englishWord: "Sixty Four", hindiWord: "चौंसठ", marathiWord: "चौसष्ठ" },
+  { digit: 65, germanWord: getGermanNumberWord(65), englishWord: "Sixty Five", hindiWord: "पैंसठ", marathiWord: "पासष्ठ" },
+  { digit: 66, germanWord: getGermanNumberWord(66), englishWord: "Sixty Six", hindiWord: "छियासठ", marathiWord: "सहासष्ठ" },
+  { digit: 67, germanWord: getGermanNumberWord(67), englishWord: "Sixty Seven", hindiWord: "सरसठ", marathiWord: "सदुसष्ठ" },
+  { digit: 68, germanWord: getGermanNumberWord(68), englishWord: "Sixty Eight", hindiWord: "अड़सठ", marathiWord: "अडुसष्ठ" },
+  { digit: 69, germanWord: getGermanNumberWord(69), englishWord: "Sixty Nine", hindiWord: "उनहत्तर", marathiWord: "एकोणसत्तर" },
+  { digit: 70, germanWord: getGermanNumberWord(70), englishWord: "Seventy", hindiWord: "सत्तर", marathiWord: "सत्तर" },
+  { digit: 71, germanWord: getGermanNumberWord(71), englishWord: "Seventy One", hindiWord: "इकहत्तर", marathiWord: "एक्काहत्तर" },
+  { digit: 72, germanWord: getGermanNumberWord(72), englishWord: "Seventy Two", hindiWord: "बहत्तर", marathiWord: "बाहत्तर" },
+  { digit: 73, germanWord: getGermanNumberWord(73), englishWord: "Seventy Three", hindiWord: "तिहत्तर", marathiWord: "त्र्याहत्तर" },
+  { digit: 74, germanWord: getGermanNumberWord(74), englishWord: "Seventy Four", hindiWord: "चौहत्तर", marathiWord: "चौर्‍याहत्तर" },
+  { digit: 75, germanWord: getGermanNumberWord(75), englishWord: "Seventy Five", hindiWord: "पचहत्तर", marathiWord: "पंच्याहत्तर" },
+  { digit: 76, germanWord: getGermanNumberWord(76), englishWord: "Seventy Six", hindiWord: "छिहत्तर", marathiWord: "शहात्तर" },
+  { digit: 77, germanWord: getGermanNumberWord(77), englishWord: "Seventy Seven", hindiWord: "सतहत्तर", marathiWord: "सत्याहत्तर" },
+  { digit: 78, germanWord: getGermanNumberWord(78), englishWord: "Seventy Eight", hindiWord: "अठहत्तर", marathiWord: "अठ्ठ्याहत्तर" },
+  { digit: 79, germanWord: getGermanNumberWord(79), englishWord: "Seventy Nine", hindiWord: "उनासी", marathiWord: "एकोणऐंशी" },
+  { digit: 80, germanWord: getGermanNumberWord(80), englishWord: "Eighty", hindiWord: "अस्सी", marathiWord: "ऐंशी" },
+  { digit: 81, germanWord: getGermanNumberWord(81), englishWord: "Eighty One", hindiWord: "इक्यासी", marathiWord: "एक्क्याऐंशी" },
+  { digit: 82, germanWord: getGermanNumberWord(82), englishWord: "Eighty Two", hindiWord: "बयासी", marathiWord: "ब्याऐंशी" },
+  { digit: 83, germanWord: getGermanNumberWord(83), englishWord: "Eighty Three", hindiWord: "तिरासी", marathiWord: "त्र्याऐंशी" },
+  { digit: 84, germanWord: getGermanNumberWord(84), englishWord: "Eighty Four", hindiWord: "चौरासी", marathiWord: "चौऱ्याऐंशी" },
+  { digit: 85, germanWord: getGermanNumberWord(85), englishWord: "Eighty Five", hindiWord: "पचासी", marathiWord: "पंच्याऐंशी" },
+  { digit: 86, germanWord: getGermanNumberWord(86), englishWord: "Eighty Six", hindiWord: "छियासी", marathiWord: "शहाऐंशी" },
+  { digit: 87, germanWord: getGermanNumberWord(87), englishWord: "Eighty Seven", hindiWord: "सत्तासी", marathiWord: "सत्त्याऐंशी" },
+  { digit: 88, germanWord: getGermanNumberWord(88), englishWord: "Eighty Eight", hindiWord: "अट्ठासी", marathiWord: "अठ्ठ्याऐंशी" },
+  { digit: 89, germanWord: getGermanNumberWord(89), englishWord: "Eighty Nine", hindiWord: "नवासी", marathiWord: "एकोणनव्वद" },
+  { digit: 90, germanWord: getGermanNumberWord(90), englishWord: "Ninety", hindiWord: "नब्बे", marathiWord: "नव्वद" },
+  { digit: 91, germanWord: getGermanNumberWord(91), englishWord: "Ninety One", hindiWord: "इक्यानबे", marathiWord: "एक्क्याण्णव" },
+  { digit: 92, germanWord: getGermanNumberWord(92), englishWord: "Ninety Two", hindiWord: "बानबे", marathiWord: "ब्याण्णव" },
+  { digit: 93, germanWord: getGermanNumberWord(93), englishWord: "Ninety Three", hindiWord: "तिरानबे", marathiWord: "त्र्याण्णव" },
+  { digit: 94, germanWord: getGermanNumberWord(94), englishWord: "Ninety Four", hindiWord: "चौरानबे", marathiWord: "चौऱ्याण्णव" },
+  { digit: 95, germanWord: getGermanNumberWord(95), englishWord: "Ninety Five", hindiWord: "पंचानबे", marathiWord: "पंच्याण्णव" },
+  { digit: 96, germanWord: getGermanNumberWord(96), englishWord: "Ninety Six", hindiWord: "छियानबे", marathiWord: "शहाण्णव" },
+  { digit: 97, germanWord: getGermanNumberWord(97), englishWord: "Ninety Seven", hindiWord: "सत्तानबे", marathiWord: "सत्त्याण्णव" },
+  { digit: 98, germanWord: getGermanNumberWord(98), englishWord: "Ninety Eight", hindiWord: "अट्ठानबे", marathiWord: "अठ्ठ्याण्णव" },
+  { digit: 99, germanWord: getGermanNumberWord(99), englishWord: "Ninety Nine", hindiWord: "निन्यानबे", marathiWord: "नव्व्याण्णव" },
+  { digit: 100, germanWord: getGermanNumberWord(100), englishWord: "Hundred", hindiWord: "सौ", marathiWord: "शंभर" }
+];
+
+/* === Translations for UI === */
+const translations = {
+  english: {
+    myProgress: "My Progress",
+    trackJourney: "Track your learning journey",
+    level1: "Level 1: Alphabets & Numbers",
+    alphabets: "Alphabets (Alphabet)",
+    learnAZ: "Learn A–Z with tracing & sounds",
+    numbers: "Numbers (Zahlen)",
+    learn1to100: "Learn 1–100 with tracing",
+    level2: "Level 2: Basic Words",
+    fruits: "Fruits (Früchte)",
+    vegetables: "Vegetables (Gemüse)",
+    animals: "Animals (Tiere)",
+    birds: "Birds (Vögel)",
+    vehicles: "Vehicles (Fahrzeuge)",
+    colors: "Colors (Farben)",
+    level3: "Level 3: Sentences & Expressions",
+    greetings: "Simple Greetings",
+    activities: "Daily Activities",
+    questions: "Simple Q&A",
+    games: "Games",
+    basicLevel: "Basic Level",
+    beginnerGames: "Alphabet & Number games",
+    moderateLevel: "Moderate Level",
+    wordGames: "Word games",
+    advancedLevel: "Advanced Level",
+    sentenceGames: "Sentence games",
+    back: "Back",
+    previous: "Previous",
+    next: "Next",
+    backToLetters: "Back to Letters",
+    backToNumbers: "Back to Numbers",
+    clear: "Clear",
+    learnAlphabets: "Learn Alphabets",
+    learnNumbers: "Learn Numbers"
+  },
+  hindi: {
+    myProgress: "मेरी प्रगति",
+    trackJourney: "अपनी सीखने की यात्रा को ट्रैक करें",
+    level1: "स्तर 1: वर्णमाला और संख्याएँ",
+    alphabets: "वर्णमाला",
+    learnAZ: "A–Z लिखना और ध्वनियाँ सीखें",
+    numbers: "संख्याएँ",
+    learn1to100: "1–100 लिखना सीखें",
+    level2: "स्तर 2: मूल शब्द",
+    fruits: "फल",
+    vegetables: "सब्जियाँ",
+    animals: "जानवर",
+    birds: "पक्षी",
+    vehicles: "वाहन",
+    colors: "रंग",
+    level3: "स्तर 3: वाक्य और अभिव्यक्तियाँ",
+    greetings: "सरल अभिवादन",
+    activities: "दैनिक गतिविधियाँ",
+    questions: "सरल प्रश्नोत्तर",
+    games: "खेल",
+    basicLevel: "मूल स्तर",
+    beginnerGames: "वर्णमाला और संख्या खेल",
+    moderateLevel: "मध्यम स्तर",
+    wordGames: "शब्द खेल",
+    advancedLevel: "उन्नत स्तर",
+    sentenceGames: "वाक्य खेल",
+    back: "वापस",
+    previous: "पिछला",
+    next: "अगला",
+    backToLetters: "वर्णमाला पर वापस",
+    backToNumbers: "संख्याओं पर वापस",
+    clear: "साफ करें",
+    learnAlphabets: "वर्णमाला सीखें",
+    learnNumbers: "संख्याएँ सीखें"
+  },
+  marathi: {
+    myProgress: "माझी प्रगती",
+    trackJourney: "तुमचा शिक्षण प्रवास ट्रॅक करा",
+    level1: "स्तर १: अक्षरे आणि संख्या",
+    alphabets: "अक्षरे",
+    learnAZ: "A–Z लेखन आणि ध्वनी शिका",
+    numbers: "संख्या",
+    learn1to100: "१-१०० लेखन शिका",
+    level2: "स्तर २: मूलभूत शब्द",
+    fruits: "फळे",
+    vegetables: "भाज्या",
+    animals: "प्राणी",
+    birds: "पक्षी",
+    vehicles: "वाहने",
+    colors: "रंग",
+    level3: "स्तर ३: वाक्ये आणि अभिव्यक्ती",
+    greetings: "अभिवादन",
+    activities: "दैनंदिन क्रियाकलाप",
+    questions: "प्रश्नोत्तर",
+    games: "खेळ",
+    basicLevel: "मूलभूत स्तर",
+    beginnerGames: "अक्षरे आणि संख्या खेळ",
+    moderateLevel: "मध्यम स्तर",
+    wordGames: "शब्द खेळ",
+    advancedLevel: "प्रगत स्तर",
+    sentenceGames: "वाक्य खेळ",
+    back: "मागे",
+    previous: "मागील",
+    next: "पुढील",
+    backToLetters: "अक्षरांकडे परत",
+    backToNumbers: "संख्यांकडे परत",
+    clear: "साफ करा",
+    learnAlphabets: "अक्षरे शिका",
+    learnNumbers: "संख्या शिका"
+  }
+};
+
+// ===== USER MANAGEMENT FUNCTIONS =====
+function getCurrentUser() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlUser = urlParams.get('user');
+  if (urlUser) {
+    sessionStorage.setItem('currentUser', urlUser);
+    return urlUser;
+  }
+  
+  const sessionUser = sessionStorage.getItem('currentUser');
+  if (sessionUser) {
+    return sessionUser;
+  }
+  
+  return 'guest';
+}
+
+// Get user profile from localStorage (set by study.html)
+function getUserProfile() {
+  try {
+    const profileStr = localStorage.getItem('linguaKidsProfile');
+    if (profileStr) {
+      return JSON.parse(profileStr);
+    }
+  } catch (e) {
+    return null;
+  }
+  return null;
+}
+
+// Check if user is in teacher mode
+function isTeacherMode() {
+  const userProfile = getUserProfile();
+  return userProfile && userProfile.studyMode === 'teacher';
+}
+
+function isFirstVisit() {
+  const username = getCurrentUser();
+  const visitKey = `linguaKids_${username}_germanVisited`;
+  const hasVisited = localStorage.getItem(visitKey);
+  return !hasVisited;
+}
+
+function markAsVisited() {
+  const username = getCurrentUser();
+  const visitKey = `linguaKids_${username}_germanVisited`;
+  localStorage.setItem(visitKey, 'true');
+}
+
+function getUserLanguageKey() {
+  const username = getCurrentUser();
+  return `linguaKids_${username}_germanInterfaceLang`;
+}
+
+/* === Progress Tracking Functions === */
+function trackAlphabetProgress(index) {
+  const today = new Date().toDateString();
+  const sessionKey = `alphabet_${index}_${today}`;
+  
+  if (sessionStorage.getItem(sessionKey)) {
+    return false;
+  }
+  
+  if (typeof updateProgress === 'function') {
+    const success = updateProgress('level1', 'alphabets', 1);
+    if (success) {
+      sessionStorage.setItem(sessionKey, 'true');
+      return true;
+    }
+  }
+  
+  try {
+    const progress = JSON.parse(localStorage.getItem('grprogress')) || getDefaultProgress();
+    if (progress.level1 && progress.level1.alphabets) {
+      if (progress.level1.alphabets.completed < progress.level1.alphabets.total) {
+        progress.level1.alphabets.completed++;
+        localStorage.setItem('grprogress', JSON.stringify(progress));
+        sessionStorage.setItem(sessionKey, 'true');
+        return true;
+      }
+    }
+  } catch (e) {
+    console.error("Error tracking alphabet progress:", e);
+  }
+  return false;
+}
+
+function trackNumberProgress(index) {
+  const today = new Date().toDateString();
+  const sessionKey = `number_${index}_${today}`;
+  
+  if (sessionStorage.getItem(sessionKey)) {
+    return false;
+  }
+  
+  if (typeof updateProgress === 'function') {
+    const success = updateProgress('level1', 'numbers', 1);
+    if (success) {
+      sessionStorage.setItem(sessionKey, 'true');
+      return true;
+    }
+  }
+  
+  try {
+    const progress = JSON.parse(localStorage.getItem('grprogress')) || getDefaultProgress();
+    if (progress.level1 && progress.level1.numbers) {
+      if (progress.level1.numbers.completed < progress.level1.numbers.total) {
+        progress.level1.numbers.completed++;
+        localStorage.setItem('grprogress', JSON.stringify(progress));
+        sessionStorage.setItem(sessionKey, 'true');
+        return true;
+      }
+    }
+  } catch (e) {
+    console.error("Error tracking number progress:", e);
+  }
+  return false;
+}
+
+function getDefaultProgress() {
+  return {
+    level1: {
+      alphabets: { completed: 0, total: 30 }, // 26 standard + 4 special (Ä, Ö, Ü, ß)
+      numbers: { completed: 0, total: 100 }    // 1-100
+    },
+    level2: {
+      fruits: { completed: 0, total: 10 },
+      vegetables: { completed: 0, total: 10 },
+      animals: { completed: 0, total: 10 },
+      birds: { completed: 0, total: 10 },
+      vehicles: { completed: 0, total: 10 },
+      colors: { completed: 0, total: 10 }
+    },
+    level3: {
+      greetings: { completed: 0, total: 10 },
+      activities: { completed: 0, total: 10 },
+      questions: { completed: 0, total: 5 }
+    },
+    achievements: {
+      firstSteps: false,
+      alphabetMaster: false,
+      numberWhiz: false,
+      wordExpert: false,
+      sentenceBuilder: false,
+      weekStreak: false,
+      monthStreak: false
+    },
+    streak: {
+      count: 0,
+      lastDate: null
+    },
+    sessionDate: new Date().toDateString()
+  };
+}
+
+function showAchievementToast(title, description) {
+  const toast = document.getElementById("achievementToast");
+  if(!toast) return;
+  
+  const toastTitle = document.getElementById("toastTitle");
+  const toastDesc = document.getElementById("toastDesc");
+  
+  if (toastTitle) toastTitle.textContent = title;
+  if (toastDesc) toastDesc.textContent = description;
+  
+  toast.classList.add("show");
+  setTimeout(() => { 
+    toast.classList.remove("show"); 
+  }, 3000);
+}
+
+/* === State === */
+let currentView = 'level1';
+let interfaceLang = null;
+
+/* === Text-to-Speech Function === */
+function speakText(text, lang = 'de-DE') {
+  const cleanText = text.replace(/[^a-zA-ZäöüßÄÖÜ\s\-]/g, '').trim();
+  if ('speechSynthesis' in window) {
+    speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(cleanText);
+    utterance.lang = lang;
+    utterance.rate = 0.8;
+    speechSynthesis.speak(utterance);
+  } else {
+    console.log('Speech synthesis not supported');
+  }
+}
+
+// ===== BUTTON VISIBILITY FUNCTIONS =====
+function toggleGlobalBack(show) {
+  const backBtn = document.getElementById("globalBack");
+  if (backBtn) {
+    backBtn.style.display = show ? "inline-block" : "none";
+  }
+}
+
+// Function to toggle global logout button (top left for teacher mode)
+function toggleGlobalLogout(show) {
+  const globalLogout = document.getElementById("globalLogout");
+  if (globalLogout) {
+    globalLogout.style.display = show ? "flex" : "none";
+  }
+}
+
+function toggleLangIcon(show) {
+  const langIcon = document.getElementById("langIconBtn");
+  if (langIcon) {
+    if (interfaceLang && show) {
+      langIcon.style.display = "flex";
+    } else {
+      langIcon.style.display = "none";
+    }
+  }
+}
+
+function toggleChatbotBtn(show) {
+  const chatbotBtn = document.getElementById("chatbotBtn");
+  if (chatbotBtn) {
+    if (show && interfaceLang && currentView === 'level1') {
+      chatbotBtn.style.display = "flex";
+    } else {
+      chatbotBtn.style.display = "none";
+    }
+  }
+}
+
+// Function to toggle right side logout button visibility (for self-study mode)
+function toggleRightLogoutButton(show) {
+  const logoutBtn = document.getElementById("logoutBtn");
+  if (logoutBtn) {
+    const username = getCurrentUser();
+    if (username !== 'guest' && show) {
+      logoutBtn.style.display = "flex";
+    } else {
+      logoutBtn.style.display = "none";
+    }
+  }
+}
+
+// ===== LOGOUT CONFIRMATION FUNCTIONS =====
+function showLogoutConfirmation() {
+  const modal = document.getElementById('logoutConfirmModal');
+  if (modal) {
+    modal.style.display = 'flex';
+    // Hide all other buttons while modal is open
+    toggleGlobalBack(false);
+    toggleGlobalLogout(false);
+    toggleLangIcon(false);
+    toggleRightLogoutButton(false);
+    toggleChatbotBtn(false);
+  }
+}
+
+function closeLogoutModal() {
+  const modal = document.getElementById('logoutConfirmModal');
+  if (modal) {
+    modal.style.display = 'none';
+    // Restore buttons based on current view
+    const isTeacher = isTeacherMode();
+    if (currentView === 'level1') {
+      toggleGlobalBack(!isTeacher);
+      toggleGlobalLogout(isTeacher && currentView === 'level1');
+      toggleLangIcon(true);
+      toggleRightLogoutButton(!isTeacher);
+      toggleChatbotBtn(true);
+    } else {
+      toggleGlobalBack(!isTeacher);
+      toggleGlobalLogout(false); // Hide logout button in sub-views
+      toggleLangIcon(false);
+      toggleRightLogoutButton(!isTeacher);
+      toggleChatbotBtn(false);
+    }
+  }
+}
+
+// ===== TEACHER LOGOUT CONFIRMATION FUNCTIONS =====
+function showTeacherLogoutConfirmation() {
+  // Use the same modal for teacher logout
+  showLogoutConfirmation();
+}
+
+function confirmLogout() {
+  // Clear the user profile from localStorage
+  localStorage.removeItem('linguaKidsProfile');
+  sessionStorage.removeItem('currentUser');
+  closeLogoutModal();
+  window.location.href = 'study.html';
+}
+
+/* === Modal Functions === */
+function showLanguageModal() {
+  const modal = document.getElementById('languageModal');
+  if (modal) {
+    modal.style.display = 'flex';
+    toggleGlobalBack(false);
+    toggleGlobalLogout(false);
+    toggleLangIcon(false);
+    toggleRightLogoutButton(false);
+    toggleChatbotBtn(false);
+  }
+}
+
+function closeLanguageModal() {
+  const modal = document.getElementById('languageModal');
+  if (modal) {
+    modal.style.display = 'none';
+    const isTeacher = isTeacherMode();
+    if (currentView === 'level1') {
+      toggleGlobalBack(!isTeacher);
+      toggleGlobalLogout(isTeacher);
+      toggleLangIcon(true);
+      toggleRightLogoutButton(!isTeacher);
+      toggleChatbotBtn(true);
+    } else {
+      toggleGlobalBack(!isTeacher);
+      toggleGlobalLogout(false); // Hide logout button in sub-views
+      toggleLangIcon(false);
+      toggleRightLogoutButton(!isTeacher);
+      toggleChatbotBtn(false);
+    }
+  }
+}
+
+function openChatbot() {
+  const modal = document.getElementById('chatbotModal');
+  if (modal) {
+    modal.style.display = 'flex';
+    toggleGlobalBack(false);
+    toggleGlobalLogout(false);
+    toggleLangIcon(false);
+    toggleRightLogoutButton(false);
+    toggleChatbotBtn(false);
+    
+    // Pass the interface language to the chatbot - FIXED
+    if (typeof createLinguaKidsChatbot === 'function') {
+      // Convert interfaceLang to the format expected by chatbot.js
+      let languageParam;
+      if (interfaceLang === 'hindi') {
+        languageParam = 'hindi';
+      } else if (interfaceLang === 'marathi') {
+        languageParam = 'marathi';
+      } else {
+        languageParam = 'english';
+      }
+      createLinguaKidsChatbot('chatbotContainer', languageParam);
+    }
+  }
+}
+
+function closeChatbot() {
+  const modal = document.getElementById('chatbotModal');
+  if (modal) {
+    modal.style.display = 'none';
+    const isTeacher = isTeacherMode();
+    if (currentView === 'level1') {
+      toggleGlobalBack(!isTeacher);
+      toggleGlobalLogout(isTeacher);
+      toggleLangIcon(true);
+      toggleRightLogoutButton(!isTeacher);
+      toggleChatbotBtn(true);
+    } else {
+      toggleGlobalBack(!isTeacher);
+      toggleGlobalLogout(false); // Hide logout button in sub-views
+      toggleLangIcon(false);
+      toggleRightLogoutButton(!isTeacher);
+      toggleChatbotBtn(false);
+    }
+    
+    document.getElementById('chatbotContainer').innerHTML = '';
+  }
+}
+
+/* === Navigation - FIXED: Single back button that navigates correctly === */
+function goBack() {
+  // FIXED: Navigation based on current view
+  const isTeacher = isTeacherMode();
+  
+  switch(currentView) {
+    case 'level1':
+      // From Level 1 main page, handle based on mode
+      if (isTeacher) {
+        showTeacherLogoutConfirmation();
+      } else {
+        // For self-study, go back to index.html (main app)
+        window.location.href = 'index.html';
+      }
+      break;
+    case 'alphabets-menu':
+      // From Alphabets menu, go back to main page
+      loadLevel1(); 
+      break;
+    case 'numbers-menu':
+      // From Numbers menu, go back to main page
+      loadLevel1(); 
+      break;
+    case 'alphabet-lesson': 
+      // From individual letter lesson, go back to alphabets menu
+      loadAlphabetsMenu(); 
+      break;
+    case 'number-lesson': 
+      // From individual number lesson, go back to numbers menu
+      loadNumbersMenu(); 
+      break;
+    default: 
+      // Default fallback
+      loadLevel1();
+  }
+}
+
+/* === Level 1 Menu === */
+function loadLevel1() {
+  if (!interfaceLang) return;
+  currentView = 'level1';
+  const t = translations[interfaceLang];
+  
+  // Show appropriate buttons based on user type
+  const isTeacher = isTeacherMode();
+  toggleGlobalBack(!isTeacher); // Show back button only for self-study
+  toggleGlobalLogout(isTeacher && currentView === 'level1'); // Show logout button only for teacher mode on main page
+  toggleLangIcon(true);
+  toggleRightLogoutButton(!isTeacher); // Show right logout button only for self-study
+  toggleChatbotBtn(true);
+
+  document.getElementById("learning-content").innerHTML = `
+<h1>GERMAN - DEUTSCH</h1>
+<div class="sub-container">
+  <div class="sub-card card-progress" onclick="window.location.href='grprogress.html?lang=${interfaceLang}'">
+    <h3>${t.myProgress}</h3><p>${t.trackJourney}</p>
+  </div>
+</div>
+
+<h2>${t.level1}</h2>
+<div class="sub-container">
+  <div class="sub-card card-level1" onclick="loadAlphabetsMenu()">
+    <h3>${t.alphabets}</h3><p>${t.learnAZ}</p>
+  </div>
+  <div class="sub-card card-level1" onclick="loadNumbersMenu()">
+    <h3>${t.numbers}</h3><p>${t.learn1to100}</p>
+  </div>
+</div>
+
+<h2>${t.level2}</h2>
+<div class="sub-container">
+  <div class="sub-card card-level2" onclick="goToLevel2('fruits')">
+    <h3>${t.fruits}</h3><p>Learn names of fruits</p>
+  </div>
+  <div class="sub-card card-level2" onclick="goToLevel2('vegetables')">
+    <h3>${t.vegetables}</h3><p>Learn names of vegetables</p>
+  </div>
+  <div class="sub-card card-level2" onclick="goToLevel2('animals')">
+    <h3>${t.animals}</h3><p>Learn names of animals</p>
+  </div>
+  <div class="sub-card card-level2" onclick="goToLevel2('birds')">
+    <h3>${t.birds}</h3><p>Learn names of birds</p>
+  </div>
+  <div class="sub-card card-level2" onclick="goToLevel2('vehicles')">
+    <h3>${t.vehicles}</h3><p>Learn names of vehicles</p>
+  </div>
+  <div class="sub-card card-level2" onclick="goToLevel2('colors')">
+    <h3>${t.colors}</h3><p>Learn names of colors</p>
+  </div>
+</div>
+
+<h2>${t.level3}</h2>
+<div class="sub-container">
+  <div class="sub-card card-level3" onclick="goToLevel3('greetings')">
+    <h3>${t.greetings}</h3>
+  </div>
+  <div class="sub-card card-level3" onclick="goToLevel3('activities')">
+    <h3>${t.activities}</h3>
+  </div>
+  <div class="sub-card card-level3" onclick="goToLevel3('questions')">
+    <h3>${t.questions}</h3>
+  </div>
+</div>
+
+<h2>${t.games}</h2>
+<div class="sub-container">
+  <div class="sub-card card-games" onclick="playGame('basic')">
+    <h3>${t.basicLevel}</h3>
+    <p>${t.beginnerGames}</p>
+  </div>
+  <div class="sub-card card-games" onclick="playGame('moderate')">
+    <h3>${t.moderateLevel}</h3>
+    <p>${t.wordGames}</p>
+  </div>
+  <div class="sub-card card-games" onclick="playGame('advanced')">
+    <h3>${t.advancedLevel}</h3>
+    <p>${t.sentenceGames}</p>
+  </div>
+</div>
+`;
+}
+
+/* === Helper function to get translated word for letter with German word included === */
+function getDisplayWord(letter) {
+  const germanWord = letter.germanWord;
+  if (interfaceLang === 'hindi') {
+    return `${germanWord} - ${letter.hindiWord}`;
+  }
+  if (interfaceLang === 'marathi') {
+    return `${germanWord} - ${letter.marathiWord}`;
+  }
+  return `${germanWord} - ${letter.englishWord}`; // English
+}
+
+/* === Alphabets - FIXED: Using global back button and removed Learn Alphabets button === */
+function loadAlphabetsMenu() {
+  if (!interfaceLang) return;
+  currentView = 'alphabets-menu';
+  const t = translations[interfaceLang];
+  
+  const isTeacher = isTeacherMode();
+  toggleGlobalBack(!isTeacher); // Show global back button for both modes in sub-views
+  toggleGlobalLogout(false); // Hide logout button in sub-menus for teacher mode
+  toggleLangIcon(false);
+  toggleRightLogoutButton(!isTeacher); // Show right logout button only for self-study
+  toggleChatbotBtn(false);
+  
+  // Using global back button, no need for duplicate back button in content
+  // Removed the section header with "Learn Alphabets" button
+  document.getElementById("learning-content").innerHTML = `
+<div class="letters-grid">
+  ${LETTERS.map((l,i)=>`
+    <div class="letter-card" onclick="startAlphabetLesson(${i})">
+      <div class="main-char">${l.upper}</div>
+      <div class="small-char">${l.lower}</div>
+      <div class="example">${getDisplayWord(l)}</div>
+      <button class="sound-btn" onclick="event.stopPropagation(); speakText('${l.germanWord.split(' ')[0]}');">
+        <i class="fas fa-volume-up"></i>
+      </button>
+    </div>`).join("")}
+</div>`;
+}
+
+function startAlphabetLesson(index) {
+  if (!interfaceLang) return;
+  currentView = 'alphabet-lesson';
+  const t = translations[interfaceLang];
+  
+  const isTeacher = isTeacherMode();
+  toggleGlobalBack(!isTeacher); // Show global back button for both modes in sub-views
+  toggleGlobalLogout(false); // Hide logout button in lessons for teacher mode
+  toggleLangIcon(false);
+  toggleRightLogoutButton(!isTeacher); // Show right logout button only for self-study
+  toggleChatbotBtn(false);
+  
+  if (index < 0 || index >= LETTERS.length) {
+    loadAlphabetsMenu(); 
+    return;
+  }
+  const l = LETTERS[index];
+  
+  // Track progress for this alphabet
+  trackAlphabetProgress(index);
+  
+  // Using global back button only
+  document.getElementById("learning-content").innerHTML = `
+<div class="lesson-container">
+  <div class="main-char">${l.upper} <span class="small-char">${l.lower}</span></div>
+  <div class="example">${getDisplayWord(l)}</div>
+  <button class="sound-btn" onclick="speakText('${l.germanWord.split(' ')[0]}')">
+    <i class="fas fa-volume-up"></i> 
+  </button>
+  <div class="trace-area">
+    <canvas id="traceCanvas" width="250" height="250"></canvas>
+    <button class="btn clear-btn" onclick="clearCanvas('traceCanvas')">${t.clear}</button>
+  </div>
+  <div class="lesson-controls">
+    <button class="btn" onclick="startAlphabetLesson(${index-1})">${t.previous}</button>
+    <button class="btn" onclick="startAlphabetLesson(${index+1})">${t.next}</button>
+  </div>
+</div>`;
+  initTracing("traceCanvas");
+}
+
+/* === Helper function to get translated number word with German word included === */
+function getDisplayNumberWord(number) {
+  const germanWord = number.germanWord;
+  if (interfaceLang === 'hindi') {
+    return `${germanWord} - ${number.hindiWord}`;
+  }
+  if (interfaceLang === 'marathi') {
+    return `${germanWord} - ${number.marathiWord}`;
+  }
+  return `${germanWord} - ${number.englishWord}`; // English
+}
+
+/* === Numbers - FIXED: Using global back button and removed Learn Numbers button === */
+function loadNumbersMenu() {
+  if (!interfaceLang) return;
+  currentView = 'numbers-menu';
+  const t = translations[interfaceLang];
+  
+  const isTeacher = isTeacherMode();
+  toggleGlobalBack(!isTeacher); // Show global back button for both modes in sub-views
+  toggleGlobalLogout(false); // Hide logout button in sub-menus for teacher mode
+  toggleLangIcon(false);
+  toggleRightLogoutButton(!isTeacher); // Show right logout button only for self-study
+  toggleChatbotBtn(false);
+  
+  // Using global back button, no need for duplicate back button in content
+  // Removed the section header with "Learn Numbers" button
+  document.getElementById("learning-content").innerHTML = `
+<div class="numbers-grid">
+  ${NUMBERS.slice(0,100).map((n,i)=>`
+    <div class="number-card" onclick="startNumberLesson(${i})">
+      <div class="main-char">${n.digit}</div>
+      <div class="example">${splitGermanWord(n.germanWord)}</div>
+      <button class="sound-btn" onclick="event.stopPropagation(); speakText('${n.germanWord}');">
+        <i class="fas fa-volume-up"></i>
+      </button>
+    </div>`).join("")}
+</div>`;
+}
+
+function startNumberLesson(index) {
+  if (!interfaceLang) return;
+  currentView = 'number-lesson';
+  const t = translations[interfaceLang];
+  
+  const isTeacher = isTeacherMode();
+  toggleGlobalBack(!isTeacher); // Show global back button for both modes in sub-views
+  toggleGlobalLogout(false); // Hide logout button in lessons for teacher mode
+  toggleLangIcon(false);
+  toggleRightLogoutButton(!isTeacher); // Show right logout button only for self-study
+  toggleChatbotBtn(false);
+  
+  if (index < 0 || index >= NUMBERS.length) {
+    loadNumbersMenu(); 
+    return;
+  }
+  const n = NUMBERS[index];
+  
+  // Track progress for this number
+  trackNumberProgress(index);
+  
+  // Using global back button only
+  document.getElementById("learning-content").innerHTML = `
+<div class="lesson-container">
+  <div class="main-char">${n.digit}</div>
+  <div class="example">${n.germanWord}</div>
+  <div class="translation">${interfaceLang === 'hindi' ? n.hindiWord : interfaceLang === 'marathi' ? n.marathiWord : n.englishWord}</div>
+  <button class="sound-btn" onclick="speakText('${n.germanWord}')">
+    <i class="fas fa-volume-up"></i> 
+  </button>
+  <div class="trace-area">
+    <canvas id="traceCanvas" width="250" height="250"></canvas>
+    <button class="btn clear-btn" onclick="clearCanvas('traceCanvas')">${t.clear}</button>
+  </div>
+  <div class="lesson-controls">
+    <button class="btn" onclick="startNumberLesson(${index-1})">${t.previous}</button>
+    <button class="btn" onclick="startNumberLesson(${index+1})">${t.next}</button>
+  </div>
+</div>`;
+  initTracing("traceCanvas");
+}
+
+/* === Tracing Canvas - FIXED: Proper touch support and drawing === */
+function initTracing(canvasId) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let drawing = false;
+
+  canvas.width = 250;
+  canvas.height = 250;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.lineWidth = 8;
+  ctx.lineCap = 'round';
+  ctx.strokeStyle = '#58cc02';
+
+  // Helper function to get coordinates
+  const getCoordinates = (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    
+    let clientX, clientY;
+    
+    if (e.touches) {
+      // Touch event
+      clientX = e.touches[0].clientX;
+      clientY = e.touches[0].clientY;
+      e.preventDefault();
+    } else {
+      // Mouse event
+      clientX = e.clientX;
+      clientY = e.clientY;
+    }
+    
+    return {
+      x: (clientX - rect.left) * scaleX,
+      y: (clientY - rect.top) * scaleY
+    };
+  };
+
+  const startDrawing = (e) => {
+    e.preventDefault();
+    drawing = true;
+    const coords = getCoordinates(e);
+    ctx.beginPath();
+    ctx.moveTo(coords.x, coords.y);
+  };
+
+  const draw = (e) => {
+    e.preventDefault();
+    if (!drawing) return;
+    const coords = getCoordinates(e);
+    ctx.lineTo(coords.x, coords.y);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(coords.x, coords.y);
+  };
+
+  const stopDrawing = (e) => {
+    e.preventDefault();
+    drawing = false;
+    ctx.beginPath();
+  };
+
+  // Mouse events
+  canvas.addEventListener('mousedown', startDrawing);
+  canvas.addEventListener('mousemove', draw);
+  canvas.addEventListener('mouseup', stopDrawing);
+  canvas.addEventListener('mouseleave', stopDrawing);
+
+  // Touch events
+  canvas.addEventListener('touchstart', startDrawing, { passive: false });
+  canvas.addEventListener('touchmove', draw, { passive: false });
+  canvas.addEventListener('touchend', stopDrawing);
+  canvas.addEventListener('touchcancel', stopDrawing);
+}
+
+function clearCanvas(canvasId) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+/* === Level 2/3 and Games navigation === */
+function goToLevel2(section) {
+  window.location.href = `grlevel2.html?category=${section}&lang=${interfaceLang || 'english'}`;
+}
+
+function goToLevel3(section) {
+  window.location.href = `grlevel3.html?category=${section}&lang=${interfaceLang || 'english'}`;
+}
+
+function playGame(level) {
+  window.location.href = `grgames.html?level=${level}&lang=${interfaceLang || 'english'}&t=${new Date().getTime()}`;
+}
+
+/* === Modal & Init === */
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('languageModal');
+  const backBtn = document.getElementById('globalBack');
+  const globalLogout = document.getElementById('globalLogout');
+  const langIcon = document.getElementById('langIconBtn');
+  const logoutBtn = document.getElementById('logoutBtn');
+  const chatbotBtn = document.getElementById('chatbotBtn');
+  
+  const currentUser = getCurrentUser();
+  const userProfile = getUserProfile();
+  const storageKey = getUserLanguageKey();
+  const savedLang = localStorage.getItem(storageKey);
+  const firstVisit = isFirstVisit();
+
+  document.getElementById("learning-content").innerHTML = '';
+
+  if (userProfile && userProfile.studyMode === 'teacher' && userProfile.assignedLanguage) {
+    if (firstVisit) {
+      interfaceLang = null;
+      modal.style.display = 'flex';
+      if (backBtn) backBtn.style.display = 'none';
+      if (globalLogout) globalLogout.style.display = 'none';
+      if (langIcon) langIcon.style.display = 'none';
+      if (logoutBtn) logoutBtn.style.display = 'none';
+      if (chatbotBtn) chatbotBtn.style.display = 'none';
+    } else if (savedLang) {
+      interfaceLang = savedLang;
+      modal.style.display = 'none';
+      loadLevel1();
+      if (backBtn) backBtn.style.display = 'none'; // Hide back button for teacher mode
+      if (globalLogout) globalLogout.style.display = 'flex'; // Show global logout for teacher mode (only on main page)
+      if (langIcon) langIcon.style.display = 'flex';
+      if (logoutBtn) logoutBtn.style.display = 'none'; // Hide right logout for teacher mode
+      if (chatbotBtn && interfaceLang) chatbotBtn.style.display = 'flex';
+    } else {
+      interfaceLang = null;
+      modal.style.display = 'flex';
+      if (backBtn) backBtn.style.display = 'none';
+      if (globalLogout) globalLogout.style.display = 'none';
+      if (langIcon) langIcon.style.display = 'none';
+      if (logoutBtn) logoutBtn.style.display = 'none';
+      if (chatbotBtn) chatbotBtn.style.display = 'none';
+    }
+  } else {
+    if (firstVisit) {
+      interfaceLang = null;
+      modal.style.display = 'flex';
+      if (backBtn) backBtn.style.display = 'none';
+      if (globalLogout) globalLogout.style.display = 'none';
+      if (langIcon) langIcon.style.display = 'none';
+      if (logoutBtn) logoutBtn.style.display = 'none';
+      if (chatbotBtn) chatbotBtn.style.display = 'none';
+    } else if (savedLang) {
+      interfaceLang = savedLang;
+      modal.style.display = 'none';
+      loadLevel1();
+      if (backBtn) backBtn.style.display = 'inline-block'; // Show back button for self-study
+      if (globalLogout) globalLogout.style.display = 'none'; // Hide global logout for self-study
+      if (langIcon) langIcon.style.display = 'flex';
+      if (logoutBtn && currentUser !== 'guest') logoutBtn.style.display = 'flex'; // Show right logout for self-study
+      if (chatbotBtn && interfaceLang) chatbotBtn.style.display = 'flex';
+    } else {
+      interfaceLang = null;
+      modal.style.display = 'flex';
+      if (backBtn) backBtn.style.display = 'none';
+      if (globalLogout) globalLogout.style.display = 'none';
+      if (langIcon) langIcon.style.display = 'none';
+      if (logoutBtn) logoutBtn.style.display = 'none';
+      if (chatbotBtn) chatbotBtn.style.display = 'none';
+    }
+  }
+
+  const englishOption = document.getElementById('chooseEnglish');
+  const hindiOption = document.getElementById('chooseHindi');
+  const marathiOption = document.getElementById('chooseMarathi');
+  
+  const newEnglishOption = englishOption.cloneNode(true);
+  const newHindiOption = hindiOption.cloneNode(true);
+  const newMarathiOption = marathiOption.cloneNode(true);
+  
+  englishOption.parentNode.replaceChild(newEnglishOption, englishOption);
+  hindiOption.parentNode.replaceChild(newHindiOption, hindiOption);
+  marathiOption.parentNode.replaceChild(newMarathiOption, marathiOption);
+
+  newEnglishOption.addEventListener('click', function() {
+    interfaceLang = 'english';
+    localStorage.setItem(getUserLanguageKey(), 'english');
+    markAsVisited();
+    modal.style.display = 'none';
+    loadLevel1();
+    const isTeacher = isTeacherMode();
+    if (backBtn) backBtn.style.display = isTeacher ? 'none' : 'inline-block';
+    if (globalLogout) globalLogout.style.display = isTeacher ? 'flex' : 'none';
+    if (langIcon) langIcon.style.display = 'flex';
+    if (logoutBtn && currentUser !== 'guest') logoutBtn.style.display = isTeacher ? 'none' : 'flex';
+    if (chatbotBtn && interfaceLang) chatbotBtn.style.display = 'flex';
+  });
+
+  newHindiOption.addEventListener('click', function() {
+    interfaceLang = 'hindi';
+    localStorage.setItem(getUserLanguageKey(), 'hindi');
+    markAsVisited();
+    modal.style.display = 'none';
+    loadLevel1();
+    const isTeacher = isTeacherMode();
+    if (backBtn) backBtn.style.display = isTeacher ? 'none' : 'inline-block';
+    if (globalLogout) globalLogout.style.display = isTeacher ? 'flex' : 'none';
+    if (langIcon) langIcon.style.display = 'flex';
+    if (logoutBtn && currentUser !== 'guest') logoutBtn.style.display = isTeacher ? 'none' : 'flex';
+    if (chatbotBtn && interfaceLang) chatbotBtn.style.display = 'flex';
+  });
+
+  newMarathiOption.addEventListener('click', function() {
+    interfaceLang = 'marathi';
+    localStorage.setItem(getUserLanguageKey(), 'marathi');
+    markAsVisited();
+    modal.style.display = 'none';
+    loadLevel1();
+    const isTeacher = isTeacherMode();
+    if (backBtn) backBtn.style.display = isTeacher ? 'none' : 'inline-block';
+    if (globalLogout) globalLogout.style.display = isTeacher ? 'flex' : 'none';
+    if (langIcon) langIcon.style.display = 'flex';
+    if (logoutBtn && currentUser !== 'guest') logoutBtn.style.display = isTeacher ? 'none' : 'flex';
+    if (chatbotBtn && interfaceLang) chatbotBtn.style.display = 'flex';
+  });
+
+  // Initialize progress if not exists
+  if (!localStorage.getItem('grprogress')) {
+    localStorage.setItem('grprogress', JSON.stringify(getDefaultProgress()));
+  }
+});
+
+// Make functions globally accessible
+window.trackAlphabetProgress = trackAlphabetProgress;
+window.trackNumberProgress = trackNumberProgress;
+window.getDefaultProgress = getDefaultProgress;
+window.showAchievementToast = showAchievementToast;
+window.speakText = speakText;
+window.clearCanvas = clearCanvas;
+window.initTracing = initTracing;
+window.loadLevel1 = loadLevel1;
+window.loadAlphabetsMenu = loadAlphabetsMenu;
+window.loadNumbersMenu = loadNumbersMenu;
+window.startAlphabetLesson = startAlphabetLesson;
+window.startNumberLesson = startNumberLesson;
+window.goBack = goBack;
+window.goBackHome = goBack; // Alias for goBack
+window.goToLevel2 = goToLevel2;
+window.goToLevel3 = goToLevel3;
+window.playGame = playGame;
+window.showLogoutConfirmation = showLogoutConfirmation;
+window.closeLogoutModal = closeLogoutModal;
+window.confirmLogout = confirmLogout;
+window.showTeacherLogoutConfirmation = showTeacherLogoutConfirmation;
+window.toggleGlobalBack = toggleGlobalBack;
+window.toggleGlobalLogout = toggleGlobalLogout;
+window.toggleLangIcon = toggleLangIcon;
+window.toggleRightLogoutButton = toggleRightLogoutButton;
+window.toggleChatbotBtn = toggleChatbotBtn;
+window.showLanguageModal = showLanguageModal;
+window.closeLanguageModal = closeLanguageModal;
+window.openChatbot = openChatbot;
+window.closeChatbot = closeChatbot;
+window.getCurrentUser = getCurrentUser;
+window.isTeacherMode = isTeacherMode;
+</script>
+<script src="grprogress.js"></script>
+<script src="chatbot.js"></script>
+</body>
+</html>

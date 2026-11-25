@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinguaKids - English</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       LINGUAKIDS — MEGA FUN CSS OVERHAUL 🎉
+    ============================================================ */
+
+    body {
+      font-family: 'Nunito', 'Quicksand', sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background-color: #fffbf0;
+      background-image:
+        radial-gradient(circle at 8%  12%, #ff6bb540 0%, transparent 28%),
+        radial-gradient(circle at 92% 8%,  #43e97b40 0%, transparent 28%),
+        radial-gradient(circle at 50% 50%, #f9ca2440 0%, transparent 40%),
+        radial-gradient(circle at 15% 88%, #38f9d740 0%, transparent 28%),
+        radial-gradient(circle at 88% 85%, #4facfe40 0%, transparent 28%),
+        radial-gradient(circle at 70% 30%, #fa709a30 0%, transparent 22%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        radial-gradient(circle, #ff6bb5 2px, transparent 2px),
+        radial-gradient(circle, #43e97b 2px, transparent 2px),
+        radial-gradient(circle, #f9ca24 2px, transparent 2px),
+        radial-gradient(circle, #4facfe 2px, transparent 2px),
+        radial-gradient(circle, #fa709a 2px, transparent 2px),
+        radial-gradient(circle, #ff6b6b 2px, transparent 2px);
+      background-size: 120px 120px, 97px 97px, 143px 143px, 83px 83px, 107px 107px, 131px 131px;
+      background-position: 10px 15px, 55px 70px, 30px 40px, 80px 10px, 50px 100px, 100px 55px;
+      opacity: 0.45;
+      animation: driftDots 18s linear infinite alternate;
+    }
+
+    @keyframes driftDots {
+      from { background-position: 10px 15px, 55px 70px, 30px 40px, 80px 10px, 50px 100px, 100px 55px; }
+      to   { background-position: 22px 38px, 44px 52px, 52px 62px, 62px 28px, 68px 82px, 82px 72px; }
+    }
+
+    #app {
+      max-width: 1020px;
+      margin: auto;
+      padding: 15px 18px;
+      padding-top: 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      text-align: center;
+      font-family: 'Baloo 2', cursive;
+      font-size: 3rem;
+      font-weight: 800;
+      margin: 0 0 6px;
+      line-height: 1;
+      background: linear-gradient(135deg, #ff6b6b 0%, #ffd93d 35%, #6bcb77 65%, #4d96ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(3px 4px 0px rgba(0,0,0,0.12));
+      animation: titleWobble 3.5s ease-in-out infinite;
+    }
+
+    @keyframes titleWobble {
+      0%,100% { transform: rotate(-1deg) scale(1); }
+      25%      { transform: rotate(1.5deg) scale(1.02); }
+      75%      { transform: rotate(-0.5deg) scale(0.98); }
+    }
+
+    h2 {
+      text-align: center;
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: #0ea5e9;
+      text-shadow: 3px 3px 0 #bae6fd, 5px 5px 0 rgba(14,165,233,0.15);
+      margin: 10px 0 5px;
+    }
+
+    .sub-container, .letters-grid, .numbers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(95px, 1fr));
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .sub-card, .letter-card, .number-card {
+      background: white;
+      padding: 18px 10px 14px;
+      border-radius: 24px;
+      text-align: center;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      border: 3px solid transparent;
+      transition: transform 0.22s cubic-bezier(.34,1.7,.64,1), box-shadow 0.2s;
+      box-shadow: 0 7px 0 #c0c0c0, 0 10px 20px rgba(0,0,0,0.08);
+      animation: cardPop 0.4s cubic-bezier(.34,1.56,.64,1) both;
+    }
+
+    @keyframes cardPop {
+      from { transform: scale(0.5) rotate(-8deg); opacity: 0; }
+      to   { transform: scale(1)   rotate(0deg);  opacity: 1; }
+    }
+
+    .letter-card:nth-child(6n+1) { background:#fff0f6; border-color:#ff6bb5; box-shadow:0 7px 0 #e05a9f,  0 10px 20px rgba(255,107,181,0.15); }
+    .letter-card:nth-child(6n+2) { background:#f0fff4; border-color:#43e97b; box-shadow:0 7px 0 #28c25e,  0 10px 20px rgba(67,233,123,0.15);  }
+    .letter-card:nth-child(6n+3) { background:#fffbf0; border-color:#f9ca24; box-shadow:0 7px 0 #d4a800,  0 10px 20px rgba(249,202,36,0.15);  }
+    .letter-card:nth-child(6n+4) { background:#f0f8ff; border-color:#4facfe; box-shadow:0 7px 0 #2280d4,  0 10px 20px rgba(79,172,254,0.15);  }
+    .letter-card:nth-child(6n+5) { background:#fff0f9; border-color:#f472b6; box-shadow:0 7px 0 #be185d,  0 10px 20px rgba(244,114,182,0.15); }
+    .letter-card:nth-child(6n+6) { background:#fff4ee; border-color:#fb923c; box-shadow:0 7px 0 #c2620d,  0 10px 20px rgba(251,146,60,0.15);  }
+
+    .number-card:nth-child(4n+1) { background:#f0fff4; border-color:#43e97b; box-shadow:0 7px 0 #28c25e, 0 10px 20px rgba(67,233,123,0.15);  }
+    .number-card:nth-child(4n+2) { background:#f0f8ff; border-color:#4facfe; box-shadow:0 7px 0 #2280d4, 0 10px 20px rgba(79,172,254,0.15);  }
+    .number-card:nth-child(4n+3) { background:#fff0f6; border-color:#ff6bb5; box-shadow:0 7px 0 #e05a9f, 0 10px 20px rgba(255,107,181,0.15); }
+    .number-card:nth-child(4n+4) { background:#fffbf0; border-color:#f9ca24; box-shadow:0 7px 0 #d4a800, 0 10px 20px rgba(249,202,36,0.15);  }
+
+    .sub-card { background:#f0f9ff; border-color:#0ea5e9; box-shadow:0 7px 0 #0369a1, 0 10px 20px rgba(14,165,233,0.15); }
+
+    /* ---- PER-SECTION CARD COLOURS ---- */
+    /* My Progress — golden yellow */
+    .sub-card.card-progress {
+      background: #fffbeb; border-color: #f9ca24;
+      box-shadow: 0 7px 0 #d4a800, 0 10px 20px rgba(249,202,36,0.2);
+    }
+    .sub-card.card-progress h3 { color: #b45309; }
+
+    /* Level 1 — fresh green */
+    .sub-card.card-level1 {
+      background: #f0fff4; border-color: #43e97b;
+      box-shadow: 0 7px 0 #1db863, 0 10px 20px rgba(67,233,123,0.2);
+    }
+    .sub-card.card-level1 h3 { color: #166534; }
+
+    /* Level 2 — sky blue */
+    .sub-card.card-level2 {
+      background: #f0f9ff; border-color: #38bdf8;
+      box-shadow: 0 7px 0 #0369a1, 0 10px 20px rgba(56,189,248,0.2);
+    }
+    .sub-card.card-level2 h3 { color: #075985; }
+
+    /* Level 3 — hot pink */
+    .sub-card.card-level3 {
+      background: #fff0f8; border-color: #f472b6;
+      box-shadow: 0 7px 0 #be185d, 0 10px 20px rgba(244,114,182,0.2);
+    }
+    .sub-card.card-level3 h3 { color: #9d174d; }
+
+    /* Games — orange */
+    .sub-card.card-games {
+      background: #fff7ed; border-color: #fb923c;
+      box-shadow: 0 7px 0 #c2620d, 0 10px 20px rgba(251,146,60,0.2);
+    }
+    .sub-card.card-games h3 { color: #9a3412; }
+
+    .letter-card:nth-child(1),.number-card:nth-child(1)  { animation-delay:.02s }
+    .letter-card:nth-child(2),.number-card:nth-child(2)  { animation-delay:.05s }
+    .letter-card:nth-child(3),.number-card:nth-child(3)  { animation-delay:.08s }
+    .letter-card:nth-child(4),.number-card:nth-child(4)  { animation-delay:.11s }
+    .letter-card:nth-child(5),.number-card:nth-child(5)  { animation-delay:.14s }
+    .letter-card:nth-child(6),.number-card:nth-child(6)  { animation-delay:.17s }
+    .letter-card:nth-child(7)  { animation-delay:.20s }
+    .letter-card:nth-child(8)  { animation-delay:.23s }
+    .letter-card:nth-child(9)  { animation-delay:.26s }
+    .letter-card:nth-child(10) { animation-delay:.29s }
+
+    .sub-card:hover, .letter-card:hover, .number-card:hover {
+      transform: translateY(-8px) rotate(-1deg) scale(1.06);
+    }
+
+    .sub-card:active, .letter-card:active, .number-card:active {
+      transform: translateY(5px) scale(0.96);
+      box-shadow: 0 2px 0 #aaa, 0 4px 8px rgba(0,0,0,0.1) !important;
+      transition: transform 0.07s, box-shadow 0.07s;
+    }
+
+    .main-char {
+      font-size: 2.4rem;
+      font-weight: 900;
+      font-family: 'Baloo 2', cursive;
+      background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+      filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.1));
+    }
+
+    .small-char { font-size:1.3rem; font-weight:800; color:#4facfe; }
+    .example    { margin-top:6px; font-size:1rem; font-weight:700; color:#333; }
+    .translation{ font-size:0.88rem; font-weight:800; color:#fb923c; margin-top:3px; }
+    .spelling   { margin-top:3px; font-size:0.8rem; color:#999; font-style:italic; }
+
+    .btn {
+      background: linear-gradient(160deg, #43e97b, #38f9d7);
+      border: none;
+      border-bottom: 5px solid #1db863;
+      border-right: 3px solid #1db863;
+      color: white;
+      padding: 11px 26px;
+      border-radius: 999px;
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin: 8px 5px;
+      display: inline-block;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.18);
+      box-shadow: 0 6px 18px rgba(67,233,123,0.35);
+      transition: transform 0.15s cubic-bezier(.34,1.56,.64,1), box-shadow 0.15s, border-bottom 0.1s;
+    }
+
+    .btn:hover  { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 24px rgba(67,233,123,0.45); }
+    .btn:active { transform: translateY(4px) scale(0.97); border-bottom-width:1px; border-right-width:1px; box-shadow:none; }
+
+    .lesson-controls { display:flex; justify-content:center; gap:10px; margin-top:16px; flex-wrap:wrap; }
+
+    canvas {
+      border: 5px dashed #43e97b;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #f0fff4 0%, #f0f8ff 100%);
+      display: block;
+      margin: 15px auto;
+      touch-action: none;
+      box-shadow: 0 8px 30px rgba(67,233,123,0.2), inset 0 2px 8px rgba(67,233,123,0.08);
+    }
+
+    .lesson-container {
+      display:flex; flex-direction:column; align-items:center; text-align:center; margin-top:20px;
+      background: rgba(255,255,255,0.88);
+      border-radius: 32px; padding: 24px 20px;
+      border: 3px solid #fde68a;
+      box-shadow: 0 12px 40px rgba(249,202,36,0.12);
+      backdrop-filter: blur(8px);
+    }
+
+    .lesson-container .main-char { font-size:4rem; }
+    .lesson-container .example   { font-size:1.35rem; margin:10px 0; }
+    .lesson-container .spelling  { font-size:1.1rem; margin:5px 0; color:#f472b6; font-weight:700; }
+
+    .trace-area { display:flex; flex-direction:column; align-items:center; margin:10px 0; }
+
+    .clear-btn {
+      background: linear-gradient(160deg, #ff6b6b, #ee5a24);
+      border: none; border-bottom: 4px solid #c0392b; border-right: 2px solid #c0392b;
+      color: white; padding: 8px 20px; font-size: 0.95rem; border-radius: 999px;
+      margin-top: 8px; cursor: pointer; font-family: 'Baloo 2', cursive; font-weight: 700;
+      box-shadow: 0 4px 14px rgba(255,107,107,0.35);
+      transition: transform 0.15s cubic-bezier(.34,1.56,.64,1), border-bottom 0.1s;
+    }
+    .clear-btn:hover  { transform: translateY(-2px) scale(1.06); }
+    .clear-btn:active { transform: translateY(3px); border-bottom-width:1px; border-right-width:1px; }
+
+    .sub-card h3 { font-size:1.15rem; margin:5px 0; font-family:'Baloo 2',cursive; font-weight:800; color:#0ea5e9; }
+    .sub-card p  { font-size:0.9rem; margin:0; line-height:1.3; color:#777; }
+
+    .back-button-container { position:fixed; top:15px; left:15px; z-index:1000; }
+
+    .sound-btn {
+      background: linear-gradient(160deg, #f9ca24, #f0932b);
+      border: none; border-bottom: 4px solid #c07800; border-right: 2px solid #c07800;
+      color: white; padding: 9px 18px; border-radius: 999px; cursor: pointer; margin: 5px;
+      font-size: 0.95rem; font-family: 'Baloo 2', cursive; font-weight: 700;
+      display: inline-flex; align-items: center; gap: 6px;
+      box-shadow: 0 4px 14px rgba(249,202,36,0.4);
+      transition: transform 0.15s cubic-bezier(.34,1.56,.64,1), border-bottom 0.1s;
+    }
+    .sound-btn:hover  { transform: translateY(-2px) scale(1.06); }
+    .sound-btn:active { transform: translateY(3px); border-bottom-width:1px; }
+
+    #globalBack {
+      position:fixed; top:15px; left:15px; z-index:1000; margin:0;
+      background: linear-gradient(160deg, #43e97b, #38f9d7);
+      border: none; border-bottom: 4px solid #1db863; border-right: 2px solid #1db863;
+      color: white; padding: 10px 20px; border-radius: 999px;
+      font-family: 'Baloo 2', cursive; font-size: 1rem; font-weight: 700; cursor: pointer;
+      box-shadow: 0 5px 16px rgba(67,233,123,0.35);
+      transition: transform 0.18s cubic-bezier(.34,1.56,.64,1), box-shadow 0.15s;
+    }
+    #globalBack:hover  { transform: translateY(-3px) scale(1.07); box-shadow: 0 8px 22px rgba(67,233,123,0.45); }
+    #globalBack:active { transform: translateY(3px); border-bottom-width:1px; }
+
+    #globalLogout {
+      position:fixed; top:15px; left:15px; z-index:1000; margin:0;
+      background: linear-gradient(160deg, #ff6b6b, #ee5a24);
+      border: none; border-bottom: 4px solid #c0392b; border-right: 2px solid #c0392b;
+      color: white; padding: 10px 18px; border-radius: 999px;
+      font-family: 'Baloo 2', cursive; font-size: 0.95rem; font-weight: 700; cursor: pointer;
+      box-shadow: 0 5px 16px rgba(255,107,107,0.35);
+      transition: transform 0.18s cubic-bezier(.34,1.56,.64,1), box-shadow 0.15s;
+      display:flex; align-items:center; gap:6px;
+    }
+    #globalLogout:hover  { transform: translateY(-3px) scale(1.07); box-shadow: 0 8px 22px rgba(255,107,107,0.45); }
+    #globalLogout:active { transform: translateY(3px); border-bottom-width:1px; }
+    #globalLogout i { font-size:1rem; }
+
+    #chatbotBtn {
+      position:fixed; top:14px; right:112px; z-index:1000;
+      background: linear-gradient(135deg, #43e97b, #38f9d7);
+      border: none; border-bottom: 4px solid #1db863;
+      color:white; width:46px; height:46px; border-radius:50%;
+      cursor:pointer; box-shadow: 0 5px 18px rgba(67,233,123,0.45);
+      display:flex; align-items:center; justify-content:center; font-size:1.25rem;
+      transition: transform 0.2s cubic-bezier(.34,1.56,.64,1), box-shadow 0.2s;
+      animation: robotWiggle 5s ease-in-out infinite;
+    }
+    @keyframes robotWiggle {
+      0%,85%,100% { transform:rotate(0deg) scale(1); }
+      87%          { transform:rotate(-12deg) scale(1.1); }
+      91%          { transform:rotate(12deg) scale(1.1); }
+      95%          { transform:rotate(-6deg) scale(1.05); }
+    }
+    #chatbotBtn:hover  { transform:scale(1.18) rotate(0deg) !important; box-shadow:0 8px 26px rgba(67,233,123,0.55); animation:none; }
+    #chatbotBtn:active { transform:scale(0.9) !important; border-bottom-width:1px; }
+
+    #langIconBtn {
+      position:fixed; top:14px; right:60px; z-index:1000;
+      background:white; border:3px solid #43e97b; border-bottom:5px solid #1db863;
+      color:#1db863; width:46px; height:46px; border-radius:50%; cursor:pointer;
+      box-shadow:0 5px 16px rgba(67,233,123,0.3);
+      display:flex; align-items:center; justify-content:center; font-size:1.25rem; font-weight:900;
+      transition:transform 0.2s cubic-bezier(.34,1.56,.64,1), background 0.2s, color 0.2s;
+    }
+    #langIconBtn:hover  { transform:scale(1.18) rotate(10deg); background:#43e97b; color:white; }
+    #langIconBtn:active { transform:scale(0.9); }
+
+    #logoutBtn {
+      position:fixed; top:14px; right:10px; z-index:1000;
+      background:linear-gradient(135deg, #ff6b6b, #ee5a24);
+      border:none; border-bottom:4px solid #c0392b;
+      color:white; width:46px; height:46px; border-radius:50%; cursor:pointer;
+      box-shadow:0 5px 16px rgba(255,107,107,0.35);
+      display:flex; align-items:center; justify-content:center; font-size:1.2rem;
+      transition:transform 0.2s cubic-bezier(.34,1.56,.64,1), box-shadow 0.2s;
+    }
+    #logoutBtn:hover  { transform:scale(1.18); box-shadow:0 8px 24px rgba(255,107,107,0.45); }
+    #logoutBtn:active { transform:scale(0.9); }
+
+    .modal-overlay {
+      position:fixed; top:0; left:0; width:100%; height:100%;
+      background:rgba(249,202,36,0.18); backdrop-filter:blur(10px);
+      display:none; align-items:center; justify-content:center; z-index:2000;
+    }
+
+    .modal-box {
+      background: linear-gradient(160deg, #fffef0 0%, #f0fffe 100%); max-width:380px; width:92%;
+      padding:32px 26px; border-radius:36px; text-align:center;
+      box-shadow: 0 0 0 5px #f472b6, 0 0 0 9px #f9ca24, 0 0 0 13px #43e97b, 0 25px 60px rgba(0,0,0,0.12);
+      animation:modalBounceIn 0.45s cubic-bezier(.34,1.56,.64,1) both;
+      position:relative;
+    }
+    @keyframes modalBounceIn {
+      0%   { transform:scale(0.4) rotate(-8deg); opacity:0; }
+      70%  { transform:scale(1.06) rotate(2deg); opacity:1; }
+      100% { transform:scale(1)    rotate(0deg); opacity:1; }
+    }
+
+    .modal-close {
+      position:absolute; top:14px; right:16px; font-size:1.5rem; cursor:pointer;
+      color:#ccc; width:34px; height:34px; display:flex; align-items:center; justify-content:center;
+      border-radius:50%; transition:color 0.2s, transform 0.2s, background 0.2s;
+    }
+    .modal-close:hover { color:#ff6b6b; background:#ffeeee; transform:rotate(90deg) scale(1.15); }
+
+    .chatbot-modal {
+      position:fixed; bottom:20px; right:20px; width:385px;
+      background:white; border-radius:28px;
+      box-shadow: 0 0 0 4px #f9ca24, 0 20px 60px rgba(249,202,36,0.2);
+      display:none; flex-direction:column; z-index:2000; overflow:hidden;
+      animation:chatSlideUp 0.4s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    @keyframes chatSlideUp {
+      from { transform:translateY(60px) scale(0.9); opacity:0; }
+      to   { transform:translateY(0)    scale(1);   opacity:1; }
+    }
+    @keyframes slideIn {
+      from { transform:translateY(20px) scale(0.95); opacity:0; }
+      to   { transform:translateY(0)    scale(1);    opacity:1; }
+    }
+
+    #chatbotContainer { padding:0; background:white; min-height:400px; }
+
+    .linguakids-chatbot {
+      width:100% !important; font-family:'Nunito',sans-serif !important;
+      border:none !important; border-radius:18px !important; padding:0 !important;
+      background:white !important; box-shadow:none !important; overflow:hidden;
+    }
+
+    .linguakids-chatbot-header {
+      background:linear-gradient(135deg, #0ea5e9, #43e97b) !important;
+      color:white !important; padding:16px 18px !important; font-weight:800 !important;
+      font-size:1.2rem !important; font-family:'Baloo 2',cursive !important; letter-spacing:0.5px;
+      display:flex !important; align-items:center !important; justify-content:space-between !important;
+      border-bottom:2px solid rgba(255,255,255,0.25) !important;
+    }
+    .linguakids-chatbot-header i { margin-right:8px; color:#ffd93d; font-size:1.3rem; }
+
+    .chatbot-close {
+      cursor:pointer; font-size:1.3rem; width:32px; height:32px;
+      display:flex; align-items:center; justify-content:center;
+      border-radius:50%; transition:all 0.2s; background:rgba(255,255,255,0.2); color:white;
+    }
+    .chatbot-close:hover { background:rgba(255,255,255,0.35); transform:rotate(90deg); }
+
+    .linguakids-chat-messages {
+      height:280px !important; overflow-y:auto !important; background:#fdf4ff !important;
+      padding:15px !important; border-bottom:1px solid #ffe0d0 !important;
+      display:flex !important; flex-direction:column !important; gap:10px !important;
+    }
+    .linguakids-chat-messages::-webkit-scrollbar       { width:6px; }
+    .linguakids-chat-messages::-webkit-scrollbar-track { background:#fff0e0; }
+    .linguakids-chat-messages::-webkit-scrollbar-thumb { background:#0ea5e9; border-radius:10px; }
+
+    .linguakids-message {
+      margin:0 !important; padding:10px 14px !important; border-radius:18px !important;
+      max-width:85% !important; word-wrap:break-word !important; font-size:0.95rem !important;
+      line-height:1.4 !important; box-shadow:0 2px 6px rgba(0,0,0,0.06) !important;
+      animation:messagePop 0.3s cubic-bezier(.34,1.56,.64,1);
+    }
+    @keyframes messagePop {
+      from { opacity:0; transform:translateY(12px) scale(0.9); }
+      to   { opacity:1; transform:translateY(0)    scale(1);   }
+    }
+    .linguakids-user-message { background:linear-gradient(135deg,#43e97b,#38f9d7) !important; color:white !important; align-self:flex-end !important; border-bottom-right-radius:4px !important; }
+    .linguakids-bot-message  { background:white !important; color:#333 !important; align-self:flex-start !important; border-bottom-left-radius:4px !important; border:2px solid #ffe0d0 !important; }
+
+    .linguakids-chat-input-area { display:flex !important; padding:14px !important; background:white !important; gap:8px !important; align-items:center !important; border-top:1px solid #fff0e0 !important; }
+
+    .linguakids-chat-input {
+      flex:1 !important; padding:12px 18px !important; border:2.5px solid #ffe0d0 !important;
+      border-radius:30px !important; font-family:'Nunito',sans-serif !important; font-size:0.95rem !important;
+      outline:none !important; transition:all 0.2s !important; background:#fff8f0 !important;
+    }
+    .linguakids-chat-input:focus { border-color:#0ea5e9 !important; background:white !important; box-shadow:0 0 0 3px rgba(14,165,233,0.15) !important; }
+    .linguakids-chat-input::placeholder { color:#7dd3fc; font-style:italic; font-size:0.9rem; }
+
+    .linguakids-send-btn {
+      width:48px !important; height:48px !important; border-radius:50% !important; border:none !important;
+      background:linear-gradient(135deg,#f472b6,#e879f9) !important; color:white !important; font-weight:bold !important;
+      cursor:pointer !important; display:flex !important; align-items:center !important; justify-content:center !important;
+      transition:all 0.2s !important; box-shadow:0 4px 12px rgba(244,114,182,0.4) !important; flex-shrink:0 !important;
+    }
+    .linguakids-send-btn i       { font-size:1.2rem !important; transition:transform 0.2s !important; }
+    .linguakids-send-btn:hover   { transform:scale(1.12) !important; box-shadow:0 6px 18px rgba(244,114,182,0.5) !important; }
+    .linguakids-send-btn:hover i { transform:translateX(2px) !important; }
+    .linguakids-send-btn:active  { transform:scale(0.93) !important; }
+
+    .linguakids-typing-indicator {
+      display:flex !important; gap:5px !important; padding:12px 16px !important;
+      background:white !important; border-radius:18px !important; align-self:flex-start !important;
+      margin:5px 0 !important; border:2px solid #e9d5ff !important;
+    }
+    .linguakids-typing-indicator span { width:9px; height:9px; background:#0ea5e9; border-radius:50%; animation:typingBounce 1.4s infinite ease-in-out; }
+    .linguakids-typing-indicator span:nth-child(1) { animation-delay:0s; }
+    .linguakids-typing-indicator span:nth-child(2) { animation-delay:0.2s; }
+    .linguakids-typing-indicator span:nth-child(3) { animation-delay:0.4s; }
+    @keyframes typingBounce {
+      0%,60%,100% { transform:translateY(0); }
+      30%          { transform:translateY(-11px); }
+    }
+
+    .modal-box h2 {
+      font-size:2rem; margin:5px 0 12px; font-family:'Baloo 2',cursive; font-weight:800;
+      color: #ff5a5f;
+      text-shadow: 2px 2px 0 #ffe0b2, 4px 4px 0 rgba(255,90,95,0.15);
+      -webkit-text-fill-color: unset;
+      background: none;
+    }
+    .modal-box h2 .emoji {
+      -webkit-text-fill-color: initial;
+      background: none;
+      text-shadow: none;
+    }
+    .modal-box p   { font-size:1.15rem; color:#0ea5e9; margin-bottom:22px; font-weight:700; }
+
+    .lang-option {
+      background:linear-gradient(135deg,#fffbf0,#f0f8ff);
+      border:3px solid #e0e0e0; border-bottom:5px solid #ccc; border-radius:999px;
+      padding:16px 24px; margin:14px 0; font-size:1.4rem; font-weight:800; color:#2c3e50;
+      cursor:pointer; transition:transform 0.2s cubic-bezier(.34,1.56,.64,1), border-color 0.2s, background 0.2s, box-shadow 0.2s;
+      display:flex; align-items:center; justify-content:center; gap:14px; font-family:'Baloo 2',cursive;
+    }
+    .lang-option:hover  { transform:scale(1.06) translateY(-3px); box-shadow:0 10px 30px rgba(0,0,0,0.12); background:linear-gradient(135deg,#fffde7,#e8fff0); }
+    .lang-option:active { transform:scale(0.97) translateY(2px); }
+    .lang-option i      { font-size:1.8rem; width:34px; }
+    .modal-note         { font-size:0.85rem; color:#94a3b8; margin-top:22px; font-weight:700; }
+
+    @media (max-width:600px) {
+      #app { padding-top:65px; }
+      .sub-container { grid-template-columns:repeat(2,1fr); }
+      #globalBack, #globalLogout { top:10px; left:10px; padding:7px 14px; font-size:0.9rem; }
+      #chatbotBtn  { top:10px; right:104px; width:38px; height:38px; font-size:1rem; }
+      #langIconBtn { top:10px; right:58px;  width:38px; height:38px; font-size:1rem; }
+      #logoutBtn   { top:10px; right:10px;  width:38px; height:38px; font-size:1rem; }
+      .chatbot-modal { width:96%; right:2%; left:2%; bottom:10px; }
+      .linguakids-chat-messages { height:350px !important; }
+      .linguakids-send-btn { width:44px !important; height:44px !important; }
+
+      .lesson-container { height:100vh; overflow:hidden; padding:0; margin:0; justify-content:flex-start; padding-top:5px; min-height:auto; max-height:100vh; box-sizing:border-box; }
+      .lesson-container .main-char   { font-size:2.2rem; margin:2px 0; line-height:1.2; }
+      .lesson-container .example     { font-size:1.1rem; margin:2px 0; line-height:1.2; }
+      .lesson-container .spelling    { font-size:1rem;   margin:2px 0; color:#4facfe; }
+      .lesson-container .translation { font-size:1rem;   margin:2px 0; }
+      .lesson-container .sound-btn   { width:36px; height:36px; margin:2px auto; font-size:1rem; padding:0; display:flex; align-items:center; justify-content:center; }
+      .lesson-container canvas       { width:220px; height:220px; margin:2px auto; border-radius:16px; }
+      .lesson-container .trace-area  { margin:2px 0; padding:0; }
+      .lesson-container .clear-btn   { padding:5px 15px; font-size:0.9rem; margin-top:4px; min-width:70px; }
+      .lesson-container .lesson-controls { margin-top:4px; gap:10px; padding:0; }
+      .lesson-container .lesson-controls .btn { padding:6px 16px; font-size:0.9rem; min-width:70px; margin:0; }
+      body:has(.lesson-container) { overflow:hidden; height:100vh; }
+      #app:has(.lesson-container) { padding-top:45px; height:100vh; overflow:hidden; padding-bottom:0; }
+    }
+
+    @media (max-width:380px) {
+      .lesson-container .main-char { font-size:2rem; }
+      .lesson-container .example   { font-size:1rem; }
+      .lesson-container .spelling  { font-size:0.9rem; }
+      .lesson-container canvas     { width:190px; height:190px; }
+      .lesson-container .clear-btn { padding:4px 12px; font-size:0.85rem; }
+    }
+
+    @media (min-width:381px) and (max-width:450px) {
+      .lesson-container canvas { width:210px; height:210px; }
+    }
+
+    @media (min-height:700px) and (max-width:600px) {
+      .lesson-container { padding-top:15px; }
+      .lesson-container canvas { width:240px; height:240px; }
+      .lesson-container .main-char { font-size:2.4rem; }
+    }
+
+    @media (min-height:800px) and (max-width:600px) {
+      .lesson-container { padding-top:25px; }
+      .lesson-container canvas { width:260px; height:260px; }
+      .lesson-container .main-char { font-size:2.6rem; }
+      .lesson-container .example   { font-size:1.2rem; }
+    }
+
+    @media (max-height:500px) and (max-width:900px) {
+      .lesson-container { flex-direction:row; flex-wrap:wrap; align-items:center; justify-content:center; gap:10px; padding-top:5px; }
+      .lesson-container .main-char   { font-size:2rem; width:100%; }
+      .lesson-container .example     { font-size:1rem; margin:0 5px; }
+      .lesson-container .spelling    { font-size:0.9rem; margin:0 5px; }
+      .lesson-container .translation { font-size:0.9rem; margin:0 5px; }
+      .lesson-container canvas       { width:180px; height:180px; margin:0; }
+      .lesson-container .sound-btn   { margin:0; }
+      .lesson-container .trace-area  { margin:0; }
+      .lesson-container .lesson-controls { margin:0; width:100%; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Back button (for self-study mode) - This is the fixed position button -->
+  <button id="globalBack" onclick="goBack()" style="display: none;">Back</button>
+  
+  <!-- Logout button for teacher mode (top left) - Only visible on main page -->
+  <button id="globalLogout" onclick="showTeacherLogoutConfirmation()" style="display: none;">
+    <i class="fas fa-sign-out-alt"></i> Logout
+  </button>
+  
+  <!-- Chatbot button -->
+  <button id="chatbotBtn" onclick="openChatbot()" style="display: none;">
+    <i class="fas fa-robot"></i>
+  </button>
+  
+  <!-- Language icon button -->
+  <button id="langIconBtn" onclick="showLanguageModal()" style="display: none;">
+    <i class="fas fa-language"></i>
+  </button>
+  
+  <!-- Right side logout button (for self-study mode) -->
+  <button id="logoutBtn" onclick="showLogoutConfirmation()" style="display: none;">
+    <i class="fas fa-sign-out-alt"></i>
+  </button>
+
+  <!-- Logout Confirmation Modal (for both self-study and teacher mode) -->
+  <div id="logoutConfirmModal" class="modal-overlay" style="display: none;">
+    <div class="modal-box" style="max-width: 300px;">
+      <h3 style="color: #ff5252; margin-bottom: 15px; font-family: 'Baloo 2', cursive;">Logout</h3>
+      <p style="margin-bottom: 20px;">Are you sure you want to logout?</p>
+      <div style="display: flex; gap: 10px; justify-content: center;">
+        <button class="btn" onclick="confirmLogout()" style="background: #ff5252; padding: 8px 20px;">Yes</button>
+        <button class="btn btn-secondary" onclick="closeLogoutModal()" style="padding: 8px 20px;">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+<div id="app">
+  <div id="learning-content"></div>
+</div>
+
+<!-- Language Modal -->
+<div id="languageModal" class="modal-overlay">
+  <div class="modal-box">
+    <div class="modal-close" onclick="closeLanguageModal()">✕</div>
+    <h2><span class="emoji">🌍</span> नमस्ते! <span class="emoji">👋</span></h2>
+    <p>In what language do you want to learn?</p>
+    
+    <div class="lang-option" id="chooseHindi" style="background:linear-gradient(135deg,#fffbeb,#fef9c3); border-color:#f9ca24; border-bottom-color:#d4a800; color:#92400e;">
+      <i class="fas fa-language" style="color:#f4b400;"></i> हिंदी (Hindi)
+    </div>
+    <div class="lang-option" id="chooseMarathi" style="background:linear-gradient(135deg,#f0fff4,#dcfce7); border-color:#43e97b; border-bottom-color:#1db863; color:#166534;">
+      <i class="fas fa-language" style="color:#0f9d58;"></i> मराठी (Marathi)
+    </div>
+    
+    <div class="modal-note">
+      <i class="fas fa-info-circle"></i> Lessons will be taught in your selected language.
+    </div>
+  </div>
+</div>
+
+<!-- Chatbot Modal -->
+<div id="chatbotModal" class="chatbot-modal">
+  <div id="chatbotContainer"></div>
+</div>
+
+<script>
+// ===== USER MANAGEMENT =====
+// Get current username from URL parameters, sessionStorage, or default to 'guest'
+function getCurrentUser() {
+  // Check URL parameters first (for login redirects)
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlUser = urlParams.get('user');
+  if (urlUser) {
+    sessionStorage.setItem('currentUser', urlUser);
+    return urlUser;
+  }
+  
+  // Then check sessionStorage
+  const sessionUser = sessionStorage.getItem('currentUser');
+  if (sessionUser) {
+    return sessionUser;
+  }
+  
+  // Default to 'guest' if no user is logged in
+  return 'guest';
+}
+
+// Check if this is the user's first visit to English page
+function isFirstVisit() {
+  const username = getCurrentUser();
+  const visitKey = `linguaKids_${username}_englishVisited`;
+  const hasVisited = localStorage.getItem(visitKey);
+  
+  // Return true if this is first visit (no flag exists)
+  return !hasVisited;
+}
+
+// Mark that user has completed their first visit (after language selection)
+function markAsVisited() {
+  const username = getCurrentUser();
+  const visitKey = `linguaKids_${username}_englishVisited`;
+  localStorage.setItem(visitKey, 'true');
+}
+
+// Get user-specific storage key for language preference
+function getUserLanguageKey() {
+  const username = getCurrentUser();
+  return `linguaKids_${username}_englishInterfaceLang`;
+}
+
+// Get user profile from localStorage (set by study.html)
+function getUserProfile() {
+  try {
+    const profileStr = localStorage.getItem('linguaKidsProfile');
+    if (profileStr) {
+      return JSON.parse(profileStr);
+    }
+  } catch (e) {
+    return null;
+  }
+  return null;
+}
+
+// Check if user is in teacher mode
+function isTeacherMode() {
+  const userProfile = getUserProfile();
+  return userProfile && userProfile.studyMode === 'teacher';
+}
+
+// ===== DATA =====
+const LETTERS = [
+  {upper:"A", lower:"a", word:"Apple 🍎", hindi:"सेब", marathi:"सफरचंद"},
+  {upper:"B", lower:"b", word:"Ball ⚽", hindi:"गेंद", marathi:"चेंडू"},
+  {upper:"C", lower:"c", word:"Cat 🐱", hindi:"बिल्ली", marathi:"मांजर"},
+  {upper:"D", lower:"d", word:"Dog 🐶", hindi:"कुत्ता", marathi:"कुत्रा"},
+  {upper:"E", lower:"e", word:"Elephant 🐘", hindi:"हाथी", marathi:"हत्ती"},
+  {upper:"F", lower:"f", word:"Fish 🐟", hindi:"मछली", marathi:"मासा"},
+  {upper:"G", lower:"g", word:"Goat 🐐", hindi:"बकरी", marathi:"शेळी"},
+  {upper:"H", lower:"h", word:"House 🏠", hindi:"घर", marathi:"घर"},
+  {upper:"I", lower:"i", word:"Ice cream 🍦", hindi:"आइसक्रीम", marathi:"आइस्क्रीम"},
+  {upper:"J", lower:"j", word:"Jug 🏺", hindi:"जग", marathi:"जग"},
+  {upper:"K", lower:"k", word:"Kite 🪁", hindi:"पतंग", marathi:"पतंग"},
+  {upper:"L", lower:"l", word:"Lion 🦁", hindi:"शेर", marathi:"सिंह"},
+  {upper:"M", lower:"m", word:"Monkey 🐵", hindi:"बंदर", marathi:"माकड"},
+  {upper:"N", lower:"n", word:"Nest 🐣", hindi:"घोंसला", marathi:"घरटे"},
+  {upper:"O", lower:"o", word:"Orange 🍊", hindi:"संतरा", marathi:"संत्रे"},
+  {upper:"P", lower:"p", word:"Pencil ✏️", hindi:"पेंसिल", marathi:"पेन्सिल"},
+  {upper:"Q", lower:"q", word:"Queen 👑", hindi:"रानी", marathi:"राणी"},
+  {upper:"R", lower:"r", word:"Rabbit 🐇", hindi:"खरगोश", marathi:"ससा"},
+  {upper:"S", lower:"s", word:"Sun ☀️", hindi:"सूरज", marathi:"सूर्य"},
+  {upper:"T", lower:"t", word:"Tree 🌳", hindi:"पेड़", marathi:"झाड"},
+  {upper:"U", lower:"u", word:"Umbrella ☂️", hindi:"छाता", marathi:"छत्री"},
+  {upper:"V", lower:"v", word:"Violin 🎻", hindi:"वायलिन", marathi:"व्हायोलिन"},
+  {upper:"W", lower:"w", word:"Water 💧", hindi:"पानी", marathi:"पाणी"},
+  {upper:"X", lower:"x", word:"Xylophone 🎶", hindi:"जाइलोफोन", marathi:"झायलोफोन"},
+  {upper:"Y", lower:"y", word:"Yacht ⛵", hindi:"नौका", marathi:"यॉट"},
+  {upper:"Z", lower:"z", word:"Zebra 🦓", hindi:"ज़ेबरा", marathi:"झेब्रा"},
+];
+
+const NUMBER_SPELLINGS = [ "one","two","three","four","five","six","seven","eight","nine","ten",
+"eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen","twenty",
+"twenty-one","twenty-two","twenty-three","twenty-four","twenty-five","twenty-six","twenty-seven","twenty-eight","twenty-nine","thirty",
+"thirty-one","thirty-two","thirty-three","thirty-four","thirty-five","thirty-six","thirty-seven","thirty-eight","thirty-nine","forty",
+"forty-one","forty-two","forty-three","forty-four","forty-five","forty-six","forty-seven","forty-eight","forty-nine","fifty",
+"fifty-one","fifty-two","fifty-three","fifty-four","fifty-five","fifty-six","fifty-seven","fifty-eight","fifty-nine","sixty",
+"sixty-one","sixty-two","sixty-three","sixty-four","sixty-five","sixty-six","sixty-seven","sixty-eight","sixty-nine","seventy",
+"seventy-one","seventy-two","seventy-three","seventy-four","seventy-five","seventy-six","seventy-seven","seventy-eight","seventy-nine","eighty",
+"eighty-one","eighty-two","eighty-three","eighty-four","eighty-five","eighty-six","eighty-seven","eighty-eight","eighty-nine","ninety",
+"ninety-one","ninety-two","ninety-three","ninety-four","ninety-five","ninety-six","ninety-seven","ninety-eight","ninety-nine","one hundred"];
+
+// Complete Hindi number names for 1-100
+const HINDI_NUMBER_NAMES = [
+  "एक", "दो", "तीन", "चार", "पाँच", "छह", "सात", "आठ", "नौ", "दस",
+  "ग्यारह", "बारह", "तेरह", "चौदह", "पंद्रह", "सोलह", "सत्रह", "अठारह", "उन्नीस", "बीस",
+  "इक्कीस", "बाईस", "तेईस", "चौबीस", "पच्चीस", "छब्बीस", "सत्ताईस", "अट्ठाईस", "उनतीस", "तीस",
+  "इकतीस", "बत्तीस", "तैंतीस", "चौंतीस", "पैंतीस", "छत्तीस", "सैंतीस", "अड़तीस", "उनतालीस", "चालीस",
+  "इकतालीस", "बयालीस", "तैंतालीस", "चौवालीस", "पैंतालीस", "छियालीस", "सैंतालीस", "अड़तालीस", "उनचास", "पचास",
+  "इक्यावन", "बावन", "तिरपन", "चौवन", "पचपन", "छप्पन", "सत्तावन", "अट्ठावन", "उनसठ", "साठ",
+  "इकसठ", "बासठ", "तिरसठ", "चौंसठ", "पैंसठ", "छियासठ", "सड़सठ", "अड़सठ", "उनहत्तर", "सत्तर",
+  "इकहत्तर", "बहत्तर", "तिहत्तर", "चौहत्तर", "पचहत्तर", "छिहत्तर", "सतहत्तर", "अठहत्तर", "उनासी", "अस्सी",
+  "इक्यासी", "बयासी", "तिरासी", "चौरासी", "पचासी", "छियासी", "सत्तासी", "अट्ठासी", "नवासी", "नब्बे",
+  "इक्यानबे", "बानबे", "तिरानबे", "चौरानबे", "पंचानबे", "छियानबे", "सत्तानबे", "अट्ठानबे", "निन्यानबे", "सौ"
+];
+
+// Complete Marathi number names for 1-100
+const MARATHI_NUMBER_NAMES = [
+  "एक", "दोन", "तीन", "चार", "पाच", "सहा", "सात", "आठ", "नऊ", "दहा",
+  "अकरा", "बारा", "तेरा", "चौदा", "पंधरा", "सोळा", "सतरा", "अठरा", "एकोणीस", "वीस",
+  "एकवीस", "बावीस", "तेवीस", "चोवीस", "पंचवीस", "सव्वीस", "सत्तावीस", "अठ्ठावीस", "एकोणतीस", "तीस",
+  "एकतीस", "बत्तीस", "तेहेतीस", "चौतीस", "पस्तीस", "छत्तीस", "सदतीस", "अडतीस", "एकोणचाळीस", "चाळीस",
+  "एक्केचाळीस", "बेचाळीस", "त्रेचाळीस", "चव्वेचाळीस", "पंचेचाळीस", "सेहेचाळीस", "सत्तेचाळीस", "अठ्ठेचाळीस", "एकोणपन्नास", "पन्नास",
+  "एक्कावन्न", "बावन्न", "त्रेपन्न", "चोपन्न", "पंचावन्न", "छप्पन्न", "सत्तावन्न", "अठ्ठावन्न", "एकोणसाठ", "साठ",
+  "एकसष्ठ", "बासष्ठ", "त्रेसष्ठ", "चौसष्ठ", "पासष्ठ", "सहासष्ठ", "सदुसष्ठ", "अडुसष्ठ", "एकोणसत्तर", "सत्तर",
+  "एक्काहत्तर", "बाहत्तर", "त्र्याहत्तर", "चौर्‍याहत्तर", "पंच्याहत्तर", "शहात्तर", "सत्याहत्तर", "अठ्ठ्याहत्तर", "एकोणऐंशी", "ऐंशी",
+  "एक्क्याऐंशी", "ब्याऐंशी", "त्र्याऐंशी", "चौऱ्याऐंशी", "पंच्याऐंशी", "शहाऐंशी", "सत्त्याऐंशी", "अठ्ठ्याऐंशी", "एकोणनव्वद", "नव्वद",
+  "एक्क्याण्णव", "ब्याण्णव", "त्र्याण्णव", "चौऱ्याण्णव", "पंच्याण्णव", "शहाण्णव", "सत्त्याण्णव", "अठ्ठ्याण्णव", "नव्व्याण्णव", "शंभर"
+];
+
+const NUMBERS = Array.from({length:100}, (_,i) => ({ 
+  digit:i+1, 
+  word:(i+1).toString(), 
+  spelling:NUMBER_SPELLINGS[i],
+  hindi: HINDI_NUMBER_NAMES[i],
+  marathi: MARATHI_NUMBER_NAMES[i]
+}));
+
+let currentView = 'level1';
+let interfaceLang = null; 
+
+// ===== TRANSLATIONS for UI =====
+const translations = {
+  hindi: {
+    myProgress: "मेरी प्रगति",
+    trackJourney: "अपनी यात्रा को ट्रैक करें",
+    level1: "स्तर 1: अक्षर और संख्याएँ",
+    alphabets: "अक्षर",
+    learnAZ: "A से Z सीखें",
+    numbers: "संख्याएँ",
+    learn1to100: "1–100 सीखें",
+    level2: "स्तर 2: मूल शब्द",
+    fruits: "फल",
+    vegetables: "सब्जियाँ",
+    animals: "जानवर",
+    birds: "पक्षी",
+    vehicles: "वाहन",
+    colors: "रंग",
+    level3: "स्तर 3: वाक्य",
+    greetings: "अभिवादन",
+    activities: "गतिविधियाँ",
+    questions: "प्रश्न",
+    games: "खेल",
+    basicLevel: "मूल स्तर",
+    alphabetNumberGames: "अक्षर और संख्या खेल",
+    moderateLevel: "मध्यम स्तर",
+    wordGames: "शब्द खेल",
+    advancedLevel: "उन्नत स्तर",
+    sentenceGames: "वाक्य खेल",
+    back: "वापस",
+    previous: "पिछला",
+    next: "अगला",
+    backToLetters: "अक्षरों पर वापस",
+    backToNumbers: "संख्याओं पर वापस",
+    clear: "मिटाएँ",
+  },
+  marathi: {
+    myProgress: "माझी प्रगती",
+    trackJourney: "तुमचा प्रवास ट्रॅक करा",
+    level1: "स्तर १: अक्षरे आणि संख्या",
+    alphabets: "अक्षरे",
+    learnAZ: "A ते Z शिका",
+    numbers: "संख्या",
+    learn1to100: "१–१०० शिका",
+    level2: "स्तर २: मूलभूत शब्द",
+    fruits: "फळे",
+    vegetables: "भाज्या",
+    animals: "प्राणी",
+    birds: "पक्षी",
+    vehicles: "वाहने",
+    colors: "रंग",
+    level3: "स्तर ३: वाक्य",
+    greetings: "अभिवादन",
+    activities: "क्रियाकलाप",
+    questions: "प्रश्न",
+    games: "खेळ",
+    basicLevel: "मूलभूत स्तर",
+    alphabetNumberGames: "अक्षर आणि संख्या खेळ",
+    moderateLevel: "मध्यम स्तर",
+    wordGames: "शब्द खेळ",
+    advancedLevel: "प्रगत स्तर",
+    sentenceGames: "वाक्य खेळ",
+    back: "मागे",
+    previous: "मागील",
+    next: "पुढील",
+    backToLetters: "अक्षरांकडे परत",
+    backToNumbers: "संख्यांकडे परत",
+    clear: "साफ करा",
+  }
+};
+
+// ===== CORE FUNCTIONS =====
+function loadLevel1() {
+  if (!interfaceLang) return;
+  currentView = 'level1';
+  const t = translations[interfaceLang];
+  
+  // Show appropriate buttons based on user type
+  const isTeacher = isTeacherMode();
+  toggleGlobalBack(!isTeacher); // Show back button only for self-study
+  toggleGlobalLogout(isTeacher && currentView === 'level1'); // Show logout button only for teacher mode on main page
+  toggleLangIcon(true);
+  toggleRightLogoutButton(!isTeacher); // Show right logout button only for self-study
+  toggleChatbotBtn(true); // Show chatbot on main page
+
+  document.getElementById("learning-content").innerHTML = `
+    <h1>ENGLISH</h1>
+    <div class="sub-container">
+      <div class="sub-card card-progress" onclick="window.location.href='progress.html?lang=${interfaceLang}'">
+        <h3>${t.myProgress}</h3>
+        <p>${t.trackJourney}</p>
+      </div>
+    </div>
+    <h2>${t.level1}</h2>
+    <div class="sub-container">
+      <div class="sub-card card-level1" onclick="loadAlphabetsMenu()"><h3>${t.alphabets}</h3><p>${t.learnAZ}</p></div>
+      <div class="sub-card card-level1" onclick="loadNumbersMenu()"><h3>${t.numbers}</h3><p>${t.learn1to100}</p></div>
+    </div>
+    <h2>${t.level2}</h2>
+    <div class="sub-container">
+      <div class="sub-card card-level2" onclick="goToLevel2('fruits')"><h3>${t.fruits}</h3></div>
+      <div class="sub-card card-level2" onclick="goToLevel2('vegetables')"><h3>${t.vegetables}</h3></div>
+      <div class="sub-card card-level2" onclick="goToLevel2('animals')"><h3>${t.animals}</h3></div>
+      <div class="sub-card card-level2" onclick="goToLevel2('birds')"><h3>${t.birds}</h3></div>
+      <div class="sub-card card-level2" onclick="goToLevel2('vehicles')"><h3>${t.vehicles}</h3></div>
+      <div class="sub-card card-level2" onclick="goToLevel2('colors')"><h3>${t.colors}</h3></div>
+    </div>
+    <h2>${t.level3}</h2>
+    <div class="sub-container">
+      <div class="sub-card card-level3" onclick="goToLevel3('greetings')"><h3>${t.greetings}</h3></div>
+      <div class="sub-card card-level3" onclick="goToLevel3('activities')"><h3>${t.activities}</h3></div>
+      <div class="sub-card card-level3" onclick="goToLevel3('questions')"><h3>${t.questions}</h3></div>
+    </div>
+    <h2>${t.games}</h2>
+    <div class="sub-container">
+      <div class="sub-card card-games" onclick="playGame('basic')">
+        <h3>${t.basicLevel}</h3>
+        <p>${t.alphabetNumberGames}</p>
+      </div>
+      <div class="sub-card card-games" onclick="playGame('moderate')">
+        <h3>${t.moderateLevel}</h3>
+        <p>${t.wordGames}</p>
+      </div>
+      <div class="sub-card card-games" onclick="playGame('advanced')">
+        <h3>${t.advancedLevel}</h3>
+        <p>${t.sentenceGames}</p>
+      </div>
+    </div>`;
+}
+
+function loadAlphabetsMenu() {
+  if (!interfaceLang) return;
+  currentView = 'alphabets-menu';
+  const t = translations[interfaceLang];
+  
+  const isTeacher = isTeacherMode();
+  toggleGlobalBack(!isTeacher); // Show back button for self-study (this is the ONLY back button)
+  toggleGlobalLogout(false); // Hide logout button in sub-menus for teacher mode
+  toggleLangIcon(false);
+  toggleRightLogoutButton(!isTeacher); // Show right logout button only for self-study
+  toggleChatbotBtn(false); // Hide chatbot in sub-views
+  
+  document.getElementById("learning-content").innerHTML = `
+    <div class="letters-grid">
+      ${LETTERS.map((l,i)=>`
+        <div class="letter-card" onclick="startAlphabetLesson(${i})">
+          <div class="main-char">${l.upper}</div>
+          <div class="small-char">${l.lower}</div>
+          <div class="example">${l.word}</div>
+          <div class="translation">${interfaceLang === 'hindi' ? l.hindi : l.marathi}</div>
+        </div>`).join('')}
+    </div>`;
+}
+
+function loadNumbersMenu() {
+  if (!interfaceLang) return;
+  currentView = 'numbers-menu';
+  const t = translations[interfaceLang];
+  
+  const isTeacher = isTeacherMode();
+  toggleGlobalBack(!isTeacher); // Show back button for self-study (this is the ONLY back button)
+  toggleGlobalLogout(false); // Hide logout button in sub-menus for teacher mode
+  toggleLangIcon(false);
+  toggleRightLogoutButton(!isTeacher); // Show right logout button only for self-study
+  toggleChatbotBtn(false); // Hide chatbot in sub-views
+  
+  document.getElementById("learning-content").innerHTML = `
+    <div class="numbers-grid">
+      ${NUMBERS.map((n,i)=>`
+        <div class="number-card" onclick="startNumberLesson(${i})">
+          <div class="main-char">${n.digit}</div>
+          <div class="spelling">${n.spelling}</div>
+          <div class="translation">${interfaceLang === 'hindi' ? n.hindi : n.marathi}</div>
+        </div>`).join('')}
+    </div>`;
+}
+
+function startAlphabetLesson(index) {
+  if (!interfaceLang) return;
+  currentView = 'alphabet-lesson';
+  if(index<0||index>=LETTERS.length){ loadAlphabetsMenu(); return; }
+  const l = LETTERS[index];
+  if(typeof updateProgress==='function'){ updateProgress('level1','alphabets',index); }
+  const t = translations[interfaceLang];
+  
+  const isTeacher = isTeacherMode();
+  toggleGlobalBack(!isTeacher); // Show back button for self-study (this is the ONLY back button)
+  toggleGlobalLogout(false); // Hide logout button in lessons for teacher mode
+  toggleLangIcon(false);
+  toggleRightLogoutButton(!isTeacher); // Show right logout button only for self-study
+  toggleChatbotBtn(false); // Hide chatbot in sub-views
+  
+  document.getElementById("learning-content").innerHTML = `
+    <div class="lesson-container">
+      <div class="main-char">${l.upper} <span class="small-char">${l.lower}</span></div>
+      <div class="example">${l.word}</div>
+      <div class="translation">${interfaceLang === 'hindi' ? l.hindi : l.marathi}</div>
+      <button class="sound-btn" onclick="speakText('${l.word}')"><i class="fas fa-volume-up"></i></button>
+      <div class="trace-area"><canvas id="traceCanvas" width="250" height="250"></canvas><button class="btn clear-btn" onclick="clearCanvas()">${t.clear}</button></div>
+      <div class="lesson-controls">
+        <button class="btn" onclick="startAlphabetLesson(${index-1})">${t.previous}</button>
+        <button class="btn" onclick="startAlphabetLesson(${index+1})">${t.next}</button>
+      </div>
+    </div>`;
+  initCanvas();
+}
+
+function startNumberLesson(index) {
+  if (!interfaceLang) return;
+  currentView = 'number-lesson';
+  if(index<0||index>=NUMBERS.length){ loadNumbersMenu(); return; }
+  const n = NUMBERS[index];
+  if(typeof updateProgress==='function'){ updateProgress('level1','numbers',index); }
+  const t = translations[interfaceLang];
+  
+  const isTeacher = isTeacherMode();
+  toggleGlobalBack(!isTeacher); // Show back button for self-study (this is the ONLY back button)
+  toggleGlobalLogout(false); // Hide logout button in lessons for teacher mode
+  toggleLangIcon(false);
+  toggleRightLogoutButton(!isTeacher); // Show right logout button only for self-study
+  toggleChatbotBtn(false); // Hide chatbot in sub-views
+  
+  document.getElementById("learning-content").innerHTML = `
+    <div class="lesson-container">
+      <div class="main-char">${n.digit}</div>
+      <div class="spelling">${n.spelling}</div>
+      <div class="translation">${interfaceLang === 'hindi' ? n.hindi : n.marathi}</div>
+      <button class="sound-btn" onclick="speakText('${n.spelling}')"><i class="fas fa-volume-up"></i></button>
+      <div class="trace-area"><canvas id="traceCanvas" width="250" height="250"></canvas><button class="btn clear-btn" onclick="clearCanvas()">${t.clear}</button></div>
+      <div class="lesson-controls">
+        <button class="btn" onclick="startNumberLesson(${index-1})">${t.previous}</button>
+        <button class="btn" onclick="startNumberLesson(${index+1})">${t.next}</button>
+      </div>
+    </div>`;
+  initCanvas();
+}
+
+function speakText(text){
+  const cleanText=text.replace(/[^a-zA-Z\s\-]/g,'').trim();
+  if('speechSynthesis' in window){ speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(cleanText); u.rate=0.8; speechSynthesis.speak(u); }
+}
+
+function initCanvas(){
+  const canvas=document.getElementById("traceCanvas"); if(!canvas) return;
+  const ctx=canvas.getContext("2d");
+  ctx.lineWidth=4; ctx.lineCap="round"; ctx.strokeStyle="#58cc02"; let drawing=false;
+  const getPos=e=>{
+    const rect=canvas.getBoundingClientRect();
+    const clientX=e.clientX||(e.touches?e.touches[0].clientX:0);
+    const clientY=e.clientY||(e.touches?e.touches[0].clientY:0);
+    return {x:clientX-rect.left, y:clientY-rect.top};
+  };
+  const start=()=>drawing=true;
+  const stop=()=>{drawing=false; ctx.beginPath();};
+  const draw=e=>{if(!drawing) return; e.preventDefault(); const p=getPos(e); ctx.lineTo(p.x,p.y); ctx.stroke(); ctx.beginPath(); ctx.moveTo(p.x,p.y);};
+  canvas.addEventListener("mousedown",start); canvas.addEventListener("mouseup",stop); canvas.addEventListener("mousemove",draw);
+  canvas.addEventListener("touchstart",start); canvas.addEventListener("touchend",stop); canvas.addEventListener("touchmove",draw);
+}
+
+function clearCanvas(){ const canvas=document.getElementById("traceCanvas"); if(canvas) canvas.getContext("2d").clearRect(0,0,250,250); }
+
+// ===== BUTTON VISIBILITY FUNCTIONS =====
+// Function to toggle global back button visibility
+function toggleGlobalBack(show) {
+  const backBtn = document.getElementById("globalBack");
+  if (backBtn) {
+    backBtn.style.display = show ? "inline-block" : "none";
+  }
+}
+
+// Function to toggle global logout button (top left for teacher mode)
+function toggleGlobalLogout(show) {
+  const globalLogout = document.getElementById("globalLogout");
+  if (globalLogout) {
+    globalLogout.style.display = show ? "flex" : "none";
+  }
+}
+
+// Function to toggle language icon visibility
+function toggleLangIcon(show) {
+  const langIcon = document.getElementById("langIconBtn");
+  if (langIcon) {
+    if (interfaceLang && show) {
+      langIcon.style.display = "flex";
+    } else {
+      langIcon.style.display = "none";
+    }
+  }
+}
+
+// Function to toggle chatbot button visibility - UPDATED to only show on main page
+function toggleChatbotBtn(show) {
+  const chatbotBtn = document.getElementById("chatbotBtn");
+  if (chatbotBtn) {
+    // Only show chatbot on main level1 page and when interface language is selected
+    if (show && interfaceLang && currentView === 'level1') {
+      chatbotBtn.style.display = "flex";
+    } else {
+      chatbotBtn.style.display = "none";
+    }
+  }
+}
+
+// Function to toggle right side logout button visibility (for self-study mode)
+function toggleRightLogoutButton(show) {
+  const logoutBtn = document.getElementById("logoutBtn");
+  if (logoutBtn) {
+    const username = getCurrentUser();
+    if (username !== 'guest' && show) {
+      logoutBtn.style.display = "flex";
+    } else {
+      logoutBtn.style.display = "none";
+    }
+  }
+}
+
+// Function to show language modal
+function showLanguageModal() {
+  const modal = document.getElementById('languageModal');
+  if (modal) {
+    modal.style.display = 'flex';
+    toggleGlobalBack(false);
+    toggleGlobalLogout(false);
+    toggleLangIcon(false);
+    toggleRightLogoutButton(false);
+    toggleChatbotBtn(false);
+  }
+}
+
+// Function to close language modal
+function closeLanguageModal() {
+  const modal = document.getElementById('languageModal');
+  if (modal) {
+    modal.style.display = 'none';
+    const isTeacher = isTeacherMode();
+    if (currentView === 'level1') {
+      toggleGlobalBack(!isTeacher);
+      toggleGlobalLogout(isTeacher);
+      toggleLangIcon(true);
+      toggleRightLogoutButton(!isTeacher);
+      toggleChatbotBtn(true);
+    } else {
+      toggleGlobalBack(!isTeacher);
+      toggleGlobalLogout(false); // Hide logout button in sub-views
+      toggleLangIcon(false);
+      toggleRightLogoutButton(!isTeacher);
+      toggleChatbotBtn(false); // Hide chatbot in sub-views
+    }
+  }
+}
+
+// ===== LOGOUT CONFIRMATION FUNCTIONS =====
+function showLogoutConfirmation() {
+  const modal = document.getElementById('logoutConfirmModal');
+  if (modal) {
+    modal.style.display = 'flex';
+    // Hide all other buttons while modal is open
+    toggleGlobalBack(false);
+    toggleGlobalLogout(false);
+    toggleLangIcon(false);
+    toggleRightLogoutButton(false);
+    toggleChatbotBtn(false);
+  }
+}
+
+function closeLogoutModal() {
+  const modal = document.getElementById('logoutConfirmModal');
+  if (modal) {
+    modal.style.display = 'none';
+    // Restore buttons based on current view
+    const isTeacher = isTeacherMode();
+    if (currentView === 'level1') {
+      toggleGlobalBack(!isTeacher);
+      toggleGlobalLogout(isTeacher);
+      toggleLangIcon(true);
+      toggleRightLogoutButton(!isTeacher);
+      toggleChatbotBtn(true);
+    } else {
+      toggleGlobalBack(!isTeacher);
+      toggleGlobalLogout(false);
+      toggleLangIcon(false);
+      toggleRightLogoutButton(!isTeacher);
+      toggleChatbotBtn(false); // Hide chatbot in sub-views
+    }
+  }
+}
+
+// ===== TEACHER LOGOUT CONFIRMATION FUNCTIONS =====
+function showTeacherLogoutConfirmation() {
+  // Use the same modal for teacher logout
+  showLogoutConfirmation();
+}
+
+function confirmLogout() {
+  // Clear the user profile from localStorage
+  localStorage.removeItem('linguaKidsProfile');
+  sessionStorage.removeItem('currentUser');
+  closeLogoutModal();
+  window.location.href = 'study.html';
+}
+
+// ===== CHATBOT FUNCTIONS =====
+function openChatbot() {
+  const modal = document.getElementById('chatbotModal');
+  if (modal) {
+    modal.style.display = 'flex';
+    const isTeacher = isTeacherMode();
+    toggleGlobalBack(false);
+    toggleGlobalLogout(false);
+    toggleLangIcon(false);
+    toggleRightLogoutButton(false);
+    toggleChatbotBtn(false);
+    
+    // Initialize the chatbot when opened
+    const languageDisplay = interfaceLang === 'hindi' ? 'हिंदी' : 'मराठी';
+    if (typeof createLinguaKidsChatbot === 'function') {
+      createLinguaKidsChatbot('chatbotContainer', languageDisplay);
+    }
+  }
+}
+
+function closeChatbot() {
+  const modal = document.getElementById('chatbotModal');
+  if (modal) {
+    modal.style.display = 'none';
+    const isTeacher = isTeacherMode();
+    if (currentView === 'level1') {
+      toggleGlobalBack(!isTeacher);
+      toggleGlobalLogout(isTeacher);
+      toggleLangIcon(true);
+      toggleRightLogoutButton(!isTeacher);
+      toggleChatbotBtn(true);
+    } else {
+      toggleGlobalBack(!isTeacher);
+      toggleGlobalLogout(false);
+      toggleLangIcon(false);
+      toggleRightLogoutButton(!isTeacher);
+      toggleChatbotBtn(false); // Hide chatbot in sub-views
+    }
+    
+    // Clear the chatbot container when closed to prevent duplicates
+    document.getElementById('chatbotContainer').innerHTML = '';
+  }
+}
+
+function goBackHome() { 
+  const isTeacher = isTeacherMode();
+  if (isTeacher) {
+    showTeacherLogoutConfirmation();
+  } else {
+    window.location.href = 'index.html';
+  }
+}
+
+function logoutUser() {
+  showLogoutConfirmation();
+}
+
+// Updated goBack function to handle different views
+function goBack() { 
+  if (currentView === 'level1') {
+    // If on main level1 page, go to index
+    window.location.href = 'index.html';
+  } else if (currentView === 'alphabets-menu' || currentView === 'numbers-menu') {
+    // If on alphabet or number menu, go back to level1
+    loadLevel1();
+  } else if (currentView === 'alphabet-lesson' || currentView === 'number-lesson') {
+    // If on a lesson, go back to the appropriate menu
+    if (currentView === 'alphabet-lesson') {
+      loadAlphabetsMenu();
+    } else {
+      loadNumbersMenu();
+    }
+  } else {
+    // Default fallback
+    loadLevel1();
+  }
+}
+
+function goToLevel2(cat) {
+  window.location.href = `englevel2.html?category=${cat}&lang=${interfaceLang || 'en'}&t=${new Date().getTime()}`;
+}
+function goToLevel3(cat) {
+  window.location.href = `englevel3.html?category=${cat}&lang=${interfaceLang || 'en'}&t=${new Date().getTime()}`;
+}
+function playGame(level) {
+  window.location.href = `engames.html?level=${level}&lang=${interfaceLang || 'en'}&t=${new Date().getTime()}`;
+}
+
+// ===== MODAL & INIT =====
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('languageModal');
+  const backBtn = document.getElementById('globalBack');
+  const globalLogout = document.getElementById('globalLogout');
+  const langIcon = document.getElementById('langIconBtn');
+  const logoutBtn = document.getElementById('logoutBtn');
+  const chatbotBtn = document.getElementById('chatbotBtn');
+  
+  const currentUser = getCurrentUser();
+  const userProfile = getUserProfile();
+  const storageKey = getUserLanguageKey();
+  const savedLang = localStorage.getItem(storageKey);
+  const firstVisit = isFirstVisit();
+
+  document.getElementById("learning-content").innerHTML = '';
+
+  if (userProfile && userProfile.studyMode === 'teacher' && userProfile.assignedLanguage) {
+    if (firstVisit) {
+      interfaceLang = null;
+      modal.style.display = 'flex';
+      if (backBtn) backBtn.style.display = 'none';
+      if (globalLogout) globalLogout.style.display = 'none';
+      if (langIcon) langIcon.style.display = 'none';
+      if (logoutBtn) logoutBtn.style.display = 'none';
+      if (chatbotBtn) chatbotBtn.style.display = 'none';
+    } else if (savedLang) {
+      interfaceLang = savedLang;
+      modal.style.display = 'none';
+      loadLevel1();
+      if (backBtn) backBtn.style.display = 'none'; // Hide back button for teacher mode
+      if (globalLogout) globalLogout.style.display = 'flex'; // Show global logout for teacher mode (only on main page)
+      if (langIcon) langIcon.style.display = 'flex';
+      if (logoutBtn) logoutBtn.style.display = 'none'; // Hide right logout for teacher mode
+      if (chatbotBtn && interfaceLang) chatbotBtn.style.display = 'flex';
+    } else {
+      interfaceLang = null;
+      modal.style.display = 'flex';
+      if (backBtn) backBtn.style.display = 'none';
+      if (globalLogout) globalLogout.style.display = 'none';
+      if (langIcon) langIcon.style.display = 'none';
+      if (logoutBtn) logoutBtn.style.display = 'none';
+      if (chatbotBtn) chatbotBtn.style.display = 'none';
+    }
+  } else {
+    if (firstVisit) {
+      interfaceLang = null;
+      modal.style.display = 'flex';
+      if (backBtn) backBtn.style.display = 'none';
+      if (globalLogout) globalLogout.style.display = 'none';
+      if (langIcon) langIcon.style.display = 'none';
+      if (logoutBtn) logoutBtn.style.display = 'none';
+      if (chatbotBtn) chatbotBtn.style.display = 'none';
+    } else if (savedLang) {
+      interfaceLang = savedLang;
+      modal.style.display = 'none';
+      loadLevel1();
+      if (backBtn) backBtn.style.display = 'inline-block'; // Show back button for self-study
+      if (globalLogout) globalLogout.style.display = 'none'; // Hide global logout for self-study
+      if (langIcon) langIcon.style.display = 'flex';
+      if (logoutBtn && currentUser !== 'guest') logoutBtn.style.display = 'flex'; // Show right logout for self-study
+      if (chatbotBtn && interfaceLang) chatbotBtn.style.display = 'flex';
+    } else {
+      interfaceLang = null;
+      modal.style.display = 'flex';
+      if (backBtn) backBtn.style.display = 'none';
+      if (globalLogout) globalLogout.style.display = 'none';
+      if (langIcon) langIcon.style.display = 'none';
+      if (logoutBtn) logoutBtn.style.display = 'none';
+      if (chatbotBtn) chatbotBtn.style.display = 'none';
+    }
+  }
+
+  const hindiOption = document.getElementById('chooseHindi');
+  const marathiOption = document.getElementById('chooseMarathi');
+  
+  const newHindiOption = hindiOption.cloneNode(true);
+  const newMarathiOption = marathiOption.cloneNode(true);
+  hindiOption.parentNode.replaceChild(newHindiOption, hindiOption);
+  marathiOption.parentNode.replaceChild(newMarathiOption, marathiOption);
+
+  newHindiOption.addEventListener('click', function() {
+    interfaceLang = 'hindi';
+    localStorage.setItem(getUserLanguageKey(), 'hindi');
+    markAsVisited();
+    modal.style.display = 'none';
+    loadLevel1();
+    const isTeacher = isTeacherMode();
+    if (backBtn) backBtn.style.display = isTeacher ? 'none' : 'inline-block';
+    if (globalLogout) globalLogout.style.display = isTeacher ? 'flex' : 'none';
+    if (langIcon) langIcon.style.display = 'flex';
+    if (logoutBtn && currentUser !== 'guest') logoutBtn.style.display = isTeacher ? 'none' : 'flex';
+    if (chatbotBtn && interfaceLang) chatbotBtn.style.display = 'flex';
+  });
+
+  newMarathiOption.addEventListener('click', function() {
+    interfaceLang = 'marathi';
+    localStorage.setItem(getUserLanguageKey(), 'marathi');
+    markAsVisited();
+    modal.style.display = 'none';
+    loadLevel1();
+    const isTeacher = isTeacherMode();
+    if (backBtn) backBtn.style.display = isTeacher ? 'none' : 'inline-block';
+    if (globalLogout) globalLogout.style.display = isTeacher ? 'flex' : 'none';
+    if (langIcon) langIcon.style.display = 'flex';
+    if (logoutBtn && currentUser !== 'guest') logoutBtn.style.display = isTeacher ? 'none' : 'flex';
+    if (chatbotBtn && interfaceLang) chatbotBtn.style.display = 'flex';
+  });
+});
+
+// Expose globally
+window.loadLevel1 = loadLevel1;
+window.loadAlphabetsMenu = loadAlphabetsMenu;
+window.loadNumbersMenu = loadNumbersMenu;
+window.startAlphabetLesson = startAlphabetLesson;
+window.startNumberLesson = startNumberLesson;
+window.speakText = speakText;
+window.initCanvas = initCanvas;
+window.clearCanvas = clearCanvas;
+window.goBack = goBack;
+window.goBackHome = goBackHome;
+window.logoutUser = logoutUser;
+window.showLogoutConfirmation = showLogoutConfirmation;
+window.closeLogoutModal = closeLogoutModal;
+window.confirmLogout = confirmLogout;
+window.showTeacherLogoutConfirmation = showTeacherLogoutConfirmation;
+window.toggleGlobalBack = toggleGlobalBack;
+window.toggleGlobalLogout = toggleGlobalLogout;
+window.toggleLangIcon = toggleLangIcon;
+window.toggleRightLogoutButton = toggleRightLogoutButton;
+window.toggleChatbotBtn = toggleChatbotBtn;
+window.showLanguageModal = showLanguageModal;
+window.closeLanguageModal = closeLanguageModal;
+window.openChatbot = openChatbot;
+window.closeChatbot = closeChatbot;
+window.getCurrentUser = getCurrentUser;
+window.goToLevel2 = goToLevel2;
+window.goToLevel3 = goToLevel3;
+window.playGame = playGame;
+window.isTeacherMode = isTeacherMode;
+window.getUserProfile = getUserProfile;
+</script>
+
+<script src="progress.js"></script>
+<script src="chatbot.js"></script>
+
+</body>
+</html>

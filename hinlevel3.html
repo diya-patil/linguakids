@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="google" content="notranslate">
+  <meta http-equiv="Content-Language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinguaKids - Hindi Level 3</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       LINGUAKIDS LEVEL 3 — MEGA FUN CSS (Same as englevel3.html)
+    ============================================================ */
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Nunito', 'Quicksand', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+      background-color: #fffbf0;
+      background-image:
+        radial-gradient(circle at 8%  12%, #ff6bb540 0%, transparent 28%),
+        radial-gradient(circle at 92% 8%,  #43e97b40 0%, transparent 28%),
+        radial-gradient(circle at 50% 50%, #f9ca2440 0%, transparent 40%),
+        radial-gradient(circle at 15% 88%, #38f9d740 0%, transparent 28%),
+        radial-gradient(circle at 88% 85%, #4facfe40 0%, transparent 28%),
+        radial-gradient(circle at 70% 30%, #fa709a30 0%, transparent 22%);
+    }
+
+    /* Floating confetti dots */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        radial-gradient(circle, #ff6bb5 2px, transparent 2px),
+        radial-gradient(circle, #43e97b 2px, transparent 2px),
+        radial-gradient(circle, #f9ca24 2px, transparent 2px),
+        radial-gradient(circle, #4facfe 2px, transparent 2px),
+        radial-gradient(circle, #fa709a 2px, transparent 2px),
+        radial-gradient(circle, #ff6b6b 2px, transparent 2px);
+      background-size: 120px 120px, 97px 97px, 143px 143px, 83px 83px, 107px 107px, 131px 131px;
+      background-position: 10px 15px, 55px 70px, 30px 40px, 80px 10px, 50px 100px, 100px 55px;
+      opacity: 0.45;
+      animation: driftDots 18s linear infinite alternate;
+    }
+
+    @keyframes driftDots {
+      from { background-position: 10px 15px, 55px 70px, 30px 40px, 80px 10px, 50px 100px, 100px 55px; }
+      to   { background-position: 22px 38px, 44px 52px, 52px 62px, 62px 28px, 68px 82px, 82px 72px; }
+    }
+
+    /* ---- HEADING ---- */
+    h2 {
+      text-align: center;
+      font-family: 'Baloo 2', cursive;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #f472b6;
+      text-shadow: 3px 3px 0 #fce7f3, 5px 5px 0 rgba(244,114,182,0.15);
+      margin: 16px 0 8px;
+      position: relative;
+      z-index: 1;
+      animation: titleWobble 3.5s ease-in-out infinite;
+    }
+
+    @keyframes titleWobble {
+      0%,100% { transform: rotate(-1deg) scale(1); }
+      25%      { transform: rotate(1.5deg) scale(1.02); }
+      75%      { transform: rotate(-0.5deg) scale(0.98); }
+    }
+
+    /* ---- GRID ---- */
+    .sentence-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin: 20px auto;
+      padding: 0 18px;
+      max-width: 1000px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ---- ITEM CARDS ---- */
+    .sentence-card {
+      background: white;
+      padding: 20px 16px 16px;
+      border-radius: 24px;
+      text-align: center;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border: 3px solid transparent;
+      transition: transform 0.22s cubic-bezier(.34,1.7,.64,1), box-shadow 0.2s;
+      box-shadow: 0 7px 0 #c0c0c0, 0 10px 20px rgba(0,0,0,0.08);
+      animation: cardPop 0.4s cubic-bezier(.34,1.56,.64,1) both;
+    }
+
+    @keyframes cardPop {
+      from { transform: scale(0.5) rotate(-8deg); opacity: 0; }
+      to   { transform: scale(1)   rotate(0deg);  opacity: 1; }
+    }
+
+    /* Rainbow card colors cycling through 6 themes */
+    .sentence-card:nth-child(6n+1) { background:#fff0f6; border-color:#ff6bb5; box-shadow:0 7px 0 #e05a9f, 0 10px 20px rgba(255,107,181,0.15); }
+    .sentence-card:nth-child(6n+2) { background:#f0fff4; border-color:#43e97b; box-shadow:0 7px 0 #28c25e, 0 10px 20px rgba(67,233,123,0.15);  }
+    .sentence-card:nth-child(6n+3) { background:#fffbf0; border-color:#f9ca24; box-shadow:0 7px 0 #d4a800, 0 10px 20px rgba(249,202,36,0.15);  }
+    .sentence-card:nth-child(6n+4) { background:#f0f8ff; border-color:#4facfe; box-shadow:0 7px 0 #2280d4, 0 10px 20px rgba(79,172,254,0.15);  }
+    .sentence-card:nth-child(6n+5) { background:#fff0f9; border-color:#f472b6; box-shadow:0 7px 0 #be185d, 0 10px 20px rgba(244,114,182,0.15); }
+    .sentence-card:nth-child(6n+6) { background:#fff4ee; border-color:#fb923c; box-shadow:0 7px 0 #c2620d, 0 10px 20px rgba(251,146,60,0.15);  }
+
+    /* Stagger pop-in animation */
+    .sentence-card:nth-child(1)  { animation-delay:.02s }
+    .sentence-card:nth-child(2)  { animation-delay:.05s }
+    .sentence-card:nth-child(3)  { animation-delay:.08s }
+    .sentence-card:nth-child(4)  { animation-delay:.11s }
+    .sentence-card:nth-child(5)  { animation-delay:.14s }
+    .sentence-card:nth-child(6)  { animation-delay:.17s }
+    .sentence-card:nth-child(7)  { animation-delay:.20s }
+    .sentence-card:nth-child(8)  { animation-delay:.23s }
+    .sentence-card:nth-child(9)  { animation-delay:.26s }
+    .sentence-card:nth-child(10) { animation-delay:.29s }
+
+    .sentence-card:hover {
+      transform: translateY(-8px) rotate(-1deg) scale(1.06);
+    }
+
+    .sentence-card:active {
+      transform: translateY(5px) scale(0.96);
+      box-shadow: 0 2px 0 #aaa, 0 4px 8px rgba(0,0,0,0.1) !important;
+      transition: transform 0.07s, box-shadow 0.07s;
+    }
+
+    /* ---- QUESTION & ANSWER STYLES ---- */
+    .hindi-sentence {
+      font-size: 1.5rem;
+      font-weight: 800;
+      font-family: 'Baloo 2', cursive;
+      color: #58cc02;
+      margin-bottom: 5px;
+      line-height: 1.3;
+    }
+
+    .question-label {
+      font-weight: 800;
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.1rem;
+      color: #0ea5e9;
+      margin-bottom: 8px;
+    }
+
+    .answer-label {
+      font-weight: 800;
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.1rem;
+      color: #f472b6;
+      margin: 10px 0 5px;
+    }
+
+    .english-translation {
+      font-size: 0.95rem;
+      color: #666;
+      font-weight: 500;
+      margin: 5px 0;
+    }
+
+    .marathi-translation {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: #fb923c;
+      margin-top: 4px;
+      margin-bottom: 6px;
+    }
+
+    /* ---- SPEAK BUTTONS ---- */
+    .speak-btn {
+      background: linear-gradient(160deg, #f9ca24, #f0932b);
+      border: none;
+      border-bottom: 4px solid #c07800;
+      border-right: 2px solid #c07800;
+      color: white;
+      padding: 6px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-family: 'Baloo 2', cursive;
+      font-weight: 700;
+      margin: 4px;
+      min-width: 50px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      box-shadow: 0 3px 10px rgba(249,202,36,0.35);
+      transition: transform 0.15s cubic-bezier(.34,1.56,.64,1), border-bottom 0.1s;
+    }
+
+    .speak-btn:hover  { transform: translateY(-2px) scale(1.08); }
+    .speak-btn:active { transform: translateY(2px); border-bottom-width: 1px; border-right-width: 1px; }
+    .speak-btn i      { font-size: 0.9rem; }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+
+    /* ---- BACK BUTTON ---- */
+    .btn {
+      background: linear-gradient(160deg, #43e97b, #38f9d7);
+      border: none;
+      border-bottom: 5px solid #1db863;
+      border-right: 3px solid #1db863;
+      color: white;
+      padding: 11px 26px;
+      border-radius: 999px;
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin: 12px 8px;
+      display: inline-block;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.15);
+      box-shadow: 0 6px 18px rgba(67,233,123,0.35);
+      transition: transform 0.15s cubic-bezier(.34,1.56,.64,1), box-shadow 0.15s, border-bottom 0.1s;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn:hover  { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 24px rgba(67,233,123,0.45); }
+    .btn:active { transform: translateY(4px) scale(0.97); border-bottom-width: 1px; border-right-width: 1px; box-shadow: none; }
+
+    /* ---- TOAST HIDDEN ---- */
+    .toast {
+      display: none !important;
+    }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 600px) {
+      .sentence-grid { grid-template-columns: 1fr; }
+      h2 { font-size: 1.6rem; }
+      
+      .btn {
+        position: relative;
+        top: auto;
+        left: auto;
+        margin: 10px;
+        display: block;
+        width: fit-content;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button onclick="goBack()" class="btn" id="backBtn">Back</button>
+  <h2 id="categoryTitle"></h2>
+  <div id="content" class="sentence-grid"></div>
+
+  <!-- Achievement Toast - HIDDEN -->
+  <div id="achievementToast" class="toast" style="display: none;">
+    <i class="fas fa-check-circle"></i>
+    <div>
+      <div id="toastTitle">Great job!</div>
+      <div id="toastDesc">Progress saved.</div>
+    </div>
+  </div>
+
+<script>
+// === DATA CONSTANTS ===
+const VOWELS_LENGTH = 12;
+const CONSONANTS_LENGTH = 37;
+const NUMBERS_1_TO_100_LENGTH = 100;
+const LEVEL2_CATEGORY_LENGTH = 10;
+const LEVEL3_CATEGORY_LENGTH = 10;
+const GAMES_LENGTHS = { 'fill-blanks': 5, 'match-words': 2, 'count-apples': 5 };
+
+// Get interface language from URL parameter
+const urlParams = new URLSearchParams(window.location.search);
+const category = urlParams.get('category');
+const interfaceLang = urlParams.get('lang') || 'english'; // Default to english
+
+// ===== MARATHI TRANSLATIONS FOR LEVEL 3 SENTENCES =====
+const marathiSentenceTranslations = {
+  // Greetings
+  "नमस्ते": "नमस्कार",
+  "शुभ प्रभात": "शुभ प्रभात",
+  "शुभ संध्या": "शुभ संध्या",
+  "शुभ रात्रि": "शुभ रात्री",
+  "आप कैसे हैं?": "तुम्ही कसे आहात?",
+  "धन्यवाद": "धन्यवाद",
+  "कृपया": "कृपया",
+  "क्षमा कीजिए": "क्षमस्व",
+  "अलविदा": "गुडबाय",
+  "कैसे चल रहा है?": "कसं चाललंय?",
+  "आपका दिन कैसा था?": "तुमचा दिवस कसा होता?",
+  "स्वागत है": "स्वागत आहे",
+  "ध्यान रखना": "काळजी घ्या",
+  "जल्दी मिलेंगे": "लवकर भेटू",
+  "अच्छा लगा आपसे मिलकर": "तुम्हाला भेटून आनंद झाला",
+  "मुझे माफ़ करें": "मला माफ करा",
+  "बधाई हो!": "अभिनंदन!",
+  "बहुत अच्छा!": "खूप छान!",
+  "शुभकामनाएँ": "शुभेच्छा",
+  "फिर मिलेंगे": "पुन्हा भेटू",
+
+  // Daily Activities
+  "मैं खाता हूँ": "मी खातो",
+  "मैं पीता हूँ": "मी पितो",
+  "मैं सोता हूँ": "मी झोपतो",
+  "मैं खेलता हूँ": "मी खेळतो",
+  "मैं पढ़ता हूँ": "मी वाचतो",
+  "मैं लिखता हूँ": "मी लिहितो",
+  "मैं गाता हूँ": "मी गातो",
+  "मैं नाचता हूँ": "मी नाचतो",
+  "मैं चलता हूँ": "मी चालतो",
+  "मैं स्नान करता हूँ": "मी आंघोळ करतो",
+  "मैं स्कूल जाता हूँ": "मी शाळेत जातो",
+  "मैं होमवर्क करता हूँ": "मी गृहपाठ करतो",
+  "मैं टीवी देखता हूँ": "मी टीव्ही पाहतो",
+  "मैं खाना बनाता हूँ": "मी स्वयंपाक करतो",
+  "मैं मदद करता हूँ": "मी मदत करतो",
+  "मैं हँसता हूँ": "मी हसतो",
+  "मैं तस्वीर बनाता हूँ": "मी चित्र काढतो",
+  "मैं सफाई करता हूँ": "मी सफाई करतो",
+  "मैं संगीत सुनता हूँ": "मी संगीत ऐकतो",
+  "मैं दौड़ता हूँ": "मी धावतो",
+
+  // Simple Questions & Answers
+  "आपका नाम क्या है?": "तुमचे नाव काय आहे?",
+  "मेरा नाम राहुल है।": "माझं नाव राहुल आहे.",
+  "आप कहाँ रहते हैं?": "तुम्ही कुठे राहता?",
+  "मैं मुंबई में रहता हूँ।": "मी मुंबईत राहतो.",
+  "आपकी उम्र क्या है?": "तुमचं वय किती आहे?",
+  "मैं 8 साल का हूँ।": "मी ८ वर्षांचा आहे.",
+  "यह क्या है?": "हे काय आहे?",
+  "यह एक किताब है।": "हे एक पुस्तक आहे.",
+  "कितना है?": "किती आहे?",
+  "यह 10 रुपये है।": "हे १० रुपये आहे.",
+  "क्या आप ठीक हैं?": "तुम्ही ठीक आहात का?",
+  "हाँ, मैं ठीक हूँ।": "हो, मी ठीक आहे.",
+  "आप क्या कर रहे हैं?": "तुम्ही काय करत आहात?",
+  "मैं किताब पढ़ रहा हूँ।": "मी पुस्तक वाचत आहे.",
+  "क्या आप मेरे दोस्त बनोगे?": "तुम्ही माझे मित्र व्हाल का?",
+  "हाँ, जरूर!": "हो, नक्की!",
+  "क्या आप मुझे हिंदी सिखा सकते हैं?": "तुम्ही मला हिंदी शिकवू शकाल का?",
+  "हाँ, मैं सिखा सकता हूँ।": "हो, मी शिकवू शकतो.",
+  "आपका पसंदीदा रंग कौन सा है?": "तुमचा आवडता रंग कोणता आहे?",
+  "मेरा पसंदीदा रंग नीला है।": "माझा आवडता रंग निळा आहे.",
+  "क्या आपको खेल पसंद हैं?": "तुम्हाला खेळ आवडतात का?",
+  "हाँ, मुझे खेल पसंद हैं।": "हो, मला खेळ आवडतात.",
+  "आप स्कूल जाते हैं?": "तुम्ही शाळेत जाता का?",
+  "हाँ, मैं रोज़ स्कूल जाता हूँ।": "हो, मी रोज शाळेत जातो.",
+  "आप क्या खाना पसंद करते हैं?": "तुम्हाला काय खायला आवडते?",
+  "मुझे पिज़्ज़ा पसंद है।": "मला पिझ्झा आवडतो.",
+  "आप कहाँ जा रहे हैं?": "तुम्ही कुठे जात आहात?",
+  "मैं बाज़ार जा रहा हूँ।": "मी बाजारात जात आहे.",
+  "आपको कौन सा फल पसंद है?": "तुम्हाला कोणते फळ आवडते?",
+  "मुझे सेब पसंद है।": "मला सफरचंद आवडते.",
+  "क्या आप मेरी मदद करेंगे?": "तुम्ही माझी मदत कराल का?",
+  "हाँ, ज़रूर!": "हो, नक्की!",
+  "क्या आप खेलना चाहते हैं?": "तुम्हाला खेळायचे आहे का?",
+  "हाँ, मैं खेलना चाहता हूँ।": "हो, मला खेळायचं आहे.",
+  "आप कब आएंगे?": "तुम्ही केव्हा याल?",
+  "मैं कल आऊँगा।": "मी उद्या येईन.",
+  "क्या आप तैयार हैं?": "तुम्ही तयार आहात का?",
+  "हाँ, मैं तैयार हूँ।": "हो, मी तयार आहे.",
+  "क्या आप अंग्रेजी बोलते हैं?": "तुम्ही इंग्रजी बोलता का?",
+  "हाँ, मैं थोड़ी अंग्रेजी बोलता हूँ।": "हो, मी थोडी इंग्रजी बोलतो."
+};
+
+// === CORE PROGRESS AND STREAK LOGIC (SELF-CONTAINED) ===
+function initHindiProgress() {
+  let progress = JSON.parse(localStorage.getItem('linguaKidsHindiProgress'));
+  if (!progress) {
+    const defaultProgress = {
+      level1: { alphabets: { completed: 0, total: VOWELS_LENGTH + CONSONANTS_LENGTH }, numbers: { completed: 0, total: NUMBERS_1_TO_100_LENGTH }},
+      level2: { fruits: { completed: 0, total: LEVEL2_CATEGORY_LENGTH }, vegetables: { completed: 0, total: LEVEL2_CATEGORY_LENGTH }, animals: { completed: 0, total: LEVEL2_CATEGORY_LENGTH }, birds: { completed: 0, total: LEVEL2_CATEGORY_LENGTH }, vehicles: { completed: 0, total: LEVEL2_CATEGORY_LENGTH }, colors: { completed: 0, total: LEVEL2_CATEGORY_LENGTH }},
+      level3: { greetings: { completed: 0, total: LEVEL3_CATEGORY_LENGTH }, activities: { completed: 0, total: LEVEL3_CATEGORY_LENGTH }, questions: { completed: 0, total: LEVEL3_CATEGORY_LENGTH }},
+      games: { 'fill-blanks': { completed: 0, total: GAMES_LENGTHS['fill-blanks'] }, 'match-words': { completed: 0, total: GAMES_LENGTHS['match-words'] }, 'count-apples': { completed: 0, total: GAMES_LENGTHS['count-apples'] }},
+      achievements: { firstSteps: false, alphabetMaster: false, numberWhiz: false, wordExpert: false, sentenceBuilder: false, gameChampion: false, weekStreak: false, monthStreak: false },
+      streak: { count: 0, lastDate: null }, sessionDate: null
+    };
+    localStorage.setItem('linguaKidsHindiProgress', JSON.stringify(defaultProgress));
+  }
+}
+
+function updateHindiStreak() {
+  const progress = JSON.parse(localStorage.getItem('linguaKidsHindiProgress'));
+  if (!progress) return;
+  const today = new Date().toDateString();
+  if (progress.sessionDate !== today) {
+    const lastDate = progress.streak.lastDate ? new Date(progress.streak.lastDate) : null;
+    const todayDate = new Date();
+    if (lastDate) {
+      const diffTime = todayDate.getTime() - lastDate.getTime();
+      const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
+      if (diffDays === 1) { progress.streak.count++; } 
+      else if (diffDays > 1) { progress.streak.count = 1; }
+    } else { progress.streak.count = 1; }
+    progress.streak.lastDate = today;
+    progress.sessionDate = today;
+    localStorage.setItem('linguaKidsHindiProgress', JSON.stringify(progress));
+  }
+}
+
+function updateHindiProgress(level, category, increment = 1, itemIdentifier = null) {
+  const progress = JSON.parse(localStorage.getItem('linguaKidsHindiProgress'));
+  if (!progress || !progress[level] || !progress[level][category]) return false;
+  const today = new Date().toDateString();
+  const sessionKey = itemIdentifier ? `${level}_${category}_${itemIdentifier}_${today}` : null;
+  if (sessionKey && sessionStorage.getItem(sessionKey)) { return false; }
+  if (progress[level][category].completed < progress[level][category].total) {
+    progress[level][category].completed = Math.min(progress[level][category].completed + increment, progress[level][category].total);
+  } else { return false; }
+  localStorage.setItem('linguaKidsHindiProgress', JSON.stringify(progress));
+  if (sessionKey) { sessionStorage.setItem(sessionKey, 'true'); }
+  updateHindiStreak();
+  // No toast shown
+  return true;
+}
+
+// Empty function - no toast messages shown
+function showToast(title, description) {
+  // Do nothing - toast messages disabled
+}
+
+
+// === PAGE-SPECIFIC DATA AND FUNCTIONS ===
+const SENTENCES = {
+  greetings: [
+    {hindi: "नमस्ते", english: "Hello", icon: "👋"},
+    {hindi: "शुभ प्रभात", english: "Good morning", icon: "🌅"},
+    {hindi: "शुभ संध्या", english: "Good evening", icon: "🌇"},
+    {hindi: "शुभ रात्रि", english: "Good night", icon: "🌙"},
+    {hindi: "आप कैसे हैं?", english: "How are you?", icon: "🙂"},
+    {hindi: "धन्यवाद", english: "Thank you", icon: "🙏"},
+    {hindi: "कृपया", english: "Please", icon: "🥺"},
+    {hindi: "क्षमा कीजिए", english: "Excuse me", icon: "🙇"},
+    {hindi: "अलविदा", english: "Goodbye", icon: "👋"},
+    {hindi: "कैसे चल रहा है?", english: "How is it going?", icon: "🙂"},
+    {hindi: "आपका दिन कैसा था?", english: "How was your day?", icon: "🌞"},
+    {hindi: "स्वागत है", english: "Welcome", icon: "🤗"},
+    {hindi: "ध्यान रखना", english: "Take care", icon: "💛"},
+    {hindi: "जल्दी मिलेंगे", english: "See you soon", icon: "👋"},
+    {hindi: "अच्छा लगा आपसे मिलकर", english: "Nice to meet you", icon: "🤝"},
+    {hindi: "मुझे माफ़ करें", english: "I'm sorry", icon: "😔"},
+    {hindi: "बधाई हो!", english: "Congratulations!", icon: "🎉"},
+    {hindi: "बहुत अच्छा!", english: "Very good!", icon: "⭐"},
+    {hindi: "शुभकामनाएँ", english: "Best wishes", icon: "🌟"},
+    {hindi: "फिर मिलेंगे", english: "See you again", icon: "👋"}
+  ],
+  activities: [
+    {hindi: "मैं खाता हूँ", english: "I eat", icon: "🍽️"},
+    {hindi: "मैं पीता हूँ", english: "I drink", icon: "🥛"},
+    {hindi: "मैं सोता हूँ", english: "I sleep", icon: "😴"},
+    {hindi: "मैं खेलता हूँ", english: "I play", icon: "⚽"},
+    {hindi: "मैं पढ़ता हूँ", english: "I read", icon: "📖"},
+    {hindi: "मैं लिखता हूँ", english: "I write", icon: "✏️"},
+    {hindi: "मैं गाता हूँ", english: "I sing", icon: "🎤"},
+    {hindi: "मैं नाचता हूँ", english: "I dance", icon: "💃"},
+    {hindi: "मैं चलता हूँ", english: "I walk", icon: "🚶"},
+    {hindi: "मैं स्नान करता हूँ", english: "I take a bath", icon: "🛁"},
+    {hindi: "मैं स्कूल जाता हूँ", english: "I go to school", icon: "🏫"},
+    {hindi: "मैं होमवर्क करता हूँ", english: "I do homework", icon: "📒"},
+    {hindi: "मैं टीवी देखता हूँ", english: "I watch TV", icon: "📺"},
+    {hindi: "मैं खाना बनाता हूँ", english: "I cook food", icon: "🍳"},
+    {hindi: "मैं मदद करता हूँ", english: "I help others", icon: "🤝"},
+    {hindi: "मैं हँसता हूँ", english: "I laugh", icon: "😄"},
+    {hindi: "मैं तस्वीर बनाता हूँ", english: "I draw a picture", icon: "🎨"},
+    {hindi: "मैं सफाई करता हूँ", english: "I clean", icon: "🧹"},
+    {hindi: "मैं संगीत सुनता हूँ", english: "I listen to music", icon: "🎧"},
+    {hindi: "मैं दौड़ता हूँ", english: "I run", icon: "🏃"}
+  ],
+  questions: [
+    {hindi: "आपका नाम क्या है?", english: "What is your name?", answer: "मेरा नाम राहुल है।", answerEnglish: "My name is Rahul."},
+    {hindi: "आप कहाँ रहते हैं?", english: "Where do you live?", answer: "मैं मुंबई में रहता हूँ।", answerEnglish: "I live in Mumbai."},
+    {hindi: "आपकी उम्र क्या है?", english: "How old are you?", answer: "मैं 8 साल का हूँ।", answerEnglish: "I am 8 years old."},
+    {hindi: "यह क्या है?", english: "What is this?", answer: "यह एक किताब है।", answerEnglish: "This is a book."},
+    {hindi: "कितना है?", english: "How much is it?", answer: "यह 10 रुपये है।", answerEnglish: "It is 10 rupees."},
+    {hindi: "क्या आप ठीक हैं?", english: "Are you okay?", answer: "हाँ, मैं ठीक हूँ।", answerEnglish: "Yes, I am fine."},
+    {hindi: "आप क्या कर रहे हैं?", english: "What are you doing?", answer: "मैं किताब पढ़ रहा हूँ।", answerEnglish: "I am reading a book."},
+    {hindi: "क्या आप मेरे दोस्त बनोगे?", english: "Will you be my friend?", answer: "हाँ, जरूर!", answerEnglish: "Yes, definitely!"},
+    {hindi: "क्या आप मुझे हिंदी सिखा सकते हैं?", english: "Can you teach me Hindi?", answer: "हाँ, मैं सिखा सकता हूँ।", answerEnglish: "Yes, I can teach."},
+    {hindi: "आपका पसंदीदा रंग कौन सा है?", english: "What is your favorite color?", answer: "मेरा पसंदीदा रंग नीला है।", answerEnglish: "My favorite color is blue."},
+    {hindi: "क्या आपको खेल पसंद हैं?", english: "Do you like games?", answer: "हाँ, मुझे खेल पसंद हैं।", answerEnglish: "Yes, I like games."},
+    {hindi: "आप स्कूल जाते हैं?", english: "Do you go to school?", answer: "हाँ, मैं रोज़ स्कूल जाता हूँ।", answerEnglish: "Yes, I go to school every day."},
+    {hindi: "आप क्या खाना पसंद करते हैं?", english: "What do you like to eat?", answer: "मुझे पिज़्ज़ा पसंद है।", answerEnglish: "I like pizza."},
+    {hindi: "आप कहाँ जा रहे हैं?", english: "Where are you going?", answer: "मैं बाज़ार जा रहा हूँ।", answerEnglish: "I am going to the market."},
+    {hindi: "आपको कौन सा फल पसंद है?", english: "Which fruit do you like?", answer: "मुझे सेब पसंद है।", answerEnglish: "I like apples."},
+    {hindi: "क्या आप मेरी मदद करेंगे?", english: "Will you help me?", answer: "हाँ, ज़रूर!", answerEnglish: "Yes, of course!"},
+    {hindi: "क्या आप खेलना चाहते हैं?", english: "Do you want to play?", answer: "हाँ, मैं खेलना चाहता हूँ।", answerEnglish: "Yes, I want to play."},
+    {hindi: "आप कब आएंगे?", english: "When will you come?", answer: "मैं कल आऊँगा।", answerEnglish: "I will come tomorrow."},
+    {hindi: "क्या आप तैयार हैं?", english: "Are you ready?", answer: "हाँ, मैं तैयार हूँ।", answerEnglish: "Yes, I am ready."},
+    {hindi: "क्या आप अंग्रेजी बोलते हैं?", english: "Do you speak English?", answer: "हाँ, मैं थोड़ी अंग्रेजी बोलता हूँ।", answerEnglish: "Yes, I speak a little English."}
+  ]
+};
+
+const CATEGORY_NAMES = {
+  greetings: "Greetings",
+  activities: "Daily Activities",
+  questions: "Simple Questions & Answers"
+};
+
+// Get translated display text for a sentence based on interface language
+function getTranslatedText(hindiText, englishText, isMarathi) {
+  if (isMarathi) {
+    return marathiSentenceTranslations[hindiText] || englishText;
+  } else {
+    return englishText;
+  }
+}
+
+function initializePage() {
+  if (category && SENTENCES[category]) {
+    document.getElementById('categoryTitle').textContent = CATEGORY_NAMES[category];
+    const contentDiv = document.getElementById('content');
+    const isMarathi = interfaceLang === 'marathi';
+    
+    contentDiv.innerHTML = SENTENCES[category].map((item, index) => {
+      if (category === 'questions') {
+        // Questions category with Q&A format
+        const questionDisplay = isMarathi ? 
+          (marathiSentenceTranslations[item.hindi] || item.english) : 
+          item.english;
+        
+        const answerDisplay = isMarathi ? 
+          (marathiSentenceTranslations[item.answer] || item.answerEnglish) : 
+          item.answerEnglish;
+        
+        return `
+        <div class="sentence-card" onclick="trackSentenceProgress('${category}', ${index})">
+          <div style="font-size: 2rem; margin-bottom: 10px;">${item.icon || '❓'}</div>
+          <div class="question-label">Question:</div>
+          <div class="hindi-sentence">${item.hindi}</div>
+          <div class="english-translation">${questionDisplay}</div>
+          <div class="answer-label">Answer:</div>
+          <div class="hindi-sentence" style="font-size: 1.3rem;">${item.answer}</div>
+          <div class="english-translation">${answerDisplay}</div>
+          <div class="button-group">
+            <button class="speak-btn" onclick="event.stopPropagation(); speakText('${item.hindi}'); trackSentenceProgress('${category}', ${index})">
+              <i class="fas fa-volume-up"></i> Q
+            </button>
+            <button class="speak-btn" onclick="event.stopPropagation(); speakText('${item.answer}'); trackSentenceProgress('${category}', ${index})">
+              <i class="fas fa-volume-up"></i> A
+            </button>
+          </div>
+        </div>
+      `;
+      } else {
+        // Greetings and Activities categories (single phrase)
+        const displayText = isMarathi ? 
+          (marathiSentenceTranslations[item.hindi] || item.english) : 
+          item.english;
+        
+        return `
+        <div class="sentence-card" onclick="trackSentenceProgress('${category}', ${index})">
+          <div style="font-size: 2rem; margin-bottom: 10px;">${item.icon}</div>
+          <div class="hindi-sentence">${item.hindi}</div>
+          <div class="english-translation">${displayText}</div>
+          <button class="speak-btn" onclick="event.stopPropagation(); speakText('${item.hindi}'); trackSentenceProgress('${category}', ${index})">
+            <i class="fas fa-volume-up"></i>
+          </button>
+        </div>
+      `;
+      }
+    }).join('');
+  } else {
+    document.getElementById('content').innerHTML = '<p>Category not found. Please go back and select a valid category.</p>';
+  }
+}
+
+function trackSentenceProgress(category, index) {
+  const identifier = `${category}_${index}`;
+  updateHindiProgress('level3', category, 1, identifier);
+}
+
+function speakText(text) {
+  if ('speechSynthesis' in window) {
+    // Cancel any ongoing speech
+    window.speechSynthesis.cancel();
+    
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'hi-IN';
+    utterance.rate = 0.8;
+    utterance.pitch = 1.2;
+    speechSynthesis.speak(utterance);
+  } else {
+    alert('Speech synthesis not supported in this browser.');
+  }
+}
+
+// ===== USER MANAGEMENT FUNCTIONS (from english.html) =====
+function getCurrentUser() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlUser = urlParams.get('user');
+  if (urlUser) {
+    sessionStorage.setItem('currentUser', urlUser);
+    return urlUser;
+  }
+  
+  const sessionUser = sessionStorage.getItem('currentUser');
+  if (sessionUser) {
+    return sessionUser;
+  }
+  
+  return 'guest';
+}
+
+function getUserLanguageKey() {
+  const username = getCurrentUser();
+  return `linguaKids_${username}_hindiInterfaceLang`;
+}
+
+function getUserProfile() {
+  try {
+    const profileStr = localStorage.getItem('linguaKidsProfile');
+    return profileStr ? JSON.parse(profileStr) : null;
+  } catch (e) {
+    return null;
+  }
+}
+
+// ===== GET INTERFACE LANGUAGE FROM URL OR STORAGE =====
+function getInterfaceLanguage() {
+  // First check URL parameter
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlLang = urlParams.get('lang');
+  if (urlLang && (urlLang === 'english' || urlLang === 'marathi')) {
+    return urlLang;
+  }
+  
+  // Then check from hindi.html's saved preference
+  const storageKey = getUserLanguageKey();
+  const savedLang = localStorage.getItem(storageKey);
+  if (savedLang === 'english' || savedLang === 'marathi') {
+    return savedLang;
+  }
+  
+  // Default to English
+  return 'english';
+}
+
+function goBack() {
+  window.location.href = 'hindi.html';
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  initHindiProgress();
+  initializePage();
+});
+</script>
+</body>
+</html>

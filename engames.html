@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinguaKids - Games</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       LINGUAKIDS GAMES — MEGA FUN CSS
+    ============================================================ */
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      font-family: 'Nunito', 'Quicksand', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+      height: 100%;
+      width: 100%;
+      background-color: #fffbf0;
+      background-image:
+        radial-gradient(circle at 8%  12%, #ff6bb540 0%, transparent 28%),
+        radial-gradient(circle at 92% 8%,  #43e97b40 0%, transparent 28%),
+        radial-gradient(circle at 50% 50%, #f9ca2440 0%, transparent 40%),
+        radial-gradient(circle at 15% 88%, #38f9d740 0%, transparent 28%),
+        radial-gradient(circle at 88% 85%, #4facfe40 0%, transparent 28%),
+        radial-gradient(circle at 70% 30%, #fa709a30 0%, transparent 22%);
+    }
+
+    /* Floating confetti dots */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        radial-gradient(circle, #ff6bb5 2px, transparent 2px),
+        radial-gradient(circle, #43e97b 2px, transparent 2px),
+        radial-gradient(circle, #f9ca24 2px, transparent 2px),
+        radial-gradient(circle, #4facfe 2px, transparent 2px),
+        radial-gradient(circle, #fa709a 2px, transparent 2px),
+        radial-gradient(circle, #ff6b6b 2px, transparent 2px);
+      background-size: 120px 120px, 97px 97px, 143px 143px, 83px 83px, 107px 107px, 131px 131px;
+      background-position: 10px 15px, 55px 70px, 30px 40px, 80px 10px, 50px 100px, 100px 55px;
+      opacity: 0.45;
+      animation: driftDots 18s linear infinite alternate;
+    }
+
+    @keyframes driftDots {
+      from { background-position: 10px 15px, 55px 70px, 30px 40px, 80px 10px, 50px 100px, 100px 55px; }
+      to   { background-position: 22px 38px, 44px 52px, 52px 62px, 62px 28px, 68px 82px, 82px 72px; }
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    /* ---- HEADINGS ---- */
+    h2 {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: #fb923c;
+      text-shadow: 2px 2px 0 #ffe0d0, 4px 4px 0 rgba(251,146,60,0.15);
+      margin-bottom: 12px;
+      animation: titleWobble 3.5s ease-in-out infinite;
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes titleWobble {
+      0%,100% { transform: rotate(-1deg) scale(1); }
+      25%      { transform: rotate(1.5deg) scale(1.02); }
+      75%      { transform: rotate(-0.5deg) scale(0.98); }
+    }
+
+    h3 {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #0ea5e9;
+      margin: 12px 0;
+    }
+
+    /* ---- BACK BUTTON (fixed) ---- */
+    #backBtn {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 1000;
+      background: linear-gradient(160deg, #43e97b, #38f9d7);
+      border: none;
+      border-bottom: 4px solid #1db863;
+      border-right: 2px solid #1db863;
+      color: white;
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-family: 'Baloo 2', cursive;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 5px 16px rgba(67,233,123,0.35);
+      transition: transform 0.18s cubic-bezier(.34,1.56,.64,1), box-shadow 0.15s;
+    }
+    #backBtn:hover  { transform: translateY(-3px) scale(1.07); box-shadow: 0 8px 22px rgba(67,233,123,0.45); }
+    #backBtn:active { transform: translateY(3px); border-bottom-width: 1px; }
+
+    /* ---- GENERAL BUTTON ---- */
+    .btn {
+      background: linear-gradient(160deg, #43e97b, #38f9d7);
+      border: none;
+      border-bottom: 5px solid #1db863;
+      border-right: 3px solid #1db863;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-family: 'Baloo 2', cursive;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin: 8px 5px;
+      box-shadow: 0 6px 18px rgba(67,233,123,0.35);
+      transition: transform 0.15s cubic-bezier(.34,1.56,.64,1), box-shadow 0.15s, border-bottom 0.1s;
+      position: relative;
+      z-index: 1;
+    }
+    .btn:hover    { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 24px rgba(67,233,123,0.45); }
+    .btn:active   { transform: translateY(4px) scale(0.97); border-bottom-width: 1px; border-right-width: 1px; box-shadow: none; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    /* ---- LEVEL & GAME SELECTION CONTAINERS ---- */
+    .level-selection, .game-selection {
+      max-width: 800px;
+      width: 95%;
+      margin: 12px auto;
+      padding: 24px 20px;
+      background: rgba(255,255,255,0.92);
+      border-radius: 28px;
+      border: 3px solid #fde68a;
+      box-shadow: 0 8px 0 #d4a800, 0 14px 30px rgba(249,202,36,0.15);
+      text-align: center;
+      flex-shrink: 0;
+      backdrop-filter: blur(6px);
+      position: relative;
+      z-index: 1;
+      animation: cardPop 0.4s cubic-bezier(.34,1.56,.64,1) both;
+    }
+
+    @keyframes cardPop {
+      from { transform: scale(0.85) rotate(-2deg); opacity: 0; }
+      to   { transform: scale(1)    rotate(0deg);  opacity: 1; }
+    }
+
+    .level-selection { display: flex; flex-direction: column; align-items: center; }
+    .game-selection  { display: flex; flex-direction: column; align-items: center; }
+
+    /* ---- LEVEL BUTTONS ---- */
+    .level-btn {
+      border: none;
+      border-bottom: 5px solid #1a7000;
+      border-right: 3px solid #1a7000;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 999px;
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.15rem;
+      font-weight: 800;
+      cursor: pointer;
+      margin: 8px;
+      width: 90%;
+      max-width: 260px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      transition: transform 0.2s cubic-bezier(.34,1.56,.64,1), box-shadow 0.2s, border-bottom 0.1s;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+    .level-btn.basic    {
+      background: linear-gradient(160deg, #43e97b, #38f9d7);
+      border-bottom-color: #1db863; border-right-color: #1db863;
+      box-shadow: 0 6px 0 #1db863, 0 10px 20px rgba(67,233,123,0.3);
+    }
+    .level-btn.moderate {
+      background: linear-gradient(160deg, #f9ca24, #f0932b);
+      border-bottom-color: #c07800; border-right-color: #c07800;
+      box-shadow: 0 6px 0 #c07800, 0 10px 20px rgba(249,202,36,0.3);
+    }
+    .level-btn.advanced {
+      background: linear-gradient(160deg, #ff6b6b, #ee5a24);
+      border-bottom-color: #c0392b; border-right-color: #c0392b;
+      box-shadow: 0 6px 0 #c0392b, 0 10px 20px rgba(255,107,107,0.3);
+    }
+    /* Game selection buttons (no modifier class) */
+    .level-btn:not(.basic):not(.moderate):not(.advanced) {
+      background: linear-gradient(160deg, #4facfe, #38f9d7);
+      border-bottom-color: #0369a1; border-right-color: #0369a1;
+      box-shadow: 0 6px 0 #0369a1, 0 10px 20px rgba(79,172,254,0.3);
+      color: white;
+    }
+
+    /* Game buttons container — side by side */
+    #game-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+    }
+    #game-buttons .level-btn {
+      width: auto;
+      min-width: 180px;
+      flex: 1 1 180px;
+      max-width: 260px;
+    }
+
+    .level-btn:hover  { transform: translateY(-5px) scale(1.04); }
+    .level-btn:active { transform: translateY(4px) scale(0.97); border-bottom-width: 1px; border-right-width: 1px; }
+
+    /* ---- GAME CONTAINER ---- */
+    .game-container {
+      max-width: 800px;
+      width: 95%;
+      margin: 12px auto;
+      padding: 22px 18px;
+      background: rgba(255,255,255,0.92);
+      border-radius: 28px;
+      border: 3px solid #bae6fd;
+      box-shadow: 0 8px 0 #0369a1, 0 14px 30px rgba(14,165,233,0.15);
+      flex-shrink: 0;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      backdrop-filter: blur(6px);
+      position: relative;
+      z-index: 1;
+      animation: cardPop 0.4s cubic-bezier(.34,1.56,.64,1) both;
+    }
+
+    /* ---- COMPLETION MESSAGE ---- */
+    .completion-message {
+      background: linear-gradient(135deg, #f0fff4, #fffbf0);
+      border-radius: 20px;
+      padding: 22px 16px;
+      margin: 12px 0;
+      border: 3px solid #43e97b;
+      box-shadow: 0 5px 0 #1db863, 0 8px 20px rgba(67,233,123,0.2);
+    }
+    .completion-message h3 { color: #166534; font-size: 1.5rem; margin-bottom: 10px; }
+    .completion-message p  { font-size: 1.1rem; margin: 10px 0; color: #444; font-weight: 700; }
+
+    /* ---- OPTION BUTTONS (2×2 grid) ---- */
+    .options-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 15px 0;
+      padding: 5px;
+      width: 100%;
+    }
+
+    .option-btn {
+      padding: 15px 10px;
+      cursor: pointer;
+      user-select: none;
+      background: #f0f9ff;
+      border: 3px solid #bae6fd;
+      border-bottom: 5px solid #7dd3fc;
+      border-radius: 20px;
+      color: #075985;
+      font-weight: 800;
+      font-size: 1.05rem;
+      font-family: 'Nunito', sans-serif;
+      min-height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      word-wrap: break-word;
+      box-shadow: 0 4px 0 #7dd3fc, 0 6px 12px rgba(14,165,233,0.12);
+      transition: transform 0.18s cubic-bezier(.34,1.56,.64,1), box-shadow 0.15s, border-bottom 0.1s;
+    }
+    .option-btn:hover    { background: #e0f2fe; transform: translateY(-4px) scale(1.03); box-shadow: 0 8px 0 #7dd3fc, 0 10px 20px rgba(14,165,233,0.2); }
+    .option-btn:active   { transform: translateY(3px) scale(0.97); border-bottom-width: 2px; box-shadow: none; }
+    .option-btn:disabled { cursor: not-allowed; }
+
+    /* Correct / Incorrect states */
+    .correct   {
+      background: linear-gradient(135deg, #d4edda, #f0fff4) !important;
+      border-color: #43e97b !important;
+      border-bottom-color: #1db863 !important;
+      color: #166534 !important;
+      box-shadow: 0 5px 0 #1db863, 0 8px 16px rgba(67,233,123,0.25) !important;
+      animation: correctPop 0.35s cubic-bezier(.34,1.56,.64,1);
+    }
+    .incorrect {
+      background: linear-gradient(135deg, #f8d7da, #fff0f6) !important;
+      border-color: #ff6bb5 !important;
+      border-bottom-color: #e05a9f !important;
+      color: #9d174d !important;
+      box-shadow: 0 5px 0 #e05a9f, 0 8px 16px rgba(255,107,181,0.25) !important;
+      animation: shake 0.4s ease;
+    }
+
+    @keyframes correctPop {
+      0%   { transform: scale(0.95); }
+      60%  { transform: scale(1.07); }
+      100% { transform: scale(1); }
+    }
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      20%     { transform: translateX(-6px); }
+      40%     { transform: translateX(6px); }
+      60%     { transform: translateX(-4px); }
+      80%     { transform: translateX(4px); }
+    }
+
+    /* ---- RESULT TEXT ---- */
+    #result {
+      margin-top: 10px;
+      font-weight: 800;
+      font-size: 1.15rem;
+      font-family: 'Baloo 2', cursive;
+      min-height: 30px;
+      padding: 12px;
+      border-radius: 14px;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---- PROGRESS BAR ---- */
+    .progress-bar {
+      width: 100%;
+      height: 14px;
+      background: #f0f0f0;
+      border-radius: 999px;
+      margin: 10px 0;
+      overflow: hidden;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.08);
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(to right, #43e97b, #38f9d7);
+      width: 0%;
+      border-radius: 999px;
+      transition: width 0.5s cubic-bezier(.34,1.2,.64,1);
+      box-shadow: 0 2px 8px rgba(67,233,123,0.4);
+    }
+
+    /* ---- SCORE & INFO ---- */
+    .score-display {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #fb923c;
+      font-family: 'Baloo 2', cursive;
+      margin: 6px 0;
+    }
+    .question-text {
+      font-size: 1.3rem;
+      margin: 12px 0;
+      font-weight: 800;
+      font-family: 'Baloo 2', cursive;
+      color: #333;
+      text-align: center;
+      padding: 0 5px;
+      word-wrap: break-word;
+    }
+    .translation {
+      color: #fb923c;
+      font-weight: 800;
+      font-size: 1.1rem;
+      margin: 8px 0;
+      font-style: italic;
+    }
+    .emoji-display {
+      font-size: 3.5rem;
+      margin: 6px 0;
+      line-height: 1.2;
+    }
+    .game-info {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #888;
+      margin: 5px 0;
+    }
+    .sentence-display {
+      font-size: 1.5rem;
+      margin: 10px 0;
+      font-weight: 800;
+      font-family: 'Baloo 2', cursive;
+      color: #43e97b;
+    }
+    .language-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #fb923c, #f9ca24);
+      color: white;
+      padding: 5px 16px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 800;
+      margin: 8px 0;
+      box-shadow: 0 3px 10px rgba(251,146,60,0.3);
+    }
+
+    /* ---- MOBILE ---- */
+    @media (max-width: 480px) {
+      body { justify-content: center; padding: 50px 0 10px; }
+      .game-container { width: 98%; padding: 12px 10px; margin: 8px auto; }
+      .options-container { gap: 8px; margin: 10px 0; }
+      .option-btn { padding: 12px 8px; min-height: 80px; font-size: 1rem; border-radius: 16px; }
+      .emoji-display { font-size: 3rem; }
+      .question-text { font-size: 1.2rem; margin-bottom: 8px; }
+      .score-display { font-size: 1rem; margin: 3px 0; }
+      .game-info { font-size: 0.95rem; margin: 3px 0; }
+      .progress-bar { height: 10px; margin: 8px 0; }
+      .level-btn { padding: 12px 16px; font-size: 1rem; }
+      .completion-message { padding: 15px 12px; }
+      .completion-message h3 { font-size: 1.3rem; }
+      .completion-message p  { font-size: 1rem; }
+    }
+
+    @media (max-width: 360px) {
+      .option-btn { min-height: 70px; font-size: 0.95rem; padding: 8px 5px; }
+      .emoji-display { font-size: 2.5rem; }
+      .question-text { font-size: 1.1rem; }
+    }
+
+    @media (min-height: 700px) and (max-width: 480px) {
+      .options-container { gap: 10px; margin: 15px 0; }
+      .option-btn { min-height: 90px; }
+    }
+
+    @media (max-height: 500px) and (orientation: landscape) {
+      .game-container { padding: 10px; }
+      .options-container { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+      .option-btn { min-height: 70px; }
+      .emoji-display { font-size: 2.2rem; }
+      .question-text { font-size: 1.1rem; margin-bottom: 5px; }
+    }
+  </style>
+</head>
+<body>
+  <button class="btn" onclick="goBack()" id="backBtn">Back</button>
+  
+  <div id="level-selection" class="level-selection">
+    <h2 id="level-selection-title">Select Difficulty Level</h2>
+    <button class="level-btn basic" onclick="selectLevel('basic')" id="basic-level-btn">Basic Level</button>
+    <button class="level-btn moderate" onclick="selectLevel('moderate')" id="moderate-level-btn">Moderate Level</button>
+    <button class="level-btn advanced" onclick="selectLevel('advanced')" id="advanced-level-btn">Advanced Level</button>
+  </div>
+
+  <div id="game-selection" class="game-selection" style="display: none;">
+    <h2 id="level-title"></h2>
+    <div id="game-buttons"></div>
+  </div>
+
+  <div id="game-content" class="game-container" style="display: none;">
+    <h2 id="game-title">Game</h2>
+    <div class="score-display"><span id="score-label">Score</span>: <span id="score">0</span></div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <div class="game-info"><span id="question-label">Question</span>: <span id="current-question">1</span>/<span id="total-questions">10</span></div>
+    <div id="game-area"></div>
+  </div>
+
+<script>
+// ===== LANGUAGE SUPPORT =====
+
+// Get interface language from URL
+const urlParams = new URLSearchParams(window.location.search);
+const interfaceLang = urlParams.get('lang') || 'en';
+
+// Get the target language name for display
+const targetLanguageName = interfaceLang === 'hindi' ? 'हिंदी' : 
+                          (interfaceLang === 'marathi' ? 'मराठी' : 'Hindi/Marathi');
+
+// Translations for UI elements
+const uiTranslations = {
+  hindi: {
+    back: "वापस",
+    selectDifficulty: "कठिनाई स्तर चुनें",
+    basicLevel: "मूल स्तर",
+    moderateLevel: "मध्यम स्तर",
+    advancedLevel: "उन्नत स्तर",
+    score: "स्कोर",
+    question: "प्रश्न",
+    basicLevelGames: "मूल स्तर के खेल",
+    moderateLevelGames: "मध्यम स्तर के खेल",
+    advancedLevelGames: "उन्नत स्तर के खेल",
+    alphabetMatch: "अक्षर मिलान",
+    countApples: "सेब गिनें",
+    wordMatch: "शब्द मिलान",
+    wordCategory: "शब्द श्रेणी",
+    englishToTarget: "अंग्रेजी से हिंदी",
+    targetToEnglish: "हिंदी से अंग्रेजी",
+    playAgain: "फिर से खेलें",
+    backToGames: "खेलों पर वापस",
+    correct: "✅ सही!",
+    wrong: "❌ गलत!",
+    points: "अंक",
+    gameComplete: "🎉 खेल पूरा हुआ! 🎉",
+    finalScore: "आपका अंतिम स्कोर",
+    greatJob: "बहुत बढ़िया! आपने",
+    completed: "खेल पूरा कर लिया है।",
+    whatIsThis: "यह क्या है?",
+    howManyApples: "आपको कितने सेब दिख रहे हैं?",
+    whichCategory: "यह शब्द किस श्रेणी में आता है?",
+    belongsTo: "यह श्रेणी में है:",
+    thereAre: "यहाँ हैं",
+    apples: "सेब",
+    correctAnswer: "सही जवाब है",
+    selectTargetTranslation: "सही हिंदी अनुवाद चुनें:",
+    selectEnglishTranslation: "सही अंग्रेजी अनुवाद चुनें:",
+    translateFrom: "अंग्रेजी से हिंदी",
+    translateTo: "हिंदी से अंग्रेजी",
+    game: "खेल"
+  },
+  marathi: {
+    back: "मागे",
+    selectDifficulty: "अवघडपणा पातळी निवडा",
+    basicLevel: "मूलभूत स्तर",
+    moderateLevel: "मध्यम स्तर",
+    advancedLevel: "प्रगत स्तर",
+    score: "गुण",
+    question: "प्रश्न",
+    basicLevelGames: "मूलभूत स्तराचे खेळ",
+    moderateLevelGames: "मध्यम स्तराचे खेळ",
+    advancedLevelGames: "प्रगत स्तराचे खेळ",
+    alphabetMatch: "अक्षर जुळवा",
+    countApples: "सफरचंद मोजा",
+    wordMatch: "शब्द जुळवा",
+    wordCategory: "शब्द वर्ग",
+    englishToTarget: "इंग्रजी ते मराठी",
+    targetToEnglish: "मराठी ते इंग्रजी",
+    playAgain: "पुन्हा खेळा",
+    backToGames: "खेळांकडे परत",
+    correct: "✅ बरोबर!",
+    wrong: "❌ चूक!",
+    points: "गुण",
+    gameComplete: "🎉 खेळ पूर्ण! 🎉",
+    finalScore: "तुमचा अंतिम गुण",
+    greatJob: "छान! तुम्ही",
+    completed: "खेळ पूर्ण केला आहे.",
+    whatIsThis: "हे काय आहे?",
+    howManyApples: "तुम्हाला किती सफरचंद दिसत आहेत?",
+    whichCategory: "हा शब्द कोणत्या वर्गात येतो?",
+    belongsTo: "हा वर्गात आहे:",
+    thereAre: "येथे आहेत",
+    apples: "सफरचंद",
+    correctAnswer: "बरोबर उत्तर आहे",
+    selectTargetTranslation: "योग्य मराठी भाषांतर निवडा:",
+    selectEnglishTranslation: "योग्य इंग्रजी भाषांतर निवडा:",
+    translateFrom: "इंग्रजी ते मराठी",
+    translateTo: "मराठी ते इंग्रजी",
+    game: "खेळ"
+  }
+};
+
+// Get current UI translations
+const t = uiTranslations[interfaceLang] || {};
+
+// ===== GAME DATA WITH TRANSLATIONS =====
+
+// Alphabet data with translations
+const ALPHABETS = [
+  {letter: "A", word: "Apple", emoji: "🍎", hindi: "सेब", marathi: "सफरचंद"},
+  {letter: "B", word: "Ball", emoji: "⚽", hindi: "गेंद", marathi: "चेंडू"},
+  {letter: "C", word: "Cat", emoji: "🐱", hindi: "बिल्ली", marathi: "मांजर"},
+  {letter: "D", word: "Dog", emoji: "🐶", hindi: "कुत्ता", marathi: "कुत्रा"},
+  {letter: "E", word: "Elephant", emoji: "🐘", hindi: "हाथी", marathi: "हत्ती"},
+  {letter: "F", word: "Fish", emoji: "🐟", hindi: "मछली", marathi: "मासा"},
+  {letter: "G", word: "Goat", emoji: "🐐", hindi: "बकरी", marathi: "शेळी"},
+  {letter: "H", word: "House", emoji: "🏠", hindi: "घर", marathi: "घर"},
+  {letter: "I", word: "Ice cream", emoji: "🍦", hindi: "आइसक्रीम", marathi: "आइस्क्रीम"},
+  {letter: "J", word: "Jug", emoji: "🏺", hindi: "जग", marathi: "जग"},
+  {letter: "K", word: "Kite", emoji: "🪁", hindi: "पतंग", marathi: "पतंग"},
+  {letter: "L", word: "Lion", emoji: "🦁", hindi: "शेर", marathi: "सिंह"},
+  {letter: "M", word: "Monkey", emoji: "🐵", hindi: "बंदर", marathi: "माकड"},
+  {letter: "N", word: "Nest", emoji: "🐣", hindi: "घोंसला", marathi: "घरटे"},
+  {letter: "O", word: "Orange", emoji: "🍊", hindi: "संतरा", marathi: "संत्रे"},
+  {letter: "P", word: "Pencil", emoji: "✏️", hindi: "पेंसिल", marathi: "पेन्सिल"},
+  {letter: "Q", word: "Queen", emoji: "👑", hindi: "रानी", marathi: "राणी"},
+  {letter: "R", word: "Rabbit", emoji: "🐇", hindi: "खरगोश", marathi: "ससा"},
+  {letter: "S", word: "Sun", emoji: "☀️", hindi: "सूरज", marathi: "सूर्य"},
+  {letter: "T", word: "Tree", emoji: "🌳", hindi: "पेड़", marathi: "झाड"},
+  {letter: "U", word: "Umbrella", emoji: "☂️", hindi: "छाता", marathi: "छत्री"},
+  {letter: "V", word: "Violin", emoji: "🎻", hindi: "वायलिन", marathi: "व्हायोलिन"},
+  {letter: "W", word: "Water", emoji: "💧", hindi: "पानी", marathi: "पाणी"},
+  {letter: "X", word: "Xylophone", emoji: "🎶", hindi: "जाइलोफोन", marathi: "झायलोफोन"},
+  {letter: "Y", word: "Yacht", emoji: "⛵", hindi: "नौका", marathi: "यॉट"},
+  {letter: "Z", word: "Zebra", emoji: "🦓", hindi: "ज़ेबरा", marathi: "झेब्रा"}
+];
+
+// Level 2 words data with translations
+const LEVEL2_WORDS = {
+  fruits: [
+    {name: "Apple", icon: "🍎", hindi: "सेब", marathi: "सफरचंद"},
+    {name: "Banana", icon: "🍌", hindi: "केला", marathi: "केळी"},
+    {name: "Orange", icon: "🍊", hindi: "संतरा", marathi: "संत्री"},
+    {name: "Mango", icon: "🥭", hindi: "आम", marathi: "आंबा"},
+    {name: "Grapes", icon: "🍇", hindi: "अंगूर", marathi: "द्राक्षे"},
+    {name: "Pineapple", icon: "🍍", hindi: "अनानास", marathi: "अननस"},
+    {name: "Strawberry", icon: "🍓", hindi: "स्ट्रॉबेरी", marathi: "स्ट्रॉबेरी"},
+    {name: "Watermelon", icon: "🍉", hindi: "तरबूज", marathi: "कलिंगड"},
+    {name: "Cherry", icon: "🍒", hindi: "चेरी", marathi: "चेरी"},
+    {name: "Peach", icon: "🍑", hindi: "आड़ू", marathi: "पीच"},
+    {name: "Kiwi", icon: "🥝", hindi: "कीवी", marathi: "कीवी"},
+    {name: "Lemon", icon: "🍋", hindi: "नींबू", marathi: "लिंबू"}
+  ],
+  vegetables: [
+    {name: "Carrot", icon: "🥕", hindi: "गाजर", marathi: "गाजर"},
+    {name: "Potato", icon: "🥔", hindi: "आलू", marathi: "बटाटा"},
+    {name: "Tomato", icon: "🍅", hindi: "टमाटर", marathi: "टोमॅटो"},
+    {name: "Cabbage", icon: "🥬", hindi: "पत्तागोभी", marathi: "कोबी"},
+    {name: "Corn", icon: "🌽", hindi: "मक्का", marathi: "मका"},
+    {name: "Onion", icon: "🧅", hindi: "प्याज", marathi: "कांदा"},
+    {name: "Garlic", icon: "🧄", hindi: "लहसुन", marathi: "लसूण"},
+    {name: "Broccoli", icon: "🥦", hindi: "ब्रोकली", marathi: "ब्रोकोली"},
+    {name: "Cucumber", icon: "🥒", hindi: "खीरा", marathi: "काकडी"}
+  ],
+  animals: [
+    {name: "Lion", icon: "🦁", hindi: "शेर", marathi: "सिंह"},
+    {name: "Tiger", icon: "🐯", hindi: "बाघ", marathi: "वाघ"},
+    {name: "Elephant", icon: "🐘", hindi: "हाथी", marathi: "हत्ती"},
+    {name: "Dog", icon: "🐶", hindi: "कुत्ता", marathi: "कुत्रा"},
+    {name: "Cat", icon: "🐱", hindi: "बिल्ली", marathi: "मांजर"},
+    {name: "Horse", icon: "🐴", hindi: "घोड़ा", marathi: "घोडा"},
+    {name: "Monkey", icon: "🐵", hindi: "बंदर", marathi: "माकड"},
+    {name: "Cow", icon: "🐄", hindi: "गाय", marathi: "गाय"},
+    {name: "Rabbit", icon: "🐇", hindi: "खरगोश", marathi: "ससा"}
+  ],
+  birds: [
+    {name: "Parrot", icon: "🦜", hindi: "तोता", marathi: "पोपट"},
+    {name: "Crow", icon: "🐦", hindi: "कौआ", marathi: "कावळा"},
+    {name: "Peacock", icon: "🦚", hindi: "मोर", marathi: "मोर"},
+    {name: "Sparrow", icon: "🐤", hindi: "गौरैया", marathi: "चिमणी"},
+    {name: "Owl", icon: "🦉", hindi: "उल्लू", marathi: "घुबड"},
+    {name: "Penguin", icon: "🐧", hindi: "पेंगुइन", marathi: "पेंग्विन"},
+    {name: "Duck", icon: "🦆", hindi: "बत्तख", marathi: "बदक"},
+    {name: "Eagle", icon: "🦅", hindi: "बाज", marathi: "गरुड"},
+    {name: "Dove", icon: "🕊️", hindi: "कबूतर", marathi: "कबूतर"}
+  ],
+  vehicles: [
+    {name: "Car", icon: "🚗", hindi: "कार", marathi: "कार"},
+    {name: "Bus", icon: "🚌", hindi: "बस", marathi: "बस"},
+    {name: "Train", icon: "🚆", hindi: "ट्रेन", marathi: "आगगाडी"},
+    {name: "Airplane", icon: "✈️", hindi: "हवाई जहाज", marathi: "विमान"},
+    {name: "Bike", icon: "🚲", hindi: "साइकिल", marathi: "सायकल"},
+    {name: "Truck", icon: "🚚", hindi: "ट्रक", marathi: "ट्रक"},
+    {name: "Ship", icon: "🚢", hindi: "जहाज", marathi: "जहाज"},
+    {name: "Helicopter", icon: "🚁", hindi: "हेलिकॉप्टर", marathi: "हेलिकॉप्टर"},
+    {name: "Taxi", icon: "🚖", hindi: "टैक्सी", marathi: "टॅक्सी"}
+  ],
+  colors: [
+    {name: "Red", icon: "🔴", hindi: "लाल", marathi: "लाल"},
+    {name: "Blue", icon: "🔵", hindi: "नीला", marathi: "निळा"},
+    {name: "Green", icon: "🟢", hindi: "हरा", marathi: "हिरवा"},
+    {name: "Yellow", icon: "🟡", hindi: "पीला", marathi: "पिवळा"},
+    {name: "Purple", icon: "🟣", hindi: "बैंगनी", marathi: "जांभळा"},
+    {name: "Orange", icon: "🟠", hindi: "नारंगी", marathi: "नारिंगी"}
+  ]
+};
+
+// Translation sentences for advanced level - with both Hindi and Marathi
+const TRANSLATION_SENTENCES = [
+  {english: "Hello!", hindi: "नमस्ते!", marathi: "नमस्कार!"},
+  {english: "Good morning", hindi: "शुभ प्रभात", marathi: "शुभ सकाळ"},
+  {english: "Good afternoon", hindi: "नमस्कार", marathi: "शुभ दुपार"},
+  {english: "Good evening", hindi: "शुभ संध्या", marathi: "शुभ संध्या"},
+  {english: "Good night", hindi: "शुभ रात्रि", marathi: "शुभ रात्री"},
+  {english: "How are you?", hindi: "आप कैसे हैं?", marathi: "तुम्ही कसे आहात?"},
+  {english: "I'm fine, thank you", hindi: "मैं ठीक हूँ, धन्यवाद", marathi: "मी ठीक आहे, धन्यवाद"},
+  {english: "Thank you", hindi: "धन्यवाद", marathi: "धन्यवाद"},
+  {english: "You're welcome", hindi: "आपका स्वागत है", marathi: "आपले स्वागत आहे"},
+  {english: "What is your name?", hindi: "आपका नाम क्या है?", marathi: "तुमचे नाव काय आहे?"},
+  {english: "My name is John", hindi: "मेरा नाम जॉन है", marathi: "माझे नाव जॉन आहे"},
+  {english: "Nice to meet you", hindi: "आपसे मिलकर खुशी हुई", marathi: "तुम्हाला भेटून आनंद झाला"},
+  {english: "How old are you?", hindi: "आपकी उम्र क्या है?", marathi: "तुमचे वय किती आहे?"},
+  {english: "I am 6 years old", hindi: "मैं 6 साल का हूँ", marathi: "मी ६ वर्षांचा आहे"},
+  {english: "Where do you live?", hindi: "आप कहाँ रहते हैं?", marathi: "तुम्ही कुठे राहता?"},
+  {english: "I live in India", hindi: "मैं भारत में रहता हूँ", marathi: "मी भारतात राहतो"},
+  {english: "Do you like apples?", hindi: "क्या आपको सेब पसंद हैं?", marathi: "तुम्हाला सफरचंद आवडतात का?"},
+  {english: "Yes, I like apples", hindi: "हाँ, मुझे सेब पसंद हैं", marathi: "हो, मला सफरचंद आवडतात"},
+  {english: "What is this?", hindi: "यह क्या है?", marathi: "हे काय आहे?"},
+  {english: "This is an apple", hindi: "यह सेब है", marathi: "हे सफरचंद आहे"},
+  {english: "I eat food", hindi: "मैं खाना खाता हूँ", marathi: "मी जेवण खातो"},
+  {english: "I go to school", hindi: "मैं स्कूल जाता हूँ", marathi: "मी शाळेत जातो"},
+  {english: "I play with friends", hindi: "मैं दोस्तों के साथ खेलता हूँ", marathi: "मी मित्रांसोबत खेळतो"},
+  {english: "I read books", hindi: "मैं किताबें पढ़ता हूँ", marathi: "मी पुस्तके वाचतो"},
+  {english: "I drink water", hindi: "मैं पानी पीता हूँ", marathi: "मी पाणी पितो"},
+  {english: "Goodbye", hindi: "अलविदा", marathi: "अच्छा"},
+  {english: "See you later", hindi: "फिर मिलते हैं", marathi: "पुन्हा भेटू"},
+  {english: "Take care", hindi: "अपना ख्याल रखना", marathi: "काळजी घे"}
+];
+
+// ===== GAME STATE VARIABLES =====
+let currentLevel = '';
+let currentGame = '';
+let score = 0;
+let currentQuestion = 0;
+const totalQuestions = 10;
+const completedQuestions = new Set();
+
+// ===== TRANSLATION HELPER =====
+function getTranslation(item, field) {
+  if (interfaceLang === 'hindi' && item.hindi) {
+    return item.hindi;
+  } else if (interfaceLang === 'marathi' && item.marathi) {
+    return item.marathi;
+  }
+  return item[field] || '';
+}
+
+function getTargetTranslation(item) {
+  if (interfaceLang === 'hindi') {
+    return item.hindi;
+  } else if (interfaceLang === 'marathi') {
+    return item.marathi;
+  }
+  return item.english; // Fallback to English if language not supported
+}
+
+// ===== URL PARAMETER HANDLING =====
+function getUrlParam(param) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(param);
+}
+
+function autoSelectLevelFromUrl() {
+  const levelParam = getUrlParam('level');
+  if (levelParam && ['basic', 'moderate', 'advanced'].includes(levelParam)) {
+    // Hide the level selection
+    document.getElementById('level-selection').style.display = 'none';
+    // Automatically select the level from URL
+    selectLevel(levelParam);
+  }
+}
+
+// Update UI with translations
+function updateUITranslations() {
+  if (interfaceLang === 'en') return;
+  
+  // Update level selection screen
+  document.getElementById('level-selection-title').textContent = t.selectDifficulty;
+  document.getElementById('basic-level-btn').textContent = t.basicLevel;
+  document.getElementById('moderate-level-btn').textContent = t.moderateLevel;
+  document.getElementById('advanced-level-btn').textContent = t.advancedLevel;
+  document.getElementById('backBtn').textContent = t.back;
+  
+  // Update score and question labels
+  document.getElementById('score-label').textContent = t.score;
+  document.getElementById('question-label').textContent = t.question;
+  
+  // Update game title prefix
+  const gameTitle = document.getElementById('game-title');
+  if (gameTitle && gameTitle.textContent.includes('Game')) {
+    gameTitle.textContent = t.game || 'Game';
+  }
+}
+
+// ===== UTILITY FUNCTIONS =====
+
+function goBack() { 
+  if (currentGame) {
+    // If we're in a game, go back to game selection
+    document.getElementById('game-content').style.display = 'none';
+    document.getElementById('game-selection').style.display = 'block';
+    currentGame = '';
+  } else if (currentLevel) {
+    // If we're in game selection or came with a level parameter, go back to main English page
+    window.location.href = `english.html?lang=${interfaceLang}`;
+  } else {
+    // If we're at level selection without parameter, go back to main English page
+    window.location.href = `english.html?lang=${interfaceLang}`;
+  }
+}
+
+function selectLevel(level) {
+  currentLevel = level;
+  document.getElementById('level-selection').style.display = 'none';
+  document.getElementById('game-selection').style.display = 'block';
+  
+  let levelTitle = '';
+  let gameButtonsHTML = '';
+  
+  if (level === 'basic') {
+    levelTitle = t.basicLevelGames || 'Basic Level Games';
+    gameButtonsHTML = `
+      <button class="level-btn" onclick="startGame('alphabet-match')">${t.alphabetMatch || 'Alphabet Match'}</button>
+      <button class="level-btn" onclick="startGame('number-count')">${t.countApples || 'Count the Apples'}</button>
+    `;
+  } else if (level === 'moderate') {
+    levelTitle = t.moderateLevelGames || 'Moderate Level Games';
+    gameButtonsHTML = `
+      <button class="level-btn" onclick="startGame('word-match')">${t.wordMatch || 'Word Match'}</button>
+      <button class="level-btn" onclick="startGame('word-category')">${t.wordCategory || 'Word Category'}</button>
+    `;
+  } else if (level === 'advanced') {
+    levelTitle = t.advancedLevelGames || 'Advanced Level Games';
+    
+    gameButtonsHTML = `
+      <button class="level-btn" onclick="startGame('english-to-target')">${t.englishToTarget || 'English to Target'}</button>
+      <button class="level-btn" onclick="startGame('target-to-english')">${t.targetToEnglish || 'Target to English'}</button>
+    `;
+  }
+  
+  document.getElementById('level-title').textContent = levelTitle;
+  document.getElementById('game-buttons').innerHTML = gameButtonsHTML;
+}
+
+function startGame(game) {
+  currentGame = game;
+  score = 0;
+  currentQuestion = 0;
+  completedQuestions.clear();
+  
+  document.getElementById('game-selection').style.display = 'none';
+  document.getElementById('game-content').style.display = 'block';
+  document.getElementById('score').textContent = '0';
+  document.getElementById('current-question').textContent = '1';
+  document.getElementById('total-questions').textContent = totalQuestions;
+  document.getElementById('progress-fill').style.width = '0%';
+  
+  let gameTitle = '';
+  
+  switch(game) {
+    case 'alphabet-match':
+      gameTitle = t.alphabetMatch || 'Alphabet Match';
+      break;
+    case 'number-count':
+      gameTitle = t.countApples || 'Count the Apples';
+      break;
+    case 'word-match':
+      gameTitle = t.wordMatch || 'Word Match';
+      break;
+    case 'word-category':
+      gameTitle = t.wordCategory || 'Word Category';
+      break;
+    case 'english-to-target':
+      gameTitle = t.englishToTarget || 'English to Target';
+      break;
+    case 'target-to-english':
+      gameTitle = t.targetToEnglish || 'Target to English';
+      break;
+  }
+  
+  document.getElementById('game-title').textContent = gameTitle;
+  loadQuestion();
+}
+
+function loadQuestion() {
+  switch(currentGame) {
+    case 'alphabet-match':
+      loadAlphabetQuestion();
+      break;
+    case 'number-count':
+      loadNumberQuestion();
+      break;
+    case 'word-match':
+      loadWordMatchQuestion();
+      break;
+    case 'word-category':
+      loadWordCategoryQuestion();
+      break;
+    case 'english-to-target':
+      loadEnglishToTargetQuestion();
+      break;
+    case 'target-to-english':
+      loadTargetToEnglishQuestion();
+      break;
+  }
+}
+
+function updateScore(points) {
+  score += points;
+  if (score < 0) score = 0;
+  document.getElementById('score').textContent = score;
+}
+
+function updateGameProgress() {
+  const progress = (currentQuestion / totalQuestions) * 100;
+  document.getElementById('progress-fill').style.width = `${progress}%`;
+  document.getElementById('current-question').textContent = currentQuestion + 1;
+  
+  // Update progress in localStorage if needed
+  if (typeof window.updateProgress === 'function') {
+    window.updateProgress('games', currentGame, currentQuestion);
+  }
+}
+
+function showResult(message, isCorrect) {
+  const resultElement = document.getElementById('result');
+  resultElement.textContent = message;
+  resultElement.className = isCorrect ? 'correct' : 'incorrect';
+  
+  if (isCorrect && !completedQuestions.has(currentQuestion)) {
+    completedQuestions.add(currentQuestion);
+  }
+  
+  setTimeout(() => {
+    resultElement.textContent = '';
+    resultElement.className = '';
+    nextQuestion();
+  }, 1500);
+}
+
+function nextQuestion() {
+  currentQuestion++;
+  updateGameProgress();
+  
+  if (currentQuestion >= totalQuestions) {
+    showCompletionMessage();
+    return;
+  }
+  
+  loadQuestion();
+}
+
+function showCompletionMessage() {
+  const gameArea = document.getElementById('game-area');
+  
+  gameArea.innerHTML = `
+    <div class="completion-message">
+      <h3>${t.gameComplete || '🎉 Game Complete! 🎉'}</h3>
+      <p>${t.finalScore || 'Your final score'}: <strong>${score}</strong></p>
+      <p>${t.greatJob || 'Great job!'} ${t.completed || 'You\'ve completed the game.'}</p>
+      <button class="btn" onclick="startGame('${currentGame}')">${t.playAgain || 'Play Again'}</button>
+      <button class="btn" onclick="selectLevel('${currentLevel}')">${t.backToGames || 'Back to Games'}</button>
+    </div>
+  `;
+}
+
+// ===== BASIC LEVEL GAMES =====
+
+function loadAlphabetQuestion() {
+  // Pick a random alphabet item
+  const randomIndex = Math.floor(Math.random() * ALPHABETS.length);
+  const item = ALPHABETS[randomIndex];
+  
+  // Create 3 wrong options
+  const wrongOptions = [];
+  while (wrongOptions.length < 3) {
+    const wrongIndex = Math.floor(Math.random() * ALPHABETS.length);
+    if (wrongIndex !== randomIndex && !wrongOptions.includes(ALPHABETS[wrongIndex].word)) {
+      wrongOptions.push(ALPHABETS[wrongIndex].word);
+    }
+  }
+  
+  // Combine options and shuffle
+  const options = [item.word, ...wrongOptions];
+  shuffleArray(options);
+  
+  const questionText = t.whatIsThis || "What is this?";
+  const translation = getTranslation(item, 'word');
+  
+  const gameArea = document.getElementById('game-area');
+  gameArea.innerHTML = `
+    <div class="question-text">
+      ${questionText}
+      ${translation ? `<div class="translation">${translation}</div>` : ''}
+    </div>
+    <div class="emoji-display">${item.emoji}</div>
+    <div class="options-container">
+      ${options.map(option => `
+        <button class="option-btn" onclick="checkAlphabetAnswer('${option}', '${item.word}')">${option}</button>
+      `).join('')}
+    </div>
+    <div id="result"></div>
+  `;
+}
+
+function checkAlphabetAnswer(selected, correct) {
+  const buttons = document.querySelectorAll('.option-btn');
+  buttons.forEach(btn => {
+    btn.disabled = true;
+    if (btn.textContent === correct) {
+      btn.classList.add('correct');
+    } else if (btn.textContent === selected && selected !== correct) {
+      btn.classList.add('incorrect');
+    }
+  });
+  
+  if (selected === correct) {
+    updateScore(10);
+    showResult(`${t.correct || '✅ Correct!'} +10 ${t.points || 'points'}`, true);
+  } else {
+    updateScore(-5);
+    showResult(`${t.wrong || '❌ Wrong!'} ${t.correctAnswer || 'The correct answer is'}: ${correct}`, false);
+  }
+}
+
+function loadNumberQuestion() {
+  const count = Math.floor(Math.random() * 10) + 1; // 1-10 apples
+  
+  // Generate 3 wrong options
+  const wrongOptions = [];
+  while (wrongOptions.length < 3) {
+    const wrongCount = Math.floor(Math.random() * 10) + 1;
+    if (wrongCount !== count && !wrongOptions.includes(wrongCount)) {
+      wrongOptions.push(wrongCount);
+    }
+  }
+  
+  // Combine options and shuffle
+  const options = [count, ...wrongOptions];
+  shuffleArray(options);
+  
+  const questionText = t.howManyApples || "How many apples do you see?";
+  
+  const gameArea = document.getElementById('game-area');
+  gameArea.innerHTML = `
+    <div class="question-text">${questionText}</div>
+    <div class="emoji-display">${'🍎'.repeat(count)}</div>
+    <div class="options-container">
+      ${options.map(option => `
+        <button class="option-btn" onclick="checkNumberAnswer(${option}, ${count})">${option}</button>
+      `).join('')}
+    </div>
+    <div id="result"></div>
+  `;
+}
+
+function checkNumberAnswer(selected, correct) {
+  const buttons = document.querySelectorAll('.option-btn');
+  buttons.forEach(btn => {
+    btn.disabled = true;
+    if (parseInt(btn.textContent) === correct) {
+      btn.classList.add('correct');
+    } else if (parseInt(btn.textContent) === selected && selected !== correct) {
+      btn.classList.add('incorrect');
+    }
+  });
+  
+  if (selected === correct) {
+    updateScore(10);
+    showResult(`${t.correct || '✅ Correct!'} +10 ${t.points || 'points'}`, true);
+  } else {
+    updateScore(-5);
+    showResult(`${t.wrong || '❌ Wrong!'} ${t.thereAre || 'There are'} ${correct} ${t.apples || 'apples'}`, false);
+  }
+}
+
+// ===== MODERATE LEVEL GAMES =====
+
+function loadWordMatchQuestion() {
+  // Get all categories and flatten the words
+  const allWords = [];
+  const categories = Object.keys(LEVEL2_WORDS);
+  
+  categories.forEach(category => {
+    LEVEL2_WORDS[category].forEach(word => {
+      allWords.push({...word, category});
+    });
+  });
+  
+  // Pick a random word
+  const randomIndex = Math.floor(Math.random() * allWords.length);
+  const item = allWords[randomIndex];
+  
+  // Create 3 wrong options from different categories
+  const wrongOptions = [];
+  while (wrongOptions.length < 3) {
+    const wrongIndex = Math.floor(Math.random() * allWords.length);
+    if (wrongIndex !== randomIndex && 
+        allWords[wrongIndex].category !== item.category &&
+        !wrongOptions.includes(allWords[wrongIndex].name)) {
+      wrongOptions.push(allWords[wrongIndex].name);
+    }
+  }
+  
+  // Combine options and shuffle
+  const options = [item.name, ...wrongOptions];
+  shuffleArray(options);
+  
+  const questionText = t.whatIsThis || "What is this?";
+  const translation = getTranslation(item, 'name');
+  
+  const gameArea = document.getElementById('game-area');
+  gameArea.innerHTML = `
+    <div class="question-text">
+      ${questionText}
+      ${translation ? `<div class="translation">${translation}</div>` : ''}
+    </div>
+    <div class="emoji-display">${item.icon}</div>
+    <div class="options-container">
+      ${options.map(option => `
+        <button class="option-btn" onclick="checkWordMatchAnswer('${option}', '${item.name}')">${option}</button>
+      `).join('')}
+    </div>
+    <div id="result"></div>
+  `;
+}
+
+function checkWordMatchAnswer(selected, correct) {
+  const buttons = document.querySelectorAll('.option-btn');
+  buttons.forEach(btn => {
+    btn.disabled = true;
+    if (btn.textContent === correct) {
+      btn.classList.add('correct');
+    } else if (btn.textContent === selected && selected !== correct) {
+      btn.classList.add('incorrect');
+    }
+  });
+  
+  if (selected === correct) {
+    updateScore(15);
+    showResult(`${t.correct || '✅ Correct!'} +15 ${t.points || 'points'}`, true);
+  } else {
+    updateScore(-5);
+    showResult(`${t.wrong || '❌ Wrong!'} ${t.correctAnswer || 'The correct answer is'}: ${correct}`, false);
+  }
+}
+
+function loadWordCategoryQuestion() {
+  // Get all categories and flatten the words
+  const allWords = [];
+  const categories = Object.keys(LEVEL2_WORDS);
+  
+  categories.forEach(category => {
+    LEVEL2_WORDS[category].forEach(word => {
+      allWords.push({...word, category});
+    });
+  });
+  
+  // Pick a random word
+  const randomIndex = Math.floor(Math.random() * allWords.length);
+  const item = allWords[randomIndex];
+  
+  // Pick another random category that's different
+  let wrongCategory;
+  do {
+    wrongCategory = categories[Math.floor(Math.random() * categories.length)];
+  } while (wrongCategory === item.category);
+  
+  // Create options array
+  const options = [item.category, wrongCategory];
+  shuffleArray(options);
+  
+  const questionText = t.whichCategory || "Which category does this word belong to?";
+  const translation = getTranslation(item, 'name');
+  
+  const gameArea = document.getElementById('game-area');
+  gameArea.innerHTML = `
+    <div class="question-text">${questionText}</div>
+    <div class="emoji-display">${item.icon}</div>
+    <div style="font-size: 1.5rem; margin: 20px 0; font-weight: bold;">${item.name}
+      ${translation ? `<div class="translation">${translation}</div>` : ''}
+    </div>
+    <div class="options-container">
+      ${options.map(option => `
+        <button class="option-btn" onclick="checkCategoryAnswer('${option}', '${item.category}')">${option}</button>
+      `).join('')}
+    </div>
+    <div id="result"></div>
+  `;
+}
+
+function checkCategoryAnswer(selected, correct) {
+  const buttons = document.querySelectorAll('.option-btn');
+  buttons.forEach(btn => {
+    btn.disabled = true;
+    if (btn.textContent === correct) {
+      btn.classList.add('correct');
+    } else if (btn.textContent === selected && selected !== correct) {
+      btn.classList.add('incorrect');
+    }
+  });
+  
+  if (selected === correct) {
+    updateScore(15);
+    showResult(`${t.correct || '✅ Correct!'} +15 ${t.points || 'points'}`, true);
+  } else {
+    updateScore(-5);
+    showResult(`${t.wrong || '❌ Wrong!'} ${t.belongsTo || 'It belongs to'}: ${correct}`, false);
+  }
+}
+
+// ===== ADVANCED LEVEL TRANSLATION GAMES =====
+
+function loadEnglishToTargetQuestion() {
+  // Pick a random sentence
+  const randomIndex = Math.floor(Math.random() * TRANSLATION_SENTENCES.length);
+  const item = TRANSLATION_SENTENCES[randomIndex];
+  
+  // Get the correct translation based on interface language
+  const correctTranslation = getTargetTranslation(item);
+  
+  // Create wrong options
+  const wrongOptions = [];
+  while (wrongOptions.length < 3) {
+    const wrongIndex = Math.floor(Math.random() * TRANSLATION_SENTENCES.length);
+    const wrongTranslation = getTargetTranslation(TRANSLATION_SENTENCES[wrongIndex]);
+    if (wrongIndex !== randomIndex && !wrongOptions.includes(wrongTranslation)) {
+      wrongOptions.push(wrongTranslation);
+    }
+  }
+  
+  // Combine options and shuffle
+  const options = [correctTranslation, ...wrongOptions];
+  shuffleArray(options);
+  
+  const targetLang = interfaceLang === 'hindi' ? 'हिंदी' : 'मराठी';
+  const questionText = interfaceLang === 'hindi' ? 'सही हिंदी अनुवाद चुनें:' : 
+                      (interfaceLang === 'marathi' ? 'योग्य मराठी भाषांतर निवडा:' : 'Select the correct translation:');
+  
+  const gameArea = document.getElementById('game-area');
+  gameArea.innerHTML = `
+    <div class="language-badge">English → ${targetLang}</div>
+    <div class="question-text">${questionText}</div>
+    <div class="sentence-display">"${item.english}"</div>
+    <div class="options-container">
+      ${options.map(option => `
+        <button class="option-btn" onclick="checkTranslationAnswer('${option.replace(/'/g, "\\'")}', '${correctTranslation.replace(/'/g, "\\'")}')">${option}</button>
+      `).join('')}
+    </div>
+    <div id="result"></div>
+  `;
+}
+
+function loadTargetToEnglishQuestion() {
+  // Pick a random sentence
+  const randomIndex = Math.floor(Math.random() * TRANSLATION_SENTENCES.length);
+  const item = TRANSLATION_SENTENCES[randomIndex];
+  
+  // Get the source text based on interface language
+  const sourceText = getTargetTranslation(item);
+  const correctTranslation = item.english;
+  
+  // Create wrong options
+  const wrongOptions = [];
+  while (wrongOptions.length < 3) {
+    const wrongIndex = Math.floor(Math.random() * TRANSLATION_SENTENCES.length);
+    if (wrongIndex !== randomIndex && !wrongOptions.includes(TRANSLATION_SENTENCES[wrongIndex].english)) {
+      wrongOptions.push(TRANSLATION_SENTENCES[wrongIndex].english);
+    }
+  }
+  
+  // Combine options and shuffle
+  const options = [correctTranslation, ...wrongOptions];
+  shuffleArray(options);
+  
+  const targetLang = interfaceLang === 'hindi' ? 'हिंदी' : 'मराठी';
+  const questionText = 'सही अंग्रेजी अनुवाद चुनें:';
+  
+  const gameArea = document.getElementById('game-area');
+  gameArea.innerHTML = `
+    <div class="language-badge">${targetLang} → English</div>
+    <div class="question-text">${questionText}</div>
+    <div class="sentence-display">"${sourceText}"</div>
+    <div class="options-container">
+      ${options.map(option => `
+        <button class="option-btn" onclick="checkTranslationAnswer('${option.replace(/'/g, "\\'")}', '${correctTranslation.replace(/'/g, "\\'")}')">${option}</button>
+      `).join('')}
+    </div>
+    <div id="result"></div>
+  `;
+}
+
+function checkTranslationAnswer(selected, correct) {
+  const buttons = document.querySelectorAll('.option-btn');
+  buttons.forEach(btn => {
+    btn.disabled = true;
+    if (btn.textContent === correct) {
+      btn.classList.add('correct');
+    } else if (btn.textContent === selected && selected !== correct) {
+      btn.classList.add('incorrect');
+    }
+  });
+  
+  if (selected === correct) {
+    updateScore(20);
+    showResult(`${t.correct || '✅ Correct!'} +20 ${t.points || 'points'}`, true);
+  } else {
+    updateScore(-5);
+    showResult(`${t.wrong || '❌ Wrong!'} ${t.correctAnswer || 'The correct answer is'}: ${correct}`, false);
+  }
+}
+
+// ===== HELPER FUNCTIONS =====
+
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+// ===== INITIALIZATION =====
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (typeof initProgress === 'function') {
+    initProgress();
+  }
+  
+  // Update UI with translations
+  updateUITranslations();
+  
+  // Check for level parameter in URL and auto-select if present
+  autoSelectLevelFromUrl();
+});
+</script>
+
+<script src="progress.js"></script>
+
+</body>
+</html>

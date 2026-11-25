@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>LinguaKids - Hindi Games</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       LINGUAKIDS GAMES — MEGA FUN CSS (Same as engames.html)
+    ============================================================ */
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      font-family: 'Nunito', 'Quicksand', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+      height: 100%;
+      width: 100%;
+      background-color: #fffbf0;
+      background-image:
+        radial-gradient(circle at 8%  12%, #ff6bb540 0%, transparent 28%),
+        radial-gradient(circle at 92% 8%,  #43e97b40 0%, transparent 28%),
+        radial-gradient(circle at 50% 50%, #f9ca2440 0%, transparent 40%),
+        radial-gradient(circle at 15% 88%, #38f9d740 0%, transparent 28%),
+        radial-gradient(circle at 88% 85%, #4facfe40 0%, transparent 28%),
+        radial-gradient(circle at 70% 30%, #fa709a30 0%, transparent 22%);
+    }
+
+    /* Floating confetti dots */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        radial-gradient(circle, #ff6bb5 2px, transparent 2px),
+        radial-gradient(circle, #43e97b 2px, transparent 2px),
+        radial-gradient(circle, #f9ca24 2px, transparent 2px),
+        radial-gradient(circle, #4facfe 2px, transparent 2px),
+        radial-gradient(circle, #fa709a 2px, transparent 2px),
+        radial-gradient(circle, #ff6b6b 2px, transparent 2px);
+      background-size: 120px 120px, 97px 97px, 143px 143px, 83px 83px, 107px 107px, 131px 131px;
+      background-position: 10px 15px, 55px 70px, 30px 40px, 80px 10px, 50px 100px, 100px 55px;
+      opacity: 0.45;
+      animation: driftDots 18s linear infinite alternate;
+    }
+
+    @keyframes driftDots {
+      from { background-position: 10px 15px, 55px 70px, 30px 40px, 80px 10px, 50px 100px, 100px 55px; }
+      to   { background-position: 22px 38px, 44px 52px, 52px 62px, 62px 28px, 68px 82px, 82px 72px; }
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    /* ---- HEADINGS ---- */
+    h2 {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: #fb923c;
+      text-shadow: 2px 2px 0 #ffe0d0, 4px 4px 0 rgba(251,146,60,0.15);
+      margin-bottom: 12px;
+      animation: titleWobble 3.5s ease-in-out infinite;
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes titleWobble {
+      0%,100% { transform: rotate(-1deg) scale(1); }
+      25%      { transform: rotate(1.5deg) scale(1.02); }
+      75%      { transform: rotate(-0.5deg) scale(0.98); }
+    }
+
+    h3 {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #0ea5e9;
+      margin: 12px 0;
+    }
+
+    /* ---- BACK BUTTON (fixed) ---- */
+    #backBtn {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 1000;
+      background: linear-gradient(160deg, #43e97b, #38f9d7);
+      border: none;
+      border-bottom: 4px solid #1db863;
+      border-right: 2px solid #1db863;
+      color: white;
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-family: 'Baloo 2', cursive;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 5px 16px rgba(67,233,123,0.35);
+      transition: transform 0.18s cubic-bezier(.34,1.56,.64,1), box-shadow 0.15s;
+    }
+    #backBtn:hover  { transform: translateY(-3px) scale(1.07); box-shadow: 0 8px 22px rgba(67,233,123,0.45); }
+    #backBtn:active { transform: translateY(3px); border-bottom-width: 1px; }
+
+    /* ---- GENERAL BUTTON ---- */
+    .btn {
+      background: linear-gradient(160deg, #43e97b, #38f9d7);
+      border: none;
+      border-bottom: 5px solid #1db863;
+      border-right: 3px solid #1db863;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-family: 'Baloo 2', cursive;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin: 8px 5px;
+      box-shadow: 0 6px 18px rgba(67,233,123,0.35);
+      transition: transform 0.15s cubic-bezier(.34,1.56,.64,1), box-shadow 0.15s, border-bottom 0.1s;
+      position: relative;
+      z-index: 1;
+    }
+    .btn:hover    { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 24px rgba(67,233,123,0.45); }
+    .btn:active   { transform: translateY(4px) scale(0.97); border-bottom-width: 1px; border-right-width: 1px; box-shadow: none; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    /* ---- LEVEL & GAME SELECTION CONTAINERS ---- */
+    .level-selection, .game-selection {
+      max-width: 800px;
+      width: 95%;
+      margin: 12px auto;
+      padding: 24px 20px;
+      background: rgba(255,255,255,0.92);
+      border-radius: 28px;
+      border: 3px solid #fde68a;
+      box-shadow: 0 8px 0 #d4a800, 0 14px 30px rgba(249,202,36,0.15);
+      text-align: center;
+      flex-shrink: 0;
+      backdrop-filter: blur(6px);
+      position: relative;
+      z-index: 1;
+      animation: cardPop 0.4s cubic-bezier(.34,1.56,.64,1) both;
+    }
+
+    @keyframes cardPop {
+      from { transform: scale(0.85) rotate(-2deg); opacity: 0; }
+      to   { transform: scale(1)    rotate(0deg);  opacity: 1; }
+    }
+
+    .level-selection { display: flex; flex-direction: column; align-items: center; }
+    .game-selection  { display: flex; flex-direction: column; align-items: center; }
+
+    /* ---- LEVEL BUTTONS ---- */
+    .level-btn {
+      border: none;
+      border-bottom: 5px solid #1a7000;
+      border-right: 3px solid #1a7000;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 999px;
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.15rem;
+      font-weight: 800;
+      cursor: pointer;
+      margin: 8px;
+      width: 90%;
+      max-width: 260px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      transition: transform 0.2s cubic-bezier(.34,1.56,.64,1), box-shadow 0.2s, border-bottom 0.1s;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+    .level-btn.basic    {
+      background: linear-gradient(160deg, #43e97b, #38f9d7);
+      border-bottom-color: #1db863; border-right-color: #1db863;
+      box-shadow: 0 6px 0 #1db863, 0 10px 20px rgba(67,233,123,0.3);
+    }
+    .level-btn.moderate {
+      background: linear-gradient(160deg, #f9ca24, #f0932b);
+      border-bottom-color: #c07800; border-right-color: #c07800;
+      box-shadow: 0 6px 0 #c07800, 0 10px 20px rgba(249,202,36,0.3);
+    }
+    .level-btn.advanced {
+      background: linear-gradient(160deg, #ff6b6b, #ee5a24);
+      border-bottom-color: #c0392b; border-right-color: #c0392b;
+      box-shadow: 0 6px 0 #c0392b, 0 10px 20px rgba(255,107,107,0.3);
+    }
+    /* Game selection buttons (no modifier class) */
+    .level-btn:not(.basic):not(.moderate):not(.advanced) {
+      background: linear-gradient(160deg, #4facfe, #38f9d7);
+      border-bottom-color: #0369a1; border-right-color: #0369a1;
+      box-shadow: 0 6px 0 #0369a1, 0 10px 20px rgba(79,172,254,0.3);
+      color: white;
+    }
+
+    /* Game buttons container — side by side */
+    #game-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+    }
+    #game-buttons .level-btn {
+      width: auto;
+      min-width: 180px;
+      flex: 1 1 180px;
+      max-width: 260px;
+    }
+
+    .level-btn:hover  { transform: translateY(-5px) scale(1.04); }
+    .level-btn:active { transform: translateY(4px) scale(0.97); border-bottom-width: 1px; border-right-width: 1px; }
+
+    /* ---- GAME CONTAINER ---- */
+    .game-content {
+      max-width: 800px;
+      width: 95%;
+      margin: 12px auto;
+      padding: 22px 18px;
+      background: rgba(255,255,255,0.92);
+      border-radius: 28px;
+      border: 3px solid #bae6fd;
+      box-shadow: 0 8px 0 #0369a1, 0 14px 30px rgba(14,165,233,0.15);
+      flex-shrink: 0;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      backdrop-filter: blur(6px);
+      position: relative;
+      z-index: 1;
+      animation: cardPop 0.4s cubic-bezier(.34,1.56,.64,1) both;
+    }
+
+    /* Hide scrollbar but keep functionality */
+    .game-content::-webkit-scrollbar {
+      width: 6px;
+    }
+    .game-content::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 4px;
+    }
+    .game-content::-webkit-scrollbar-thumb {
+      background: #58cc02;
+      border-radius: 4px;
+    }
+
+    /* ---- COMPLETION MESSAGE ---- */
+    .completion-message {
+      background: linear-gradient(135deg, #f0fff4, #fffbf0);
+      border-radius: 20px;
+      padding: 22px 16px;
+      margin: 12px 0;
+      border: 3px solid #43e97b;
+      box-shadow: 0 5px 0 #1db863, 0 8px 20px rgba(67,233,123,0.2);
+    }
+    .completion-message h3 { color: #166534; font-size: 1.5rem; margin-bottom: 10px; }
+    .completion-message p  { font-size: 1.1rem; margin: 10px 0; color: #444; font-weight: 700; }
+
+    /* ---- OPTION BUTTONS (2×2 grid) ---- */
+    .options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 15px 0;
+      padding: 5px;
+      width: 100%;
+    }
+
+    .option {
+      padding: 15px 10px;
+      cursor: pointer;
+      user-select: none;
+      background: #f0f9ff;
+      border: 3px solid #bae6fd;
+      border-bottom: 5px solid #7dd3fc;
+      border-radius: 20px;
+      color: #075985;
+      font-weight: 800;
+      font-size: 1.05rem;
+      font-family: 'Nunito', sans-serif;
+      min-height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      word-wrap: break-word;
+      box-shadow: 0 4px 0 #7dd3fc, 0 6px 12px rgba(14,165,233,0.12);
+      transition: transform 0.18s cubic-bezier(.34,1.56,.64,1), box-shadow 0.15s, border-bottom 0.1s;
+    }
+    .option:hover    { background: #e0f2fe; transform: translateY(-4px) scale(1.03); box-shadow: 0 8px 0 #7dd3fc, 0 10px 20px rgba(14,165,233,0.2); }
+    .option:active   { transform: translateY(3px) scale(0.97); border-bottom-width: 2px; box-shadow: none; }
+    .option:disabled { cursor: not-allowed; }
+
+    /* Correct / Incorrect states */
+    .option.correct   {
+      background: linear-gradient(135deg, #d4edda, #f0fff4) !important;
+      border-color: #43e97b !important;
+      border-bottom-color: #1db863 !important;
+      color: #166534 !important;
+      box-shadow: 0 5px 0 #1db863, 0 8px 16px rgba(67,233,123,0.25) !important;
+      animation: correctPop 0.35s cubic-bezier(.34,1.56,.64,1);
+    }
+    .option.incorrect {
+      background: linear-gradient(135deg, #f8d7da, #fff0f6) !important;
+      border-color: #ff6bb5 !important;
+      border-bottom-color: #e05a9f !important;
+      color: #9d174d !important;
+      box-shadow: 0 5px 0 #e05a9f, 0 8px 16px rgba(255,107,181,0.25) !important;
+      animation: shake 0.4s ease;
+    }
+
+    @keyframes correctPop {
+      0%   { transform: scale(0.95); }
+      60%  { transform: scale(1.07); }
+      100% { transform: scale(1); }
+    }
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      20%     { transform: translateX(-6px); }
+      40%     { transform: translateX(6px); }
+      60%     { transform: translateX(-4px); }
+      80%     { transform: translateX(4px); }
+    }
+
+    /* ---- RESULT TEXT ---- */
+    .result {
+      margin-top: 10px;
+      font-weight: 800;
+      font-size: 1.15rem;
+      font-family: 'Baloo 2', cursive;
+      min-height: 30px;
+      padding: 12px;
+      border-radius: 14px;
+      animation: fadeIn 0.3s ease;
+    }
+    .result.correct {
+      background: #d4edda;
+      color: #155724;
+    }
+    .result.incorrect {
+      background: #f8d7da;
+      color: #721c24;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---- PROGRESS BAR ---- */
+    .progress-bar {
+      width: 100%;
+      height: 14px;
+      background: #f0f0f0;
+      border-radius: 999px;
+      margin: 10px 0;
+      overflow: hidden;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.08);
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(to right, #43e97b, #38f9d7);
+      width: 0%;
+      border-radius: 999px;
+      transition: width 0.5s cubic-bezier(.34,1.2,.64,1);
+      box-shadow: 0 2px 8px rgba(67,233,123,0.4);
+    }
+
+    /* ---- SCORE & INFO ---- */
+    .score {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #fb923c;
+      font-family: 'Baloo 2', cursive;
+      margin: 6px 0;
+    }
+    .question {
+      font-size: 1.3rem;
+      margin: 12px 0;
+      font-weight: 800;
+      font-family: 'Baloo 2', cursive;
+      color: #333;
+      text-align: center;
+      padding: 0 5px;
+      word-wrap: break-word;
+    }
+    .game-info {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #888;
+      margin: 5px 0;
+    }
+
+    /* ---- EMOJI AND HINDI CHARACTER DISPLAYS ---- */
+    .emoji-display {
+      font-size: 3.5rem;
+      margin: 6px 0;
+      line-height: 1.2;
+    }
+    .hindi-char {
+      font-size: 3rem;
+      color: #58cc02;
+      margin: 5px 0;
+      line-height: 1.2;
+      font-family: 'Baloo 2', cursive;
+      font-weight: 800;
+    }
+
+    /* ---- TOAST NOTIFICATION ---- */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #43e97b, #38f9d7);
+      color: white;
+      padding: 14px 20px;
+      border-radius: 20px;
+      border-bottom: 4px solid #1db863;
+      box-shadow: 0 6px 20px rgba(67,233,123,0.4);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-family: 'Baloo 2', cursive;
+      transform: translateY(120px);
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(.34,1.56,.64,1), opacity 0.4s ease-out;
+      max-width: 350px;
+    }
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .toast i { font-size: 1.2rem; }
+
+    /* ---- MOBILE ---- */
+    @media (max-width: 480px) {
+      body { justify-content: center; padding: 50px 0 10px; }
+      .game-content { width: 98%; padding: 12px 10px; margin: 8px auto; }
+      .options { gap: 8px; margin: 10px 0; }
+      .option { padding: 12px 8px; min-height: 80px; font-size: 1rem; border-radius: 16px; }
+      .emoji-display { font-size: 3rem; }
+      .hindi-char { font-size: 2.5rem; }
+      .question { font-size: 1.2rem; margin-bottom: 8px; }
+      .score { font-size: 1rem; margin: 3px 0; }
+      .game-info { font-size: 0.95rem; margin: 3px 0; }
+      .progress-bar { height: 10px; margin: 8px 0; }
+      .btn { padding: 10px 20px; font-size: 0.95rem; }
+      .level-btn { padding: 12px 16px; font-size: 1rem; }
+      .result { font-size: 1rem; padding: 10px; margin: 8px 0; }
+      .completion-message { padding: 15px 12px; }
+      .completion-message h3 { font-size: 1.3rem; }
+      .completion-message p  { font-size: 1rem; }
+    }
+
+    @media (max-width: 360px) {
+      .option { min-height: 70px; font-size: 0.95rem; padding: 8px 5px; }
+      .emoji-display { font-size: 2.5rem; }
+      .hindi-char { font-size: 2.2rem; }
+      .question { font-size: 1.1rem; }
+    }
+
+    @media (min-height: 700px) and (max-width: 480px) {
+      .options { gap: 10px; margin: 15px 0; }
+      .option { min-height: 90px; }
+    }
+
+    @media (max-height: 500px) and (orientation: landscape) {
+      .game-content { max-height: calc(100vh - 60px); padding: 10px; }
+      .options { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+      .option { min-height: 70px; }
+      .emoji-display { font-size: 2.2rem; }
+      .hindi-char { font-size: 2rem; }
+      .question { font-size: 1.1rem; margin-bottom: 5px; }
+    }
+  </style>
+</head>
+<body>
+  <button onclick="goBack()" class="btn" id="backBtn">Back</button>
+  
+  <!-- Level Selection -->
+  <div id="level-selection" class="level-selection">
+    <h2 id="selectLevelTitle">Select Game Level</h2>
+    <button class="level-btn basic" onclick="selectLevel('basic')" id="basicLevelBtn">Basic</button>
+    <button class="level-btn moderate" onclick="selectLevel('moderate')" id="moderateLevelBtn">Moderate</button>
+    <button class="level-btn advanced" onclick="selectLevel('advanced')" id="advancedLevelBtn">Advanced</button>
+  </div>
+
+  <!-- Game Selection -->
+  <div id="game-selection" class="game-selection" style="display: none;">
+    <h2 id="level-title"></h2>
+    <div id="game-buttons"></div>
+  </div>
+
+  <!-- Game Content -->
+  <div id="game-content" class="game-content" style="display: none;">
+    <h2 id="game-title">Game</h2>
+    <div class="score"><span id="scoreLabel">Score</span>: <span id="score">0</span></div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <div class="game-info"><span id="questionLabel">Question</span>: <span id="current-question">1</span>/<span id="total-questions">10</span></div>
+    <div id="game-area"></div>
+  </div>
+
+  <div id="achievementToast" class="toast">
+    <i class="fas fa-check-circle"></i>
+    <div>
+      <div id="toastTitle">Great job!</div>
+      <div id="toastDesc">Progress saved.</div>
+    </div>
+  </div>
+
+<script>
+// === UTILITY FUNCTIONS ===
+function getUrlParameter(name) {
+  name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+  const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+  const results = regex.exec(location.search);
+  return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
+
+// === GET INTERFACE LANGUAGE FROM STORAGE ===
+function getInterfaceLanguage() {
+  // Try to get from URL first
+  const urlParams = new URLSearchParams(window.location.search);
+  const langParam = urlParams.get('lang');
+  if (langParam) {
+    return langParam;
+  }
+  
+  // Then try to get from localStorage (set by hindi.html)
+  const username = getCurrentUser();
+  const storageKey = `linguaKids_${username}_hindiInterfaceLang`;
+  const savedLang = localStorage.getItem(storageKey);
+  if (savedLang) {
+    return savedLang;
+  }
+  
+  // Default to english
+  return 'english';
+}
+
+// === GET CURRENT USER ===
+function getCurrentUser() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlUser = urlParams.get('user');
+  if (urlUser) {
+    sessionStorage.setItem('currentUser', urlUser);
+    return urlUser;
+  }
+  
+  const sessionUser = sessionStorage.getItem('currentUser');
+  if (sessionUser) {
+    return sessionUser;
+  }
+  
+  return 'guest';
+}
+
+// === TRANSLATIONS FOR UI ===
+const translations = {
+  english: {
+    back: "Back",
+    selectGameLevel: "Select Game Level",
+    basic: "Basic",
+    moderate: "Moderate",
+    advanced: "Advanced",
+    basicLevel: "Basic Level",
+    moderateLevel: "Moderate Level",
+    advancedLevel: "Advanced Level",
+    score: "Score",
+    question: "Question",
+    correctPoints10: "✅ Correct! +10 Points",
+    correctPoints15: "✅ Correct! +15 Points",
+    correctPoints20: "✅ Correct! +20 Points",
+    wrong: "❌ Wrong!",
+    gameOver: "🎉 Game Complete! 🎉",
+    finalScore: "Your final score:",
+    congratulations: "Great job! You've completed",
+    playAgain: "Play Again",
+    progressSaved: "Progress saved!",
+    greatJob: "Great job!",
+    
+    // Game titles
+    matchAlphabet: "Match the Alphabet",
+    countApples: "Count the Apples",
+    matchBarahkhadi: "Match the Barahkhadi",
+    matchWord: "Match the Word",
+    matchCategory: "Match the Category",
+    hindiToEnglish: "Translate Hindi to English",
+    englishToHindi: "Translate English to Hindi",
+    
+    // Game instructions
+    pickObject: "Pick the object that starts with this letter:",
+    howManyApples: "How many apples are there?",
+    selectCorrectBarahkhadi: "Select the correct English-letter form of this Barakhadi:",
+    pickCorrectHindiName: "Pick the correct Hindi name of:",
+    selectCategory: "Select the category to which this word belongs:",
+    selectEnglishTranslation: "Select the correct English translation:",
+    selectHindiTranslation: "Select the correct Hindi translation:",
+    
+    // Game buttons
+    matchAlphabetBtn: "Match the Alphabet",
+    countApplesBtn: "Count the Apples",
+    matchBarahkhadiBtn: "Match the Barahkhadi",
+    matchWordBtn: "Match the Word",
+    matchCategoryBtn: "Match the Category",
+    hindiToEnglishBtn: "Hindi → English",
+    englishToHindiBtn: "English → Hindi"
+  },
+  marathi: {
+    back: "मागे",
+    selectGameLevel: "खेळाची पातळी निवडा",
+    basic: "मूलभूत",
+    moderate: "मध्यम",
+    advanced: "प्रगत",
+    basicLevel: "मूलभूत स्तर",
+    moderateLevel: "मध्यम स्तर",
+    advancedLevel: "प्रगत स्तर",
+    score: "गुण",
+    question: "प्रश्न",
+    correctPoints10: "✅ बरोबर! +१० गुण",
+    correctPoints15: "✅ बरोबर! +१५ गुण",
+    correctPoints20: "✅ बरोबर! +२० गुण",
+    wrong: "❌ चूक!",
+    gameOver: "🎉 खेळ पूर्ण! 🎉",
+    finalScore: "तुमचे अंतिम गुण:",
+    congratulations: "छान काम! तुम्ही पूर्ण केले",
+    playAgain: "पुन्हा खेळा",
+    progressSaved: "प्रगती जतन केली!",
+    greatJob: "छान काम!",
+    
+    // Game titles
+    matchAlphabet: "अक्षर जुळवा",
+    countApples: "सफरचंद मोजा",
+    matchBarahkhadi: "बाराखडी जुळवा",
+    matchWord: "शब्द जुळवा",
+    matchCategory: "वर्ग जुळवा",
+    hindiToEnglish: "हिंदी ते इंग्रजी भाषांतर",
+    englishToHindi: "इंग्रजी ते हिंदी भाषांतर",
+    
+    // Game instructions
+    pickObject: "या अक्षराने सुरू होणारी वस्तू निवडा:",
+    howManyApples: "किती सफरचंद आहेत?",
+    selectCorrectBarahkhadi: "या बाराखडीचे योग्य इंग्रजी रूप निवडा:",
+    pickCorrectHindiName: "याचे योग्य हिंदी नाव निवडा:",
+    selectCategory: "हा शब्द कोणत्या वर्गात येतो ते निवडा:",
+    selectEnglishTranslation: "योग्य इंग्रजी भाषांतर निवडा:",
+    selectHindiTranslation: "योग्य हिंदी भाषांतर निवडा:",
+    
+    // Game buttons
+    matchAlphabetBtn: "अक्षर जुळवा",
+    countApplesBtn: "सफरचंद मोजा",
+    matchBarahkhadiBtn: "बाराखडी जुळवा",
+    matchWordBtn: "शब्द जुळवा",
+    matchCategoryBtn: "वर्ग जुळवा",
+    hindiToEnglishBtn: "हिंदी → इंग्रजी",
+    englishToHindiBtn: "इंग्रजी → हिंदी"
+  }
+};
+
+// === DATA CONSTANTS ===
+const VOWELS_LENGTH = 12;
+const CONSONANTS_LENGTH = 37;
+const NUMBERS_1_TO_100_LENGTH = 100;
+const LEVEL2_CATEGORY_LENGTH = 10;
+const LEVEL3_CATEGORY_LENGTH = 10;
+const GAMES_LENGTHS = { 
+  'alphabet-match': 10, 
+  'count-apples': 10, 
+  'barahkhadi-match': 10,
+  'word-match': 10,
+  'word-category': 10,
+  'sentence-hindi-to-english': 10,
+  'sentence-english-to-hindi': 10 
+};
+
+// === CORE PROGRESS AND STREAK LOGIC ===
+function initHindiProgress() {
+  let progress = JSON.parse(localStorage.getItem('linguaKidsHindiProgress'));
+  if (!progress) {
+    const defaultProgress = {
+      level1: { alphabets: { completed: 0, total: VOWELS_LENGTH + CONSONANTS_LENGTH }, numbers: { completed: 0, total: NUMBERS_1_TO_100_LENGTH }},
+      level2: { fruits: { completed: 0, total: LEVEL2_CATEGORY_LENGTH }, vegetables: { completed: 0, total: LEVEL2_CATEGORY_LENGTH }, animals: { completed: 0, total: LEVEL2_CATEGORY_LENGTH }, birds: { completed: 0, total: LEVEL2_CATEGORY_LENGTH }, vehicles: { completed: 0, total: LEVEL2_CATEGORY_LENGTH }},
+      level3: { greetings: { completed: 0, total: LEVEL3_CATEGORY_LENGTH }, activities: { completed: 0, total: LEVEL3_CATEGORY_LENGTH }, questions: { completed: 0, total: LEVEL3_CATEGORY_LENGTH }},
+      games: { 
+        'alphabet-match': { completed: 0, total: GAMES_LENGTHS['alphabet-match'] }, 
+        'count-apples': { completed: 0, total: GAMES_LENGTHS['count-apples'] }, 
+        'barahkhadi-match': { completed: 0, total: GAMES_LENGTHS['barahkhadi-match'] },
+        'word-match': { completed: 0, total: GAMES_LENGTHS['word-match'] },
+        'word-category': { completed: 0, total: GAMES_LENGTHS['word-category'] },
+        'sentence-hindi-to-english': { completed: 0, total: GAMES_LENGTHS['sentence-hindi-to-english'] },
+        'sentence-english-to-hindi': { completed: 0, total: GAMES_LENGTHS['sentence-english-to-hindi'] }
+      },
+      achievements: { firstSteps: false, alphabetMaster: false, numberWhiz: false, wordExpert: false, sentenceBuilder: false, gameChampion: false, weekStreak: false, monthStreak: false },
+      streak: { count: 0, lastDate: null }, sessionDate: null
+    };
+    localStorage.setItem('linguaKidsHindiProgress', JSON.stringify(defaultProgress));
+  }
+}
+
+function updateHindiStreak() {
+  const progress = JSON.parse(localStorage.getItem('linguaKidsHindiProgress'));
+  if (!progress) return;
+  const today = new Date().toDateString();
+  if (progress.sessionDate !== today) {
+    const lastDate = progress.streak.lastDate ? new Date(progress.streak.lastDate) : null;
+    const todayDate = new Date();
+    if (lastDate) {
+      const diffTime = todayDate.getTime() - lastDate.getTime();
+      const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
+      if (diffDays === 1) { progress.streak.count++; } 
+      else if (diffDays > 1) { progress.streak.count = 1; }
+    } else { progress.streak.count = 1; }
+    progress.streak.lastDate = today;
+    progress.sessionDate = today;
+    localStorage.setItem('linguaKidsHindiProgress', JSON.stringify(progress));
+  }
+}
+
+function updateHindiProgress(level, category, increment = 1, itemIdentifier = null) {
+  const progress = JSON.parse(localStorage.getItem('linguaKidsHindiProgress'));
+  if (!progress || !progress[level] || !progress[level][category]) return false;
+  const today = new Date().toDateString();
+  const sessionKey = itemIdentifier ? `${level}_${category}_${itemIdentifier}_${today}` : null;
+  if (sessionKey && sessionStorage.getItem(sessionKey)) { return false; }
+  if (progress[level][category].completed < progress[level][category].total) {
+    progress[level][category].completed = Math.min(progress[level][category].completed + increment, progress[level][category].total);
+  } else { return false; }
+  localStorage.setItem('linguaKidsHindiProgress', JSON.stringify(progress));
+  if (sessionKey) { sessionStorage.setItem(sessionKey, 'true'); }
+  updateHindiStreak();
+  
+  const lang = getInterfaceLanguage();
+  const t = translations[lang] || translations.english;
+  showToast(t.greatJob, t.progressSaved);
+  return true;
+}
+
+function showToast(title, description) {
+  const toast = document.getElementById("achievementToast");
+  if (!toast) return;
+  toast.style.display = 'flex';
+  toast.querySelector("#toastTitle").textContent = title;
+  toast.querySelector("#toastDesc").textContent = description;
+  toast.classList.add("show");
+  setTimeout(() => { 
+      toast.classList.remove("show");
+      setTimeout(() => { toast.style.display = 'none'; }, 300);
+  }, 3000);
+}
+
+// === GAME DATA ===
+// Hindi Alphabets Data (from hindi.html)
+const HINDI_ALPHABETS = [
+  {hindi:"आ", english:"aa", word:"आम (Mango 🥭)", pronunciation:"aa"},
+  {hindi:"उ", english:"u", word:"उल्लू (Owl 🦉)", pronunciation:"u"},
+  {hindi:"ऊ", english:"oo", word:"ऊन (Wool 🧶)", pronunciation:"oo"},
+  {hindi:"ए", english:"e", word:"एक (One 1️⃣)", pronunciation:"e"},
+  {hindi:"ऐ", english:"ai", word:"ऐनक (Spectacles 👓)", pronunciation:"ai"},
+  {hindi:"औ", english:"au", word:"औरत (Woman 👩)", pronunciation:"au"},
+  {hindi:"क", english:"k", word:"कबूतर (Pigeon 🕊️)", pronunciation:"ka"},
+  {hindi:"ख", english:"kh", word:"खरगोश (Rabbit 🐇)", pronunciation:"kha"},
+  {hindi:"घ", english:"gh", word:"घड़ी (Clock 🕒)", pronunciation:"gha"},
+  {hindi:"च", english:"ch", word:"चमच (Spoon 🥄)", pronunciation:"cha"},
+  {hindi:"ज", english:"j", word:"जहाज (Ship 🚢)", pronunciation:"ja"},
+  {hindi:"ट", english:"t", word:"टमाटर (Tomato 🍅)", pronunciation:"ta"},
+  {hindi:"ड", english:"d", word:"डमरू (Drum 🥁)", pronunciation:"da"},
+  {hindi:"त", english:"t", word:"तरबूज (Watermelon 🍉)", pronunciation:"ta"},
+  {hindi:"द", english:"d", word:"दरवाजा (Door 🚪)", pronunciation:"da"},
+  {hindi:"प", english:"p", word:"पतंग (Kite 🪁)", pronunciation:"pa"},
+  {hindi:"ब", english:"b", word:"बत्तख (Duck 🦆)", pronunciation:"ba"},
+  {hindi:"म", english:"m", word:"मछली (Fish 🐟)", pronunciation:"ma"},
+  {hindi:"र", english:"r", word:"रथ (Chariot 🛺)", pronunciation:"ra"},
+  {hindi:"ल", english:"l", word:"लट्टू (Top 🎯)", pronunciation:"la"},
+  {hindi:"श", english:"sh", word:"शेर (Lion 🦁)", pronunciation:"sha"},
+  {hindi:"स", english:"s", word:"साप (Snake 🐍)", pronunciation:"sa"},
+  {hindi:"ह", english:"h", word:"हाथी (Elephant 🐘)", pronunciation:"ha"}
+];
+
+// Barahkhadi examples (simplified)
+const BARAHKHADI_EXAMPLES = [
+  {hindi: "का", roman: "kaa", example: "कागज़ (Paper)"},
+  {hindi: "कि", roman: "ki", example: "किताब (Book)"},
+  {hindi: "की", roman: "kee", example: "कीमत (Price)"},
+  {hindi: "कु", roman: "ku", example: "कुर्सी (Chair)"},
+  {hindi: "कू", roman: "koo", example: "कूलर (Cooler)"},
+  {hindi: "के", roman: "ke", example: "केला (Banana)"},
+  {hindi: "कै", roman: "kai", example: "कैंची (Scissors)"},
+  {hindi: "को", roman: "ko", example: "कोयल (Cuckoo)"},
+  {hindi: "कौ", roman: "kau", example: "कौआ (Crow)"},
+  {hindi: "मा", roman: "maa", example: "माँ (Mother)"},
+  {hindi: "मि", roman: "mi", example: "मिठाई (Sweet)"},
+  {hindi: "मी", roman: "mee", example: "मीठा (Sweet)"},
+  {hindi: "पा", roman: "paa", example: "पानी (Water)"},
+  {hindi: "पि", roman: "pi", example: "पिता (Father)"},
+  {hindi: "ता", roman: "taa", example: "तारा (Star)"}
+];
+
+// Hindi Numbers 1-10
+const HINDI_NUMBERS = {
+  1: "१", 2: "२", 3: "३", 4: "४", 5: "५",
+  6: "६", 7: "७", 8: "८", 9: "९", 10: "१०"
+};
+
+// Words Data (from hinlevel2.html) - Colors removed
+const HINDI_WORDS = {
+  fruits: [
+    {name: "सेब", english: "Apple", icon: "🍎"},
+    {name: "केला", english: "Banana", icon: "🍌"},
+    {name: "संतरा", english: "Orange", icon: "🍊"},
+    {name: "आम", english: "Mango", icon: "🥭"},
+    {name: "अंगूर", english: "Grapes", icon: "🍇"},
+    {name: "तरबूज", english: "Watermelon", icon: "🍉"},
+    {name: "पपीता", english: "Papaya", icon: "🍈"}
+  ],
+  vegetables: [
+    {name: "गाजर", english: "Carrot", icon: "🥕"},
+    {name: "आलू", english: "Potato", icon: "🥔"},
+    {name: "टमाटर", english: "Tomato", icon: "🍅"},
+    {name: "प्याज", english: "Onion", icon: "🧅"},
+    {name: "लहसुन", english: "Garlic", icon: "🧄"},
+    {name: "बैंगन", english: "Eggplant", icon: "🍆"},
+    {name: "कद्दू", english: "Pumpkin", icon: "🎃"},
+  ],
+  animals: [
+    {name: "शेर", english: "Lion", icon: "🦁"},
+    {name: "बाघ", english: "Tiger", icon: "🐯"},
+    {name: "हाथी", english: "Elephant", icon: "🐘"},
+    {name: "कुत्ता", english: "Dog", icon: "🐶"},
+    {name: "बिल्ली", english: "Cat", icon: "🐱"},
+    {name: "गाय", english: "Cow", icon: "🐄"},
+    {name: "भालू", english: "Bear", icon: "🐻"},
+    {name: "बंदर", english: "Monkey", icon: "🐵"}
+  ],
+  vehicles: [
+    {name: "कार", english: "Car", icon: "🚗"},
+    {name: "बस", english: "Bus", icon: "🚌"},
+    {name: "ट्रेन", english: "Train", icon: "🚆"},
+    {name: "विमान", english: "Airplane", icon: "✈️"},
+    {name: "नाव", english: "Boat", icon: "⛵"},
+    {name: "साइकिल", english: "Bicycle", icon: "🚲"},
+    {name: "ट्रक", english: "Truck", icon: "🚚"},
+    {name: "हेलीकॉप्टर", english: "Helicopter", icon: "🚁"}
+  ]
+};
+
+// Sentences Data (from hinlevel3.html)
+const HINDI_SENTENCES = [
+  {hindi: "नमस्ते", english: "Hello", icon: "👋"},
+  {hindi: "शुभ प्रभात", english: "Good morning", icon: "🌅"},
+  {hindi: "शुभ रात्रि", english: "Good night", icon: "🌙"},
+  {hindi: "आप कैसे हैं?", english: "How are you?", icon: "🙂"},
+  {hindi: "धन्यवाद", english: "Thank you", icon: "🙏"},
+  {hindi: "क्षमा कीजिए", english: "Excuse me", icon: "🙇"},
+  {hindi: "अलविदा", english: "Goodbye", icon: "👋"},
+  {hindi: "मैं खाता हूँ", english: "I eat", icon: "🍽️"},
+  {hindi: "मैं पीता हूँ", english: "I drink", icon: "🥛"},
+  {hindi: "मैं सोता हूँ", english: "I sleep", icon: "😴"},
+  {hindi: "मैं खेलता हूँ", english: "I play", icon: "⚽"},
+  {hindi: "मैं पढ़ता हूँ", english: "I read", icon: "📖"},
+  {hindi: "आपका नाम क्या है?", english: "What is your name?", icon: "❓"},
+  {hindi: "आप कहाँ रहते हैं?", english: "Where do you live?", icon: "🏠"},
+  {hindi: "आपकी उम्र क्या है?", english: "How old are you?", icon: "🎂"},
+  {hindi: "यह क्या है?", english: "What is this?", icon: "❓"},
+  {hindi: "कितना है?", english: "How much is it?", icon: "💰"}
+];
+
+// Category names in Hindi - Colors removed
+const CATEGORY_NAMES = {
+  fruits: "फल",
+  vegetables: "सब्जियाँ",
+  animals: "जानवर",
+  vehicles: "वाहन"
+};
+
+// === GAME STATE VARIABLES ===
+let currentLevel = '';
+let currentGame = '';
+let score = 0;
+let currentQuestion = 0;
+const totalQuestions = 10;
+let interfaceLang = 'english';
+
+// === UTILITY FUNCTIONS ===
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+function updateProgress() {
+  const progress = ((currentQuestion) / totalQuestions) * 100;
+  document.getElementById('progress-fill').style.width = `${progress}%`;
+  document.getElementById('current-question').textContent = currentQuestion + 1;
+}
+
+function showResult(message, isCorrect) {
+  const resultElement = document.createElement('div');
+  resultElement.className = `result ${isCorrect ? 'correct' : 'incorrect'}`;
+  resultElement.textContent = message;
+  
+  // Clear any existing result
+  const existingResult = document.querySelector('#game-area .result');
+  if (existingResult) {
+    existingResult.remove();
+  }
+  
+  document.getElementById('game-area').appendChild(resultElement);
+  
+  setTimeout(() => {
+    resultElement.remove();
+    nextQuestion();
+  }, 1500);
+}
+
+function nextQuestion() {
+  currentQuestion++;
+  updateProgress();
+  
+  if (currentQuestion >= totalQuestions) {
+    showCompletionMessage();
+    return;
+  }
+  
+  switch(currentGame) {
+    case 'alphabet-match': loadAlphabetQuestion(); break;
+    case 'count-apples': loadAppleQuestion(); break;
+    case 'barahkhadi-match': loadBarahkhadiQuestion(); break;
+    case 'word-match': loadWordMatchQuestion(); break;
+    case 'word-category': loadWordCategoryQuestion(); break;
+    case 'sentence-hindi-to-english': loadHindiToEnglishQuestion(); break;
+    case 'sentence-english-to-hindi': loadEnglishToHindiQuestion(); break;
+  }
+}
+
+function showCompletionMessage() {
+  const gameArea = document.getElementById('game-area');
+  const identifier = `${currentGame}_${Date.now()}`;
+  updateHindiProgress('games', currentGame, 1, identifier);
+  
+  const t = translations[interfaceLang] || translations.english;
+  
+  gameArea.innerHTML = `
+    <div class="completion-message">
+      <h3>${t.gameOver}</h3>
+      <p>${t.finalScore} <strong>${score}</strong></p>
+      <p>${t.congratulations} ${document.getElementById('game-title').textContent}</p>
+      <button class="btn" onclick="startGame('${currentGame}')">${t.playAgain}</button>
+      <button class="btn" onclick="selectLevel('${currentLevel}')">${t.back}</button>
+    </div>
+  `;
+}
+
+// === LEVEL AND GAME SELECTION ===
+function selectLevel(level) {
+  currentLevel = level;
+  document.getElementById('level-selection').style.display = 'none';
+  document.getElementById('game-selection').style.display = 'block';
+  
+  const t = translations[interfaceLang] || translations.english;
+  
+  let levelTitle = '';
+  let gameButtonsHTML = '';
+  
+  if (level === 'basic') {
+    levelTitle = t.basicLevel;
+    gameButtonsHTML = `
+      <button class="level-btn basic" onclick="startGame('alphabet-match')">${t.matchAlphabetBtn}</button>
+      <button class="level-btn basic" onclick="startGame('count-apples')">${t.countApplesBtn}</button>
+      <button class="level-btn basic" onclick="startGame('barahkhadi-match')">${t.matchBarahkhadiBtn}</button>
+    `;
+  } else if (level === 'moderate') {
+    levelTitle = t.moderateLevel;
+    gameButtonsHTML = `
+      <button class="level-btn moderate" onclick="startGame('word-match')">${t.matchWordBtn}</button>
+      <button class="level-btn moderate" onclick="startGame('word-category')">${t.matchCategoryBtn}</button>
+    `;
+  } else if (level === 'advanced') {
+    levelTitle = t.advancedLevel;
+    gameButtonsHTML = `
+      <button class="level-btn advanced" onclick="startGame('sentence-hindi-to-english')">${t.hindiToEnglishBtn}</button>
+      <button class="level-btn advanced" onclick="startGame('sentence-english-to-hindi')">${t.englishToHindiBtn}</button>
+    `;
+  }
+  
+  document.getElementById('level-title').textContent = levelTitle;
+  document.getElementById('game-buttons').innerHTML = gameButtonsHTML;
+}
+
+function startGame(game) {
+  currentGame = game;
+  score = 0;
+  currentQuestion = 0;
+  
+  document.getElementById('game-selection').style.display = 'none';
+  document.getElementById('game-content').style.display = 'block';
+  document.getElementById('score').textContent = '0';
+  document.getElementById('current-question').textContent = '1';
+  document.getElementById('total-questions').textContent = totalQuestions;
+  document.getElementById('progress-fill').style.width = '0%';
+  
+  const t = translations[interfaceLang] || translations.english;
+  
+  switch(game) {
+    case 'alphabet-match':
+      document.getElementById('game-title').textContent = t.matchAlphabet;
+      loadAlphabetQuestion();
+      break;
+    case 'count-apples':
+      document.getElementById('game-title').textContent = t.countApples;
+      loadAppleQuestion();
+      break;
+    case 'barahkhadi-match':
+      document.getElementById('game-title').textContent = t.matchBarahkhadi;
+      loadBarahkhadiQuestion();
+      break;
+    case 'word-match':
+      document.getElementById('game-title').textContent = t.matchWord;
+      loadWordMatchQuestion();
+      break;
+    case 'word-category':
+      document.getElementById('game-title').textContent = t.matchCategory;
+      loadWordCategoryQuestion();
+      break;
+    case 'sentence-hindi-to-english':
+      document.getElementById('game-title').textContent = t.hindiToEnglish;
+      loadHindiToEnglishQuestion();
+      break;
+    case 'sentence-english-to-hindi':
+      document.getElementById('game-title').textContent = t.englishToHindi;
+      loadEnglishToHindiQuestion();
+      break;
+  }
+}
+
+// === BASIC LEVEL GAMES ===
+function loadAlphabetQuestion() {
+  const t = translations[interfaceLang] || translations.english;
+  
+  // Pick a random Hindi alphabet
+  const alphabet = HINDI_ALPHABETS[Math.floor(Math.random() * HINDI_ALPHABETS.length)];
+  
+  // Extract emoji from the alphabet's word (remove closing bracket if present)
+  const wordParts = alphabet.word.split(' ');
+  let correctEmoji = wordParts[wordParts.length - 1];
+  // Remove any closing parentheses from the emoji
+  correctEmoji = correctEmoji.replace(/[\)\]]/g, '');
+  
+  // Get all emojis from other alphabets for wrong options
+  const allAlphabetEmojis = HINDI_ALPHABETS.map(a => {
+    const parts = a.word.split(' ');
+    let emoji = parts[parts.length - 1];
+    // Remove any closing parentheses from the emoji
+    emoji = emoji.replace(/[\)\]]/g, '');
+    return emoji;
+  }).filter(emoji => emoji !== correctEmoji); // Remove the correct emoji
+  
+  // Create an array of wrong emojis (3 unique ones)
+  const wrongEmojis = [];
+  while (wrongEmojis.length < 3 && allAlphabetEmojis.length > 0) {
+    const randomEmoji = allAlphabetEmojis[Math.floor(Math.random() * allAlphabetEmojis.length)];
+    if (!wrongEmojis.includes(randomEmoji)) {
+      wrongEmojis.push(randomEmoji);
+    }
+  }
+  
+  // Combine correct and wrong options
+  const allOptions = [correctEmoji, ...wrongEmojis];
+  shuffleArray(allOptions);
+  
+  const gameArea = document.getElementById('game-area');
+  gameArea.innerHTML = `
+    <div class="question">${t.pickObject}</div>
+    <div class="hindi-char">${alphabet.hindi}</div>
+    <div class="options">
+      ${allOptions.map((option, index) => `
+        <div class="option" onclick="checkAlphabetAnswer(${index}, ${allOptions.indexOf(correctEmoji)})">
+          <div class="emoji-display">${option}</div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function checkAlphabetAnswer(selectedIndex, correctIndex) {
+  const t = translations[interfaceLang] || translations.english;
+  
+  const options = document.querySelectorAll('.option');
+  options.forEach((option, index) => {
+    if (index === correctIndex) {
+      option.classList.add('correct');
+    } else if (index === selectedIndex && selectedIndex !== correctIndex) {
+      option.classList.add('incorrect');
+    }
+    option.style.pointerEvents = 'none';
+  });
+  
+  if (selectedIndex === correctIndex) {
+    score += 10;
+    document.getElementById('score').textContent = score;
+    showResult(t.correctPoints10, true);
+  } else {
+    showResult(t.wrong, false);
+  }
+}
+
+function loadAppleQuestion() {
+  const t = translations[interfaceLang] || translations.english;
+  
+  const count = Math.floor(Math.random() * 10) + 1;
+  const correctAnswer = HINDI_NUMBERS[count];
+  
+  // Generate wrong answers
+  const wrongAnswers = [];
+  while (wrongAnswers.length < 3) {
+    const wrongCount = Math.floor(Math.random() * 10) + 1;
+    if (wrongCount !== count && !wrongAnswers.includes(HINDI_NUMBERS[wrongCount])) {
+      wrongAnswers.push(HINDI_NUMBERS[wrongCount]);
+    }
+  }
+  
+  const allOptions = [correctAnswer, ...wrongAnswers];
+  shuffleArray(allOptions);
+  
+  const gameArea = document.getElementById('game-area');
+  gameArea.innerHTML = `
+    <div class="question">${t.howManyApples}</div>
+    <div class="emoji-display">${'🍎'.repeat(count)}</div>
+    <div class="options">
+      ${allOptions.map((option, index) => `
+        <div class="option" onclick="checkAppleAnswer(${index}, ${allOptions.indexOf(correctAnswer)})">
+          <div style="font-size: 2rem;">${option}</div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function checkAppleAnswer(selectedIndex, correctIndex) {
+  const t = translations[interfaceLang] || translations.english;
+  
+  const options = document.querySelectorAll('.option');
+  options.forEach((option, index) => {
+    if (index === correctIndex) {
+      option.classList.add('correct');
+    } else if (index === selectedIndex && selectedIndex !== correctIndex) {
+      option.classList.add('incorrect');
+    }
+    option.style.pointerEvents = 'none';
+  });
+  
+  if (selectedIndex === correctIndex) {
+    score += 10;
+    document.getElementById('score').textContent = score;
+    showResult(t.correctPoints10, true);
+  } else {
+    showResult(t.wrong, false);
+  }
+}
+
+function loadBarahkhadiQuestion() {
+  const t = translations[interfaceLang] || translations.english;
+  
+  const item = BARAHKHADI_EXAMPLES[Math.floor(Math.random() * BARAHKHADI_EXAMPLES.length)];
+  const correctAnswer = item.roman;
+  
+  // Generate wrong answers
+  const wrongAnswers = [];
+  const allRoman = BARAHKHADI_EXAMPLES.map(b => b.roman);
+  while (wrongAnswers.length < 3) {
+    const wrong = allRoman[Math.floor(Math.random() * allRoman.length)];
+    if (wrong !== correctAnswer && !wrongAnswers.includes(wrong)) {
+      wrongAnswers.push(wrong);
+    }
+  }
+  
+  const allOptions = [correctAnswer, ...wrongAnswers];
+  shuffleArray(allOptions);
+  
+  const gameArea = document.getElementById('game-area');
+  gameArea.innerHTML = `
+    <div class="question">${t.selectCorrectBarahkhadi}</div>
+    <div class="hindi-char">${item.hindi}</div>
+    <div style="font-size: 1.1rem; margin: 8px 0; color: #666;">${item.example}</div>
+    <div class="options">
+      ${allOptions.map((option, index) => `
+        <div class="option" onclick="checkBarahkhadiAnswer(${index}, ${allOptions.indexOf(correctAnswer)})">
+          <div style="font-size: 1.3rem;">${option}</div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function checkBarahkhadiAnswer(selectedIndex, correctIndex) {
+  const t = translations[interfaceLang] || translations.english;
+  
+  const options = document.querySelectorAll('.option');
+  options.forEach((option, index) => {
+    if (index === correctIndex) {
+      option.classList.add('correct');
+    } else if (index === selectedIndex && selectedIndex !== correctIndex) {
+      option.classList.add('incorrect');
+    }
+    option.style.pointerEvents = 'none';
+  });
+  
+  if (selectedIndex === correctIndex) {
+    score += 10;
+    document.getElementById('score').textContent = score;
+    showResult(t.correctPoints10, true);
+  } else {
+    showResult(t.wrong, false);
+  }
+}
+
+// === MODERATE LEVEL GAMES ===
+
+function loadWordMatchQuestion() {
+  const t = translations[interfaceLang] || translations.english;
+  
+  // Get all words from all categories
+  const allWords = [];
+  Object.keys(HINDI_WORDS).forEach(category => {
+    HINDI_WORDS[category].forEach(word => {
+      allWords.push({...word, category});
+    });
+  });
+  
+  const item = allWords[Math.floor(Math.random() * allWords.length)];
+  const correctAnswer = item.name;
+  
+  // Generate wrong answers from other words
+  const wrongAnswers = [];
+  while (wrongAnswers.length < 3) {
+    const wrongItem = allWords[Math.floor(Math.random() * allWords.length)];
+    if (wrongItem.name !== correctAnswer && !wrongAnswers.includes(wrongItem.name)) {
+      wrongAnswers.push(wrongItem.name);
+    }
+  }
+  
+  const allOptions = [correctAnswer, ...wrongAnswers];
+  shuffleArray(allOptions);
+  
+  const gameArea = document.getElementById('game-area');
+  gameArea.innerHTML = `
+    <div class="question">${t.pickCorrectHindiName}</div>
+    <div class="emoji-display">${item.icon}</div>
+    <div class="options">
+      ${allOptions.map((option, index) => `
+        <div class="option" onclick="checkWordMatchAnswer(${index}, ${allOptions.indexOf(correctAnswer)})">
+          <div style="font-size: 1.3rem;">${option}</div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function checkWordMatchAnswer(selectedIndex, correctIndex) {
+  const t = translations[interfaceLang] || translations.english;
+  
+  const options = document.querySelectorAll('.option');
+  options.forEach((option, index) => {
+    if (index === correctIndex) {
+      option.classList.add('correct');
+    } else if (index === selectedIndex && selectedIndex !== correctIndex) {
+      option.classList.add('incorrect');
+    }
+    option.style.pointerEvents = 'none';
+  });
+  
+  if (selectedIndex === correctIndex) {
+    score += 15;
+    document.getElementById('score').textContent = score;
+    showResult(t.correctPoints15, true);
+  } else {
+    showResult(t.wrong, false);
+  }
+}
+
+function loadWordCategoryQuestion() {
+  const t = translations[interfaceLang] || translations.english;
+  
+  // Get all words from all categories
+  const allWords = [];
+  Object.keys(HINDI_WORDS).forEach(category => {
+    HINDI_WORDS[category].forEach(word => {
+      allWords.push({...word, category});
+    });
+  });
+  
+  const item = allWords[Math.floor(Math.random() * allWords.length)];
+  const correctCategory = CATEGORY_NAMES[item.category];
+  
+  // Get a wrong category
+  let wrongCategory;
+  const categories = Object.keys(CATEGORY_NAMES);
+  do {
+    const randomCat = categories[Math.floor(Math.random() * categories.length)];
+    wrongCategory = CATEGORY_NAMES[randomCat];
+  } while (wrongCategory === correctCategory);
+  
+  const allOptions = [correctCategory, wrongCategory];
+  shuffleArray(allOptions);
+  
+  const gameArea = document.getElementById('game-area');
+  gameArea.innerHTML = `
+    <div class="question">${t.selectCategory}</div>
+    <div class="emoji-display">${item.icon}</div>
+    <div style="font-size: 1.5rem; margin: 8px 0; font-weight: bold;">${item.name}</div>
+    <div style="font-size: 1.1rem; margin: 5px 0; color: #666;">${item.english}</div>
+    <div class="options">
+      ${allOptions.map((option, index) => `
+        <div class="option" onclick="checkCategoryAnswer(${index}, ${allOptions.indexOf(correctCategory)})">
+          <div style="font-size: 1.3rem;">${option}</div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function checkCategoryAnswer(selectedIndex, correctIndex) {
+  const t = translations[interfaceLang] || translations.english;
+  
+  const options = document.querySelectorAll('.option');
+  options.forEach((option, index) => {
+    if (index === correctIndex) {
+      option.classList.add('correct');
+    } else if (index === selectedIndex && selectedIndex !== correctIndex) {
+      option.classList.add('incorrect');
+    }
+    option.style.pointerEvents = 'none';
+  });
+  
+  if (selectedIndex === correctIndex) {
+    score += 15;
+    document.getElementById('score').textContent = score;
+    showResult(t.correctPoints15, true);
+  } else {
+    showResult(t.wrong, false);
+  }
+}
+
+// === ADVANCED LEVEL GAMES ===
+
+function loadHindiToEnglishQuestion() {
+  const t = translations[interfaceLang] || translations.english;
+  
+  const item = HINDI_SENTENCES[Math.floor(Math.random() * HINDI_SENTENCES.length)];
+  const correctAnswer = item.english;
+  
+  // Generate wrong answers
+  const wrongAnswers = [];
+  const allEnglish = HINDI_SENTENCES.map(s => s.english);
+  while (wrongAnswers.length < 3) {
+    const wrong = allEnglish[Math.floor(Math.random() * allEnglish.length)];
+    if (wrong !== correctAnswer && !wrongAnswers.includes(wrong)) {
+      wrongAnswers.push(wrong);
+    }
+  }
+  
+  const allOptions = [correctAnswer, ...wrongAnswers];
+  shuffleArray(allOptions);
+  
+  const gameArea = document.getElementById('game-area');
+  gameArea.innerHTML = `
+    <div class="question">${t.selectEnglishTranslation}</div>
+    <div style="font-size: 1.5rem; margin: 10px 0; font-weight: bold; color: #58cc02;">${item.hindi}</div>
+    <div class="emoji-display">${item.icon}</div>
+    <div class="options">
+      ${allOptions.map((option, index) => `
+        <div class="option" onclick="checkTranslationAnswer(${index}, ${allOptions.indexOf(correctAnswer)})">
+          <div style="font-size: 1.1rem;">${option}</div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function loadEnglishToHindiQuestion() {
+  const t = translations[interfaceLang] || translations.english;
+  
+  const item = HINDI_SENTENCES[Math.floor(Math.random() * HINDI_SENTENCES.length)];
+  const correctAnswer = item.hindi;
+  
+  // Generate wrong answers
+  const wrongAnswers = [];
+  const allHindi = HINDI_SENTENCES.map(s => s.hindi);
+  while (wrongAnswers.length < 3) {
+    const wrong = allHindi[Math.floor(Math.random() * allHindi.length)];
+    if (wrong !== correctAnswer && !wrongAnswers.includes(wrong)) {
+      wrongAnswers.push(wrong);
+    }
+  }
+  
+  const allOptions = [correctAnswer, ...wrongAnswers];
+  shuffleArray(allOptions);
+  
+  const gameArea = document.getElementById('game-area');
+  gameArea.innerHTML = `
+    <div class="question">${t.selectHindiTranslation}</div>
+    <div style="font-size: 1.5rem; margin: 10px 0; font-weight: bold; color: #1cb0f6;">${item.english}</div>
+    <div class="emoji-display">${item.icon}</div>
+    <div class="options">
+      ${allOptions.map((option, index) => `
+        <div class="option" onclick="checkTranslationAnswer(${index}, ${allOptions.indexOf(correctAnswer)})">
+          <div style="font-size: 1.3rem;">${option}</div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function checkTranslationAnswer(selectedIndex, correctIndex) {
+  const t = translations[interfaceLang] || translations.english;
+  
+  const options = document.querySelectorAll('.option');
+  options.forEach((option, index) => {
+    if (index === correctIndex) {
+      option.classList.add('correct');
+    } else if (index === selectedIndex && selectedIndex !== correctIndex) {
+      option.classList.add('incorrect');
+    }
+    option.style.pointerEvents = 'none';
+  });
+  
+  if (selectedIndex === correctIndex) {
+    score += 20;
+    document.getElementById('score').textContent = score;
+    showResult(t.correctPoints20, true);
+  } else {
+    showResult(t.wrong, false);
+  }
+}
+
+function goBack() {
+  if (currentGame) {
+    // If we're in a game, go back to game selection
+    document.getElementById('game-content').style.display = 'none';
+    document.getElementById('game-selection').style.display = 'block';
+    currentGame = '';
+  } else if (currentLevel) {
+    // If we're at game selection, go back to level selection
+    document.getElementById('game-selection').style.display = 'none';
+    document.getElementById('level-selection').style.display = 'block';
+    currentLevel = '';
+  } else {
+    // If we're at level selection, go back to hindi.html
+    window.location.href = 'hindi.html';
+  }
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+  initHindiProgress();
+  
+  // Get interface language
+  interfaceLang = getInterfaceLanguage();
+  const t = translations[interfaceLang] || translations.english;
+  
+  // Update UI text with translations
+  document.getElementById('backBtn').textContent = t.back;
+  document.getElementById('selectLevelTitle').textContent = t.selectGameLevel;
+  document.getElementById('basicLevelBtn').textContent = t.basic;
+  document.getElementById('moderateLevelBtn').textContent = t.moderate;
+  document.getElementById('advancedLevelBtn').textContent = t.advanced;
+  document.getElementById('scoreLabel').textContent = t.score;
+  document.getElementById('questionLabel').textContent = t.question;
+  
+  // Check if a level parameter was passed in the URL
+  const levelParam = getUrlParameter('level');
+  if (levelParam && ['basic', 'moderate', 'advanced'].includes(levelParam)) {
+    // Automatically select the level
+    selectLevel(levelParam);
+  } else {
+    // If no level parameter, show level selection
+    document.getElementById('level-selection').style.display = 'block';
+    document.getElementById('game-selection').style.display = 'none';
+    document.getElementById('game-content').style.display = 'none';
+  }
+});
+
+// Make functions globally accessible
+window.selectLevel = selectLevel;
+window.startGame = startGame;
+window.goBack = goBack;
+window.checkAlphabetAnswer = checkAlphabetAnswer;
+window.checkAppleAnswer = checkAppleAnswer;
+window.checkBarahkhadiAnswer = checkBarahkhadiAnswer;
+window.checkWordMatchAnswer = checkWordMatchAnswer;
+window.checkCategoryAnswer = checkCategoryAnswer;
+window.checkTranslationAnswer = checkTranslationAnswer;
+</script>
+</body>
+</html>

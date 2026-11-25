@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinguaKids - Hindi Progress & Achievements</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       LINGUAKIDS PROGRESS — MEGA FUN CSS (Same as progress.html)
+    ============================================================ */
+
+    body {
+      font-family: 'Nunito', 'Quicksand', sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background-color: #fffbf0;
+      background-image:
+        radial-gradient(circle at 8%  12%, #ff6bb540 0%, transparent 28%),
+        radial-gradient(circle at 92% 8%,  #43e97b40 0%, transparent 28%),
+        radial-gradient(circle at 50% 50%, #f9ca2440 0%, transparent 40%),
+        radial-gradient(circle at 15% 88%, #38f9d740 0%, transparent 28%),
+        radial-gradient(circle at 88% 85%, #4facfe40 0%, transparent 28%),
+        radial-gradient(circle at 70% 30%, #fa709a30 0%, transparent 22%);
+      overflow-x: hidden;
+    }
+
+    /* Floating confetti dots */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        radial-gradient(circle, #ff6bb5 2px, transparent 2px),
+        radial-gradient(circle, #43e97b 2px, transparent 2px),
+        radial-gradient(circle, #f9ca24 2px, transparent 2px),
+        radial-gradient(circle, #4facfe 2px, transparent 2px),
+        radial-gradient(circle, #fa709a 2px, transparent 2px),
+        radial-gradient(circle, #ff6b6b 2px, transparent 2px);
+      background-size: 120px 120px, 97px 97px, 143px 143px, 83px 83px, 107px 107px, 131px 131px;
+      background-position: 10px 15px, 55px 70px, 30px 40px, 80px 10px, 50px 100px, 100px 55px;
+      opacity: 0.45;
+      animation: driftDots 18s linear infinite alternate;
+    }
+
+    @keyframes driftDots {
+      from { background-position: 10px 15px, 55px 70px, 30px 40px, 80px 10px, 50px 100px, 100px 55px; }
+      to   { background-position: 22px 38px, 44px 52px, 52px 62px, 62px 28px, 68px 82px, 82px 72px; }
+    }
+
+    /* ---- APP CONTAINER ---- */
+    #app {
+      max-width: 800px;
+      margin: auto;
+      padding: 15px 18px 30px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ---- HEADINGS ---- */
+    h2 {
+      text-align: center;
+      font-family: 'Baloo 2', cursive;
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: #f9ca24;
+      text-shadow: 3px 3px 0 #d4a800, 5px 5px 0 rgba(249,202,36,0.2);
+      margin: 10px 0 6px;
+      animation: titleWobble 3.5s ease-in-out infinite;
+    }
+
+    @keyframes titleWobble {
+      0%,100% { transform: rotate(-1deg) scale(1); }
+      25%      { transform: rotate(1.5deg) scale(1.02); }
+      75%      { transform: rotate(-0.5deg) scale(0.98); }
+    }
+
+    h3 {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #0ea5e9;
+      margin: 0 0 14px;
+    }
+
+    /* ---- DASHBOARD CARD ---- */
+    .dashboard {
+      background: rgba(255,255,255,0.92);
+      border-radius: 28px;
+      padding: 24px 22px;
+      margin: 16px 0;
+      border: 3px solid #fde68a;
+      box-shadow: 0 8px 0 #d4a800, 0 14px 30px rgba(249,202,36,0.15);
+      backdrop-filter: blur(6px);
+      animation: cardPop 0.4s cubic-bezier(.34,1.56,.64,1) both;
+    }
+
+    @keyframes cardPop {
+      from { transform: scale(0.85) rotate(-2deg); opacity: 0; }
+      to   { transform: scale(1)    rotate(0deg);  opacity: 1; }
+    }
+
+    /* ---- STREAK ---- */
+    .streak-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+    }
+
+    .streak-box {
+      background: linear-gradient(160deg, #fb923c, #ff5a5f);
+      border: none;
+      border-bottom: 5px solid #c0392b;
+      color: white;
+      padding: 12px 28px;
+      border-radius: 999px;
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.3rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 6px 20px rgba(251,146,60,0.4);
+      animation: streakPulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes streakPulse {
+      0%,100% { transform: scale(1); }
+      50%      { transform: scale(1.04); }
+    }
+
+    /* ---- PROGRESS SECTION ---- */
+    .progress-section {
+      margin: 20px 0;
+    }
+
+    .progress-bar {
+      height: 22px;
+      background: #f0f0f0;
+      border-radius: 999px;
+      margin: 8px 0 14px;
+      overflow: hidden;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(to right, #43e97b, #38f9d7);
+      border-radius: 999px;
+      width: 0%;
+      transition: width 0.8s cubic-bezier(.34,1.2,.64,1);
+      text-align: center;
+      color: white;
+      font-weight: 800;
+      font-size: 0.85rem;
+      line-height: 22px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 8px rgba(67,233,123,0.4);
+    }
+
+    /* Level-specific progress bar colors */
+    #level1Progress { background: linear-gradient(to right, #43e97b, #38f9d7); box-shadow: 0 2px 8px rgba(67,233,123,0.4); }
+    #level2Progress { background: linear-gradient(to right, #4facfe, #38f9d7); box-shadow: 0 2px 8px rgba(79,172,254,0.4); }
+    #level3Progress { background: linear-gradient(to right, #f472b6, #fb923c); box-shadow: 0 2px 8px rgba(244,114,182,0.4); }
+
+    /* Progress details container - HIDDEN */
+    .progress-details {
+      display: none;
+    }
+
+    /* ---- ACHIEVEMENTS GRID ---- */
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .achievement-card {
+      background: white;
+      padding: 15px 10px;
+      border-radius: 20px;
+      text-align: center;
+      border: 3px solid #e5e7eb;
+      box-shadow: 0 5px 0 #d1d5db, 0 8px 16px rgba(0,0,0,0.06);
+      transition: transform 0.22s cubic-bezier(.34,1.7,.64,1), box-shadow 0.2s;
+      animation: cardPop 0.4s cubic-bezier(.34,1.56,.64,1) both;
+    }
+
+    .achievement-card.unlocked {
+      border-color: #f9ca24;
+      background: linear-gradient(135deg, #fffbeb, #ffffff);
+      box-shadow: 0 5px 0 #d4a800, 0 8px 16px rgba(249,202,36,0.2);
+    }
+
+    .achievement-card.locked {
+      filter: grayscale(1);
+      opacity: 0.55;
+      background: #f5f5f5;
+    }
+
+    .achievement-card.unlocked:hover {
+      transform: translateY(-7px) rotate(-1deg) scale(1.05);
+      box-shadow: 0 10px 0 #d4a800, 0 14px 24px rgba(249,202,36,0.25);
+    }
+
+    .achievement-icon {
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+    }
+
+    .achievement-card.unlocked .achievement-icon { color: #f9ca24; }
+    .achievement-card.locked  .achievement-icon { color: #bbb; }
+
+    .achievement-title {
+      font-weight: 800;
+      font-size: 0.88rem;
+      margin-bottom: 4px;
+      font-family: 'Baloo 2', cursive;
+      color: #333;
+    }
+
+    .achievement-desc {
+      font-size: 0.75rem;
+      color: #888;
+      line-height: 1.3;
+    }
+
+    /* ---- BUTTONS ---- */
+    .btn {
+      background: linear-gradient(160deg, #43e97b, #38f9d7);
+      border: none;
+      border-bottom: 5px solid #1db863;
+      border-right: 3px solid #1db863;
+      color: white;
+      padding: 11px 26px;
+      border-radius: 999px;
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin: 8px 5px;
+      display: inline-block;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.15);
+      box-shadow: 0 6px 18px rgba(67,233,123,0.35);
+      transition: transform 0.15s cubic-bezier(.34,1.56,.64,1), box-shadow 0.15s, border-bottom 0.1s;
+      text-decoration: none;
+    }
+
+    .btn:hover  { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 24px rgba(67,233,123,0.45); }
+    .btn:active { transform: translateY(4px) scale(0.97); border-bottom-width: 1px; border-right-width: 1px; box-shadow: none; }
+
+    .btn-danger {
+      background: linear-gradient(160deg, #ff6b6b, #ee5a24);
+      border-bottom-color: #c0392b;
+      border-right-color: #c0392b;
+      box-shadow: 0 6px 18px rgba(255,107,107,0.35);
+    }
+    .btn-danger:hover  { box-shadow: 0 10px 24px rgba(255,107,107,0.45); }
+
+    .btn-secondary {
+      background: linear-gradient(160deg, #94a3b8, #64748b);
+      border-bottom-color: #475569;
+      border-right-color: #475569;
+      box-shadow: 0 6px 18px rgba(100,116,139,0.3);
+    }
+    .btn-secondary:hover { box-shadow: 0 10px 24px rgba(100,116,139,0.4); }
+
+    /* ---- BUTTON GROUP ---- */
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin: 22px 0;
+    }
+
+    /* ---- SYNC STATUS (HIDDEN BY DEFAULT) ---- */
+    .sync-status {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: linear-gradient(135deg, #43e97b, #38f9d7);
+      color: white;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: none; /* Hidden by default */
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 14px rgba(67,233,123,0.4);
+      z-index: 1000;
+      animation: syncPulse 2s infinite;
+    }
+
+    .sync-status i { font-size: 1rem; }
+
+    @keyframes syncPulse {
+      0%,100% { opacity: 0.85; }
+      50%      { opacity: 1; }
+    }
+
+    /* ---- MODAL ---- */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(14,165,233,0.15);
+      backdrop-filter: blur(8px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+
+    .modal-content {
+      background: linear-gradient(160deg, #fffef0 0%, #f0fffe 100%);
+      padding: 32px 28px;
+      border-radius: 32px;
+      box-shadow: 0 0 0 5px #f9ca24, 0 0 0 9px #43e97b, 0 25px 60px rgba(0,0,0,0.15);
+      max-width: 90%;
+      width: 380px;
+      text-align: center;
+      font-family: 'Nunito', sans-serif;
+      animation: modalBounceIn 0.45s cubic-bezier(.34,1.56,.64,1) both;
+    }
+
+    @keyframes modalBounceIn {
+      0%   { transform: scale(0.4) rotate(-8deg); opacity: 0; }
+      70%  { transform: scale(1.06) rotate(2deg); opacity: 1; }
+      100% { transform: scale(1)    rotate(0deg); opacity: 1; }
+    }
+
+    .modal-content h3 {
+      font-family: 'Baloo 2', cursive;
+      color: #ff5a5f;
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin: 0 0 14px;
+      text-shadow: 2px 2px 0 #ffe0e1;
+    }
+
+    .modal-content p {
+      font-size: 1.1rem;
+      margin-bottom: 24px;
+      color: #555;
+      line-height: 1.5;
+      font-weight: 700;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+    }
+
+    .modal-actions .btn {
+      padding: 10px 28px;
+      font-size: 1.05rem;
+      margin: 0;
+      min-width: 100px;
+    }
+
+    /* ---- TOAST ---- */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #43e97b, #38f9d7);
+      color: white;
+      padding: 14px 20px;
+      border-radius: 20px;
+      border-bottom: 4px solid #1db863;
+      box-shadow: 0 6px 20px rgba(67,233,123,0.4);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-family: 'Baloo 2', cursive;
+      transform: translateY(120px);
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(.34,1.56,.64,1), opacity 0.4s ease-out;
+      max-width: 350px;
+    }
+
+    .toast i { font-size: 1.2rem; }
+
+    /* ---- RESPONSIVE ---- */
+    @media(max-width:600px){
+      .achievements-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      }
+      
+      .modal-content {
+        width: 90%;
+        padding: 20px;
+      }
+      
+      h2 {
+        font-size: 1.8rem;
+      }
+      
+      .streak-box {
+        font-size: 1.1rem;
+        padding: 10px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <div style="text-align:left; margin-bottom:10px;">
+    <button class="btn" onclick="goBackHome()"><i class="fas fa-arrow-left"></i> Back</button>
+  </div>
+  
+  <h2><i class="fas fa-chart-line" style="color: #f9ca24; margin-right: 10px;"></i> My Progress - हिंदी</h2>
+  
+  <div class="dashboard">
+    <div class="streak-container">
+      <div class="streak-box">
+        <i class="fas fa-fire"></i>
+        <span id="streakCount">0</span> <span id="streakText">दिन की लगातार सीख (Day Streak)</span>
+      </div>
+    </div>
+    
+    <div class="progress-section">
+      <h3><i class="fas fa-tasks" style="margin-right: 8px; color: #0ea5e9;"></i> Level Progress</h3>
+      
+      <div>
+        <span><i class="fas fa-font" style="color: #43e97b; margin-right: 5px;"></i> Level 1: Alphabets & Numbers</span>
+        <div class="progress-bar">
+          <div class="progress-fill" id="level1Progress"></div>
+        </div>
+      </div>
+      
+      <div>
+        <span><i class="fas fa-words" style="color: #4facfe; margin-right: 5px;"></i> Level 2: Basic Words</span>
+        <div class="progress-bar">
+          <div class="progress-fill" id="level2Progress"></div>
+        </div>
+      </div>
+      
+      <div>
+        <span><i class="fas fa-comment" style="color: #f472b6; margin-right: 5px;"></i> Level 3: Sentences & Expressions</span>
+        <div class="progress-bar">
+          <div class="progress-fill" id="level3Progress"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="progress-section">
+      <h3><i class="fas fa-trophy" style="color: #f9ca24; margin-right: 8px;"></i> Achievements</h3>
+      <div class="achievements-grid" id="achievementsContainer">
+        <!-- Achievements will be loaded here -->
+      </div>
+    </div>
+  </div>
+  
+  <div class="button-group">
+    <button class="btn" onclick="loadHindiLevel1()"><i class="fas fa-play-circle"></i> Continue Learning</button>
+    <button class="btn btn-danger" onclick="resetProgress()"><i class="fas fa-trash-alt"></i> Reset Progress</button>
+  </div>
+</div>
+
+<!-- Sync Status (Hidden by default - only shown during sync operations) -->
+<div id="syncStatus" class="sync-status" style="display: none;">
+  <i class="fas fa-cloud-upload-alt"></i>
+  <span id="syncMessage">Syncing to cloud...</span>
+</div>
+
+<!-- Achievement Toast -->
+<div id="achievementToast" class="toast">
+  <i class="fas fa-trophy" style="color: gold;"></i>
+  <div>
+    <div id="toastTitle">Achievement Unlocked!</div>
+    <div id="toastDesc">You've earned a new badge.</div>
+  </div>
+</div>
+
+<!-- Reset Confirmation Modal -->
+<div id="customResetModal" class="modal-overlay">
+  <div class="modal-content">
+    <h3>⚠️ Reset Progress</h3>
+    <p id="modalMessage">All your progress will be permanently deleted. This action cannot be undone. Are you sure you want to continue?</p>
+    <div class="modal-actions">
+      <button class="btn btn-danger" onclick="performReset()">Yes, Reset</button>
+      <button class="btn btn-secondary" onclick="document.getElementById('customResetModal').style.display='none'">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Firebase Import -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { 
+    getFirestore, 
+    doc, 
+    setDoc,
+    collection,
+    query,
+    where,
+    getDocs,
+    getDoc,
+    updateDoc,
+    deleteDoc,
+    onSnapshot
+  } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAvZvyRsoIsdjA82vMAPApOsgZlfHf4-NU",
+    authDomain: "linguakids-16043.firebaseapp.com",
+    projectId: "linguakids-16043",
+    storageBucket: "linguakids-16043.firebasestorage.app",
+    messagingSenderId: "468346007955",
+    appId: "1:468346007955:web:e47618b29c321c7bafb866"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  window.db = db;
+  window.doc = doc;
+  window.setDoc = setDoc;
+  window.getDoc = getDoc;
+  window.updateDoc = updateDoc;
+</script>
+
+<script>
+// === DATA CONSTANTS ===
+const VOWELS_LENGTH = 12;
+const CONSONANTS_LENGTH = 37;
+const NUMBERS_1_TO_100_LENGTH = 100;
+const LEVEL2_CATEGORY_LENGTH = 10;
+const LEVEL3_CATEGORY_LENGTH = 10;
+
+// Map lowercase internal IDs to display names
+const DISPLAY_NAMES = {
+    'fruits': 'Fruits',
+    'vegetables': 'Vegetables',
+    'animals': 'Animals',
+    'birds': 'Birds',
+    'vehicles': 'Vehicles',
+    'colors': 'Colors',
+    'greetings': 'Greetings',
+    'activities': 'Daily Activities',
+    'questions': 'Simple Q&A'
+};
+
+// ===== ACHIEVEMENTS DATA =====
+const ACHIEVEMENTS_DATA = [
+  { 
+    id: 'firstSteps', 
+    icon: 'fa-shoe-prints', 
+    title: 'First Steps',
+    desc: 'Complete your first activity'
+  }, 
+  { 
+    id: 'alphabetMaster', 
+    icon: 'fa-font', 
+    title: 'Alphabet Master',
+    desc: 'Learn 80% of alphabets'
+  },
+  { 
+    id: 'numberWhiz', 
+    icon: 'fa-calculator', 
+    title: 'Number Whiz',
+    desc: 'Learn 50 numbers'
+  }, 
+  { 
+    id: 'wordExpert', 
+    icon: 'fa-book', 
+    title: 'Word Expert',
+    desc: 'Master 3 word categories'
+  },
+  { 
+    id: 'sentenceBuilder', 
+    icon: 'fa-comment', 
+    title: 'Sentence Builder',
+    desc: 'Complete 2 parts of Level 3'
+  }, 
+  { 
+    id: 'weekStreak', 
+    icon: 'fa-fire', 
+    title: '7-Day Streak',
+    desc: 'Practice for 7 consecutive days'
+  }, 
+  { 
+    id: 'monthStreak', 
+    icon: 'fa-crown', 
+    title: '30-Day Streak',
+    desc: 'Practice for 30 consecutive days'
+  }
+];
+
+// ===== SHOW SYNC STATUS (Internal use only) =====
+function showSyncStatus(message, isSuccess = true) {
+  const syncStatus = document.getElementById('syncStatus');
+  const syncMessage = document.getElementById('syncMessage');
+  
+  if (syncStatus && syncMessage) {
+    syncMessage.textContent = message;
+    syncStatus.style.backgroundColor = isSuccess ? '#43e97b' : '#ff6b6b';
+    syncStatus.style.display = 'flex';
+    
+    setTimeout(() => {
+      syncStatus.style.display = 'none';
+    }, 3000);
+  }
+}
+
+function formatCategoryName(key) {
+    return DISPLAY_NAMES[key] || key.charAt(0).toUpperCase() + key.slice(1);
+}
+
+// ===== CALCULATE OVERALL PROGRESS PERCENTAGE FOR HINDI =====
+function calculateHindiOverallProgress(progress) {
+  if (!progress) return { level1: 0, level2: 0, level3: 0, overall: 0 };
+  
+  // Level 1: Alphabets & Numbers
+  const level1Total = (progress.level1?.alphabets?.total || 0) + (progress.level1?.numbers?.total || 0);
+  const level1Completed = (progress.level1?.alphabets?.completed || 0) + (progress.level1?.numbers?.completed || 0);
+  const level1Percent = level1Total > 0 ? (level1Completed / level1Total) * 100 : 0;
+  
+  // Level 2: Basic Words
+  const level2Categories = Object.values(progress.level2 || {});
+  const level2Total = level2Categories.reduce((sum, cat) => sum + (cat?.total || 0), 0);
+  const level2Completed = level2Categories.reduce((sum, cat) => sum + (cat?.completed || 0), 0);
+  const level2Percent = level2Total > 0 ? (level2Completed / level2Total) * 100 : 0;
+  
+  // Level 3: Sentences
+  const level3Categories = Object.values(progress.level3 || {});
+  const level3Total = level3Categories.reduce((sum, cat) => sum + (cat?.total || 0), 0);
+  const level3Completed = level3Categories.reduce((sum, cat) => sum + (cat?.completed || 0), 0);
+  const level3Percent = level3Total > 0 ? (level3Completed / level3Total) * 100 : 0;
+  
+  return {
+    level1: Math.round(level1Percent),
+    level2: Math.round(level2Percent),
+    level3: Math.round(level3Percent),
+    overall: Math.round((level1Percent + level2Percent + level3Percent) / 3)
+  };
+}
+
+// ===== SAVE HINDI PROGRESS TO FIREBASE (Internal) =====
+async function saveHindiProgressToFirebase(progress, overallProgress, language = 'hindi') {
+  try {
+    // Check if Firebase is available
+    if (!window.db || typeof window.doc !== 'function' || typeof window.updateDoc !== 'function') {
+      console.log("Firebase not available, skipping cloud save");
+      return false;
+    }
+    
+    // Get current user profile from localStorage
+    const profileStr = localStorage.getItem('linguaKidsProfile');
+    if (!profileStr) {
+      console.log("No user profile found, skipping Firebase save");
+      return false;
+    }
+    
+    const profile = JSON.parse(profileStr);
+    if (!profile || !profile.userId) {
+      console.log("Invalid user profile, skipping Firebase save");
+      return false;
+    }
+    
+    console.log("Saving Hindi progress to Firebase for user:", profile.userId);
+    
+    // Update the progress in the user's profile
+    const userRef = window.doc(window.db, "profiles", profile.userId);
+    
+    // Prepare progress data with detailed level information
+    const progressData = {
+      [`progress.${language}.percent`]: overallProgress.overall,
+      [`progress.${language}.level1`]: overallProgress.level1,
+      [`progress.${language}.level2`]: overallProgress.level2,
+      [`progress.${language}.level3`]: overallProgress.level3,
+      [`progress.${language}.lastUpdated`]: new Date().toISOString(),
+      lastActive: new Date().toISOString()
+    };
+    
+    await window.updateDoc(userRef, progressData);
+    console.log("Hindi progress saved to Firebase for user:", profile.userId);
+    
+    // Also update the classStudents collection if this is a teacher-led student
+    if (profile.studyMode === 'teacher' && profile.classId) {
+      const classStudentId = `${profile.classId}_${profile.userId}`;
+      const classStudentRef = window.doc(window.db, "classStudents", classStudentId);
+      
+      await window.updateDoc(classStudentRef, {
+        [`progress.${language}.percent`]: overallProgress.overall,
+        [`progress.${language}.level1`]: overallProgress.level1,
+        [`progress.${language}.level2`]: overallProgress.level2,
+        [`progress.${language}.level3`]: overallProgress.level3,
+        [`progress.${language}.lastUpdated`]: new Date().toISOString(),
+        lastUpdated: new Date().toISOString()
+      });
+      console.log("Class student progress updated in Firebase");
+    }
+    
+    return true;
+  } catch (error) {
+    console.error("Error saving Hindi progress to Firebase:", error);
+    return false;
+  }
+}
+
+// ===== LOAD HINDI PROGRESS FROM FIREBASE (Internal) =====
+async function loadHindiProgressFromFirebase() {
+  try {
+    // Check if Firebase is available
+    if (!window.db || typeof window.getDoc !== 'function') {
+      console.log("Firebase not available, skipping load");
+      return false;
+    }
+    
+    // Get current user profile from localStorage
+    const profileStr = localStorage.getItem('linguaKidsProfile');
+    if (!profileStr) {
+      console.log("No user profile found, skipping Firebase load");
+      return false;
+    }
+    
+    const profile = JSON.parse(profileStr);
+    if (!profile || !profile.userId) {
+      console.log("Invalid user profile, skipping Firebase load");
+      return false;
+    }
+    
+    console.log("Loading Hindi progress from Firebase for user:", profile.userId);
+    
+    // Get the user's profile from Firebase
+    const userRef = window.doc(window.db, "profiles", profile.userId);
+    const userDoc = await window.getDoc(userRef);
+    
+    if (userDoc.exists()) {
+      const userData = userDoc.data();
+      
+      // Check if there's Hindi progress data in Firebase
+      if (userData.progress && userData.progress.hindi) {
+        const firebaseProgress = userData.progress.hindi;
+        console.log("Found Firebase Hindi progress:", firebaseProgress);
+        
+        // Update localStorage with Firebase progress if it's more recent
+        const localProgress = JSON.parse(localStorage.getItem('linguaKidsHindiProgress') || '{}');
+        const localLastUpdated = localProgress.streak?.lastDate;
+        const firebaseLastUpdated = firebaseProgress.lastUpdated;
+        
+        // If Firebase has more recent progress, show notification
+        if (firebaseLastUpdated && (!localLastUpdated || new Date(firebaseLastUpdated) > new Date(localLastUpdated))) {
+          console.log("Firebase progress is more recent");
+          showAchievementToast("Cloud Progress Found", "Your progress from another device has been loaded");
+        }
+        
+        return true;
+      }
+    }
+    
+    return false;
+  } catch (error) {
+    console.error("Error loading Hindi progress from Firebase:", error);
+    return false;
+  }
+}
+
+// === Hindi Progress Tracking System (FIXED STREAK) ===
+function initHindiProgress() {
+  let progress = JSON.parse(localStorage.getItem('linguaKidsHindiProgress'));
+  if (!progress) {
+    const defaultProgress = {
+      level1: {
+        alphabets: { completed: 0, total: VOWELS_LENGTH + CONSONANTS_LENGTH },
+        numbers: { completed: 0, total: NUMBERS_1_TO_100_LENGTH }
+      },
+      level2: {
+        fruits: { completed: 0, total: LEVEL2_CATEGORY_LENGTH },
+        vegetables: { completed: 0, total: LEVEL2_CATEGORY_LENGTH },
+        animals: { completed: 0, total: LEVEL2_CATEGORY_LENGTH },
+        birds: { completed: 0, total: LEVEL2_CATEGORY_LENGTH },
+        vehicles: { completed: 0, total: LEVEL2_CATEGORY_LENGTH },
+        colors: { completed: 0, total: LEVEL2_CATEGORY_LENGTH }
+      },
+      level3: {
+        greetings: { completed: 0, total: LEVEL3_CATEGORY_LENGTH },
+        activities: { completed: 0, total: LEVEL3_CATEGORY_LENGTH },
+        questions: { completed: 0, total: LEVEL3_CATEGORY_LENGTH }
+      },
+      achievements: {
+        firstSteps: false, alphabetMaster: false, numberWhiz: false,
+        wordExpert: false, sentenceBuilder: false,
+        weekStreak: false, monthStreak: false
+      },
+      streak: { count: 0, lastDate: null },
+      sessionDate: null
+    };
+    localStorage.setItem('linguaKidsHindiProgress', JSON.stringify(defaultProgress));
+    console.log("Created new Hindi progress data");
+    progress = defaultProgress;
+  }
+  return progress;
+}
+
+// FIXED: Proper streak update function that only increments once per day
+function updateHindiStreak(progress) {
+  const today = new Date().toDateString(); // Use toDateString() for consistent date comparison
+  let updated = false;
+
+  if (progress.sessionDate !== today) {
+    // This is a new day session
+    const lastDate = progress.streak.lastDate ? new Date(progress.streak.lastDate) : null;
+    const todayDate = new Date();
+
+    if (lastDate) {
+      // Calculate days difference properly
+      const lastDateStr = lastDate.toDateString();
+      const todayStr = todayDate.toDateString();
+      
+      // Parse dates to compare properly
+      const lastDateObj = new Date(lastDateStr);
+      const todayObj = new Date(todayStr);
+      
+      const diffTime = todayObj.getTime() - lastDateObj.getTime();
+      const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
+      
+      console.log('Streak calculation:', { 
+        lastDate: lastDateStr, 
+        today: todayStr, 
+        diffDays,
+        oldStreak: progress.streak.count 
+      });
+      
+      if (diffDays === 1) {
+        // Consecutive day - increment streak
+        progress.streak.count++;
+        console.log('Streak incremented to:', progress.streak.count);
+      } else if (diffDays > 1) {
+        // Missed days - reset streak to 1
+        progress.streak.count = 1;
+        console.log('Streak reset to 1 due to gap of', diffDays, 'days');
+      }
+      // diffDays === 0 means same day (shouldn't happen here due to sessionDate check)
+    } else {
+      // First ever session - start streak at 1
+      progress.streak.count = 1;
+      console.log('First session - streak set to 1');
+    }
+
+    progress.streak.lastDate = today;
+    progress.sessionDate = today;
+    updated = true;
+  } else {
+    console.log('Already visited today - streak not updated');
+  }
+
+  if (updated) {
+    localStorage.setItem('linguaKidsHindiProgress', JSON.stringify(progress));
+  }
+  
+  return progress;
+}
+
+// ===== UPDATE HINDI PROGRESS =====
+async function updateHindiProgress(level, category, increment = 1, itemIdentifier = null) {
+  try {
+    const today = new Date().toDateString();
+    const sessionKey = `hin_progress_${level}_${category}_${itemIdentifier || 'general'}_${today}`;
+    
+    if (sessionStorage.getItem(sessionKey)) {
+      console.log("Progress already tracked for this item today:", sessionKey);
+      return false;
+    }
+
+    let progress = JSON.parse(localStorage.getItem('linguaKidsHindiProgress'));
+    if (!progress) {
+      progress = initHindiProgress();
+    }
+    
+    if (!progress[level] || !progress[level][category]) {
+      console.log("Level or category not found:", level, category);
+      return false;
+    }
+    
+    const categoryData = progress[level][category];
+    
+    if (categoryData.completed < categoryData.total) {
+      categoryData.completed = Math.min(
+        categoryData.completed + increment, 
+        categoryData.total
+      );
+      
+      progress.sessionDate = today;
+      
+      localStorage.setItem('linguaKidsHindiProgress', JSON.stringify(progress));
+      sessionStorage.setItem(sessionKey, 'true');
+      
+      console.log(`Progress updated: ${level}.${category} - ${categoryData.completed}/${categoryData.total}`);
+      
+      checkAllAchievements(progress);
+      updateHindiStreak(progress);
+      
+      // Calculate overall progress and save to Firebase (silent, no UI)
+      const overallProgress = calculateHindiOverallProgress(progress);
+      await saveHindiProgressToFirebase(progress, overallProgress, 'hindi');
+      
+      // Refresh the display if we're on the progress page
+      if (typeof displayHindiProgress === 'function') {
+        displayHindiProgress();
+      }
+      
+      return true;
+    }
+    
+    return false;
+  } catch (e) {
+    console.error("Error updating Hindi progress:", e);
+    return false;
+  }
+}
+
+function checkAllAchievements(progress) {
+  let earnedAnyAchievement = false;
+  
+  // Check streak-based achievements
+  if (progress.streak.count >= 7 && !progress.achievements.weekStreak) {
+    progress.achievements.weekStreak = true; 
+    earnedAnyAchievement = true;
+    showAchievementToast("7-Day Streak!", "You've practiced for 7 days in a row!");
+  }
+  if (progress.streak.count >= 30 && !progress.achievements.monthStreak) {
+    progress.achievements.monthStreak = true; 
+    earnedAnyAchievement = true;
+    showAchievementToast("30-Day Streak!", "You're a dedicated learner!");
+  }
+  
+  // Check other achievements
+  const level1Completed = progress.level1.alphabets.completed + progress.level1.numbers.completed;
+  if (level1Completed > 0 && !progress.achievements.firstSteps) {
+    progress.achievements.firstSteps = true; 
+    earnedAnyAchievement = true;
+    showAchievementToast("First Steps!", "You've started your learning journey!");
+  }
+  
+  const alphabetProgress = progress.level1.alphabets.completed / progress.level1.alphabets.total;
+  if (alphabetProgress >= 0.8 && !progress.achievements.alphabetMaster) {
+    progress.achievements.alphabetMaster = true; 
+    earnedAnyAchievement = true;
+    showAchievementToast("Alphabet Master!", "You've learned 80% of alphabets!");
+  }
+  
+  if (progress.level1.numbers.completed >= 50 && !progress.achievements.numberWhiz) {
+    progress.achievements.numberWhiz = true; 
+    earnedAnyAchievement = true;
+    showAchievementToast("Number Whiz!", "You've learned 50 numbers!");
+  }
+  
+  const wordCategoriesCompleted = Object.values(progress.level2).filter(cat => cat.completed >= cat.total).length;
+  if (wordCategoriesCompleted >= 3 && !progress.achievements.wordExpert) {
+    progress.achievements.wordExpert = true; 
+    earnedAnyAchievement = true;
+    showAchievementToast("Word Expert!", "You've mastered 3 word categories!");
+  }
+  
+  const sentenceCategoriesCompleted = Object.values(progress.level3).filter(cat => cat.completed >= cat.total).length;
+  if (sentenceCategoriesCompleted >= 2 && !progress.achievements.sentenceBuilder) {
+    progress.achievements.sentenceBuilder = true; 
+    earnedAnyAchievement = true;
+    showAchievementToast("Sentence Builder!", "You've completed 2 sentence categories!");
+  }
+  
+  if (earnedAnyAchievement) {
+    localStorage.setItem('linguaKidsHindiProgress', JSON.stringify(progress));
+  }
+  
+  return progress;
+}
+
+function showAchievementToast(title, description) {
+  const toast = document.getElementById("achievementToast");
+  if (!toast) return;
+  
+  toast.querySelector("#toastTitle").textContent = title;
+  toast.querySelector("#toastDesc").textContent = description;
+  
+  // Reset and show toast
+  toast.style.transform = 'translateY(120px)';
+  toast.style.opacity = '0';
+  
+  setTimeout(() => { 
+    toast.style.transform = 'translateY(0)'; 
+    toast.style.opacity = '1'; 
+  }, 10);
+  
+  setTimeout(() => { 
+    toast.style.transform = 'translateY(120px)'; 
+    toast.style.opacity = '0'; 
+  }, 3000);
+}
+
+// === Progress Display Functions ===
+function displayHindiProgress() {
+  let progress = initHindiProgress();
+  progress = updateHindiStreak(progress); // This will only update once per day
+  progress = checkAllAchievements(progress);
+  
+  // Update streak display
+  document.getElementById('streakCount').textContent = progress.streak.count;
+  document.getElementById('streakText').textContent = 
+    progress.streak.count === 1 ? 'दिन की लगातार सीख (Day Streak)' : 'दिनों की लगातार सीख (Day Streak)';
+
+  // Level 1
+  const level1Completed = progress.level1.alphabets.completed + progress.level1.numbers.completed;
+  const level1Total = progress.level1.alphabets.total + progress.level1.numbers.total;
+  const level1Percent = level1Total > 0 ? Math.round((level1Completed / level1Total) * 100) : 0;
+  document.getElementById('level1Progress').style.width = level1Percent + '%';
+  document.getElementById('level1Progress').textContent = level1Percent + '%';
+
+  // Level 2
+  let level2CompletedTotal = 0, level2PossibleTotal = 0;
+  Object.keys(progress.level2).forEach(cat => {
+    level2CompletedTotal += progress.level2[cat].completed;
+    level2PossibleTotal += progress.level2[cat].total;
+  });
+  const level2Percent = level2PossibleTotal > 0 ? Math.round((level2CompletedTotal / level2PossibleTotal) * 100) : 0;
+  document.getElementById('level2Progress').style.width = level2Percent + '%';
+  document.getElementById('level2Progress').textContent = level2Percent + '%';
+
+  // Level 3
+  let level3CompletedTotal = 0, level3PossibleTotal = 0;
+  Object.keys(progress.level3).forEach(cat => {
+    level3CompletedTotal += progress.level3[cat].completed;
+    level3PossibleTotal += progress.level3[cat].total;
+  });
+  const level3Percent = level3PossibleTotal > 0 ? Math.round((level3CompletedTotal / level3PossibleTotal) * 100) : 0;
+  document.getElementById('level3Progress').style.width = level3Percent + '%';
+  document.getElementById('level3Progress').textContent = level3Percent + '%';
+  
+  displayHindiAchievements(progress.achievements);
+}
+
+function displayHindiAchievements(achievements) {
+  const container = document.getElementById('achievementsContainer');
+  
+  container.innerHTML = ACHIEVEMENTS_DATA.map(ach => {
+    const isUnlocked = achievements[ach.id];
+    const unlockedText = 'Unlocked';
+    
+    return `
+      <div class="achievement-card ${isUnlocked ? 'unlocked' : 'locked'}" 
+           onclick="${isUnlocked ? `showAchievementDetail('${ach.id}')` : ''}">
+        <div class="achievement-icon">
+          <i class="fas ${ach.icon}"></i>
+        </div>
+        <div class="achievement-title">${ach.title}</div>
+        <div class="achievement-desc">${ach.desc}</div>
+        ${isUnlocked ? `<div style="margin-top: 5px; font-size: 0.7rem; color: #58cc02;"><i class="fas fa-check"></i> ${unlockedText}</div>` : ''}
+      </div>
+    `;
+  }).join('');
+}
+
+function showAchievementDetail(achievementId) {
+  const achievement = ACHIEVEMENTS_DATA.find(a => a.id === achievementId);
+  
+  if (achievement) {
+    alert(`🎉 ${achievement.title}\n\n${achievement.desc}\n\nKeep up the great work!`);
+  }
+}
+
+function goBackHome() {
+  window.location.href = "hindi.html";
+}
+
+function loadHindiLevel1() {
+  window.location.href = "hindi.html";
+}
+
+function resetProgress() {
+  document.getElementById('customResetModal').style.display = 'flex';
+}
+
+function performReset() {
+  // Clear all stored data
+  localStorage.removeItem('linguaKidsHindiProgress');
+  sessionStorage.clear();
+  
+  // Hide the modal
+  document.getElementById('customResetModal').style.display = 'none';
+  
+  // Reinitialize and refresh the display
+  initHindiProgress();
+  displayHindiProgress();
+  
+  // Show confirmation
+  showAchievementToast("Progress Reset!", "All your progress has been cleared.");
+  
+  // Sync reset to Firebase (set progress to 0) - silent, no UI
+  setTimeout(async () => {
+    const progress = initHindiProgress();
+    const overallProgress = calculateHindiOverallProgress(progress);
+    await saveHindiProgressToFirebase(progress, overallProgress, 'hindi');
+  }, 500);
+}
+
+// ===== GET OVERALL PROGRESS (for external use) =====
+function getHindiOverallProgress() {
+  const progress = JSON.parse(localStorage.getItem('linguaKidsHindiProgress') || 'null');
+  if (!progress) return 0;
+  return calculateHindiOverallProgress(progress).overall;
+}
+
+// Add event listener for page show to handle back/forward cache
+window.addEventListener('pageshow', function(event) {
+  if (event.persisted) {
+    console.log('Page restored from cache, refreshing progress display');
+    setTimeout(() => {
+      displayHindiProgress();
+    }, 100);
+  }
+});
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('DOM Content Loaded - Initializing Hindi progress page');
+  
+  function attemptDisplay(attempt = 0) {
+    const maxAttempts = 10;
+    const progress = localStorage.getItem('linguaKidsHindiProgress');
+    
+    if (progress || attempt >= maxAttempts) {
+      displayHindiProgress();
+      
+      // Try to load from Firebase after display (silent, no UI)
+      setTimeout(() => {
+        loadHindiProgressFromFirebase().then(() => {
+          // Refresh display after loading from Firebase
+          displayHindiProgress();
+        });
+      }, 1000);
+    } else {
+      setTimeout(() => attemptDisplay(attempt + 1), 100);
+    }
+  }
+  
+  setTimeout(() => attemptDisplay(), 300);
+});
+
+// Make functions globally accessible
+window.goBackHome = goBackHome;
+window.loadHindiLevel1 = loadHindiLevel1;
+window.resetProgress = resetProgress;
+window.performReset = performReset;
+window.showAchievementDetail = showAchievementDetail;
+window.updateHindiProgress = updateHindiProgress;
+window.getHindiOverallProgress = getHindiOverallProgress;
+window.calculateHindiOverallProgress = calculateHindiOverallProgress;
+window.saveHindiProgressToFirebase = saveHindiProgressToFirebase;
+window.loadHindiProgressFromFirebase = loadHindiProgressFromFirebase;
+</script>
+</body>
+</html>

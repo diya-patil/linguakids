@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>LinguaKids - Chinese Progress & Achievements</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body, html {
+      margin: 0; padding: 0;
+      font-family: 'Nunito', 'Quicksand', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+      background-color: #fffbf0;
+      background-image:
+        radial-gradient(circle at 8%  12%, #ff6bb540 0%, transparent 28%),
+        radial-gradient(circle at 92% 8%,  #43e97b40 0%, transparent 28%),
+        radial-gradient(circle at 50% 50%, #f9ca2440 0%, transparent 40%),
+        radial-gradient(circle at 15% 88%, #38f9d740 0%, transparent 28%),
+        radial-gradient(circle at 88% 85%, #4facfe40 0%, transparent 28%),
+        radial-gradient(circle at 70% 30%, #fa709a30 0%, transparent 22%);
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 0;
+      background-image:
+        radial-gradient(circle, #ff6bb5 2px, transparent 2px),
+        radial-gradient(circle, #43e97b 2px, transparent 2px),
+        radial-gradient(circle, #f9ca24 2px, transparent 2px),
+        radial-gradient(circle, #4facfe 2px, transparent 2px),
+        radial-gradient(circle, #fa709a 2px, transparent 2px),
+        radial-gradient(circle, #ff6b6b 2px, transparent 2px);
+      background-size: 120px 120px, 97px 97px, 143px 143px, 83px 83px, 107px 107px, 131px 131px;
+      background-position: 10px 15px, 55px 70px, 30px 40px, 80px 10px, 50px 100px, 100px 55px;
+      opacity: 0.45;
+      animation: driftDots 18s linear infinite alternate;
+    }
+    @keyframes driftDots {
+      from { background-position: 10px 15px, 55px 70px, 30px 40px, 80px 10px, 50px 100px, 100px 55px; }
+      to   { background-position: 22px 38px, 44px 52px, 52px 62px, 62px 28px, 68px 82px, 82px 72px; }
+    }
+    @keyframes titleWobble {
+      0%,100% { transform: rotate(-1deg) scale(1); }
+      25%      { transform: rotate(1.5deg) scale(1.02); }
+      75%      { transform: rotate(-0.5deg) scale(0.98); }
+    }
+    @keyframes cardPop {
+      from { transform: scale(0.5) rotate(-8deg); opacity: 0; }
+      to   { transform: scale(1)   rotate(0deg);  opacity: 1; }
+    }
+    .btn {
+      background: linear-gradient(160deg, #43e97b, #38f9d7);
+      border: none;
+      border-bottom: 5px solid #1db863;
+      border-right: 3px solid #1db863;
+      color: white;
+      padding: 11px 26px;
+      border-radius: 999px;
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.05rem; font-weight: 700;
+      cursor: pointer; margin: 8px 5px;
+      display: inline-block;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.15);
+      box-shadow: 0 6px 18px rgba(67,233,123,0.35);
+      transition: transform 0.15s cubic-bezier(.34,1.56,.64,1), box-shadow 0.15s, border-bottom 0.1s;
+    }
+    .btn:hover  { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 24px rgba(67,233,123,0.45); }
+    .btn:active { transform: translateY(4px) scale(0.97); border-bottom-width: 1px; border-right-width: 1px; box-shadow: none; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .toast {
+      position: fixed; bottom: 20px; right: 20px;
+      background: linear-gradient(135deg, #43e97b, #38f9d7);
+      color: white; padding: 14px 20px; border-radius: 20px;
+      border-bottom: 4px solid #1db863;
+      box-shadow: 0 6px 20px rgba(67,233,123,0.4);
+      z-index: 2000; display: flex; align-items: center; gap: 10px;
+      font-weight: 800; font-family: 'Baloo 2', cursive;
+      transform: translateY(120px); opacity: 0;
+      transition: transform 0.4s cubic-bezier(.34,1.56,.64,1), opacity 0.4s ease-out;
+      max-width: 350px;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast i { font-size: 1.2rem; }
+    .progress-bar {
+      width: 100%; height: 14px; background: #f0f0f0;
+      border-radius: 999px; margin: 10px 0; overflow: hidden;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.08);
+    }
+    .progress-fill {
+      height: 100%; background: linear-gradient(to right, #43e97b, #38f9d7);
+      width: 0%; border-radius: 999px;
+      transition: width 0.8s cubic-bezier(.34,1.2,.64,1);
+      box-shadow: 0 2px 8px rgba(67,233,123,0.4);
+      text-align: center; color: white; font-weight: 800;
+      font-size: 0.85rem; line-height: 14px;
+    }
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(14,165,233,0.15);
+      backdrop-filter: blur(8px);
+      display: none; justify-content: center; align-items: center; z-index: 2000;
+    }
+    @keyframes modalBounceIn {
+      0%   { transform: scale(0.4) rotate(-8deg); opacity: 0; }
+      70%  { transform: scale(1.06) rotate(2deg); opacity: 1; }
+      100% { transform: scale(1)    rotate(0deg); opacity: 1; }
+    }
+
+    body { display: block; }
+    #app { max-width: 800px; margin: auto; padding: 15px 18px 30px; position: relative; z-index: 1; }
+
+    h2 {
+      text-align: center; font-family: 'Baloo 2', cursive;
+      font-size: 2.4rem; font-weight: 800;
+      color: #f9ca24;
+      text-shadow: 3px 3px 0 #d4a800, 5px 5px 0 rgba(249,202,36,0.2);
+      margin: 10px 0 6px;
+      animation: titleWobble 3.5s ease-in-out infinite;
+    }
+    h3 { font-family: 'Baloo 2', cursive; font-size: 1.3rem; font-weight: 800; color: #0ea5e9; margin: 0 0 14px; }
+
+    .dashboard {
+      background: rgba(255,255,255,0.92); border-radius: 28px; padding: 24px 22px; margin: 16px 0;
+      border: 3px solid #fde68a;
+      box-shadow: 0 8px 0 #d4a800, 0 14px 30px rgba(249,202,36,0.15);
+      backdrop-filter: blur(6px);
+      animation: cardPop 0.4s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    .streak-container { display: flex; align-items: center; justify-content: center; margin-bottom: 22px; }
+    .streak-box {
+      background: linear-gradient(160deg, #fb923c, #ff5a5f);
+      border-bottom: 5px solid #c0392b; color: white;
+      padding: 12px 28px; border-radius: 999px;
+      font-family: 'Baloo 2', cursive; font-size: 1.3rem; font-weight: 800;
+      display: flex; align-items: center; gap: 10px;
+      box-shadow: 0 6px 20px rgba(251,146,60,0.4);
+      animation: streakPulse 2.5s ease-in-out infinite;
+    }
+    @keyframes streakPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.04); } }
+    .progress-section { margin: 20px 0; }
+    #level1Progress { background: linear-gradient(to right, #43e97b, #38f9d7); }
+    #level2Progress { background: linear-gradient(to right, #4facfe, #38f9d7); }
+    #level3Progress { background: linear-gradient(to right, #f472b6, #fb923c); }
+
+    .achievements-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 14px; margin-top: 16px; }
+    .achievement-card {
+      background: white; padding: 15px 10px; border-radius: 20px; text-align: center;
+      border: 3px solid #e5e7eb;
+      box-shadow: 0 5px 0 #d1d5db, 0 8px 16px rgba(0,0,0,0.06);
+      transition: transform 0.22s cubic-bezier(.34,1.7,.64,1), box-shadow 0.2s;
+      animation: cardPop 0.4s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    .achievement-card:not(.locked) {
+      border-color: #f9ca24; background: linear-gradient(135deg, #fffbeb, #ffffff);
+      box-shadow: 0 5px 0 #d4a800, 0 8px 16px rgba(249,202,36,0.2);
+    }
+    .achievement-card:not(.locked):hover { transform: translateY(-7px) rotate(-1deg) scale(1.05); }
+    .achievement-card.locked { filter: grayscale(1); opacity: 0.55; background: #f5f5f5; }
+    .achievement-icon { font-size: 2.2rem; margin-bottom: 8px; }
+    .achievement-card:not(.locked) .achievement-icon { color: #f9ca24; }
+    .achievement-card.locked .achievement-icon { color: #bbb; }
+    .achievement-title { font-weight: 800; font-size: 0.88rem; margin-bottom: 4px; font-family: 'Baloo 2', cursive; color: #333; }
+    .achievement-desc  { font-size: 0.75rem; color: #888; line-height: 1.3; }
+
+    .btn-danger {
+      background: linear-gradient(160deg, #ff6b6b, #ee5a24);
+      border-bottom-color: #c0392b; border-right-color: #c0392b;
+      box-shadow: 0 6px 18px rgba(255,107,107,0.35);
+    }
+    .btn-danger:hover { box-shadow: 0 10px 24px rgba(255,107,107,0.45); }
+
+    .modal-content {
+      background: linear-gradient(160deg, #fffef0, #f0fffe);
+      padding: 32px 28px; border-radius: 32px;
+      box-shadow: 0 0 0 5px #f9ca24, 0 0 0 9px #43e97b, 0 25px 60px rgba(0,0,0,0.15);
+      max-width: 90%; width: 380px; text-align: center;
+      animation: modalBounceIn 0.45s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    .modal-content h3 { font-family: 'Baloo 2', cursive; color: #ff5a5f; font-size: 1.8rem; font-weight: 800; margin: 0 0 14px; }
+    .modal-content p  { font-size: 1.1rem; margin-bottom: 24px; color: #555; line-height: 1.5; font-weight: 700; }
+    .modal-actions { display: flex; gap: 14px; justify-content: center; }
+    .modal-actions .btn { padding: 10px 28px; font-size: 1.05rem; margin: 0; min-width: 100px; }
+    .btn-secondary { background: linear-gradient(160deg, #94a3b8, #64748b); border-bottom-color: #475569; border-right-color: #475569; }
+
+    @media (max-width: 600px) { .achievements-grid { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); } }
+  </style>
+</head>
+<body>
+
+<div id="app">
+  <div style="text-align:left; margin-bottom:10px;">
+    <button id="globalBack" class="btn" onclick="goBack()">Back</button>
+  </div>
+  
+  <h2 id="pageTitle">My Progress</h2>
+  
+  <div class="dashboard">
+    <div class="streak-container">
+      <div class="streak-box">
+        <i class="fas fa-fire"></i>
+        <span id="streakCount">0</span> <span id="dayStreakLabel">Day Streak</span>
+      </div>
+    </div>
+    
+    <div class="progress-section">
+      <h3 id="levelProgressTitle">Level Progress</h3>
+      <div>
+        <span id="level1Label">Level 1: Pinyin & Numbers</span>
+        <div class="progress-bar">
+          <div class="progress-fill" id="level1Progress"></div>
+        </div>
+      </div>
+      <div>
+        <span id="level2Label">Level 2: Basic Words</span>
+        <div class="progress-bar">
+          <div class="progress-fill" id="level2Progress"></div>
+        </div>
+      </div>
+      <div>
+        <span id="level3Label">Level 3: Sentences & Expressions</span>
+        <div class="progress-bar">
+          <div class="progress-fill" id="level3Progress"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="progress-section">
+      <h3 id="achievementsTitle">Achievements</h3>
+      <div class="achievements-grid" id="achievementsContainer"></div>
+    </div>
+  </div>
+  
+  <div style="text-align: center; margin-top: 20px;">
+    <button class="btn" id="continueBtn" onclick="loadChineseHome()">Continue Learning</button>
+    <button class="btn btn-danger" id="resetBtn" onclick="resetProgress()">Reset Progress</button>
+  </div>
+</div>
+
+<div id="achievementToast" class="toast">
+  <i class="fas fa-trophy"></i>
+  <div>
+    <div id="toastTitle">Achievement Unlocked!</div>
+    <div id="toastDesc">You've earned a new badge.</div>
+  </div>
+</div>
+
+<div id="customResetModal" class="modal-overlay">
+  <div class="modal-content">
+    <p id="modalMessage">All your progress will be reset. Are you sure you want to continue?</p>
+    <div class="modal-actions">
+      <button class="btn btn-danger" id="yesBtn" onclick="performReset()">Yes</button>
+      <button class="btn" id="noBtn" onclick="document.getElementById('customResetModal').style.display='none'">No</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== TRANSLATIONS =====
+const translations = {
+  english: {
+    back: "Back",
+    pageTitle: "My Progress",
+    dayStreak: "Day Streak",
+    levelProgress: "Level Progress",
+    level1: "Level 1: Pinyin & Numbers",
+    level2: "Level 2: Basic Words",
+    level3: "Level 3: Sentences & Expressions",
+    achievements: "Achievements",
+    continueLearning: "Continue Learning",
+    resetProgress: "Reset Progress",
+    resetConfirm: "All your progress will be reset. Are you sure you want to continue?",
+    yes: "Yes",
+    no: "No",
+    progressReset: "Progress Reset!",
+    dataCleared: "Your data has been cleared.",
+    achievementUnlocked: "Achievement Unlocked!",
+    earnedBadge: "You've earned a new badge.",
+    // Achievement titles and descriptions
+    firstSteps: "First Steps",
+    firstStepsDesc: "Complete your first Chinese activity",
+    initialMaster: "Initials Master",
+    initialMasterDesc: "Learn all Chinese initials",
+    finalMaster: "Finals Master",
+    finalMasterDesc: "Learn all Chinese finals",
+    numberWhiz: "Number Whiz",
+    numberWhizDesc: "Learn 50 Chinese numbers",
+    wordExpert: "Word Expert",
+    wordExpertDesc: "Master 3 Chinese word categories",
+    sentenceBuilder: "Sentence Builder",
+    sentenceBuilderDesc: "Complete Level 3",
+    weekStreak: "7-Day Streak",
+    weekStreakDesc: "Practice Chinese for 7 consecutive days",
+    monthStreak: "30-Day Streak",
+    monthStreakDesc: "Practice Chinese for 30 consecutive days"
+  },
+  marathi: {
+    back: "मागे",
+    pageTitle: "माझी प्रगती",
+    dayStreak: "दिवसांचा सिलसिला",
+    levelProgress: "स्तर प्रगती",
+    level1: "स्तर १: पिनयिन आणि संख्या",
+    level2: "स्तर २: मूलभूत शब्द",
+    level3: "स्तर ३: वाक्य आणि अभिव्यक्ती",
+    achievements: "यशे",
+    continueLearning: "शिकत राहा",
+    resetProgress: "प्रगती रीसेट करा",
+    resetConfirm: "तुमची सर्व प्रगती रीसेट होईल. तुम्हाला खात्री आहे का?",
+    yes: "होय",
+    no: "नाही",
+    progressReset: "प्रगती रीसेट!",
+    dataCleared: "तुमचा डेटा साफ झाला आहे.",
+    achievementUnlocked: "यश मिळवले!",
+    earnedBadge: "तुम्ही नवीन बॅज मिळवला आहे.",
+    firstSteps: "पहिली पावले",
+    firstStepsDesc: "तुमची पहिली चीनी क्रिया पूर्ण करा",
+    initialMaster: "आद्याक्षर मास्टर",
+    initialMasterDesc: "सर्व चीनी आद्याक्षरे शिका",
+    finalMaster: "अंत्याक्षर मास्टर",
+    finalMasterDesc: "सर्व चीनी अंत्याक्षरे शिका",
+    numberWhiz: "संख्या तज्ञ",
+    numberWhizDesc: "५० चीनी संख्या शिका",
+    wordExpert: "शब्द तज्ञ",
+    wordExpertDesc: "३ चीनी शब्द श्रेणी पारंगत करा",
+    sentenceBuilder: "वाक्य निर्माता",
+    sentenceBuilderDesc: "स्तर ३ पूर्ण करा",
+    weekStreak: "७-दिवस सिलसिला",
+    weekStreakDesc: "सलग ७ दिवस चीनी सराव करा",
+    monthStreak: "३०-दिवस सिलसिला",
+    monthStreakDesc: "सलग ३० दिवस चीनी सराव करा"
+  },
+  hindi: {
+    back: "वापस",
+    pageTitle: "मेरी प्रगति",
+    dayStreak: "दिवसों का सिलसिला",
+    levelProgress: "स्तर प्रगति",
+    level1: "स्तर १: पिनयिन और संख्याएँ",
+    level2: "स्तर २: मूल शब्द",
+    level3: "स्तर ३: वाक्य और अभिव्यक्तियाँ",
+    achievements: "उपलब्धियाँ",
+    continueLearning: "सीखना जारी रखें",
+    resetProgress: "प्रगति रीसेट करें",
+    resetConfirm: "आपकी सारी प्रगति रीसेट हो जाएगी। क्या आप जारी रखना चाहते हैं?",
+    yes: "हाँ",
+    no: "नहीं",
+    progressReset: "प्रगति रीसेट!",
+    dataCleared: "आपका डेटा साफ़ हो गया है।",
+    achievementUnlocked: "उपलब्धि अनलॉक!",
+    earnedBadge: "आपने एक नया बैज प्राप्त किया है।",
+    firstSteps: "पहला कदम",
+    firstStepsDesc: "अपनी पहली चीनी गतिविधि पूरी करें",
+    initialMaster: "आद्याक्षर मास्टर",
+    initialMasterDesc: "सभी चीनी आद्याक्षर सीखें",
+    finalMaster: "अंत्याक्षर मास्टर",
+    finalMasterDesc: "सभी चीनी अंत्याक्षर सीखें",
+    numberWhiz: "संख्या विशेषज्ञ",
+    numberWhizDesc: "५० चीनी संख्याएँ सीखें",
+    wordExpert: "शब्द विशेषज्ञ",
+    wordExpertDesc: "३ चीनी शब्द श्रेणियाँ पारंगत करें",
+    sentenceBuilder: "वाक्य निर्माता",
+    sentenceBuilderDesc: "स्तर ३ पूरा करें",
+    weekStreak: "७-दिवस सिलसिला",
+    weekStreakDesc: "लगातार ७ दिन चीनी अभ्यास करें",
+    monthStreak: "३०-दिवस सिलसिला",
+    monthStreakDesc: "लगातार ३० दिन चीनी अभ्यास करें"
+  }
+};
+
+// ===== USER MANAGEMENT FUNCTIONS =====
+function getUserLanguageKey() {
+  const username = getCurrentUser();
+  return `linguaKids_${username}_chineseInterfaceLang`;
+}
+
+function getCurrentUser() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlUser = urlParams.get('user');
+  if (urlUser) {
+    sessionStorage.setItem('currentUser', urlUser);
+    return urlUser;
+  }
+  
+  const sessionUser = sessionStorage.getItem('currentUser');
+  if (sessionUser) {
+    return sessionUser;
+  }
+  
+  return 'guest';
+}
+
+let interfaceLang = 'english';
+
+function loadInterfaceLanguage() {
+  const storageKey = getUserLanguageKey();
+  const savedLang = localStorage.getItem(storageKey);
+  
+  if (savedLang && (savedLang === 'english' || savedLang === 'marathi' || savedLang === 'hindi')) {
+    interfaceLang = savedLang;
+  } else {
+    interfaceLang = 'english';
+  }
+  
+  // Check URL for language parameter
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlLang = urlParams.get('lang');
+  if (urlLang && (urlLang === 'english' || urlLang === 'marathi' || urlLang === 'hindi')) {
+    interfaceLang = urlLang;
+  }
+  
+  // Update UI text
+  updateUIText();
+  
+  return interfaceLang;
+}
+
+function updateUIText() {
+  const t = translations[interfaceLang];
+  
+  // Update back button
+  document.getElementById('globalBack').textContent = t.back;
+  
+  // Update page title
+  document.getElementById('pageTitle').textContent = t.pageTitle;
+  
+  // Update streak label
+  document.getElementById('dayStreakLabel').textContent = t.dayStreak;
+  
+  // Update section titles
+  document.getElementById('levelProgressTitle').textContent = t.levelProgress;
+  document.getElementById('achievementsTitle').textContent = t.achievements;
+  
+  // Update level labels
+  document.getElementById('level1Label').textContent = t.level1;
+  document.getElementById('level2Label').textContent = t.level2;
+  document.getElementById('level3Label').textContent = t.level3;
+  
+  // Update buttons
+  document.getElementById('continueBtn').textContent = t.continueLearning;
+  document.getElementById('resetBtn').textContent = t.resetProgress;
+  
+  // Update modal
+  document.getElementById('modalMessage').textContent = t.resetConfirm;
+  document.getElementById('yesBtn').textContent = t.yes;
+  document.getElementById('noBtn').textContent = t.no;
+}
+
+function goBack() {
+  window.location.href = `chinese.html?lang=${interfaceLang}`;
+}
+
+const CHINESE_PROGRESS_KEY = 'linguaKidsChineseProgress';
+
+function initChineseProgress() {
+  const defaultProgress = {
+    level1: { 
+      initials: { completed: 0, total: 23 }, // 23 initials
+      finals: { completed: 0, total: 35 },   // 35 finals
+      numbers: { completed: 0, total: 100 }   // 100 numbers
+    },
+    level2: {
+      fruits: { completed: 0, total: 15 },
+      vegetables: { completed: 0, total: 15 },
+      animals: { completed: 0, total: 20 },
+      birds: { completed: 0, total: 14 },
+      vehicles: { completed: 0, total: 19 },
+      colours: { completed: 0, total: 10 }
+    },
+    level3: {
+      greetings: { completed: 0, total: 19 },
+      activities: { completed: 0, total: 20 },
+      questions: { completed: 0, total: 15 }
+    },
+    achievements: { 
+      firstSteps: false, 
+      initialMaster: false, 
+      finalMaster: false, 
+      numberWhiz: false, 
+      wordExpert: false, 
+      sentenceBuilder: false, 
+      weekStreak: false, 
+      monthStreak: false 
+    },
+    streak: { count: 0, lastDate: null },
+    sessionDate: null
+  };
+
+  let progress;
+  try {
+    progress = JSON.parse(localStorage.getItem(CHINESE_PROGRESS_KEY));
+    if (!progress) {
+      progress = defaultProgress;
+      localStorage.setItem(CHINESE_PROGRESS_KEY, JSON.stringify(progress));
+    } else {
+      // Migrate old data structure if needed
+      progress = migrateProgressData(progress);
+    }
+  } catch (e) {
+    progress = defaultProgress;
+    localStorage.setItem(CHINESE_PROGRESS_KEY, JSON.stringify(progress));
+  }
+  
+  // Check achievements on initialization
+  updateAchievements(progress);
+  return progress;
+}
+
+function migrateProgressData(progress) {
+  let modified = false;
+  
+  // Ensure level1 structure
+  if (!progress.level1) {
+    progress.level1 = {
+      initials: { completed: 0, total: 23 },
+      finals: { completed: 0, total: 35 },
+      numbers: { completed: 0, total: 100 }
+    };
+    modified = true;
+  } else {
+    if (!progress.level1.initials) {
+      progress.level1.initials = { completed: 0, total: 23 };
+      modified = true;
+    }
+    if (!progress.level1.finals) {
+      progress.level1.finals = { completed: 0, total: 35 };
+      modified = true;
+    }
+    if (!progress.level1.numbers) {
+      progress.level1.numbers = { completed: 0, total: 100 };
+      modified = true;
+    }
+  }
+  
+  // Ensure level2 structure with correct totals
+  if (!progress.level2) {
+    progress.level2 = {
+      fruits: { completed: 0, total: 15 },
+      vegetables: { completed: 0, total: 15 },
+      animals: { completed: 0, total: 20 },
+      birds: { completed: 0, total: 14 },
+      vehicles: { completed: 0, total: 19 },
+      colours: { completed: 0, total: 10 }
+    };
+    modified = true;
+  } else {
+    // Update totals if they're incorrect
+    const correctTotals = {
+      fruits: 15,
+      vegetables: 15,
+      animals: 20,
+      birds: 14,
+      vehicles: 19,
+      colours: 10
+    };
+    
+    Object.keys(correctTotals).forEach(cat => {
+      if (!progress.level2[cat]) {
+        progress.level2[cat] = { completed: 0, total: correctTotals[cat] };
+        modified = true;
+      } else if (progress.level2[cat].total !== correctTotals[cat]) {
+        progress.level2[cat].total = correctTotals[cat];
+        if (progress.level2[cat].completed > correctTotals[cat]) {
+          progress.level2[cat].completed = correctTotals[cat];
+        }
+        modified = true;
+      }
+    });
+  }
+  
+  // Ensure level3 structure with correct totals
+  if (!progress.level3) {
+    progress.level3 = {
+      greetings: { completed: 0, total: 19 },
+      activities: { completed: 0, total: 20 },
+      questions: { completed: 0, total: 15 }
+    };
+    modified = true;
+  } else {
+    const correctLevel3Totals = {
+      greetings: 19,
+      activities: 20,
+      questions: 15
+    };
+    
+    Object.keys(correctLevel3Totals).forEach(cat => {
+      if (!progress.level3[cat]) {
+        progress.level3[cat] = { completed: 0, total: correctLevel3Totals[cat] };
+        modified = true;
+      } else if (progress.level3[cat].total !== correctLevel3Totals[cat]) {
+        progress.level3[cat].total = correctLevel3Totals[cat];
+        if (progress.level3[cat].completed > correctLevel3Totals[cat]) {
+          progress.level3[cat].completed = correctLevel3Totals[cat];
+        }
+        modified = true;
+      }
+    });
+  }
+  
+  // Ensure achievements structure
+  if (!progress.achievements) {
+    progress.achievements = {
+      firstSteps: false,
+      initialMaster: false,
+      finalMaster: false,
+      numberWhiz: false,
+      wordExpert: false,
+      sentenceBuilder: false,
+      weekStreak: false,
+      monthStreak: false
+    };
+    modified = true;
+  }
+  
+  // Ensure streak structure
+  if (!progress.streak) {
+    progress.streak = { count: 0, lastDate: null };
+    modified = true;
+  }
+  
+  if (modified) {
+    localStorage.setItem(CHINESE_PROGRESS_KEY, JSON.stringify(progress));
+  }
+  
+  return progress;
+}
+
+function updateAchievements(progress) {
+  if (!progress) return;
+  
+  let earnedAchievement = false;
+  
+  // First Steps: Complete any activity
+  const anyCompleted = 
+    (progress.level1.initials?.completed || 0) > 0 ||
+    (progress.level1.finals?.completed || 0) > 0 ||
+    (progress.level1.numbers?.completed || 0) > 0 ||
+    Object.values(progress.level2 || {}).some(cat => cat.completed > 0) ||
+    Object.values(progress.level3 || {}).some(cat => cat.completed > 0);
+  
+  if (!progress.achievements.firstSteps && anyCompleted) {
+    progress.achievements.firstSteps = true;
+    earnedAchievement = true;
+    showAchievementToast("First Steps!", "You've completed your first Chinese activity!");
+  }
+  
+  // Initials Master: Learn all initials
+  if (!progress.achievements.initialMaster && 
+      progress.level1.initials?.completed >= progress.level1.initials?.total) {
+    progress.achievements.initialMaster = true;
+    earnedAchievement = true;
+    showAchievementToast("Initials Master!", "You've learned all Chinese initials!");
+  }
+  
+  // Finals Master: Learn all finals
+  if (!progress.achievements.finalMaster && 
+      progress.level1.finals?.completed >= progress.level1.finals?.total) {
+    progress.achievements.finalMaster = true;
+    earnedAchievement = true;
+    showAchievementToast("Finals Master!", "You've learned all Chinese finals!");
+  }
+  
+  // Number Whiz: Learn 50 numbers
+  if (!progress.achievements.numberWhiz && 
+      (progress.level1.numbers?.completed || 0) >= 50) {
+    progress.achievements.numberWhiz = true;
+    earnedAchievement = true;
+    showAchievementToast("Number Whiz!", "You know your Chinese numbers well!");
+  }
+  
+  // Word Expert: Master 3 word categories (80% completion in each)
+  if (!progress.achievements.wordExpert) {
+    const wordCategories = Object.keys(progress.level2 || {});
+    const masteredCategories = wordCategories.filter(cat => 
+      progress.level2[cat]?.completed / progress.level2[cat]?.total >= 0.8
+    ).length;
+    
+    if (masteredCategories >= 3) {
+      progress.achievements.wordExpert = true;
+      earnedAchievement = true;
+      showAchievementToast("Word Expert!", "You've mastered 3 Chinese word categories!");
+    }
+  }
+  
+  // Sentence Builder: Complete Level 3 (all categories at 80%)
+  if (!progress.achievements.sentenceBuilder) {
+    const level3Categories = Object.keys(progress.level3 || {});
+    const masteredLevel3 = level3Categories.filter(cat => 
+      progress.level3[cat]?.completed / progress.level3[cat]?.total >= 0.8
+    ).length;
+    
+    if (masteredLevel3 >= 2) {
+      progress.achievements.sentenceBuilder = true;
+      earnedAchievement = true;
+      showAchievementToast("Sentence Builder!", "You can form simple Chinese sentences!");
+    }
+  }
+  
+  // Streak achievements
+  if (!progress.achievements.weekStreak && (progress.streak?.count || 0) >= 7) {
+    progress.achievements.weekStreak = true;
+    earnedAchievement = true;
+    showAchievementToast("7-Day Streak!", "You've practiced Chinese for 7 days in a row!");
+  }
+  
+  if (!progress.achievements.monthStreak && (progress.streak?.count || 0) >= 30) {
+    progress.achievements.monthStreak = true;
+    earnedAchievement = true;
+    showAchievementToast("30-Day Streak!", "You're a dedicated Chinese learner!");
+  }
+  
+  if (earnedAchievement) {
+    localStorage.setItem(CHINESE_PROGRESS_KEY, JSON.stringify(progress));
+  }
+}
+
+function displayProgress() {
+  const progress = JSON.parse(localStorage.getItem(CHINESE_PROGRESS_KEY));
+  
+  if (!progress) {
+    initChineseProgress();
+    displayProgress(); // Recursive call after initialization
+    return;
+  }
+  
+  // Level 1 Progress - Average of initials, finals, and numbers
+  const initialsProgress = progress.level1.initials.completed / progress.level1.initials.total;
+  const finalsProgress = progress.level1.finals.completed / progress.level1.finals.total;
+  const numbersProgress = progress.level1.numbers.completed / progress.level1.numbers.total;
+  const level1TotalProgress = (initialsProgress + finalsProgress + numbersProgress) / 3 * 100;
+  document.getElementById('level1Progress').style.width = Math.min(level1TotalProgress, 100) + '%';
+  document.getElementById('level1Progress').textContent = Math.round(Math.min(level1TotalProgress, 100)) + '%';
+  
+  // Level 2 Progress - Average of all categories
+  const level2Categories = Object.keys(progress.level2);
+  const level2ProgressSum = level2Categories.reduce((sum, cat) =>
+    sum + (progress.level2[cat].completed / progress.level2[cat].total)
+  , 0);
+  const level2TotalProgress = (level2ProgressSum / level2Categories.length) * 100;
+  document.getElementById('level2Progress').style.width = Math.min(level2TotalProgress, 100) + '%';
+  document.getElementById('level2Progress').textContent = Math.round(Math.min(level2TotalProgress, 100)) + '%';
+  
+  // Level 3 Progress - Average of all categories
+  const level3Categories = Object.keys(progress.level3);
+  const level3ProgressSum = level3Categories.reduce((sum, cat) =>
+    sum + (progress.level3[cat].completed / progress.level3[cat].total)
+  , 0);
+  const level3TotalProgress = (level3ProgressSum / level3Categories.length) * 100;
+  document.getElementById('level3Progress').style.width = Math.min(level3TotalProgress, 100) + '%';
+  document.getElementById('level3Progress').textContent = Math.round(Math.min(level3TotalProgress, 100)) + '%';
+  
+  document.getElementById('streakCount').textContent = progress.streak.count;
+  
+  displayAchievements(progress.achievements);
+}
+
+function displayAchievements(achievements) {
+  const t = translations[interfaceLang];
+  
+  const achievementsData = [
+    { id: 'firstSteps', icon: 'fa-baby', title: t.firstSteps, desc: t.firstStepsDesc, color: '#FF6B6B' },
+    { id: 'initialMaster', icon: 'fa-font', title: t.initialMaster, desc: t.initialMasterDesc, color: '#4ECDC4' },
+    { id: 'finalMaster', icon: 'fa-language', title: t.finalMaster, desc: t.finalMasterDesc, color: '#FFD166' },
+    { id: 'numberWhiz', icon: 'fa-calculator', title: t.numberWhiz, desc: t.numberWhizDesc, color: '#06D6A0' },
+    { id: 'wordExpert', icon: 'fa-book', title: t.wordExpert, desc: t.wordExpertDesc, color: '#118AB2' },
+    { id: 'sentenceBuilder', icon: 'fa-comment', title: t.sentenceBuilder, desc: t.sentenceBuilderDesc, color: '#EF476F' },
+    { id: 'weekStreak', icon: 'fa-fire', title: t.weekStreak, desc: t.weekStreakDesc, color: '#FF5400' },
+    { id: 'monthStreak', icon: 'fa-fire', title: t.monthStreak, desc: t.monthStreakDesc, color: '#FF0000' }
+  ];
+  
+  const container = document.getElementById('achievementsContainer');
+  container.innerHTML = achievementsData.map(ach => `
+    <div class="achievement-card ${achievements[ach.id] ? '' : 'locked'}">
+      <div class="achievement-icon" style="color: ${ach.color}">
+        <i class="fas ${ach.icon}"></i>
+      </div>
+      <div class="achievement-title">${ach.title}</div>
+      <div class="achievement-desc">${ach.desc}</div>
+    </div>
+  `).join('');
+}
+
+function loadChineseHome() {
+  window.location.href = `chinese.html?lang=${interfaceLang}`;
+}
+
+function resetProgress() {
+  document.getElementById('customResetModal').style.display = 'flex';
+}
+
+function performReset() {
+  localStorage.removeItem(CHINESE_PROGRESS_KEY);
+  sessionStorage.clear();
+  
+  document.getElementById('customResetModal').style.display = 'none';
+
+  initChineseProgress();
+  displayProgress();
+  
+  const t = translations[interfaceLang];
+  showAchievementToast(t.progressReset, t.dataCleared);
+}
+
+// Function to show achievement toast
+function showAchievementToast(title, description) {
+  const toast = document.getElementById('achievementToast');
+  if (!toast) return;
+  
+  document.getElementById('toastTitle').textContent = title;
+  document.getElementById('toastDesc').textContent = description;
+  
+  toast.classList.add('show');
+  
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 3000);
+}
+
+// Add an interval to check for achievements periodically (for when returning to this page)
+function startAchievementChecker() {
+  // Check every 5 seconds for new achievements
+  setInterval(() => {
+    const progress = JSON.parse(localStorage.getItem(CHINESE_PROGRESS_KEY));
+    if (progress) {
+      updateAchievements(progress);
+      displayAchievements(progress.achievements);
+    }
+  }, 5000);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  loadInterfaceLanguage();
+  
+  // Initialize progress and display
+  initChineseProgress();
+  displayProgress();
+  
+  // Update toast with translated default text
+  const t = translations[interfaceLang];
+  document.getElementById('toastTitle').textContent = t.achievementUnlocked;
+  document.getElementById('toastDesc').textContent = t.earnedBadge;
+  
+  // Start checking for achievements
+  startAchievementChecker();
+});
+
+// Make functions globally accessible
+window.goBack = goBack;
+window.loadChineseHome = loadChineseHome;
+window.resetProgress = resetProgress;
+window.performReset = performReset;
+window.showAchievementToast = showAchievementToast;
+window.initChineseProgress = initChineseProgress;
+window.displayProgress = displayProgress;
+</script>
+
+<script src="chprogress.js"></script>
+
+</body>
+</html>

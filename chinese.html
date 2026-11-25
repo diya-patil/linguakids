@@ -1,0 +1,1986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinguaKids - Chinese</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       LINGUAKIDS — MEGA FUN CSS OVERHAUL 🎉 (Chinese Version)
+    ============================================================ */
+
+    body {
+      font-family: 'Nunito', 'Quicksand', sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background-color: #fffbf0;
+      background-image:
+        radial-gradient(circle at 8%  12%, #ff6bb540 0%, transparent 28%),
+        radial-gradient(circle at 92% 8%,  #43e97b40 0%, transparent 28%),
+        radial-gradient(circle at 50% 50%, #f9ca2440 0%, transparent 40%),
+        radial-gradient(circle at 15% 88%, #38f9d740 0%, transparent 28%),
+        radial-gradient(circle at 88% 85%, #4facfe40 0%, transparent 28%),
+        radial-gradient(circle at 70% 30%, #fa709a30 0%, transparent 22%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        radial-gradient(circle, #ff6bb5 2px, transparent 2px),
+        radial-gradient(circle, #43e97b 2px, transparent 2px),
+        radial-gradient(circle, #f9ca24 2px, transparent 2px),
+        radial-gradient(circle, #4facfe 2px, transparent 2px),
+        radial-gradient(circle, #fa709a 2px, transparent 2px),
+        radial-gradient(circle, #ff6b6b 2px, transparent 2px);
+      background-size: 120px 120px, 97px 97px, 143px 143px, 83px 83px, 107px 107px, 131px 131px;
+      background-position: 10px 15px, 55px 70px, 30px 40px, 80px 10px, 50px 100px, 100px 55px;
+      opacity: 0.45;
+      animation: driftDots 18s linear infinite alternate;
+    }
+
+    @keyframes driftDots {
+      from { background-position: 10px 15px, 55px 70px, 30px 40px, 80px 10px, 50px 100px, 100px 55px; }
+      to   { background-position: 22px 38px, 44px 52px, 52px 62px, 62px 28px, 68px 82px, 82px 72px; }
+    }
+
+    #app {
+      max-width: 1020px;
+      margin: auto;
+      padding: 15px 18px;
+      padding-top: 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      text-align: center;
+      font-family: 'Baloo 2', cursive;
+      font-size: 3rem;
+      font-weight: 800;
+      margin: 0 0 6px;
+      line-height: 1;
+      background: linear-gradient(135deg, #ff6b6b 0%, #ffd93d 35%, #6bcb77 65%, #4d96ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(3px 4px 0px rgba(0,0,0,0.12));
+      animation: titleWobble 3.5s ease-in-out infinite;
+    }
+
+    @keyframes titleWobble {
+      0%,100% { transform: rotate(-1deg) scale(1); }
+      25%      { transform: rotate(1.5deg) scale(1.02); }
+      75%      { transform: rotate(-0.5deg) scale(0.98); }
+    }
+
+    h2 {
+      text-align: center;
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: #0ea5e9;
+      text-shadow: 3px 3px 0 #bae6fd, 5px 5px 0 rgba(14,165,233,0.15);
+      margin: 10px 0 5px;
+    }
+
+    .sub-container, .initials-grid, .finals-grid, .numbers-grid-100 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(95px, 1fr));
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .sub-card, .initial-card, .final-card, .number-card-100 {
+      background: white;
+      padding: 18px 10px 14px;
+      border-radius: 24px;
+      text-align: center;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      border: 3px solid transparent;
+      transition: transform 0.22s cubic-bezier(.34,1.7,.64,1), box-shadow 0.2s;
+      box-shadow: 0 7px 0 #c0c0c0, 0 10px 20px rgba(0,0,0,0.08);
+      animation: cardPop 0.4s cubic-bezier(.34,1.56,.64,1) both;
+      min-height: 120px;
+    }
+
+    @keyframes cardPop {
+      from { transform: scale(0.5) rotate(-8deg); opacity: 0; }
+      to   { transform: scale(1)   rotate(0deg);  opacity: 1; }
+    }
+
+    /* Initials cards - vibrant colors */
+    .initial-card:nth-child(6n+1) { background:#fff0f6; border-color:#ff6bb5; box-shadow:0 7px 0 #e05a9f,  0 10px 20px rgba(255,107,181,0.15); }
+    .initial-card:nth-child(6n+2) { background:#f0fff4; border-color:#43e97b; box-shadow:0 7px 0 #28c25e,  0 10px 20px rgba(67,233,123,0.15);  }
+    .initial-card:nth-child(6n+3) { background:#fffbf0; border-color:#f9ca24; box-shadow:0 7px 0 #d4a800,  0 10px 20px rgba(249,202,36,0.15);  }
+    .initial-card:nth-child(6n+4) { background:#f0f8ff; border-color:#4facfe; box-shadow:0 7px 0 #2280d4,  0 10px 20px rgba(79,172,254,0.15);  }
+    .initial-card:nth-child(6n+5) { background:#fff0f9; border-color:#f472b6; box-shadow:0 7px 0 #be185d,  0 10px 20px rgba(244,114,182,0.15); }
+    .initial-card:nth-child(6n+6) { background:#fff4ee; border-color:#fb923c; box-shadow:0 7px 0 #c2620d,  0 10px 20px rgba(251,146,60,0.15);  }
+
+    /* Finals cards - similar vibrant scheme */
+    .final-card:nth-child(6n+1) { background:#fff0f6; border-color:#ff6bb5; box-shadow:0 7px 0 #e05a9f,  0 10px 20px rgba(255,107,181,0.15); }
+    .final-card:nth-child(6n+2) { background:#f0fff4; border-color:#43e97b; box-shadow:0 7px 0 #28c25e,  0 10px 20px rgba(67,233,123,0.15);  }
+    .final-card:nth-child(6n+3) { background:#fffbf0; border-color:#f9ca24; box-shadow:0 7px 0 #d4a800,  0 10px 20px rgba(249,202,36,0.15);  }
+    .final-card:nth-child(6n+4) { background:#f0f8ff; border-color:#4facfe; box-shadow:0 7px 0 #2280d4,  0 10px 20px rgba(79,172,254,0.15);  }
+    .final-card:nth-child(6n+5) { background:#fff0f9; border-color:#f472b6; box-shadow:0 7px 0 #be185d,  0 10px 20px rgba(244,114,182,0.15); }
+    .final-card:nth-child(6n+6) { background:#fff4ee; border-color:#fb923c; box-shadow:0 7px 0 #c2620d,  0 10px 20px rgba(251,146,60,0.15);  }
+
+    /* Number cards */
+    .number-card-100:nth-child(4n+1) { background:#f0fff4; border-color:#43e97b; box-shadow:0 7px 0 #28c25e, 0 10px 20px rgba(67,233,123,0.15);  }
+    .number-card-100:nth-child(4n+2) { background:#f0f8ff; border-color:#4facfe; box-shadow:0 7px 0 #2280d4, 0 10px 20px rgba(79,172,254,0.15);  }
+    .number-card-100:nth-child(4n+3) { background:#fff0f6; border-color:#ff6bb5; box-shadow:0 7px 0 #e05a9f, 0 10px 20px rgba(255,107,181,0.15); }
+    .number-card-100:nth-child(4n+4) { background:#fffbf0; border-color:#f9ca24; box-shadow:0 7px 0 #d4a800, 0 10px 20px rgba(249,202,36,0.15);  }
+
+    /* My Progress card - golden yellow */
+    .sub-card.card-progress {
+      background: #fffbeb; border-color: #f9ca24;
+      box-shadow: 0 7px 0 #d4a800, 0 10px 20px rgba(249,202,36,0.2);
+    }
+    .sub-card.card-progress h3 { color: #b45309; }
+
+    /* Level 1 cards - fresh green */
+    .sub-card.card-level1 {
+      background: #f0fff4; border-color: #43e97b;
+      box-shadow: 0 7px 0 #1db863, 0 10px 20px rgba(67,233,123,0.2);
+    }
+    .sub-card.card-level1 h3 { color: #166534; }
+
+    /* Level 2 cards - sky blue */
+    .sub-card.card-level2 {
+      background: #f0f9ff; border-color: #38bdf8;
+      box-shadow: 0 7px 0 #0369a1, 0 10px 20px rgba(56,189,248,0.2);
+    }
+    .sub-card.card-level2 h3 { color: #075985; }
+
+    /* Level 3 cards - hot pink */
+    .sub-card.card-level3 {
+      background: #fff0f8; border-color: #f472b6;
+      box-shadow: 0 7px 0 #be185d, 0 10px 20px rgba(244,114,182,0.2);
+    }
+    .sub-card.card-level3 h3 { color: #9d174d; }
+
+    /* Games cards - orange */
+    .sub-card.card-games {
+      background: #fff7ed; border-color: #fb923c;
+      box-shadow: 0 7px 0 #c2620d, 0 10px 20px rgba(251,146,60,0.2);
+    }
+    .sub-card.card-games h3 { color: #9a3412; }
+
+    /* Animation delays */
+    .initial-card:nth-child(1),.final-card:nth-child(1),.number-card-100:nth-child(1)  { animation-delay:.02s }
+    .initial-card:nth-child(2),.final-card:nth-child(2),.number-card-100:nth-child(2)  { animation-delay:.05s }
+    .initial-card:nth-child(3),.final-card:nth-child(3),.number-card-100:nth-child(3)  { animation-delay:.08s }
+    .initial-card:nth-child(4),.final-card:nth-child(4),.number-card-100:nth-child(4)  { animation-delay:.11s }
+    .initial-card:nth-child(5),.final-card:nth-child(5),.number-card-100:nth-child(5)  { animation-delay:.14s }
+    .initial-card:nth-child(6),.final-card:nth-child(6),.number-card-100:nth-child(6)  { animation-delay:.17s }
+    .initial-card:nth-child(7),.final-card:nth-child(7),.number-card-100:nth-child(7)  { animation-delay:.20s }
+    .initial-card:nth-child(8),.final-card:nth-child(8),.number-card-100:nth-child(8)  { animation-delay:.23s }
+    .initial-card:nth-child(9),.final-card:nth-child(9),.number-card-100:nth-child(9)  { animation-delay:.26s }
+    .initial-card:nth-child(10),.final-card:nth-child(10),.number-card-100:nth-child(10) { animation-delay:.29s }
+
+    .sub-card:hover, .initial-card:hover, .final-card:hover, .number-card-100:hover {
+      transform: translateY(-8px) rotate(-1deg) scale(1.06);
+    }
+
+    .sub-card:active, .initial-card:active, .final-card:active, .number-card-100:active {
+      transform: translateY(5px) scale(0.96);
+      box-shadow: 0 2px 0 #aaa, 0 4px 8px rgba(0,0,0,0.1) !important;
+      transition: transform 0.07s, box-shadow 0.07s;
+    }
+
+    .main-char {
+      font-size: 2.4rem;
+      font-weight: 900;
+      font-family: 'Baloo 2', cursive;
+      background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+      filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.1));
+    }
+
+    .small-char { font-size:1.3rem; font-weight:800; color:#4facfe; }
+    .example    { margin-top:6px; font-size:1rem; font-weight:700; color:#333; }
+    .pinyin-display { margin-top:3px; font-size:0.9rem; color:#fb923c; font-weight:700; }
+    .spelling   { margin-top:3px; font-size:0.8rem; color:#999; font-style:italic; }
+
+    .btn {
+      background: linear-gradient(160deg, #43e97b, #38f9d7);
+      border: none;
+      border-bottom: 5px solid #1db863;
+      border-right: 3px solid #1db863;
+      color: white;
+      padding: 11px 26px;
+      border-radius: 999px;
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin: 8px 5px;
+      display: inline-block;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.18);
+      box-shadow: 0 6px 18px rgba(67,233,123,0.35);
+      transition: transform 0.15s cubic-bezier(.34,1.56,.64,1), box-shadow 0.15s, border-bottom 0.1s;
+    }
+
+    .btn:hover  { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 24px rgba(67,233,123,0.45); }
+    .btn:active { transform: translateY(4px) scale(0.97); border-bottom-width:1px; border-right-width:1px; box-shadow:none; }
+
+    .lesson-controls { display:flex; justify-content:center; gap:10px; margin-top:16px; flex-wrap:wrap; }
+
+    canvas {
+      border: 5px dashed #43e97b;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #f0fff4 0%, #f0f8ff 100%);
+      display: block;
+      margin: 15px auto;
+      touch-action: none;
+      box-shadow: 0 8px 30px rgba(67,233,123,0.2), inset 0 2px 8px rgba(67,233,123,0.08);
+    }
+
+    .lesson-container {
+      display:flex; flex-direction:column; align-items:center; text-align:center; margin-top:20px;
+      background: rgba(255,255,255,0.88);
+      border-radius: 32px; padding: 24px 20px;
+      border: 3px solid #fde68a;
+      box-shadow: 0 12px 40px rgba(249,202,36,0.12);
+      backdrop-filter: blur(8px);
+    }
+
+    .lesson-container .main-char { font-size:4rem; }
+    .lesson-container .example   { font-size:1.35rem; margin:10px 0; }
+    .lesson-container .pinyin-display  { font-size:1.1rem; margin:5px 0; color:#f472b6; font-weight:700; }
+
+    .trace-area { display:flex; flex-direction:column; align-items:center; margin:10px 0; }
+
+    .clear-btn {
+      background: linear-gradient(160deg, #ff6b6b, #ee5a24);
+      border: none; border-bottom: 4px solid #c0392b; border-right: 2px solid #c0392b;
+      color: white; padding: 8px 20px; font-size: 0.95rem; border-radius: 999px;
+      margin-top: 8px; cursor: pointer; font-family: 'Baloo 2', cursive; font-weight: 700;
+      box-shadow: 0 4px 14px rgba(255,107,107,0.35);
+      transition: transform 0.15s cubic-bezier(.34,1.56,.64,1), border-bottom 0.1s;
+    }
+    .clear-btn:hover  { transform: translateY(-2px) scale(1.06); }
+    .clear-btn:active { transform: translateY(3px); border-bottom-width:1px; border-right-width:1px; }
+
+    .sub-card h3 { font-size:1.15rem; margin:5px 0; font-family:'Baloo 2',cursive; font-weight:800; color:#0ea5e9; }
+    .sub-card p  { font-size:0.9rem; margin:0; line-height:1.3; color:#777; }
+
+    .sound-btn {
+      background: linear-gradient(160deg, #f9ca24, #f0932b);
+      border: none; border-bottom: 4px solid #c07800; border-right: 2px solid #c07800;
+      color: white; padding: 9px 18px; border-radius: 999px; cursor: pointer; margin: 5px;
+      font-size: 0.95rem; font-family: 'Baloo 2', cursive; font-weight: 700;
+      display: inline-flex; align-items: center; gap: 6px;
+      box-shadow: 0 4px 14px rgba(249,202,36,0.4);
+      transition: transform 0.15s cubic-bezier(.34,1.56,.64,1), border-bottom 0.1s;
+    }
+    .sound-btn:hover  { transform: translateY(-2px) scale(1.06); }
+    .sound-btn:active { transform: translateY(3px); border-bottom-width:1px; }
+
+    /* Tone indicators */
+    .tone-indicator {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 20px;
+      font-size: 0.8rem;
+      margin: 0 2px;
+      color: white;
+      font-weight: bold;
+    }
+
+    .tone-1 { background-color: #ff6b6b; }
+    .tone-2 { background-color: #4ecdc4; }
+    .tone-3 { background-color: #ffe66d; color: #333; }
+    .tone-4 { background-color: #1a535c; }
+
+    /* Category titles for finals */
+    .category-title {
+      text-align: left;
+      margin: 20px 0 10px;
+      padding-left: 10px;
+      color: #1cb0f6;
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    /* Global buttons */
+    #globalBack {
+      position:fixed; top:15px; left:15px; z-index:1000; margin:0;
+      background: linear-gradient(160deg, #43e97b, #38f9d7);
+      border: none; border-bottom: 4px solid #1db863; border-right: 2px solid #1db863;
+      color: white; padding: 10px 20px; border-radius: 999px;
+      font-family: 'Baloo 2', cursive; font-size: 1rem; font-weight: 700; cursor: pointer;
+      box-shadow: 0 5px 16px rgba(67,233,123,0.35);
+      transition: transform 0.18s cubic-bezier(.34,1.56,.64,1), box-shadow 0.15s;
+    }
+    #globalBack:hover  { transform: translateY(-3px) scale(1.07); box-shadow: 0 8px 22px rgba(67,233,123,0.45); }
+    #globalBack:active { transform: translateY(3px); border-bottom-width:1px; }
+
+    #globalLogout {
+      position:fixed; top:15px; left:15px; z-index:1000; margin:0;
+      background: linear-gradient(160deg, #ff6b6b, #ee5a24);
+      border: none; border-bottom: 4px solid #c0392b; border-right: 2px solid #c0392b;
+      color: white; padding: 10px 18px; border-radius: 999px;
+      font-family: 'Baloo 2', cursive; font-size: 0.95rem; font-weight: 700; cursor: pointer;
+      box-shadow: 0 5px 16px rgba(255,107,107,0.35);
+      transition: transform 0.18s cubic-bezier(.34,1.56,.64,1), box-shadow 0.15s;
+      display:flex; align-items:center; gap:6px;
+    }
+    #globalLogout:hover  { transform: translateY(-3px) scale(1.07); box-shadow: 0 8px 22px rgba(255,107,107,0.45); }
+    #globalLogout:active { transform: translateY(3px); border-bottom-width:1px; }
+    #globalLogout i { font-size:1rem; }
+
+    #chatbotBtn {
+      position:fixed; top:14px; right:112px; z-index:1000;
+      background: linear-gradient(135deg, #43e97b, #38f9d7);
+      border: none; border-bottom: 4px solid #1db863;
+      color:white; width:46px; height:46px; border-radius:50%;
+      cursor:pointer; box-shadow: 0 5px 18px rgba(67,233,123,0.45);
+      display:flex; align-items:center; justify-content:center; font-size:1.25rem;
+      transition: transform 0.2s cubic-bezier(.34,1.56,.64,1), box-shadow 0.2s;
+      animation: robotWiggle 5s ease-in-out infinite;
+    }
+    @keyframes robotWiggle {
+      0%,85%,100% { transform:rotate(0deg) scale(1); }
+      87%          { transform:rotate(-12deg) scale(1.1); }
+      91%          { transform:rotate(12deg) scale(1.1); }
+      95%          { transform:rotate(-6deg) scale(1.05); }
+    }
+    #chatbotBtn:hover  { transform:scale(1.18) rotate(0deg) !important; box-shadow:0 8px 26px rgba(67,233,123,0.55); animation:none; }
+    #chatbotBtn:active { transform:scale(0.9) !important; border-bottom-width:1px; }
+
+    #langIconBtn {
+      position:fixed; top:14px; right:60px; z-index:1000;
+      background:white; border:3px solid #43e97b; border-bottom:5px solid #1db863;
+      color:#1db863; width:46px; height:46px; border-radius:50%; cursor:pointer;
+      box-shadow:0 5px 16px rgba(67,233,123,0.3);
+      display:flex; align-items:center; justify-content:center; font-size:1.25rem; font-weight:900;
+      transition:transform 0.2s cubic-bezier(.34,1.56,.64,1), background 0.2s, color 0.2s;
+    }
+    #langIconBtn:hover  { transform:scale(1.18) rotate(10deg); background:#43e97b; color:white; }
+    #langIconBtn:active { transform:scale(0.9); }
+
+    #logoutBtn {
+      position:fixed; top:14px; right:10px; z-index:1000;
+      background:linear-gradient(135deg, #ff6b6b, #ee5a24);
+      border:none; border-bottom:4px solid #c0392b;
+      color:white; width:46px; height:46px; border-radius:50%; cursor:pointer;
+      box-shadow:0 5px 16px rgba(255,107,107,0.35);
+      display:flex; align-items:center; justify-content:center; font-size:1.2rem;
+      transition:transform 0.2s cubic-bezier(.34,1.56,.64,1), box-shadow 0.2s;
+    }
+    #logoutBtn:hover  { transform:scale(1.18); box-shadow:0 8px 24px rgba(255,107,107,0.45); }
+    #logoutBtn:active { transform:scale(0.9); }
+
+    /* Modal Styles */
+    .modal-overlay {
+      position:fixed; top:0; left:0; width:100%; height:100%;
+      background:rgba(249,202,36,0.18); backdrop-filter:blur(10px);
+      display:none; align-items:center; justify-content:center; z-index:2000;
+    }
+
+    .modal-box {
+      background: linear-gradient(160deg, #fffef0 0%, #f0fffe 100%); max-width:380px; width:92%;
+      padding:32px 26px; border-radius:36px; text-align:center;
+      box-shadow: 0 0 0 5px #f472b6, 0 0 0 9px #f9ca24, 0 0 0 13px #43e97b, 0 25px 60px rgba(0,0,0,0.12);
+      animation:modalBounceIn 0.45s cubic-bezier(.34,1.56,.64,1) both;
+      position:relative;
+    }
+    @keyframes modalBounceIn {
+      0%   { transform:scale(0.4) rotate(-8deg); opacity:0; }
+      70%  { transform:scale(1.06) rotate(2deg); opacity:1; }
+      100% { transform:scale(1)    rotate(0deg); opacity:1; }
+    }
+
+    .modal-close {
+      position:absolute; top:14px; right:16px; font-size:1.5rem; cursor:pointer;
+      color:#ccc; width:34px; height:34px; display:flex; align-items:center; justify-content:center;
+      border-radius:50%; transition:color 0.2s, transform 0.2s, background 0.2s;
+    }
+    .modal-close:hover { color:#ff6b6b; background:#ffeeee; transform:rotate(90deg) scale(1.15); }
+
+    /* Chatbot Modal */
+    .chatbot-modal {
+      position:fixed; bottom:20px; right:20px; width:385px;
+      background:white; border-radius:28px;
+      box-shadow: 0 0 0 4px #f9ca24, 0 20px 60px rgba(249,202,36,0.2);
+      display:none; flex-direction:column; z-index:2000; overflow:hidden;
+      animation:chatSlideUp 0.4s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    @keyframes chatSlideUp {
+      from { transform:translateY(60px) scale(0.9); opacity:0; }
+      to   { transform:translateY(0)    scale(1);   opacity:1; }
+    }
+    @keyframes slideIn {
+      from { transform:translateY(20px) scale(0.95); opacity:0; }
+      to   { transform:translateY(0)    scale(1);    opacity:1; }
+    }
+
+    #chatbotContainer { padding:0; background:white; min-height:400px; }
+
+    .linguakids-chatbot {
+      width:100% !important; font-family:'Nunito',sans-serif !important;
+      border:none !important; border-radius:18px !important; padding:0 !important;
+      background:white !important; box-shadow:none !important; overflow:hidden;
+    }
+
+    .linguakids-chatbot-header {
+      background:linear-gradient(135deg, #0ea5e9, #43e97b) !important;
+      color:white !important; padding:16px 18px !important; font-weight:800 !important;
+      font-size:1.2rem !important; font-family:'Baloo 2',cursive !important; letter-spacing:0.5px;
+      display:flex !important; align-items:center !important; justify-content:space-between !important;
+      border-bottom:2px solid rgba(255,255,255,0.25) !important;
+    }
+    .linguakids-chatbot-header i { margin-right:8px; color:#ffd93d; font-size:1.3rem; }
+
+    .chatbot-close {
+      cursor:pointer; font-size:1.3rem; width:32px; height:32px;
+      display:flex; align-items:center; justify-content:center;
+      border-radius:50%; transition:all 0.2s; background:rgba(255,255,255,0.2); color:white;
+    }
+    .chatbot-close:hover { background:rgba(255,255,255,0.35); transform:rotate(90deg); }
+
+    .linguakids-chat-messages {
+      height:280px !important; overflow-y:auto !important; background:#fdf4ff !important;
+      padding:15px !important; border-bottom:1px solid #ffe0d0 !important;
+      display:flex !important; flex-direction:column !important; gap:10px !important;
+    }
+    .linguakids-chat-messages::-webkit-scrollbar       { width:6px; }
+    .linguakids-chat-messages::-webkit-scrollbar-track { background:#fff0e0; }
+    .linguakids-chat-messages::-webkit-scrollbar-thumb { background:#0ea5e9; border-radius:10px; }
+
+    .linguakids-message {
+      margin:0 !important; padding:10px 14px !important; border-radius:18px !important;
+      max-width:85% !important; word-wrap:break-word !important; font-size:0.95rem !important;
+      line-height:1.4 !important; box-shadow:0 2px 6px rgba(0,0,0,0.06) !important;
+      animation:messagePop 0.3s cubic-bezier(.34,1.56,.64,1);
+    }
+    @keyframes messagePop {
+      from { opacity:0; transform:translateY(12px) scale(0.9); }
+      to   { opacity:1; transform:translateY(0)    scale(1);   }
+    }
+    .linguakids-user-message { background:linear-gradient(135deg,#43e97b,#38f9d7) !important; color:white !important; align-self:flex-end !important; border-bottom-right-radius:4px !important; }
+    .linguakids-bot-message  { background:white !important; color:#333 !important; align-self:flex-start !important; border-bottom-left-radius:4px !important; border:2px solid #ffe0d0 !important; }
+
+    .linguakids-chat-input-area { display:flex !important; padding:14px !important; background:white !important; gap:8px !important; align-items:center !important; border-top:1px solid #fff0e0 !important; }
+
+    .linguakids-chat-input {
+      flex:1 !important; padding:12px 18px !important; border:2.5px solid #ffe0d0 !important;
+      border-radius:30px !important; font-family:'Nunito',sans-serif !important; font-size:0.95rem !important;
+      outline:none !important; transition:all 0.2s !important; background:#fff8f0 !important;
+    }
+    .linguakids-chat-input:focus { border-color:#0ea5e9 !important; background:white !important; box-shadow:0 0 0 3px rgba(14,165,233,0.15) !important; }
+    .linguakids-chat-input::placeholder { color:#7dd3fc; font-style:italic; font-size:0.9rem; }
+
+    .linguakids-send-btn {
+      width:48px !important; height:48px !important; border-radius:50% !important; border:none !important;
+      background:linear-gradient(135deg,#f472b6,#e879f9) !important; color:white !important; font-weight:bold !important;
+      cursor:pointer !important; display:flex !important; align-items:center !important; justify-content:center !important;
+      transition:all 0.2s !important; box-shadow:0 4px 12px rgba(244,114,182,0.4) !important; flex-shrink:0 !important;
+    }
+    .linguakids-send-btn i       { font-size:1.2rem !important; transition:transform 0.2s !important; }
+    .linguakids-send-btn:hover   { transform:scale(1.12) !important; box-shadow:0 6px 18px rgba(244,114,182,0.5) !important; }
+    .linguakids-send-btn:hover i { transform:translateX(2px) !important; }
+    .linguakids-send-btn:active  { transform:scale(0.93) !important; }
+
+    .linguakids-typing-indicator {
+      display:flex !important; gap:5px !important; padding:12px 16px !important;
+      background:white !important; border-radius:18px !important; align-self:flex-start !important;
+      margin:5px 0 !important; border:2px solid #e9d5ff !important;
+    }
+    .linguakids-typing-indicator span { width:9px; height:9px; background:#0ea5e9; border-radius:50%; animation:typingBounce 1.4s infinite ease-in-out; }
+    .linguakids-typing-indicator span:nth-child(1) { animation-delay:0s; }
+    .linguakids-typing-indicator span:nth-child(2) { animation-delay:0.2s; }
+    .linguakids-typing-indicator span:nth-child(3) { animation-delay:0.4s; }
+    @keyframes typingBounce {
+      0%,60%,100% { transform:translateY(0); }
+      30%          { transform:translateY(-11px); }
+    }
+
+    .modal-box h2 {
+      font-size:2rem; margin:5px 0 12px; font-family:'Baloo 2',cursive; font-weight:800;
+      color: #ff5a5f;
+      text-shadow: 2px 2px 0 #ffe0b2, 4px 4px 0 rgba(255,90,95,0.15);
+      -webkit-text-fill-color: unset;
+      background: none;
+    }
+    .modal-box h2 .emoji {
+      -webkit-text-fill-color: initial;
+      background: none;
+      text-shadow: none;
+    }
+    .modal-box p   { font-size:1.15rem; color:#0ea5e9; margin-bottom:22px; font-weight:700; }
+
+    .lang-option {
+      background:linear-gradient(135deg,#fffbf0,#f0f8ff);
+      border:3px solid #e0e0e0; border-bottom:5px solid #ccc; border-radius:999px;
+      padding:16px 24px; margin:14px 0; font-size:1.4rem; font-weight:800; color:#2c3e50;
+      cursor:pointer; transition:transform 0.2s cubic-bezier(.34,1.56,.64,1), border-color 0.2s, background 0.2s, box-shadow 0.2s;
+      display:flex; align-items:center; justify-content:center; gap:14px; font-family:'Baloo 2',cursive;
+    }
+    .lang-option:hover  { transform:scale(1.06) translateY(-3px); box-shadow:0 10px 30px rgba(0,0,0,0.12); background:linear-gradient(135deg,#fffde7,#e8fff0); }
+    .lang-option:active { transform:scale(0.97) translateY(2px); }
+    .lang-option i      { font-size:1.8rem; width:34px; }
+    .modal-note         { font-size:0.85rem; color:#94a3b8; margin-top:22px; font-weight:700; }
+
+    /* Toast styles - HIDDEN */
+    .toast {
+      display: none !important;
+    }
+
+    /* Progress indicator - REMOVED */
+    .progress-indicator {
+      display: none !important;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width:600px) {
+      #app { padding-top:65px; }
+      .sub-container, .initials-grid, .finals-grid { grid-template-columns:repeat(2,1fr); }
+      .numbers-grid-100 { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+      
+      #globalBack, #globalLogout { top:10px; left:10px; padding:7px 14px; font-size:0.9rem; }
+      #chatbotBtn  { top:10px; right:104px; width:38px; height:38px; font-size:1rem; }
+      #langIconBtn { top:10px; right:58px;  width:38px; height:38px; font-size:1rem; }
+      #logoutBtn   { top:10px; right:10px;  width:38px; height:38px; font-size:1rem; }
+      .chatbot-modal { width:96%; right:2%; left:2%; bottom:10px; }
+      .linguakids-chat-messages { height:350px !important; }
+      .linguakids-send-btn { width:44px !important; height:44px !important; }
+
+      .lesson-container { height:100vh; overflow:hidden; padding:0; margin:0; justify-content:flex-start; padding-top:5px; min-height:auto; max-height:100vh; box-sizing:border-box; }
+      .lesson-container .main-char   { font-size:2.2rem; margin:2px 0; line-height:1.2; }
+      .lesson-container .example     { font-size:1.1rem; margin:2px 0; line-height:1.2; }
+      .lesson-container .pinyin-display { font-size:1rem;   margin:2px 0; }
+      .lesson-container .sound-btn   { width:36px; height:36px; margin:2px auto; font-size:1rem; padding:0; display:flex; align-items:center; justify-content:center; }
+      .lesson-container canvas       { width:220px; height:220px; margin:2px auto; border-radius:16px; }
+      .lesson-container .trace-area  { margin:2px 0; padding:0; }
+      .lesson-container .clear-btn   { padding:5px 15px; font-size:0.9rem; margin-top:4px; min-width:70px; }
+      .lesson-container .lesson-controls { margin-top:4px; gap:10px; padding:0; }
+      .lesson-container .lesson-controls .btn { padding:6px 16px; font-size:0.9rem; min-width:70px; margin:0; }
+      body:has(.lesson-container) { overflow:hidden; height:100vh; }
+      #app:has(.lesson-container) { padding-top:45px; height:100vh; overflow:hidden; padding-bottom:0; }
+    }
+
+    @media (max-width:380px) {
+      .lesson-container .main-char { font-size:2rem; }
+      .lesson-container .example   { font-size:1rem; }
+      .lesson-container .pinyin-display { font-size:0.9rem; }
+      .lesson-container canvas     { width:190px; height:190px; }
+      .lesson-container .clear-btn { padding:4px 12px; font-size:0.85rem; }
+      .numbers-grid-100 { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width:381px) and (max-width:450px) {
+      .lesson-container canvas { width:210px; height:210px; }
+    }
+
+    @media (min-height:700px) and (max-width:600px) {
+      .lesson-container { padding-top:15px; }
+      .lesson-container canvas { width:240px; height:240px; }
+      .lesson-container .main-char { font-size:2.4rem; }
+    }
+
+    @media (min-height:800px) and (max-width:600px) {
+      .lesson-container { padding-top:25px; }
+      .lesson-container canvas { width:260px; height:260px; }
+      .lesson-container .main-char { font-size:2.6rem; }
+      .lesson-container .example   { font-size:1.2rem; }
+    }
+
+    @media (max-height:500px) and (max-width:900px) {
+      .lesson-container { flex-direction:row; flex-wrap:wrap; align-items:center; justify-content:center; gap:10px; padding-top:5px; }
+      .lesson-container .main-char   { font-size:2rem; width:100%; }
+      .lesson-container .example     { font-size:1rem; margin:0 5px; }
+      .lesson-container .pinyin-display { font-size:0.9rem; margin:0 5px; }
+      .lesson-container canvas       { width:180px; height:180px; margin:0; }
+      .lesson-container .sound-btn   { margin:0; }
+      .lesson-container .trace-area  { margin:0; }
+      .lesson-container .lesson-controls { margin:0; width:100%; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Back button (for self-study mode) -->
+  <button id="globalBack" onclick="goBack()" style="display: none;">Back</button>
+  
+  <!-- Logout button for teacher mode (top left) -->
+  <button id="globalLogout" onclick="showTeacherLogoutConfirmation()" style="display: none;">
+    <i class="fas fa-sign-out-alt"></i> Logout
+  </button>
+  
+  <!-- Chatbot button -->
+  <button id="chatbotBtn" onclick="openChatbot()" style="display: none;">
+    <i class="fas fa-robot"></i>
+  </button>
+  
+  <!-- Language icon button -->
+  <button id="langIconBtn" onclick="showLanguageModal()" style="display: none;">
+    <i class="fas fa-language"></i>
+  </button>
+  
+  <!-- Right side logout button (for self-study mode) -->
+  <button id="logoutBtn" onclick="showLogoutConfirmation()" style="display: none;">
+    <i class="fas fa-sign-out-alt"></i>
+  </button>
+
+  <!-- Logout Confirmation Modal (for both self-study and teacher mode) -->
+  <div id="logoutConfirmModal" class="modal-overlay" style="display: none;">
+    <div class="modal-box" style="max-width: 300px;">
+      <h3 style="color: #ff5252; margin-bottom: 15px; font-family: 'Baloo 2', cursive;">Logout</h3>
+      <p style="margin-bottom: 20px;">Are you sure you want to logout?</p>
+      <div style="display: flex; gap: 10px; justify-content: center;">
+        <button class="btn" onclick="confirmLogout()" style="background: #ff5252; padding: 8px 20px;">Yes</button>
+        <button class="btn btn-secondary" onclick="closeLogoutModal()" style="padding: 8px 20px;">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+<div id="app">
+  <!-- Progress indicator removed -->
+  <div id="learning-content"></div>
+</div>
+
+<!-- Achievement Toast - HIDDEN -->
+<div id="achievementToast" class="toast" style="display: none;">
+  <i class="fas fa-trophy"></i>
+  <div>
+    <div id="toastTitle">Achievement Unlocked!</div>
+    <div id="toastDesc">You've earned a new badge.</div>
+  </div>
+</div>
+
+<!-- Language Modal -->
+<div id="languageModal" class="modal-overlay">
+  <div class="modal-box">
+    <div class="modal-close" onclick="closeLanguageModal()">✕</div>
+    <h2><span class="emoji">🌏</span> 你好! <span class="emoji">👋</span></h2>
+    <p>In what language do you want to learn Chinese?</p>
+    
+    <div class="lang-option" id="chooseEnglish" style="background:linear-gradient(135deg,#e6f3ff,#d9eaff); border-color:#4facfe; border-bottom-color:#2280d4; color:#0e5cad;">
+      <i class="fas fa-language" style="color:#1cb0f6;"></i> English
+    </div>
+    <div class="lang-option" id="chooseMarathi" style="background:linear-gradient(135deg,#f0fff4,#dcfce7); border-color:#43e97b; border-bottom-color:#1db863; color:#166534;">
+      <i class="fas fa-language" style="color:#0f9d58;"></i> मराठी (Marathi)
+    </div>
+    <div class="lang-option" id="chooseHindi" style="background:linear-gradient(135deg,#fffbeb,#fef9c3); border-color:#f9ca24; border-bottom-color:#d4a800; color:#92400e;">
+      <i class="fas fa-language" style="color:#ff9933;"></i> हिन्दी (Hindi)
+    </div>
+    
+    <div class="modal-note">
+      <i class="fas fa-info-circle"></i> Lessons will be taught in your selected language.
+    </div>
+  </div>
+</div>
+
+<!-- Chatbot Modal -->
+<div id="chatbotModal" class="chatbot-modal">
+  <div id="chatbotContainer"></div>
+</div>
+
+<script>
+/* === Chinese Pinyin Data === */
+// Initials (声母) with English translations
+const INITIALS = [
+  {pinyin: "b", example: "爸爸 bàba (Father)", char: "爸", englishMeaning: "Father", hindiMeaning: "पिता", marathiMeaning: "वडील"},
+  {pinyin: "p", example: "苹果 píngguǒ (Apple)", char: "苹", englishMeaning: "Apple", hindiMeaning: "सेब", marathiMeaning: "सफरचंद"},
+  {pinyin: "m", example: "妈妈 māma (Mother)", char: "妈", englishMeaning: "Mother", hindiMeaning: "माता", marathiMeaning: "आई"},
+  {pinyin: "f", example: "飞机 fēijī (Airplane)", char: "飞", englishMeaning: "Airplane", hindiMeaning: "हवाई जहाज", marathiMeaning: "विमान"},
+  {pinyin: "d", example: "大 dà (Big)", char: "大", englishMeaning: "Big", hindiMeaning: "बड़ा", marathiMeaning: "मोठा"},
+  {pinyin: "t", example: "他 tā (He)", char: "他", englishMeaning: "He", hindiMeaning: "वह", marathiMeaning: "तो"},
+  {pinyin: "n", example: "你 nǐ (You)", char: "你", englishMeaning: "You", hindiMeaning: "तुम", marathiMeaning: "तू"},
+  {pinyin: "l", example: "来 lái (Come)", char: "来", englishMeaning: "Come", hindiMeaning: "आना", marathiMeaning: "येणे"},
+  {pinyin: "g", example: "哥 gē (Older brother)", char: "哥", englishMeaning: "Older brother", hindiMeaning: "बड़ा भाई", marathiMeaning: "मोठा भाऊ"},
+  {pinyin: "k", example: "看 kàn (Look)", char: "看", englishMeaning: "Look", hindiMeaning: "देखो", marathiMeaning: "पहा"},
+  {pinyin: "h", example: "好 hǎo (Good)", char: "好", englishMeaning: "Good", hindiMeaning: "अच्छा", marathiMeaning: "चांगले"},
+  {pinyin: "j", example: "家 jiā (Home)", char: "家", englishMeaning: "Home", hindiMeaning: "घर", marathiMeaning: "घर"},
+  {pinyin: "q", example: "去 qù (Go)", char: "去", englishMeaning: "Go", hindiMeaning: "जाना", marathiMeaning: "जाणे"},
+  {pinyin: "x", example: "小 xiǎo (Small)", char: "小", englishMeaning: "Small", hindiMeaning: "छोटा", marathiMeaning: "लहान"},
+  {pinyin: "zh", example: "这 zhè (This)", char: "这", englishMeaning: "This", hindiMeaning: "यह", marathiMeaning: "हे"},
+  {pinyin: "ch", example: "吃 chī (Eat)", char: "吃", englishMeaning: "Eat", hindiMeaning: "खाना", marathiMeaning: "खाणे"},
+  {pinyin: "sh", example: "是 shì (Is)", char: "是", englishMeaning: "Is", hindiMeaning: "है", marathiMeaning: "आहे"},
+  {pinyin: "r", example: "人 rén (Person)", char: "人", englishMeaning: "Person", hindiMeaning: "व्यक्ति", marathiMeaning: "व्यक्ती"},
+  {pinyin: "z", example: "在 zài (At)", char: "在", englishMeaning: "At", hindiMeaning: "पर", marathiMeaning: "येथे"},
+  {pinyin: "c", example: "菜 cài (Vegetable)", char: "菜", englishMeaning: "Vegetable", hindiMeaning: "सब्जी", marathiMeaning: "भाजी"},
+  {pinyin: "s", example: "三 sān (Three)", char: "三", englishMeaning: "Three", hindiMeaning: "तीन", marathiMeaning: "तीन"},
+  {pinyin: "y", example: "一 yī (One)", char: "一", englishMeaning: "One", hindiMeaning: "एक", marathiMeaning: "एक"},
+  {pinyin: "w", example: "我 wǒ (I)", char: "我", englishMeaning: "I", hindiMeaning: "मैं", marathiMeaning: "मी"}
+];
+
+// Finals (韵母) with English translations
+const FINALS = [
+  {pinyin: "a", example: "啊 a (Ah)", char: "啊", tone: 1, englishMeaning: "Ah", hindiMeaning: "आह", marathiMeaning: "आह"},
+  {pinyin: "o", example: "哦 ó (Oh)", char: "哦", tone: 2, englishMeaning: "Oh", hindiMeaning: "ओह", marathiMeaning: "ओह"},
+  {pinyin: "e", example: "饿 è (Hungry)", char: "饿", tone: 4, englishMeaning: "Hungry", hindiMeaning: "भूखा", marathiMeaning: "भुकेलेला"},
+  {pinyin: "i", example: "一 yī (One)", char: "一", tone: 1, englishMeaning: "One", hindiMeaning: "एक", marathiMeaning: "एक"},
+  {pinyin: "u", example: "五 wǔ (Five)", char: "五", tone: 3, englishMeaning: "Five", hindiMeaning: "पांच", marathiMeaning: "पाच"},
+  {pinyin: "ü", example: "鱼 yú (Fish)", char: "鱼", tone: 2, englishMeaning: "Fish", hindiMeaning: "मछली", marathiMeaning: "मासा"},
+  {pinyin: "ai", example: "爱 ài (Love)", char: "爱", tone: 4, englishMeaning: "Love", hindiMeaning: "प्यार", marathiMeaning: "प्रेम"},
+  {pinyin: "ei", example: "飞 fēi (Fly)", char: "飞", tone: 1, englishMeaning: "Fly", hindiMeaning: "उड़ना", marathiMeaning: "उडणे"},
+  {pinyin: "ao", example: "好 hǎo (Good)", char: "好", tone: 3, englishMeaning: "Good", hindiMeaning: "अच्छा", marathiMeaning: "चांगले"},
+  {pinyin: "ou", example: "狗 gǒu (Dog)", char: "狗", tone: 3, englishMeaning: "Dog", hindiMeaning: "कुत्ता", marathiMeaning: "कुत्रा"},
+  {pinyin: "an", example: "看 kàn (Look)", char: "看", tone: 4, englishMeaning: "Look", hindiMeaning: "देखो", marathiMeaning: "पहा"},
+  {pinyin: "en", example: "人 rén (Person)", char: "人", tone: 2, englishMeaning: "Person", hindiMeaning: "व्यक्ति", marathiMeaning: "व्यक्ती"},
+  {pinyin: "ang", example: "上 shàng (Up)", char: "上", tone: 4, englishMeaning: "Up", hindiMeaning: "ऊपर", marathiMeaning: "वर"},
+  {pinyin: "eng", example: "风 fēng (Wind)", char: "风", tone: 1, englishMeaning: "Wind", hindiMeaning: "हवा", marathiMeaning: "वारा"},
+  {pinyin: "ong", example: "中 zhōng (Middle)", char: "中", tone: 1, englishMeaning: "Middle", hindiMeaning: "मध्य", marathiMeaning: "मध्य"},
+  {pinyin: "ia", example: "家 jiā (Home)", char: "家", tone: 1, englishMeaning: "Home", hindiMeaning: "घर", marathiMeaning: "घर"},
+  {pinyin: "iao", example: "小 xiǎo (Small)", char: "小", tone: 3, englishMeaning: "Small", hindiMeaning: "छोटा", marathiMeaning: "लहान"},
+  {pinyin: "ie", example: "写 xiě (Write)", char: "写", tone: 3, englishMeaning: "Write", hindiMeaning: "लिखना", marathiMeaning: "लिहिणे"},
+  {pinyin: "iu", example: "六 liù (Six)", char: "六", tone: 4, englishMeaning: "Six", hindiMeaning: "छह", marathiMeaning: "सहा"},
+  {pinyin: "ian", example: "天 tiān (Sky)", char: "天", tone: 1, englishMeaning: "Sky", hindiMeaning: "आकाश", marathiMeaning: "आकाश"},
+  {pinyin: "in", example: "新 xīn (New)", char: "新", tone: 1, englishMeaning: "New", hindiMeaning: "नया", marathiMeaning: "नवीन"},
+  {pinyin: "iang", example: "想 xiǎng (Think)", char: "想", tone: 3, englishMeaning: "Think", hindiMeaning: "सोचना", marathiMeaning: "विचार करणे"},
+  {pinyin: "ing", example: "听 tīng (Listen)", char: "听", tone: 1, englishMeaning: "Listen", hindiMeaning: "सुनना", marathiMeaning: "ऐकणे"},
+  {pinyin: "iong", example: "熊 xióng (Bear)", char: "熊", tone: 2, englishMeaning: "Bear", hindiMeaning: "भालू", marathiMeaning: "अस्वल"},
+  {pinyin: "ua", example: "花 huā (Flower)", char: "花", tone: 1, englishMeaning: "Flower", hindiMeaning: "फूल", marathiMeaning: "फूल"},
+  {pinyin: "uo", example: "国 guó (Country)", char: "国", tone: 2, englishMeaning: "Country", hindiMeaning: "देश", marathiMeaning: "देश"},
+  {pinyin: "uai", example: "快 kuài (Fast)", char: "快", tone: 4, englishMeaning: "Fast", hindiMeaning: "तेज़", marathiMeaning: "जलद"},
+  {pinyin: "ui", example: "水 shuǐ (Water)", char: "水", tone: 3, englishMeaning: "Water", hindiMeaning: "पानी", marathiMeaning: "पाणी"},
+  {pinyin: "uan", example: "玩 wán (Play)", char: "玩", tone: 2, englishMeaning: "Play", hindiMeaning: "खेलना", marathiMeaning: "खेळणे"},
+  {pinyin: "un", example: "云 yún (Cloud)", char: "云", tone: 2, englishMeaning: "Cloud", hindiMeaning: "बादल", marathiMeaning: "ढग"},
+  {pinyin: "uang", example: "光 guāng (Light)", char: "光", tone: 1, englishMeaning: "Light", hindiMeaning: "रोशनी", marathiMeaning: "प्रकाश"},
+  {pinyin: "ueng", example: "翁 wēng (Old man)", char: "翁", tone: 1, englishMeaning: "Old man", hindiMeaning: "बूढ़ा आदमी", marathiMeaning: "म्हातारा माणूस"},
+  {pinyin: "üe", example: "月 yuè (Moon)", char: "月", tone: 4, englishMeaning: "Moon", hindiMeaning: "चाँद", marathiMeaning: "चंद्र"},
+  {pinyin: "üan", example: "远 yuǎn (Far)", char: "远", tone: 3, englishMeaning: "Far", hindiMeaning: "दूर", marathiMeaning: "दूर"},
+  {pinyin: "ün", example: "云 yún (Cloud)", char: "云", tone: 2, englishMeaning: "Cloud", hindiMeaning: "बादल", marathiMeaning: "ढग"}
+];
+
+// Generate numbers 1-100 with Chinese characters and Pinyin
+function generateChineseNumbers() {
+  const numbers = [];
+  const digits = ["", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十"];
+  const pinyinDigits = ["", "yī", "èr", "sān", "sì", "wǔ", "liù", "qī", "bā", "jiǔ", "shí"];
+  const tones = ["", "1", "4", "1", "4", "3", "4", "1", "1", "3", "2"];
+  
+  for (let i = 1; i <= 100; i++) {
+    let chinese = "";
+    let pinyin = "";
+    let tonePattern = "";
+    
+    if (i <= 10) {
+      chinese = digits[i];
+      pinyin = pinyinDigits[i];
+      tonePattern = tones[i];
+    } else if (i < 20) {
+      chinese = "十" + (i % 10 !== 0 ? digits[i % 10] : "");
+      pinyin = "shí " + (i % 10 !== 0 ? pinyinDigits[i % 10] : "");
+      tonePattern = "2" + (i % 10 !== 0 ? "," + tones[i % 10] : "");
+    } else if (i < 100) {
+      const tens = Math.floor(i / 10);
+      const ones = i % 10;
+      chinese = digits[tens] + "十" + (ones !== 0 ? digits[ones] : "");
+      pinyin = pinyinDigits[tens] + " shí " + (ones !== 0 ? pinyinDigits[ones] : "");
+      tonePattern = tones[tens] + ",2" + (ones !== 0 ? "," + tones[ones] : "");
+    } else if (i === 100) {
+      chinese = "一百";
+      pinyin = "yī bǎi";
+      tonePattern = "1,3";
+    }
+    
+    numbers.push({
+      digit: i,
+      chinese: chinese,
+      pinyin: pinyin,
+      tone: tonePattern
+    });
+  }
+  
+  return numbers;
+}
+
+const CHINESE_NUMBERS = generateChineseNumbers();
+
+// Track current view state
+let currentView = 'level1';
+let interfaceLang = null;
+
+// Translations for UI
+const translations = {
+  english: {
+    myProgress: "My Progress",
+    trackJourney: "Track your learning journey",
+    level1: "Level 1: Pinyin & Numbers",
+    initials: "Initials (声母)",
+    learnInitials: "Learn Chinese initials",
+    finals: "Finals (韵母)",
+    learnFinals: "Learn Chinese finals with tones",
+    numbers: "Numbers (数字)",
+    learnNumbers: "Learn Chinese numbers 1-100 with Pinyin",
+    level2: "Level 2: Basic Words",
+    fruits: "Fruits (水果)",
+    vegetables: "Vegetables (蔬菜)",
+    animals: "Animals (动物)",
+    birds: "Birds (鸟)",
+    vehicles: "Vehicles (车辆)",
+    colors: "Colours (颜色)",
+    level3: "Level 3: Sentences & Expressions",
+    greetings: "Simple Greetings",
+    activities: "Daily Activities",
+    questions: "Simple Q&A",
+    games: "Games",
+    basicLevel: "Basic Level",
+    beginnerGames: "Pinyin & Number games",
+    moderateLevel: "Moderate Level",
+    wordGames: "Word games",
+    advancedLevel: "Advanced Level",
+    sentenceGames: "Sentence games",
+    back: "Back",
+    previous: "Previous",
+    next: "Next",
+    clear: "Clear",
+    backToInitials: "Back to Initials",
+    backToFinals: "Back to Finals",
+    backToNumbers: "Back to Numbers",
+    hearNumber: "Hear Number"
+  },
+  marathi: {
+    myProgress: "माझी प्रगती",
+    trackJourney: "तुमचा प्रवास ट्रॅक करा",
+    level1: "स्तर १: पिनयिन आणि संख्या",
+    initials: "आद्याक्षरे (声母)",
+    learnInitials: "चीनी आद्याक्षरे शिका",
+    finals: "अंत्याक्षरे (韵母)",
+    learnFinals: "चीनी अंत्याक्षरे टोनसह शिका",
+    numbers: "संख्या (数字)",
+    learnNumbers: "चीनी संख्या १-१०० पिनयिनसह शिका",
+    level2: "स्तर २: मूलभूत शब्द",
+    fruits: "फळे (水果)",
+    vegetables: "भाज्या (蔬菜)",
+    animals: "प्राणी (动物)",
+    birds: "पक्षी (鸟)",
+    vehicles: "वाहने (车辆)",
+    colors: "रंग (颜色)",
+    level3: "स्तर ३: वाक्य आणि अभिव्यक्ती",
+    greetings: "साधे अभिवादन",
+    activities: "दैनंदिन क्रिया",
+    questions: "साधे प्रश्नोत्तर",
+    games: "खेळ",
+    basicLevel: "मूलभूत स्तर",
+    beginnerGames: "पिनयिन आणि संख्या खेळ",
+    moderateLevel: "मध्यम स्तर",
+    wordGames: "शब्द खेळ",
+    advancedLevel: "प्रगत स्तर",
+    sentenceGames: "वाक्य खेळ",
+    back: "मागे",
+    previous: "मागील",
+    next: "पुढील",
+    clear: "साफ करा",
+    backToInitials: "आद्याक्षरांकडे परत",
+    backToFinals: "अंत्याक्षरांकडे परत",
+    backToNumbers: "संख्यांकडे परत",
+    hearNumber: "संख्या ऐका"
+  },
+  hindi: {
+    myProgress: "मेरी प्रगति",
+    trackJourney: "अपनी यात्रा को ट्रैक करें",
+    level1: "स्तर १: पिनयिन और संख्याएँ",
+    initials: "आद्याक्षर (声母)",
+    learnInitials: "चीनी आद्याक्षर सीखें",
+    finals: "अंत्याक्षर (韵母)",
+    learnFinals: "चीनी अंत्याक्षर स्वरों के साथ सीखें",
+    numbers: "संख्याएँ (数字)",
+    learnNumbers: "चीनी संख्याएँ १-१०० पिनयिन के साथ सीखें",
+    level2: "स्तर २: मूल शब्द",
+    fruits: "फल (水果)",
+    vegetables: "सब्जियाँ (蔬菜)",
+    animals: "जानवर (动物)",
+    birds: "पक्षी (鸟)",
+    vehicles: "वाहन (车辆)",
+    colors: "रंग (颜色)",
+    level3: "स्तर ३: वाक्य और अभिव्यक्तियाँ",
+    greetings: "सरल अभिवादन",
+    activities: "दैनिक गतिविधियाँ",
+    questions: "सरल प्रश्नोत्तर",
+    games: "खेल",
+    basicLevel: "मूल स्तर",
+    beginnerGames: "पिनयिन और संख्या खेल",
+    moderateLevel: "मध्यम स्तर",
+    wordGames: "शब्द खेल",
+    advancedLevel: "उन्नत स्तर",
+    sentenceGames: "वाक्य खेल",
+    back: "वापस",
+    previous: "पिछला",
+    next: "अगला",
+    clear: "साफ़ करें",
+    backToInitials: "आद्याक्षरों पर वापस",
+    backToFinals: "अंत्याक्षरों पर वापस",
+    backToNumbers: "संख्याओं पर वापस",
+    hearNumber: "संख्या सुनें"
+  }
+};
+
+// ===== USER MANAGEMENT =====
+function getCurrentUser() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlUser = urlParams.get('user');
+  if (urlUser) {
+    sessionStorage.setItem('currentUser', urlUser);
+    return urlUser;
+  }
+  
+  const sessionUser = sessionStorage.getItem('currentUser');
+  if (sessionUser) {
+    return sessionUser;
+  }
+  
+  return 'guest';
+}
+
+// Get user profile from localStorage (set by study.html)
+function getUserProfile() {
+  try {
+    const profileStr = localStorage.getItem('linguaKidsProfile');
+    if (profileStr) {
+      return JSON.parse(profileStr);
+    }
+  } catch (e) {
+    return null;
+  }
+  return null;
+}
+
+// Check if user is in teacher mode
+function isTeacherMode() {
+  const userProfile = getUserProfile();
+  return userProfile && userProfile.studyMode === 'teacher';
+}
+
+function isFirstVisit() {
+  const username = getCurrentUser();
+  const visitKey = `linguaKids_${username}_chineseVisited`;
+  const hasVisited = localStorage.getItem(visitKey);
+  return !hasVisited;
+}
+
+function markAsVisited() {
+  const username = getCurrentUser();
+  const visitKey = `linguaKids_${username}_chineseVisited`;
+  localStorage.setItem(visitKey, 'true');
+}
+
+function getUserLanguageKey() {
+  const username = getCurrentUser();
+  return `linguaKids_${username}_chineseInterfaceLang`;
+}
+
+// Helper function to get translated example text
+function getTranslatedExample(item, type) {
+  if (!interfaceLang || interfaceLang === 'english') {
+    return item.example;
+  }
+  
+  // Extract the Chinese characters and pinyin part (before the English meaning)
+  const exampleParts = item.example.split('(');
+  const chinesePinyinPart = exampleParts[0].trim(); // e.g., "爸爸 bàba"
+  
+  if (interfaceLang === 'hindi') {
+    return `${chinesePinyinPart} (${item.hindiMeaning})`;
+  } else if (interfaceLang === 'marathi') {
+    return `${chinesePinyinPart} (${item.marathiMeaning})`;
+  }
+  
+  return item.example;
+}
+
+// ===== BUTTON VISIBILITY FUNCTIONS =====
+function toggleGlobalBack(show) {
+  const btn = document.getElementById("globalBack");
+  if (btn) {
+    btn.style.display = show ? "inline-block" : "none";
+  }
+}
+
+// Function to toggle global logout button (top left for teacher mode)
+function toggleGlobalLogout(show) {
+  const globalLogout = document.getElementById("globalLogout");
+  if (globalLogout) {
+    globalLogout.style.display = show ? "flex" : "none";
+  }
+}
+
+function toggleLangIcon(show) {
+  const langIcon = document.getElementById("langIconBtn");
+  if (langIcon) {
+    if (interfaceLang && show) {
+      langIcon.style.display = "flex";
+    } else {
+      langIcon.style.display = "none";
+    }
+  }
+}
+
+function toggleChatbotBtn(show) {
+  const chatbotBtn = document.getElementById("chatbotBtn");
+  if (chatbotBtn) {
+    if (show && interfaceLang && currentView === 'level1') {
+      chatbotBtn.style.display = "flex";
+    } else {
+      chatbotBtn.style.display = "none";
+    }
+  }
+}
+
+// Function to toggle right side logout button visibility (for self-study mode)
+function toggleRightLogoutButton(show) {
+  const logoutBtn = document.getElementById("logoutBtn");
+  if (logoutBtn) {
+    const username = getCurrentUser();
+    if (username !== 'guest' && show) {
+      logoutBtn.style.display = "flex";
+    } else {
+      logoutBtn.style.display = "none";
+    }
+  }
+}
+
+// ===== LOGOUT CONFIRMATION FUNCTIONS =====
+function showLogoutConfirmation() {
+  const modal = document.getElementById('logoutConfirmModal');
+  if (modal) {
+    modal.style.display = 'flex';
+    // Hide all other buttons while modal is open
+    toggleGlobalBack(false);
+    toggleGlobalLogout(false);
+    toggleLangIcon(false);
+    toggleRightLogoutButton(false);
+    toggleChatbotBtn(false);
+  }
+}
+
+function closeLogoutModal() {
+  const modal = document.getElementById('logoutConfirmModal');
+  if (modal) {
+    modal.style.display = 'none';
+    // Restore buttons based on current view
+    const isTeacher = isTeacherMode();
+    if (currentView === 'level1') {
+      toggleGlobalBack(!isTeacher);
+      toggleGlobalLogout(isTeacher && currentView === 'level1');
+      toggleLangIcon(true);
+      toggleRightLogoutButton(!isTeacher);
+      toggleChatbotBtn(true);
+    } else {
+      toggleGlobalBack(!isTeacher);
+      toggleGlobalLogout(false); // Hide logout button in sub-views
+      toggleLangIcon(false);
+      toggleRightLogoutButton(!isTeacher);
+      toggleChatbotBtn(false);
+    }
+  }
+}
+
+// ===== TEACHER LOGOUT CONFIRMATION FUNCTIONS =====
+function showTeacherLogoutConfirmation() {
+  // Use the same modal for teacher logout
+  showLogoutConfirmation();
+}
+
+function confirmLogout() {
+  // Clear the user profile from localStorage
+  localStorage.removeItem('linguaKidsProfile');
+  sessionStorage.removeItem('currentUser');
+  closeLogoutModal();
+  window.location.href = 'study.html';
+}
+
+function showLanguageModal() {
+  const modal = document.getElementById('languageModal');
+  if (modal) {
+    modal.style.display = 'flex';
+    toggleGlobalBack(false);
+    toggleGlobalLogout(false);
+    toggleLangIcon(false);
+    toggleRightLogoutButton(false);
+    toggleChatbotBtn(false);
+  }
+}
+
+function closeLanguageModal() {
+  const modal = document.getElementById('languageModal');
+  if (modal) {
+    modal.style.display = 'none';
+    const isTeacher = isTeacherMode();
+    if (currentView === 'level1') {
+      toggleGlobalBack(!isTeacher);
+      toggleGlobalLogout(isTeacher);
+      toggleLangIcon(true);
+      toggleRightLogoutButton(!isTeacher);
+      toggleChatbotBtn(true);
+    } else {
+      toggleGlobalBack(!isTeacher);
+      toggleGlobalLogout(false); // Hide logout button in sub-views
+      toggleLangIcon(false);
+      toggleRightLogoutButton(!isTeacher);
+      toggleChatbotBtn(false);
+    }
+  }
+}
+
+function openChatbot() {
+  const modal = document.getElementById('chatbotModal');
+  if (modal) {
+    modal.style.display = 'flex';
+    toggleGlobalBack(false);
+    toggleGlobalLogout(false);
+    toggleLangIcon(false);
+    toggleRightLogoutButton(false);
+    toggleChatbotBtn(false);
+    
+    if (typeof createLinguaKidsChatbot === 'function') {
+      // Map interface language to chatbot language
+      let chatbotLang = 'english'; // default
+      if (interfaceLang === 'marathi') {
+        chatbotLang = 'marathi';
+      } else if (interfaceLang === 'hindi') {
+        chatbotLang = 'hindi';
+      } else if (interfaceLang === 'english') {
+        chatbotLang = 'english';
+      }
+      
+      createLinguaKidsChatbot('chatbotContainer', chatbotLang);
+    }
+  }
+}
+
+function closeChatbot() {
+  const modal = document.getElementById('chatbotModal');
+  if (modal) {
+    modal.style.display = 'none';
+    const isTeacher = isTeacherMode();
+    if (currentView === 'level1') {
+      toggleGlobalBack(!isTeacher);
+      toggleGlobalLogout(isTeacher);
+      toggleLangIcon(true);
+      toggleRightLogoutButton(!isTeacher);
+      toggleChatbotBtn(true);
+    } else {
+      toggleGlobalBack(!isTeacher);
+      toggleGlobalLogout(false); // Hide logout button in sub-views
+      toggleLangIcon(false);
+      toggleRightLogoutButton(!isTeacher);
+      toggleChatbotBtn(false);
+    }
+    
+    document.getElementById('chatbotContainer').innerHTML = '';
+  }
+}
+
+function goBack() {
+  const isTeacher = isTeacherMode();
+  
+  switch(currentView) {
+    case 'initials-menu':
+    case 'finals-menu':
+    case 'numbers-menu':
+    case 'level2':
+    case 'level3':
+    case 'games':
+      loadLevel1();
+      break;
+    case 'initial-lesson':
+      loadInitialsMenu();
+      break;
+    case 'final-lesson':
+      loadFinalsMenu();
+      break;
+    case 'number-lesson':
+      loadNumbersMenu();
+      break;
+    case 'level1':
+    default:
+      if (isTeacher) {
+        showTeacherLogoutConfirmation();
+      } else {
+        window.location.href = 'index.html';
+      }
+  }
+}
+
+/* === Progress Tracking === */
+function initChineseProgress() {
+  const defaultProgress = {
+    level1: { initials: { completed: 0, total: INITIALS.length }, finals: { completed: 0, total: FINALS.length }, numbers: { completed: 0, total: CHINESE_NUMBERS.length } },
+    achievements: { firstSteps: false, pinyinMaster: false, numberWhiz: false, wordExpert: false },
+    streak: { count: 0, lastDate: null },
+    sessionDate: null
+  };
+
+  let progress;
+  try {
+    progress = JSON.parse(localStorage.getItem('linguaKidsChineseProgress'));
+    if (!progress) {
+      progress = defaultProgress;
+    } else {
+      progress = { ...defaultProgress, ...progress, 
+        level1: { ...defaultProgress.level1, ...progress.level1 },
+        achievements: { ...defaultProgress.achievements, ...progress.achievements }
+      };
+    }
+  } catch (e) {
+    progress = defaultProgress;
+  }
+  
+  localStorage.setItem('linguaKidsChineseProgress', JSON.stringify(progress));
+  updateChineseStreak();
+  return progress;
+}
+
+function updateChineseProgress(level, category, increment = 1, itemIdentifier = null) {
+  const progress = JSON.parse(localStorage.getItem('linguaKidsChineseProgress'));
+  const today = new Date().toDateString();
+  
+  if (progress[level] && progress[level][category]) {
+    const itemKey = itemIdentifier ? `${level}_${category}_${itemIdentifier}` : null;
+    const sessionKey = itemKey ? `${itemKey}_${today}` : null;
+
+    if (sessionKey && sessionStorage.getItem(sessionKey)) {
+      return false;
+    }
+    
+    if (progress[level][category].completed < progress[level][category].total) { 
+      progress[level][category].completed = Math.min(progress[level][category].completed + increment, progress[level][category].total);
+    } else {
+      return false; 
+    }
+    
+    localStorage.setItem('linguaKidsChineseProgress', JSON.stringify(progress));
+    
+    if (sessionKey) { sessionStorage.setItem(sessionKey, 'true'); }
+
+    updateChineseStreak(); 
+    // No toast message shown
+    
+    return true;
+  }
+  return false;
+}
+
+function updateChineseStreak() {
+  const progress = JSON.parse(localStorage.getItem('linguaKidsChineseProgress'));
+  const today = new Date().toDateString();
+  
+  if (progress.sessionDate !== today) {
+    let lastDate = progress.streak.lastDate ? new Date(progress.streak.lastDate) : null;
+    const todayDate = new Date();
+    
+    if (lastDate) {
+      const diffTime = todayDate.getTime() - lastDate.getTime();
+      const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
+      
+      if (diffDays === 1) { progress.streak.count++; } 
+      else if (diffDays > 1) { progress.streak.count = 1; }
+    } else {
+      progress.streak.count = 1; 
+    }
+    
+    progress.streak.lastDate = today;
+    progress.sessionDate = today;
+    localStorage.setItem('linguaKidsChineseProgress', JSON.stringify(progress));
+  }
+}
+
+// Empty function - no toast messages shown
+function showAchievementToast(title, description) {
+  // Do nothing - toast messages disabled
+}
+
+/* === Navigation Functions === */
+function goBack() {
+  const isTeacher = isTeacherMode();
+  
+  switch(currentView) {
+    case 'initials-menu':
+    case 'finals-menu':
+    case 'numbers-menu':
+    case 'level2':
+    case 'level3':
+    case 'games':
+      loadLevel1();
+      break;
+    case 'initial-lesson':
+      loadInitialsMenu();
+      break;
+    case 'final-lesson':
+      loadFinalsMenu();
+      break;
+    case 'number-lesson':
+      loadNumbersMenu();
+      break;
+    case 'level1':
+    default:
+      if (isTeacher) {
+        showTeacherLogoutConfirmation();
+      } else {
+        window.location.href = 'index.html';
+      }
+  }
+}
+
+/* Show sub-menu: Pinyin & Numbers */
+function loadLevel1(){
+  if (!interfaceLang) return;
+  currentView = 'level1';
+  const t = translations[interfaceLang];
+  
+  // Show appropriate buttons based on user type
+  const isTeacher = isTeacherMode();
+  toggleGlobalBack(!isTeacher); // Show back button only for self-study
+  toggleGlobalLogout(isTeacher && currentView === 'level1'); // Show logout button only for teacher mode on main page
+  toggleLangIcon(true);
+  toggleRightLogoutButton(!isTeacher); // Show right logout button only for self-study
+  toggleChatbotBtn(true);
+
+  // Update back button text to match interface language
+  const backBtn = document.getElementById("globalBack");
+  if (backBtn) {
+    backBtn.textContent = t.back;
+  }
+
+  document.getElementById("learning-content").innerHTML = `
+<h1>CHINESE - 中文</h1>
+<div class="sub-container">
+  <div class="sub-card card-progress" onclick="window.location.href='chprogress.html'">
+    <h3>${t.myProgress}</h3><p>${t.trackJourney}</p>
+  </div>
+</div>
+
+    <h2>${t.level1}</h2>
+    <div class="sub-container">
+      <div class="sub-card card-level1" onclick="loadInitialsMenu()">
+        <h3>${t.initials}</h3><p>${t.learnInitials}</p>
+      </div>
+      <div class="sub-card card-level1" onclick="loadFinalsMenu()">
+        <h3>${t.finals}</h3><p>${t.learnFinals}</p>
+      </div>
+      <div class="sub-card card-level1" onclick="loadNumbersMenu()">
+        <h3>${t.numbers}</h3><p>${t.learnNumbers}</p>
+      </div>
+    </div>
+
+    <h2>${t.level2}</h2>
+    <div class="sub-container">
+      <div class="sub-card card-level2" onclick="goToLevel2('fruits')">
+        <h3>${t.fruits}</h3><p>Learn names of fruits</p>
+      </div>
+      <div class="sub-card card-level2" onclick="goToLevel2('vegetables')">
+        <h3>${t.vegetables}</h3><p>Learn names of vegetables</p>
+      </div>
+      <div class="sub-card card-level2" onclick="goToLevel2('animals')">
+        <h3>${t.animals}</h3><p>Learn names of animals</p>
+      </div>
+      <div class="sub-card card-level2" onclick="goToLevel2('birds')">
+        <h3>${t.birds}</h3><p>Learn names of birds</p>
+      </div>
+      <div class="sub-card card-level2" onclick="goToLevel2('vehicles')">
+        <h3>${t.vehicles}</h3><p>Learn names of vehicles</p>
+      </div>
+      <div class="sub-card card-level2" onclick="goToLevel2('colours')">
+        <h3>${t.colors}</h3><p>Learn names of colours</p>
+      </div>
+    </div>
+
+    <h2>${t.level3}</h2>
+    <div class="sub-container">
+      <div class="sub-card card-level3" onclick="goToLevel3('greetings')">
+        <h3>${t.greetings}</h3>
+      </div>
+      <div class="sub-card card-level3" onclick="goToLevel3('activities')">
+        <h3>${t.activities}</h3>
+      </div>
+      <div class="sub-card card-level3" onclick="goToLevel3('questions')">
+        <h3>${t.questions}</h3>
+      </div>
+    </div>
+
+    <h2>${t.games}</h2>
+    <div class="sub-container">
+      <div class="sub-card card-games" onclick="playGame('basic')">
+        <h3>${t.basicLevel}</h3>
+        <p>${t.beginnerGames}</p>
+      </div>
+      <div class="sub-card card-games" onclick="playGame('moderate')">
+        <h3>${t.moderateLevel}</h3>
+        <p>${t.wordGames}</p>
+      </div>
+      <div class="sub-card card-games" onclick="playGame('advanced')">
+        <h3>${t.advancedLevel}</h3>
+        <p>${t.sentenceGames}</p>
+      </div>
+    </div>
+  `;
+}
+
+/* === Initials, Finals, Numbers Menu and Lesson Functions === */
+function loadInitialsMenu(){
+  if (!interfaceLang) return;
+  currentView = 'initials-menu';
+  const t = translations[interfaceLang];
+  
+  const isTeacher = isTeacherMode();
+  toggleGlobalBack(true); // Show global back button for both modes in sub-views
+  toggleGlobalLogout(false); // Hide logout button in sub-menus for teacher mode
+  toggleLangIcon(false);
+  toggleRightLogoutButton(!isTeacher); // Show right logout button only for self-study
+  toggleChatbotBtn(false);
+  
+  // Update back button text to match interface language
+  const backBtn = document.getElementById("globalBack");
+  if (backBtn) {
+    backBtn.textContent = t.back;
+  }
+  
+  document.getElementById("learning-content").innerHTML = `
+    <h2 style="margin-top: 40px;">${t.initials}</h2>
+    <div class="initials-grid">
+      ${INITIALS.map((initial, index)=>`
+        <div class="initial-card" onclick="startInitialLesson(${index})">
+          <div class="main-char">${initial.pinyin}</div>
+          <div class="example">${getTranslatedExample(initial)}</div>
+          <button class="sound-btn" onclick="event.stopPropagation(); playInitialSound('${initial.pinyin}'); trackInitialProgress(${index});">
+            <i class="fas fa-volume-up"></i>
+          </button>
+        </div>`).join("")}
+    </div>
+  `;
+}
+
+function trackInitialProgress(index) {
+  const identifier = `initial_${index}`;
+  updateChineseProgress('level1', 'initials', 1, identifier);
+}
+
+function startInitialLesson(index){
+  if (!interfaceLang) return;
+  currentView = 'initial-lesson';
+  const t = translations[interfaceLang];
+  
+  const isTeacher = isTeacherMode();
+  toggleGlobalBack(true); // Show global back button for both modes in lessons
+  toggleGlobalLogout(false); // Hide logout button in lessons for teacher mode
+  toggleLangIcon(false);
+  toggleRightLogoutButton(!isTeacher); // Show right logout button only for self-study
+  toggleChatbotBtn(false);
+  
+  // Update back button text to match interface language
+  const backBtn = document.getElementById("globalBack");
+  if (backBtn) {
+    backBtn.textContent = t.back;
+  }
+  
+  if(index < 0){ index = 0; }
+  if(index >= INITIALS.length){ loadInitialsMenu(); return; }
+  const initial = INITIALS[index];
+
+  trackInitialProgress(index);
+
+  document.getElementById("learning-content").innerHTML = `
+    <div class="lesson-container">
+      <div class="main-char">${initial.pinyin}</div>
+      <div class="example">${getTranslatedExample(initial)}</div>
+      <button class="sound-btn" onclick="playInitialSound('${initial.pinyin}')">
+        <i class="fas fa-volume-up"></i>
+      </button>
+      <div class="trace-area">
+        <canvas id="traceCanvas" width="250" height="250"></canvas>
+        <button class="btn clear-btn" onclick="clearCanvas()">${t.clear}</button>
+      </div>
+      <div class="lesson-controls">
+        <button class="btn" onclick="startInitialLesson(${index-1})">${t.previous}</button>
+        <button class="btn" onclick="startInitialLesson(${index+1})">${t.next}</button>
+      </div>
+    </div>
+  `;
+  initCanvas();
+}
+
+function loadFinalsMenu(){
+  if (!interfaceLang) return;
+  currentView = 'finals-menu';
+  const t = translations[interfaceLang];
+  
+  const isTeacher = isTeacherMode();
+  toggleGlobalBack(true); // Show global back button for both modes in sub-views
+  toggleGlobalLogout(false); // Hide logout button in sub-menus for teacher mode
+  toggleLangIcon(false);
+  toggleRightLogoutButton(!isTeacher); // Show right logout button only for self-study
+  toggleChatbotBtn(false);
+
+  // Update back button text to match interface language
+  const backBtn = document.getElementById("globalBack");
+  if (backBtn) {
+    backBtn.textContent = t.back;
+  }
+
+  document.getElementById("learning-content").innerHTML=`
+    <h2 style="margin-top: 40px;">${t.finals}</h2>
+    
+    <h3 class="category-title">Simple Finals</h3>
+    <div class="finals-grid">
+      ${FINALS.slice(0, 6).map((final, index)=>`
+        <div class="final-card" onclick="startFinalLesson(${index})">
+          <div class="main-char">${final.pinyin}</div>
+          <div class="small-char">${final.char} <span class="tone-indicator tone-${final.tone}">${final.tone}</span></div>
+          <div class="example">${getTranslatedExample(final)}</div>
+          <button class="sound-btn" onclick="event.stopPropagation(); playFinalSound('${final.pinyin}', ${final.tone}); trackFinalProgress(${index});">
+            <i class="fas fa-volume-up"></i>
+          </button>
+        </div>`).join("")}
+    </div>
+    
+    <h3 class="category-title">Compound Finals</h3>
+    <div class="finals-grid">
+      ${FINALS.slice(6, 15).map((final, index)=>`
+        <div class="final-card" onclick="startFinalLesson(${index+6})">
+          <div class="main-char">${final.pinyin}</div>
+          <div class="small-char">${final.char} <span class="tone-indicator tone-${final.tone}">${final.tone}</span></div>
+          <div class="example">${getTranslatedExample(final)}</div>
+          <button class="sound-btn" onclick="event.stopPropagation(); playFinalSound('${final.pinyin}', ${final.tone}); trackFinalProgress(${index+6});">
+            <i class="fas fa-volume-up"></i>
+          </button>
+        </div>`).join("")}
+    </div>
+    
+    <h3 class="category-title">Nasal Finals</h3>
+    <div class="finals-grid">
+      ${FINALS.slice(15).map((final, index)=>`
+        <div class="final-card" onclick="startFinalLesson(${index+15})">
+          <div class="main-char">${final.pinyin}</div>
+          <div class="small-char">${final.char} <span class="tone-indicator tone-${final.tone}">${final.tone}</span></div>
+          <div class="example">${getTranslatedExample(final)}</div>
+          <button class="sound-btn" onclick="event.stopPropagation(); playFinalSound('${final.pinyin}', ${final.tone}); trackFinalProgress(${index+15});">
+            <i class="fas fa-volume-up"></i>
+          </button>
+        </div>`).join("")}
+    </div>
+  `;
+}
+
+function trackFinalProgress(index) {
+  const identifier = `final_${index}`;
+  updateChineseProgress('level1', 'finals', 1, identifier);
+}
+
+function startFinalLesson(index){
+  if (!interfaceLang) return;
+  currentView = 'final-lesson';
+  const t = translations[interfaceLang];
+  
+  const isTeacher = isTeacherMode();
+  toggleGlobalBack(true); // Show global back button for both modes in lessons
+  toggleGlobalLogout(false); // Hide logout button in lessons for teacher mode
+  toggleLangIcon(false);
+  toggleRightLogoutButton(!isTeacher); // Show right logout button only for self-study
+  toggleChatbotBtn(false);
+
+  // Update back button text to match interface language
+  const backBtn = document.getElementById("globalBack");
+  if (backBtn) {
+    backBtn.textContent = t.back;
+  }
+
+  if(index < 0){ index = 0; }
+  if(index >= FINALS.length){ loadFinalsMenu(); return; }
+  const final = FINALS[index];
+
+  trackFinalProgress(index);
+  
+  document.getElementById("learning-content").innerHTML = `
+    <div class="lesson-container">
+      <div class="main-char">${final.pinyin}</div>
+      <div class="small-char">${final.char} <span class="tone-indicator tone-${final.tone}">${final.tone}</span></div>
+      <div class="example">${getTranslatedExample(final)}</div>
+      
+      <div class="lesson-controls">
+        <button class="sound-btn" onclick="playFinalSound('${final.pinyin}', ${final.tone})">
+          <i class="fas fa-volume-up"></i>
+        </button>
+      </div>
+      
+      <div class="trace-area">
+        <canvas id="traceCanvas" width="250" height="250"></canvas>
+        <button class="btn clear-btn" onclick="clearCanvas()">${t.clear}</button>
+      </div>
+      <div class="lesson-controls">
+        <button class="btn" onclick="startFinalLesson(${index-1})">${t.previous}</button>
+        <button class="btn" onclick="startFinalLesson(${index+1})">${t.next}</button>
+      </div>
+    </div>
+  `;
+  
+  initCanvas();
+}
+
+function loadNumbersMenu(){
+  if (!interfaceLang) return;
+  currentView = 'numbers-menu';
+  const t = translations[interfaceLang];
+  
+  const isTeacher = isTeacherMode();
+  toggleGlobalBack(true); // Show global back button for both modes in sub-views
+  toggleGlobalLogout(false); // Hide logout button in sub-menus for teacher mode
+  toggleLangIcon(false);
+  toggleRightLogoutButton(!isTeacher); // Show right logout button only for self-study
+  toggleChatbotBtn(false);
+
+  // Update back button text to match interface language
+  const backBtn = document.getElementById("globalBack");
+  if (backBtn) {
+    backBtn.textContent = t.back;
+  }
+
+  document.getElementById("learning-content").innerHTML=`
+    <h2 style="margin-top: 40px;">${t.numbers} 1-100</h2>
+    <div id="numbers-grid-container"></div>
+  `;
+  
+  renderAllNumbers();
+}
+
+function renderAllNumbers() {
+  const gridContainer = document.getElementById('numbers-grid-container');
+  if (!gridContainer) return;
+
+  gridContainer.innerHTML = `
+    <div class="numbers-grid-100">
+      ${CHINESE_NUMBERS.map((n, index) => `
+        <div class="number-card-100" onclick="startNumberLesson(${index})">
+          <div class="main-char">${n.digit}</div>
+          <div class="small-char">${n.chinese}</div>
+          <div class="pinyin-display" style="font-size:0.8rem;">${n.pinyin}</div>
+          <button class="sound-btn" onclick="event.stopPropagation(); playNumberSound(${index}); trackNumberProgress(${index});">
+            <i class="fas fa-volume-up"></i>
+          </button>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function trackNumberProgress(index) {
+  const identifier = `number_${index + 1}`;
+  updateChineseProgress('level1', 'numbers', 1, identifier);
+}
+
+function startNumberLesson(index){
+  if (!interfaceLang) return;
+  currentView = 'number-lesson';
+  const t = translations[interfaceLang];
+  
+  const isTeacher = isTeacherMode();
+  toggleGlobalBack(true); // Show global back button for both modes in lessons
+  toggleGlobalLogout(false); // Hide logout button in lessons for teacher mode
+  toggleLangIcon(false);
+  toggleRightLogoutButton(!isTeacher); // Show right logout button only for self-study
+  toggleChatbotBtn(false);
+
+  // Update back button text to match interface language
+  const backBtn = document.getElementById("globalBack");
+  if (backBtn) {
+    backBtn.textContent = t.back;
+  }
+
+  if(index < 0){ index = 0; }
+  if(index >= CHINESE_NUMBERS.length){ loadNumbersMenu(); return; }
+  const n = CHINESE_NUMBERS[index];
+
+  trackNumberProgress(index);
+  
+  // Create tone indicators for numbers with multiple syllables
+  let toneIndicators = '';
+  if (typeof n.tone === 'string' && n.tone.includes(',')) {
+    const tones = n.tone.split(',');
+    const pinyinParts = n.pinyin.split(' ');
+    toneIndicators = pinyinParts.map((part, i) => 
+      `<span class="tone-indicator tone-${tones[i]}">${tones[i]}</span>`
+    ).join(' ');
+  } else {
+    toneIndicators = `<span class="tone-indicator tone-${n.tone}">${n.tone}</span>`;
+  }
+  
+  document.getElementById("learning-content").innerHTML = `
+    <div class="lesson-container">
+      <div class="main-char">${n.digit}</div>
+      <div class="example">${n.chinese}</div>
+      <div class="pinyin-display">${n.pinyin} ${toneIndicators}</div>
+      <button class="sound-btn" onclick="playNumberSound(${index})">
+        <i class="fas fa-volume-up"></i>
+      </button>
+      <div class="trace-area">
+        <canvas id="traceCanvas" width="250" height="250"></canvas>
+        <button class="btn clear-btn" onclick="clearCanvas()">${t.clear}</button>
+      </div>
+      <div class="lesson-controls">
+        <button class="btn" onclick="startNumberLesson(${index-1})">${t.previous}</button>
+        <button class="btn" onclick="startNumberLesson(${index+1})">${t.next}</button>
+      </div>
+    </div>
+  `;
+  
+  initCanvas();
+}
+
+/* === Sound Functions === */
+function playInitialSound(initial) {
+  if ('speechSynthesis' in window) {
+    const utterance = new SpeechSynthesisUtterance(initial);
+    utterance.rate = 0.7;
+    speechSynthesis.speak(utterance);
+  } else {
+    alert("Your browser doesn't support text-to-speech. Please try a modern browser like Chrome or Edge.");
+  }
+}
+
+function playFinalSound(pinyin, tone) {
+  if ('speechSynthesis' in window) {
+    const utterance = new SpeechSynthesisUtterance(pinyin);
+    utterance.rate = 0.7;
+    utterance.pitch = 1.0 + (tone * 0.1);
+    speechSynthesis.speak(utterance);
+  } else {
+    alert("Your browser doesn't support text-to-speech. Please try a modern browser like Chrome or Edge.");
+  }
+}
+
+function playNumberSound(index) {
+  const n = CHINESE_NUMBERS[index];
+  
+  if ('speechSynthesis' in window) {
+    const utterance = new SpeechSynthesisUtterance(n.pinyin);
+    utterance.rate = 0.8;
+    speechSynthesis.speak(utterance);
+  } else {
+    alert("Your browser doesn't support text-to-speech. Please try a modern browser like Chrome or Edge.");
+  }
+}
+
+/* === Tracing Canvas === */
+function initCanvas(){
+  const canvas=document.getElementById("traceCanvas");
+  const ctx=canvas.getContext("2d");
+  ctx.lineWidth=4; ctx.lineCap="round"; ctx.strokeStyle="#58cc02";
+  let drawing=false;
+  function getPos(e){
+    const rect=canvas.getBoundingClientRect();
+    return {x:(e.clientX||e.touches[0].clientX)-rect.left,y:(e.clientY||e.touches[0].clientY)-rect.top};
+  }
+  canvas.onmousedown=()=>drawing=true;
+  canvas.onmouseup=()=>{drawing=false;ctx.beginPath();};
+  canvas.onmousemove=e=>{if(!drawing)return; const p=getPos(e); ctx.lineTo(p.x,p.y); ctx.stroke(); ctx.beginPath(); ctx.moveTo(p.x,p.y);}
+  canvas.ontouchstart=()=>drawing=true;
+  canvas.ontouchend=()=>{drawing=false;ctx.beginPath();};
+  canvas.ontouchmove=e=>{e.preventDefault(); if(!drawing)return; const p=getPos(e); ctx.lineTo(p.x,p.y); ctx.stroke(); ctx.beginPath(); ctx.moveTo(p.x,p.y);}
+}
+
+function clearCanvas(){
+  const canvas = document.getElementById("traceCanvas");
+  if (canvas) {
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+}
+
+/* === Navigate to Level 2/3/Game Pages === */
+function goToLevel2(category){
+  window.location.href = `chlevel2.html?category=${category}&lang=${interfaceLang}`;
+}
+
+function goToLevel3(category){
+  window.location.href = `chlevel3.html?category=${category}&lang=${interfaceLang}`;
+}
+
+function playGame(gameType){
+  window.location.href = `chgames.html?game=${gameType}&lang=${interfaceLang}`;
+}
+
+// ===== MODAL & INIT =====
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('languageModal');
+  const backBtn = document.getElementById('globalBack');
+  const globalLogout = document.getElementById('globalLogout');
+  const langIcon = document.getElementById('langIconBtn');
+  const logoutBtn = document.getElementById('logoutBtn');
+  const chatbotBtn = document.getElementById('chatbotBtn');
+  
+  const currentUser = getCurrentUser();
+  const userProfile = getUserProfile();
+  const storageKey = getUserLanguageKey();
+  const savedLang = localStorage.getItem(storageKey);
+  const firstVisit = isFirstVisit();
+
+  document.getElementById("learning-content").innerHTML = '';
+
+  if (userProfile && userProfile.studyMode === 'teacher' && userProfile.assignedLanguage) {
+    if (firstVisit) {
+      interfaceLang = null;
+      modal.style.display = 'flex';
+      if (backBtn) backBtn.style.display = 'none';
+      if (globalLogout) globalLogout.style.display = 'none';
+      if (langIcon) langIcon.style.display = 'none';
+      if (logoutBtn) logoutBtn.style.display = 'none';
+      if (chatbotBtn) chatbotBtn.style.display = 'none';
+    } else if (savedLang) {
+      interfaceLang = savedLang;
+      modal.style.display = 'none';
+      loadLevel1();
+      if (backBtn) backBtn.style.display = 'none'; // Hide back button for teacher mode
+      if (globalLogout) globalLogout.style.display = 'flex'; // Show global logout for teacher mode (only on main page)
+      if (langIcon) langIcon.style.display = 'flex';
+      if (logoutBtn) logoutBtn.style.display = 'none'; // Hide right logout for teacher mode
+      if (chatbotBtn && interfaceLang) chatbotBtn.style.display = 'flex';
+    } else {
+      interfaceLang = null;
+      modal.style.display = 'flex';
+      if (backBtn) backBtn.style.display = 'none';
+      if (globalLogout) globalLogout.style.display = 'none';
+      if (langIcon) langIcon.style.display = 'none';
+      if (logoutBtn) logoutBtn.style.display = 'none';
+      if (chatbotBtn) chatbotBtn.style.display = 'none';
+    }
+  } else {
+    if (firstVisit) {
+      interfaceLang = null;
+      modal.style.display = 'flex';
+      if (backBtn) backBtn.style.display = 'none';
+      if (globalLogout) globalLogout.style.display = 'none';
+      if (langIcon) langIcon.style.display = 'none';
+      if (logoutBtn) logoutBtn.style.display = 'none';
+      if (chatbotBtn) chatbotBtn.style.display = 'none';
+    } else if (savedLang) {
+      interfaceLang = savedLang;
+      modal.style.display = 'none';
+      loadLevel1();
+      if (backBtn) backBtn.style.display = 'inline-block'; // Show back button for self-study
+      if (globalLogout) globalLogout.style.display = 'none'; // Hide global logout for self-study
+      if (langIcon) langIcon.style.display = 'flex';
+      if (logoutBtn && currentUser !== 'guest') logoutBtn.style.display = 'flex'; // Show right logout for self-study
+      if (chatbotBtn && interfaceLang) chatbotBtn.style.display = 'flex';
+    } else {
+      interfaceLang = null;
+      modal.style.display = 'flex';
+      if (backBtn) backBtn.style.display = 'none';
+      if (globalLogout) globalLogout.style.display = 'none';
+      if (langIcon) langIcon.style.display = 'none';
+      if (logoutBtn) logoutBtn.style.display = 'none';
+      if (chatbotBtn) chatbotBtn.style.display = 'none';
+    }
+  }
+
+  const englishOption = document.getElementById('chooseEnglish');
+  const marathiOption = document.getElementById('chooseMarathi');
+  const hindiOption = document.getElementById('chooseHindi');
+  
+  const newEnglishOption = englishOption.cloneNode(true);
+  const newMarathiOption = marathiOption.cloneNode(true);
+  const newHindiOption = hindiOption.cloneNode(true);
+  
+  englishOption.parentNode.replaceChild(newEnglishOption, englishOption);
+  marathiOption.parentNode.replaceChild(newMarathiOption, marathiOption);
+  hindiOption.parentNode.replaceChild(newHindiOption, hindiOption);
+
+  newEnglishOption.addEventListener('click', function() {
+    interfaceLang = 'english';
+    localStorage.setItem(getUserLanguageKey(), 'english');
+    markAsVisited();
+    modal.style.display = 'none';
+    loadLevel1();
+    const isTeacher = isTeacherMode();
+    if (backBtn) backBtn.style.display = isTeacher ? 'none' : 'inline-block';
+    if (globalLogout) globalLogout.style.display = isTeacher ? 'flex' : 'none';
+    if (langIcon) langIcon.style.display = 'flex';
+    if (logoutBtn && currentUser !== 'guest') logoutBtn.style.display = isTeacher ? 'none' : 'flex';
+    if (chatbotBtn && interfaceLang) chatbotBtn.style.display = 'flex';
+  });
+
+  newMarathiOption.addEventListener('click', function() {
+    interfaceLang = 'marathi';
+    localStorage.setItem(getUserLanguageKey(), 'marathi');
+    markAsVisited();
+    modal.style.display = 'none';
+    loadLevel1();
+    const isTeacher = isTeacherMode();
+    if (backBtn) backBtn.style.display = isTeacher ? 'none' : 'inline-block';
+    if (globalLogout) globalLogout.style.display = isTeacher ? 'flex' : 'none';
+    if (langIcon) langIcon.style.display = 'flex';
+    if (logoutBtn && currentUser !== 'guest') logoutBtn.style.display = isTeacher ? 'none' : 'flex';
+    if (chatbotBtn && interfaceLang) chatbotBtn.style.display = 'flex';
+  });
+
+  newHindiOption.addEventListener('click', function() {
+    interfaceLang = 'hindi';
+    localStorage.setItem(getUserLanguageKey(), 'hindi');
+    markAsVisited();
+    modal.style.display = 'none';
+    loadLevel1();
+    const isTeacher = isTeacherMode();
+    if (backBtn) backBtn.style.display = isTeacher ? 'none' : 'inline-block';
+    if (globalLogout) globalLogout.style.display = isTeacher ? 'flex' : 'none';
+    if (langIcon) langIcon.style.display = 'flex';
+    if (logoutBtn && currentUser !== 'guest') logoutBtn.style.display = isTeacher ? 'none' : 'flex';
+    if (chatbotBtn && interfaceLang) chatbotBtn.style.display = 'flex';
+  });
+});
+
+// Make functions globally accessible
+window.loadLevel1 = loadLevel1;
+window.loadInitialsMenu = loadInitialsMenu;
+window.loadFinalsMenu = loadFinalsMenu;
+window.loadNumbersMenu = loadNumbersMenu;
+window.startInitialLesson = startInitialLesson;
+window.startFinalLesson = startFinalLesson;
+window.startNumberLesson = startNumberLesson;
+window.renderAllNumbers = renderAllNumbers;
+window.trackInitialProgress = trackInitialProgress;
+window.trackFinalProgress = trackFinalProgress;
+window.trackNumberProgress = trackNumberProgress;
+window.playInitialSound = playInitialSound;
+window.playFinalSound = playFinalSound;
+window.playNumberSound = playNumberSound;
+window.initCanvas = initCanvas;
+window.clearCanvas = clearCanvas;
+window.goBack = goBack;
+window.showLogoutConfirmation = showLogoutConfirmation;
+window.closeLogoutModal = closeLogoutModal;
+window.confirmLogout = confirmLogout;
+window.showTeacherLogoutConfirmation = showTeacherLogoutConfirmation;
+window.toggleGlobalBack = toggleGlobalBack;
+window.toggleGlobalLogout = toggleGlobalLogout;
+window.toggleLangIcon = toggleLangIcon;
+window.toggleRightLogoutButton = toggleRightLogoutButton;
+window.toggleChatbotBtn = toggleChatbotBtn;
+window.showLanguageModal = showLanguageModal;
+window.closeLanguageModal = closeLanguageModal;
+window.openChatbot = openChatbot;
+window.closeChatbot = closeChatbot;
+window.confirmLogout = confirmLogout;
+window.goToLevel2 = goToLevel2;
+window.goToLevel3 = goToLevel3;
+window.playGame = playGame;
+window.isTeacherMode = isTeacherMode;
+
+document.addEventListener('DOMContentLoaded', function() {
+  initChineseProgress();
+});
+</script>
+<script src="chprogress.js"></script>
+<script src="chatbot.js"></script>
+</body>
+</html>

@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>LinguaKids - Choose Your Language</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+    :root {
+      --primary: #43e97b;
+      --primary-dark: #1db863;
+      --secondary: #38f9d7;
+      --teacher-color: #9c27b0;
+      --teacher-dark: #7b1fa2;
+      --light: #fffbf0;
+      --dark: #333;
+      --shadow: 0 7px 0 #c0c0c0, 0 10px 20px rgba(0,0,0,0.08);
+      --radius: 24px;
+      --transition: all 0.22s cubic-bezier(.34,1.7,.64,1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Nunito', 'Quicksand', sans-serif;
+      min-height: 100vh;
+      color: var(--dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-color: #fffbf0;
+      background-image:
+        radial-gradient(circle at 8%  12%, #ff6bb540 0%, transparent 28%),
+        radial-gradient(circle at 92% 8%,  #43e97b40 0%, transparent 28%),
+        radial-gradient(circle at 50% 50%, #f9ca2440 0%, transparent 40%),
+        radial-gradient(circle at 15% 88%, #38f9d740 0%, transparent 28%),
+        radial-gradient(circle at 88% 85%, #4facfe40 0%, transparent 28%),
+        radial-gradient(circle at 70% 30%, #fa709a30 0%, transparent 22%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 12px;
+    }
+
+    /* Floating confetti dots */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        radial-gradient(circle, #ff6bb5 2px, transparent 2px),
+        radial-gradient(circle, #43e97b 2px, transparent 2px),
+        radial-gradient(circle, #f9ca24 2px, transparent 2px),
+        radial-gradient(circle, #4facfe 2px, transparent 2px),
+        radial-gradient(circle, #fa709a 2px, transparent 2px),
+        radial-gradient(circle, #ff6b6b 2px, transparent 2px);
+      background-size: 120px 120px, 97px 97px, 143px 143px, 83px 83px, 107px 107px, 131px 131px;
+      background-position: 10px 15px, 55px 70px, 30px 40px, 80px 10px, 50px 100px, 100px 55px;
+      opacity: 0.45;
+      animation: driftDots 18s linear infinite alternate;
+    }
+
+    @keyframes driftDots {
+      from { background-position: 10px 15px, 55px 70px, 30px 40px, 80px 10px, 50px 100px, 100px 55px; }
+      to   { background-position: 22px 38px, 44px 52px, 52px 62px, 62px 28px, 68px 82px, 82px 72px; }
+    }
+
+    .selection-container {
+      text-align: center;
+      max-width: 1000px;
+      width: 100%;
+      animation: fadeInUp 0.8s ease-out forwards;
+      opacity: 0;
+      position: relative;
+      padding-top: 60px;
+      z-index: 1;
+    }
+
+    /* ---- TITLE ---- */
+    .title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: #f9ca24;
+      text-shadow: 3px 3px 0 #d4a800, 5px 5px 0 rgba(249,202,36,0.2);
+      margin-bottom: 8px;
+      animation: titleWobble 3.5s ease-in-out infinite;
+    }
+
+    @keyframes titleWobble {
+      0%,100% { transform: rotate(-1deg) scale(1); }
+      25%      { transform: rotate(1.5deg) scale(1.02); }
+      75%      { transform: rotate(-0.5deg) scale(0.98); }
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: #888;
+      margin-bottom: 32px;
+      font-weight: 700;
+      font-family: 'Baloo 2', cursive;
+    }
+
+    /* ---- PROFILE ICON (Top Right) ---- */
+    .profile-icon {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: white;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      cursor: pointer;
+      box-shadow: 0 6px 0 #d1d5db, 0 8px 20px rgba(0,0,0,0.1);
+      border: 3px solid #fde68a;
+      transition: var(--transition);
+      z-index: 100;
+    }
+
+    .profile-icon:hover {
+      transform: translateY(-4px) scale(1.1);
+      border-color: var(--primary);
+      box-shadow: 0 10px 0 #1db863, 0 14px 24px rgba(67,233,123,0.25);
+    }
+
+    /* ---- PROFILE PANEL ---- */
+    .profile-panel {
+      position: absolute;
+      top: 70px;
+      right: 0;
+      background: rgba(255,255,255,0.96);
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: 0 8px 0 #d4a800, 0 14px 30px rgba(249,202,36,0.15);
+      border: 3px solid #fde68a;
+      backdrop-filter: blur(8px);
+      width: 360px;
+      max-width: 90vw;
+      z-index: 100;
+      display: none;
+      animation: slideIn 0.3s cubic-bezier(.34,1.56,.64,1);
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-20px) scale(0.95); }
+      to   { opacity: 1; transform: translateY(0)    scale(1); }
+    }
+
+    .profile-panel.show {
+      display: block;
+    }
+
+    /* Panel header */
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #fde68a;
+    }
+    .panel-header h3 {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #0ea5e9;
+    }
+    .close-x {
+      background: #f0f9ff;
+      border: 2px solid #bae6fd;
+      font-size: 1.1rem;
+      cursor: pointer;
+      color: #0ea5e9;
+      transition: var(--transition);
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+    .close-x:hover {
+      background: #0ea5e9;
+      color: white;
+      transform: scale(1.1);
+    }
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #fde68a;
+    }
+
+    .profile-avatar-large {
+      font-size: 2.2rem;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: #fffbeb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px solid #f9ca24;
+      flex-shrink: 0;
+      box-shadow: 0 4px 0 #d4a800;
+    }
+
+    .profile-details {
+      text-align: left;
+      flex: 1;
+    }
+
+    .profile-name {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+
+    .profile-mode {
+      font-size: 0.8rem;
+      color: white;
+      background: linear-gradient(160deg, var(--primary), var(--secondary));
+      padding: 3px 10px;
+      border-radius: 999px;
+      display: inline-block;
+      font-weight: 700;
+      font-family: 'Baloo 2', cursive;
+    }
+
+    .profile-mode.teacher {
+      background: linear-gradient(160deg, var(--teacher-color), #ce93d8);
+    }
+
+    .profile-class {
+      font-size: 0.75rem;
+      color: #888;
+      margin-top: 4px;
+      font-weight: 600;
+    }
+
+    /* Profile Form */
+    .profile-form {
+      text-align: left;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      color: #666;
+      margin-bottom: 4px;
+      font-weight: 700;
+      font-family: 'Baloo 2', cursive;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 8px 12px;
+      border: 2px solid #bae6fd;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      transition: border-color 0.2s;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+    }
+
+    .form-group input:focus {
+      border-color: #43e97b;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(67,233,123,0.15);
+    }
+
+    .form-group input[readonly] {
+      background: #f8f9fa;
+      color: #6c757d;
+    }
+
+    /* Avatar Options */
+    .avatar-options {
+      display: flex;
+      gap: 6px;
+      margin-top: 6px;
+      flex-wrap: wrap;
+    }
+
+    .avatar-option-small {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      background: #f8f9fa;
+      flex-shrink: 0;
+    }
+
+    .avatar-option-small.selected {
+      border-color: var(--primary);
+      background: #f0fff4;
+      transform: scale(1.12);
+      box-shadow: 0 3px 0 #1db863;
+    }
+
+    .avatar-option-small.teacher-selected {
+      border-color: var(--teacher-color);
+      background: #f3e5f5;
+      transform: scale(1.12);
+      box-shadow: 0 3px 0 var(--teacher-dark);
+    }
+
+    .avatar-option-small:hover {
+      transform: scale(1.15) translateY(-2px);
+      background: #e0f2fe;
+    }
+
+    /* Save / Logout buttons in panel */
+    .save-btn-wrapper {
+      width: 100%;
+      margin-top: 16px;
+    }
+    .save-btn {
+      width: 100%;
+      padding: 9px;
+      border-radius: 999px;
+      font-family: 'Baloo 2', cursive;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      border-bottom: 3px solid #1db863;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 0.95rem;
+      background: linear-gradient(160deg, #43e97b, #38f9d7);
+      color: white;
+      box-shadow: 0 4px 14px rgba(67,233,123,0.3);
+      transition: transform 0.15s cubic-bezier(.34,1.56,.64,1), box-shadow 0.15s;
+    }
+    .save-btn:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 8px 18px rgba(67,233,123,0.4); }
+    .save-btn:active { transform: translateY(2px); border-bottom-width: 1px; }
+
+    .save-btn.hidden { display: none; }
+
+    .logout-btn {
+      width: 100%;
+      padding: 9px;
+      border-radius: 999px;
+      font-family: 'Baloo 2', cursive;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      border-bottom: 3px solid #c0392b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 0.95rem;
+      background: linear-gradient(160deg, #ff6b6b, #ee5a24);
+      color: white;
+      margin-top: 8px;
+      box-shadow: 0 4px 14px rgba(255,107,107,0.3);
+      transition: transform 0.15s cubic-bezier(.34,1.56,.64,1), box-shadow 0.15s;
+    }
+    .logout-btn:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 8px 18px rgba(255,107,107,0.4); }
+    .logout-btn:active { transform: translateY(2px); border-bottom-width: 1px; }
+
+    /* ---- PROGRESS CONTAINER ---- */
+    .progress-container {
+      background: rgba(255,255,255,0.92);
+      border-radius: 28px;
+      padding: 20px 22px;
+      margin: 0 auto 28px;
+      max-width: 600px;
+      border: 3px solid #fde68a;
+      box-shadow: 0 8px 0 #d4a800, 0 14px 30px rgba(249,202,36,0.15);
+      backdrop-filter: blur(6px);
+      animation: cardPop 0.4s cubic-bezier(.34,1.56,.64,1) both;
+    }
+
+    @keyframes cardPop {
+      from { transform: scale(0.85) rotate(-2deg); opacity: 0; }
+      to   { transform: scale(1)    rotate(0deg);  opacity: 1; }
+    }
+
+    .progress-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #0ea5e9;
+      margin-bottom: 15px;
+    }
+
+    .progress-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 15px;
+    }
+
+    .progress-item {
+      text-align: center;
+      padding: 10px;
+      background: #f0f9ff;
+      border-radius: 16px;
+      border: 2px solid #bae6fd;
+    }
+
+    .progress-language {
+      font-weight: 800;
+      margin-bottom: 8px;
+      font-family: 'Baloo 2', cursive;
+      color: #0369a1;
+    }
+
+    .progress-bar {
+      height: 10px;
+      background: #e0f2fe;
+      border-radius: 999px;
+      overflow: hidden;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(to right, #43e97b, #38f9d7);
+      border-radius: 999px;
+      transition: width 1s cubic-bezier(.34,1.2,.64,1);
+      box-shadow: 0 1px 6px rgba(67,233,123,0.4);
+    }
+
+    .progress-percent {
+      font-size: 0.8rem;
+      color: #0ea5e9;
+      margin-top: 5px;
+      font-weight: 700;
+    }
+
+    /* ===== LANGUAGE CARDS ===== */
+    .language-grid {
+      display: grid;
+      gap: 20px;
+      margin: 0 auto 40px;
+      max-width: 1000px;
+    }
+
+    /* Desktop: 5 columns */
+    @media (min-width: 901px) {
+      .language-grid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 20px;
+      }
+      .language-card {
+        padding: 28px 12px;
+        min-height: 180px;
+        justify-content: center;
+      }
+      .language-flag {
+        width: 80px;
+        height: 60px;
+        margin-bottom: 12px;
+      }
+      .language-name {
+        font-size: 1.4rem;
+        margin-top: 4px;
+      }
+    }
+
+    /* Tablet: 3 columns */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .language-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+      .language-card {
+        padding: 24px 12px;
+        min-height: 170px;
+      }
+      .language-flag {
+        width: 70px;
+        height: 50px;
+      }
+      .language-name { font-size: 1.3rem; }
+    }
+
+    /* Mobile: 1 column */
+    @media (max-width: 600px) {
+      body { padding: 8px; align-items: flex-start; }
+      .selection-container { padding-top: 50px; max-width: 100%; }
+      .title { font-size: 2rem; margin-bottom: 8px; }
+      .subtitle { font-size: 1rem; margin-bottom: 20px; }
+      .language-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 10px;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .language-card {
+        padding: 16px 20px;
+        min-height: 0;
+        flex-direction: row;
+        gap: 20px;
+        border-radius: 20px;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+      }
+      .language-flag { width: 60px; height: 45px; margin-bottom: 0; border-radius: 10px; }
+      .language-name { font-size: 1.4rem; min-height: auto; margin-bottom: 0; text-align: left; }
+      .profile-panel { padding: 16px; width: 95vw; top: 60px; right: 5px; }
+      .profile-avatar-large { width: 60px; height: 60px; font-size: 2rem; }
+      .profile-name { font-size: 1.2rem; }
+      .avatar-option-small { width: 34px; height: 34px; font-size: 1.1rem; }
+      .form-group { margin-bottom: 10px; }
+      .form-group input { padding: 7px 9px; font-size: 0.85rem; }
+      .save-btn, .logout-btn { padding: 7px; font-size: 0.85rem; }
+    }
+
+    @media (max-width: 400px) {
+      .language-flag { width: 50px; height: 38px; }
+      .language-name { font-size: 1.2rem; }
+      .language-card { padding: 14px 16px; gap: 15px; }
+      .title { font-size: 1.8rem; }
+      .profile-panel { width: 95vw; padding: 14px; }
+      .avatar-option-small { width: 32px; height: 32px; font-size: 1rem; }
+      .profile-avatar-large { width: 55px; height: 55px; font-size: 1.8rem; }
+      .profile-name { font-size: 1.1rem; }
+    }
+
+    /* ---- BASE LANGUAGE CARD ---- */
+    .language-card {
+      background: white;
+      border-radius: var(--radius);
+      border: 3px solid transparent;
+      transition: transform 0.22s cubic-bezier(.34,1.7,.64,1), box-shadow 0.2s;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      animation: cardPop 0.4s cubic-bezier(.34,1.56,.64,1) both;
+      box-shadow: 0 7px 0 #c0c0c0, 0 10px 20px rgba(0,0,0,0.08);
+    }
+
+    /* Rainbow cycling card colors */
+    .language-card:nth-child(5n+1) { background:#fff0f6; border-color:#ff6bb5; box-shadow:0 7px 0 #e05a9f, 0 10px 20px rgba(255,107,181,0.15); }
+    .language-card:nth-child(5n+2) { background:#f0fff4; border-color:#43e97b; box-shadow:0 7px 0 #28c25e, 0 10px 20px rgba(67,233,123,0.15); }
+    .language-card:nth-child(5n+3) { background:#fffbf0; border-color:#f9ca24; box-shadow:0 7px 0 #d4a800, 0 10px 20px rgba(249,202,36,0.15); }
+    .language-card:nth-child(5n+4) { background:#f0f8ff; border-color:#4facfe; box-shadow:0 7px 0 #2280d4, 0 10px 20px rgba(79,172,254,0.15); }
+    .language-card:nth-child(5n+5) { background:#fff4ee; border-color:#fb923c; box-shadow:0 7px 0 #c2620d, 0 10px 20px rgba(251,146,60,0.15); }
+
+    /* Stagger pop-in */
+    .language-card:nth-child(1) { animation-delay:.04s }
+    .language-card:nth-child(2) { animation-delay:.08s }
+    .language-card:nth-child(3) { animation-delay:.12s }
+    .language-card:nth-child(4) { animation-delay:.16s }
+    .language-card:nth-child(5) { animation-delay:.20s }
+
+    .language-card:hover {
+      transform: translateY(-8px) rotate(-1deg) scale(1.05);
+    }
+    .language-card:active {
+      transform: translateY(4px) scale(0.97);
+      transition: transform 0.07s;
+    }
+
+    .language-flag {
+      object-fit: cover;
+      border-radius: 12px;
+      border: 2px solid rgba(255,255,255,0.8);
+      transition: var(--transition);
+      pointer-events: none;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+    }
+    .language-name {
+      font-family: 'Baloo 2', cursive;
+      font-weight: 800;
+      color: var(--dark);
+      pointer-events: none;
+    }
+
+    /* HIDE progress text, start buttons, badges */
+    .language-progress, .start-btn, .teacher-badge { display: none !important; }
+
+    /* EXCEPTION: teacher mode */
+    .language-card.teacher-mode .teacher-badge,
+    .language-card.teacher-mode .start-btn,
+    .language-card.teacher-mode .language-progress { display: flex !important; }
+    .language-card.teacher-mode { justify-content: flex-start; padding: 30px 16px; }
+    .language-card.teacher-mode .language-name { margin-bottom: 8px; }
+
+    .teacher-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--teacher-color);
+      color: white;
+      font-size: 0.7rem;
+      padding: 3px 8px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 700;
+    }
+
+    /* ---- CONFIRM MODAL ---- */
+    .confirm-modal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      animation: fadeIn 0.2s;
+      background: rgba(14,165,233,0.12);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      pointer-events: none;
+    }
+    .confirm-modal.hidden { display: none; }
+    .confirm-content {
+      background: linear-gradient(160deg, #fffef0 0%, #f0fffe 100%);
+      border-radius: 32px;
+      padding: 28px 24px;
+      max-width: 320px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 0 0 5px #f9ca24, 0 0 0 9px #43e97b, 0 25px 60px rgba(0,0,0,0.15);
+      pointer-events: auto;
+      animation: modalBounceIn 0.4s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    @keyframes modalBounceIn {
+      0%   { transform: scale(0.4) rotate(-8deg); opacity: 0; }
+      70%  { transform: scale(1.06) rotate(2deg); opacity: 1; }
+      100% { transform: scale(1)    rotate(0deg); opacity: 1; }
+    }
+    .confirm-content p {
+      font-size: 1.1rem;
+      margin-bottom: 24px;
+      color: var(--dark);
+      font-weight: 700;
+      font-family: 'Baloo 2', cursive;
+    }
+    .confirm-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+    .confirm-btn {
+      padding: 10px 24px;
+      border: none;
+      border-radius: 999px;
+      font-family: 'Baloo 2', cursive;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: transform 0.15s cubic-bezier(.34,1.56,.64,1), box-shadow 0.15s;
+    }
+    .confirm-btn.logout {
+      background: linear-gradient(160deg, #ff6b6b, #ee5a24);
+      color: white;
+      border-bottom: 3px solid #c0392b;
+      box-shadow: 0 4px 14px rgba(255,107,107,0.3);
+    }
+    .confirm-btn.cancel {
+      background: linear-gradient(160deg, #94a3b8, #64748b);
+      color: white;
+      border-bottom: 3px solid #475569;
+      box-shadow: 0 4px 14px rgba(100,116,139,0.3);
+    }
+    .confirm-btn:hover { transform: translateY(-2px) scale(1.05); }
+    .confirm-btn:active { transform: translateY(2px); border-bottom-width: 1px; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; } to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---- TOAST ---- */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #43e97b, #38f9d7);
+      color: white;
+      padding: 14px 20px;
+      border-radius: 20px;
+      border-bottom: 4px solid #1db863;
+      box-shadow: 0 6px 20px rgba(67,233,123,0.4);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-family: 'Baloo 2', cursive;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(.34,1.56,.64,1), opacity 0.4s ease-out;
+      max-width: 400px;
+    }
+    .toast.error   { background: linear-gradient(135deg, #ff6b6b, #ee5a24); border-bottom-color: #c0392b; box-shadow: 0 6px 20px rgba(255,107,107,0.4); }
+    .toast.warning { background: linear-gradient(135deg, #f9ca24, #f0932b); border-bottom-color: #c07800; box-shadow: 0 6px 20px rgba(249,202,36,0.4); }
+    .toast.info    { background: linear-gradient(135deg, #4facfe, #38f9d7); border-bottom-color: #0369a1; box-shadow: 0 6px 20px rgba(79,172,254,0.4); }
+    .toast.success { background: linear-gradient(135deg, #43e97b, #38f9d7); border-bottom-color: #1db863; }
+    .toast.show    { transform: translateY(0); opacity: 1; }
+  </style>
+</head>
+<body>
+  <!-- Firebase Import -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { 
+      getFirestore, 
+      doc, 
+      updateDoc,
+      getDoc,
+      setDoc
+    } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAvZvyRsoIsdjA82vMAPApOsgZlfHf4-NU",
+      authDomain: "linguakids-16043.firebaseapp.com",
+      projectId: "linguakids-16043",
+      storageBucket: "linguakids-16043.firebasestorage.app",
+      messagingSenderId: "468346007955",
+      appId: "1:468346007955:web:e47618b29c321c7bafb866"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    window.db = db;
+    window.doc = doc;
+    window.updateDoc = updateDoc;
+    window.getDoc = getDoc;
+    window.setDoc = setDoc;
+  </script>
+
+  <div class="selection-container">
+    <!-- Profile Icon (Top Right) -->
+    <div class="profile-icon" id="profileIcon">
+      <span id="profileIconAvatar">🦄</span>
+    </div>
+
+    <!-- Profile Panel - NO SCROLL, COMPACT DESIGN -->
+    <div class="profile-panel" id="profilePanel">
+      <!-- Panel header with X close button -->
+      <div class="panel-header">
+        <h3>Your Profile</h3>
+        <button class="close-x" id="closeProfileXBtn" title="Close"><i class="fas fa-times"></i></button>
+      </div>
+
+      <div class="profile-header">
+        <div class="profile-avatar-large" id="profileAvatarLarge">🦄</div>
+        <div class="profile-details">
+          <div class="profile-name" id="profileName">Guest</div>
+          <div class="profile-mode" id="profileMode">Self Study</div>
+          <div class="profile-class" id="profileClass"></div>
+        </div>
+      </div>
+      
+      <form class="profile-form" id="profileForm">
+        <!-- Self Study Fields (shown by default) -->
+        <div id="selfStudyProfileFields">
+          <div class="form-group">
+            <label for="editName">Name *</label>
+            <input type="text" id="editName" placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label for="editAge">Age *</label>
+            <input type="number" id="editAge" min="2" max="10" placeholder="Age (2-10)">
+          </div>
+        </div>
+
+        <!-- Teacher Mode Fields (hidden by default) -->
+        <div id="teacherProfileFields" style="display: none;">
+          <div class="form-group">
+            <label for="editClassId">Class Code</label>
+            <input type="text" id="editClassId" placeholder="Class code" readonly>
+          </div>
+          <div class="form-group">
+            <label for="editFirstName">First Name *</label>
+            <input type="text" id="editFirstName" placeholder="First name">
+          </div>
+          <div class="form-group">
+            <label for="editLastName">Surname *</label>
+            <input type="text" id="editLastName" placeholder="Surname">
+          </div>
+          <div class="form-group">
+            <label for="editTeacherAge">Age *</label>
+            <input type="number" id="editTeacherAge" min="2" max="10" placeholder="Age (2-10)">
+          </div>
+          <div class="form-group">
+            <label for="editRollNo">Roll Number *</label>
+            <input type="text" id="editRollNo" placeholder="Roll number">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>Choose Avatar</label>
+          <div class="avatar-options" id="avatarOptionsContainer">
+            <!-- Full set of 14 avatars like study.html -->
+            <div class="avatar-option-small selected" data-avatar="🦄">🦄</div>
+            <div class="avatar-option-small" data-avatar="🐱">🐱</div>
+            <div class="avatar-option-small" data-avatar="🐰">🐰</div>
+            <div class="avatar-option-small" data-avatar="🐶">🐶</div>
+            <div class="avatar-option-small" data-avatar="🦌">🦌</div>
+            <div class="avatar-option-small" data-avatar="🦉">🦉</div>
+            <div class="avatar-option-small" data-avatar="🐨">🐨</div>
+            <div class="avatar-option-small" data-avatar="🐼">🐼</div>
+            <div class="avatar-option-small" data-avatar="🦊">🦊</div>
+            <div class="avatar-option-small" data-avatar="🐸">🐸</div>
+            <div class="avatar-option-small" data-avatar="🐧">🐧</div>
+            <div class="avatar-option-small" data-avatar="🦁">🦁</div>
+            <div class="avatar-option-small" data-avatar="🐘">🐘</div>
+            <div class="avatar-option-small" data-avatar="🦒">🦒</div>
+          </div>
+        </div>
+        
+        <!-- Save button now matches Logout width (full width, same padding) -->
+        <div class="save-btn-wrapper">
+          <button type="submit" class="save-btn hidden" id="saveProfileBtn"><i class="fas fa-save"></i> Save</button>
+        </div>
+        <button type="button" class="logout-btn" id="profileLogoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+      </form>
+    </div>
+
+    <!-- Custom Confirm Modal - now with no black background, just a soft blur -->
+    <div id="confirmModal" class="confirm-modal hidden">
+      <div class="confirm-content">
+        <p><i class="fas fa-question-circle" style="font-size: 2rem; color: #ff4b4b; margin-bottom: 10px;"></i><br>Are you sure you want to logout?</p>
+        <div class="confirm-actions">
+          <button class="confirm-btn cancel" id="cancelLogout">Cancel</button>
+          <button class="confirm-btn logout" id="confirmLogout">Logout</button>
+        </div>
+      </div>
+    </div>
+
+    <h1 class="title">Choose Your Language</h1>
+    <p class="subtitle" id="subtitle">Select a language to start learning</p>
+    
+    <!-- Progress Display -->
+    <div id="progressContainer" class="progress-container" style="display: none;">
+      <div class="progress-title">Your Learning Progress</div>
+      <div class="progress-grid" id="progressGrid"></div>
+    </div>
+    
+    <!-- Language Cards Grid – pure flag + name, clickable -->
+    <div class="language-grid" id="languagesGrid"></div>
+  </div>
+
+  <div id="toast" class="toast">
+    <i class="fas fa-check-circle"></i>
+    <div>
+      <div id="toastTitle">Success!</div>
+      <div id="toastDesc">Operation completed successfully.</div>
+    </div>
+  </div>
+
+  <script>
+    // Session Manager Class
+    class SessionManager {
+      static PROFILE_KEY = 'linguaKidsProfile';
+      static SESSION_KEY = 'linguaKidsSession';
+      
+      static hasProfile() { return localStorage.getItem(this.PROFILE_KEY) !== null; }
+      static getProfile() { const profile = localStorage.getItem(this.PROFILE_KEY); return profile ? JSON.parse(profile) : null; }
+      static saveProfile(profile) { localStorage.setItem(this.PROFILE_KEY, JSON.stringify(profile)); }
+      static clearProfile() { localStorage.removeItem(this.PROFILE_KEY); }
+      static isTeacherMode() { const profile = this.getProfile(); return profile && profile.studyMode === 'teacher'; }
+      static getCurrentLanguage() { const profile = this.getProfile(); return profile ? profile.currentLanguage : null; }
+      static setCurrentLanguage(language) { const profile = this.getProfile(); if (profile) { profile.currentLanguage = language; this.saveProfile(profile); } }
+      
+      static async updateProgress(languageKey, progressData) {
+        const profile = this.getProfile();
+        if (profile) {
+          if (!profile.progress) profile.progress = {};
+          if (!profile.progress[languageKey]) profile.progress[languageKey] = {};
+          Object.assign(profile.progress[languageKey], progressData);
+          const totalLessons = 10;
+          const completedLessons = progressData.completedLessons || 0;
+          const completedGames = progressData.completedGames || 0;
+          const totalActivities = totalLessons + 5;
+          const completedActivities = completedLessons + completedGames;
+          const progressPercent = Math.min(100, Math.round((completedActivities / totalActivities) * 100));
+          profile.progress[languageKey].percent = progressPercent;
+          this.saveProfile(profile);
+          
+          if (profile.studyMode === 'teacher' && window.db) {
+            try {
+              await updateDoc(doc(window.db, "profiles", profile.userId), { progress: profile.progress, lastUpdated: new Date().toISOString() });
+              const classStudentId = `${profile.classId}_${profile.userId}`;
+              await updateDoc(doc(window.db, "classStudents", classStudentId), { progress: profile.progress, lastUpdated: new Date().toISOString() });
+            } catch (error) { console.error("Firestore sync error:", error); }
+          }
+        }
+      }
+      
+      static getProgress(languageKey) {
+        const profile = this.getProfile();
+        if (profile && profile.progress && profile.progress[languageKey]) return profile.progress[languageKey];
+        return { percent: 0, completedLessons: 0, completedGames: 0 };
+      }
+      static getAssignedLanguage() { const profile = this.getProfile(); return profile ? (profile.assignedLanguage || 'english') : 'english'; }
+    }
+
+    // Language Data
+    const LANGUAGES = [
+      { key: "english", name: "English", flag: "https://flagcdn.com/w320/gb.png", page: "english.html", color: "#58cc02" },
+      { key: "hindi", name: "Hindi", flag: "https://flagcdn.com/w320/in.png", page: "hindi.html", color: "#1cb0f6" },
+      { key: "marathi", name: "Marathi", flag: "https://flagcdn.com/w320/in.png", page: "marathi.html", color: "#ff9600" },
+      { key: "chinese", name: "Chinese", flag: "https://flagcdn.com/w320/cn.png", page: "chinese.html", color: "#ff4b4b" },
+      { key: "german", name: "German", flag: "https://flagcdn.com/w320/de.png", page: "german.html", color: "#9c27b0" }
+    ];
+
+    let userProfile = null;
+    let isTeacherMode = false;
+    let originalFormState = {}; // for detecting changes
+
+    function checkSession() {
+      if (!SessionManager.hasProfile()) {
+        showToast("Session Expired", "Please login to continue", "warning");
+        setTimeout(() => { window.location.href = 'index.html'; }, 1500);
+        return false;
+      }
+      userProfile = SessionManager.getProfile();
+      isTeacherMode = SessionManager.isTeacherMode();
+      if (isTeacherMode) {
+        const targetLanguage = SessionManager.getAssignedLanguage();
+        const languageName = targetLanguage.charAt(0).toUpperCase() + targetLanguage.slice(1);
+        let message = "Redirecting to your assigned language...";
+        if (userProfile.className) message = `Redirecting to ${userProfile.className}...`;
+        showToast(`Teacher Mode: ${languageName}`, message, "info");
+        setTimeout(() => { window.location.href = `${targetLanguage}.html`; }, 1000);
+        return false;
+      }
+      return true;
+    }
+
+    function captureOriginalState() {
+      if (isTeacherMode) {
+        originalFormState = {
+          firstName: document.getElementById('editFirstName').value,
+          lastName: document.getElementById('editLastName').value,
+          age: document.getElementById('editTeacherAge').value,
+          rollNo: document.getElementById('editRollNo').value,
+          avatar: document.querySelector('.avatar-option-small.teacher-selected')?.getAttribute('data-avatar') || '🦄'
+        };
+      } else {
+        originalFormState = {
+          name: document.getElementById('editName').value,
+          age: document.getElementById('editAge').value,
+          avatar: document.querySelector('.avatar-option-small.selected')?.getAttribute('data-avatar') || '🦄'
+        };
+      }
+    }
+
+    function checkFormChanges() {
+      if (!userProfile) return;
+      let changed = false;
+      if (isTeacherMode) {
+        const current = {
+          firstName: document.getElementById('editFirstName').value,
+          lastName: document.getElementById('editLastName').value,
+          age: document.getElementById('editTeacherAge').value,
+          rollNo: document.getElementById('editRollNo').value,
+          avatar: document.querySelector('.avatar-option-small.teacher-selected')?.getAttribute('data-avatar') || '🦄'
+        };
+        changed = (current.firstName !== originalFormState.firstName) ||
+                  (current.lastName !== originalFormState.lastName) ||
+                  (current.age !== originalFormState.age) ||
+                  (current.rollNo !== originalFormState.rollNo) ||
+                  (current.avatar !== originalFormState.avatar);
+      } else {
+        const current = {
+          name: document.getElementById('editName').value,
+          age: document.getElementById('editAge').value,
+          avatar: document.querySelector('.avatar-option-small.selected')?.getAttribute('data-avatar') || '🦄'
+        };
+        changed = (current.name !== originalFormState.name) ||
+                  (current.age !== originalFormState.age) ||
+                  (current.avatar !== originalFormState.avatar);
+      }
+      const saveBtn = document.getElementById('saveProfileBtn');
+      if (changed) {
+        saveBtn.classList.remove('hidden');
+      } else {
+        saveBtn.classList.add('hidden');
+      }
+    }
+
+    function loadUserInfo() {
+      if (!userProfile) return;
+      
+      document.getElementById('profileIconAvatar').textContent = userProfile.avatar || '🦄';
+      document.getElementById('profileAvatarLarge').textContent = userProfile.avatar || '🦄';
+      document.getElementById('profileName').textContent = userProfile.name || 'Guest';
+      
+      const profileModeElement = document.getElementById('profileMode');
+      const profileClassElement = document.getElementById('profileClass');
+      const selfStudyFields = document.getElementById('selfStudyProfileFields');
+      const teacherFields = document.getElementById('teacherProfileFields');
+      
+      if (isTeacherMode) {
+        profileModeElement.textContent = 'Teacher Mode';
+        profileModeElement.classList.add('teacher');
+        profileClassElement.textContent = userProfile.className || userProfile.classId || '';
+        
+        selfStudyFields.style.display = 'none';
+        teacherFields.style.display = 'block';
+        
+        document.getElementById('editClassId').value = userProfile.classId || '';
+        document.getElementById('editFirstName').value = userProfile.firstName || (userProfile.name?.split(' ')[0] || '');
+        document.getElementById('editLastName').value = userProfile.lastName || (userProfile.name?.split(' ').slice(1).join(' ') || '');
+        document.getElementById('editTeacherAge').value = userProfile.age || '';
+        document.getElementById('editRollNo').value = userProfile.rollNo || '';
+        
+        document.getElementById('subtitle').textContent = `Enrolled in ${userProfile.className || userProfile.classId || 'a teacher\'s class'}`;
+      } else {
+        profileModeElement.textContent = 'Self Study';
+        profileModeElement.classList.remove('teacher');
+        profileClassElement.textContent = '';
+        
+        selfStudyFields.style.display = 'block';
+        teacherFields.style.display = 'none';
+        
+        document.getElementById('editName').value = userProfile.name || '';
+        document.getElementById('editAge').value = userProfile.age || '';
+        
+        document.getElementById('subtitle').textContent = 'Select a language to start learning';
+      }
+      
+      const currentAvatar = userProfile.avatar || '🦄';
+      document.querySelectorAll('.avatar-option-small').forEach(avatar => {
+        avatar.classList.remove('selected', 'teacher-selected');
+        if (avatar.getAttribute('data-avatar') === currentAvatar) {
+          if (isTeacherMode) {
+            avatar.classList.add('teacher-selected');
+          } else {
+            avatar.classList.add('selected');
+          }
+        }
+      });
+
+      // Capture initial state after loading
+      captureOriginalState();
+      // Hide save button initially
+      document.getElementById('saveProfileBtn').classList.add('hidden');
+    }
+
+    function loadProgress() {
+      if (!userProfile || !userProfile.progress) return;
+      const progressContainer = document.getElementById('progressContainer');
+      const progressGrid = document.getElementById('progressGrid');
+      let hasProgress = false;
+      progressGrid.innerHTML = '';
+      LANGUAGES.forEach(lang => {
+        const progress = SessionManager.getProgress(lang.key);
+        if (progress.percent > 0) {
+          hasProgress = true;
+          const progressItem = document.createElement('div');
+          progressItem.className = 'progress-item';
+          progressItem.innerHTML = `
+            <div class="progress-language">${lang.name}</div>
+            <div class="progress-bar"><div class="progress-fill" style="width: ${progress.percent}%; background: ${lang.color};"></div></div>
+            <div class="progress-percent">${progress.percent}% complete</div>
+          `;
+          progressGrid.appendChild(progressItem);
+        }
+      });
+      if (hasProgress) progressContainer.style.display = 'block';
+    }
+
+    function loadLanguages() {
+      const languagesGrid = document.getElementById('languagesGrid');
+      languagesGrid.innerHTML = '';
+      
+      if (isTeacherMode) {
+        const assignedLanguage = SessionManager.getAssignedLanguage();
+        const language = LANGUAGES.find(lang => lang.key === assignedLanguage) || LANGUAGES[0];
+        const messageCard = document.createElement('div');
+        messageCard.className = 'language-card teacher-mode';
+        messageCard.style.gridColumn = '1 / -1';
+        messageCard.style.maxWidth = '600px';
+        messageCard.style.margin = '0 auto';
+        messageCard.innerHTML = `
+          <div style="font-size: 3rem; margin-bottom: 16px;">🎓</div>
+          <div class="language-name" style="font-size: 1.6rem; margin-bottom: 12px;">Teacher Mode</div>
+          <div class="language-progress" style="margin-bottom: 16px;">You're enrolled in <strong>${userProfile.className || userProfile.classId || 'a teacher\'s class'}</strong></div>
+          <div style="background: #f0f0f0; padding: 16px; border-radius: 12px; margin-bottom: 20px;">
+            <div style="font-weight: 600; margin-bottom: 5px; color: #9c27b0;">Assigned Language:</div>
+            <div style="font-size: 1.4rem; color: #9c27b0; font-weight: bold;">${language.name}</div>
+          </div>
+          <button class="start-btn teacher" data-lang="${assignedLanguage}" style="max-width: 200px; margin: 0 auto;"><i class="fas fa-play-circle"></i> Go to ${language.name} Lessons</button>
+          <button class="logout-btn" id="teacherLogoutBtn" style="max-width: 200px; margin: 12px auto 0;"><i class="fas fa-sign-out-alt"></i> Switch to Self-Study</button>
+        `;
+        languagesGrid.appendChild(messageCard);
+        messageCard.querySelector('.start-btn')?.addEventListener('click', (e) => { e.stopPropagation(); selectLanguage(assignedLanguage); });
+        messageCard.querySelector('#teacherLogoutBtn')?.addEventListener('click', (e) => { e.stopPropagation(); showLogoutConfirm(); });
+        return;
+      }
+
+      LANGUAGES.forEach((lang) => {
+        const card = document.createElement('div');
+        card.className = 'language-card';
+        
+        card.innerHTML = `
+          <img src="${lang.flag}" alt="${lang.name} flag" class="language-flag" loading="lazy">
+          <div class="language-name">${lang.name}</div>
+        `;
+        
+        card.addEventListener('click', function(e) {
+          e.preventDefault();
+          selectLanguage(lang.key);
+        });
+        
+        languagesGrid.appendChild(card);
+      });
+    }
+
+    function selectLanguage(languageKey) {
+      const language = LANGUAGES.find(lang => lang.key === languageKey);
+      if (!language) return;
+      SessionManager.setCurrentLanguage(languageKey);
+      const card = document.querySelector(`.language-card img[alt="${language.name} flag"]`)?.closest('.language-card');
+      if (card) {
+        card.style.transform = 'scale(0.97)';
+        card.style.opacity = '0.9';
+        setTimeout(() => { card.style.transform = ''; card.style.opacity = ''; }, 120);
+      }
+      setTimeout(() => { window.location.href = language.page; }, 100);
+    }
+
+    function showToast(title, description, type = "success") {
+      const toast = document.getElementById('toast');
+      toast.className = 'toast ' + type;
+      const icon = toast.querySelector('i');
+      if (type === 'error') icon.className = 'fas fa-exclamation-circle';
+      else if (type === 'warning') icon.className = 'fas fa-exclamation-triangle';
+      else if (type === 'info') icon.className = 'fas fa-info-circle';
+      else icon.className = 'fas fa-check-circle';
+      document.getElementById('toastTitle').textContent = title;
+      document.getElementById('toastDesc').textContent = description;
+      toast.classList.add('show');
+      setTimeout(() => { toast.classList.remove('show'); }, 3000);
+    }
+
+    async function saveProfileEdits() {
+      if (!userProfile) return;
+      
+      const selectedAvatar = document.querySelector('.avatar-option-small.selected, .avatar-option-small.teacher-selected')?.getAttribute('data-avatar') || '🦄';
+      
+      if (isTeacherMode) {
+        const firstName = document.getElementById('editFirstName').value.trim();
+        const lastName = document.getElementById('editLastName').value.trim();
+        const age = parseInt(document.getElementById('editTeacherAge').value);
+        const rollNo = document.getElementById('editRollNo').value.trim();
+        
+        if (!firstName) { showToast("Error", "Please enter your first name", "error"); return; }
+        if (!lastName) { showToast("Error", "Please enter your surname", "error"); return; }
+        if (!age || age < 2 || age > 10) { showToast("Error", "Age must be between 2 and 10", "error"); return; }
+        if (!rollNo) { showToast("Error", "Please enter your roll number", "error"); return; }
+        
+        userProfile.firstName = firstName;
+        userProfile.lastName = lastName;
+        userProfile.name = `${firstName} ${lastName}`;
+        userProfile.age = age;
+        userProfile.rollNo = rollNo;
+        userProfile.avatar = selectedAvatar;
+        
+      } else {
+        const name = document.getElementById('editName').value.trim();
+        const age = parseInt(document.getElementById('editAge').value);
+        
+        if (!name) { showToast("Error", "Please enter your name", "error"); return; }
+        if (!age || age < 2 || age > 10) { showToast("Error", "Age must be between 2 and 10", "error"); return; }
+        
+        userProfile.name = name;
+        userProfile.age = age;
+        userProfile.avatar = selectedAvatar;
+      }
+      
+      SessionManager.saveProfile(userProfile);
+      
+      if (isTeacherMode && window.db) {
+        try {
+          await updateDoc(doc(window.db, "profiles", userProfile.userId), { 
+            name: userProfile.name,
+            firstName: userProfile.firstName,
+            lastName: userProfile.lastName,
+            age: userProfile.age, 
+            rollNo: userProfile.rollNo,
+            avatar: selectedAvatar, 
+            lastUpdated: new Date().toISOString() 
+          });
+          const classStudentId = `${userProfile.classId}_${userProfile.userId}`;
+          await updateDoc(doc(window.db, "classStudents", classStudentId), { 
+            studentName: userProfile.name,
+            firstName: userProfile.firstName,
+            lastName: userProfile.lastName,
+            studentAge: userProfile.age, 
+            rollNo: userProfile.rollNo,
+            avatar: selectedAvatar, 
+            lastUpdated: new Date().toISOString() 
+          });
+        } catch (error) { 
+          console.error("Firestore error:", error); 
+          showToast("Warning", "Could not sync profile with teacher. Working offline.", "warning"); 
+        }
+      }
+      
+      loadUserInfo(); // this recaptures state and hides save button
+      showToast("Profile Updated", "Your profile has been saved successfully", "success");
+      setTimeout(() => { document.getElementById('profilePanel').classList.remove('show'); }, 500);
+    }
+
+    // Logout confirmation
+    function showLogoutConfirm() {
+      document.getElementById('confirmModal').classList.remove('hidden');
+    }
+    function hideLogoutConfirm() {
+      document.getElementById('confirmModal').classList.add('hidden');
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      if (!checkSession()) return;
+      loadUserInfo();
+      loadProgress();
+      loadLanguages();
+      
+      // Profile panel toggle
+      document.getElementById('profileIcon').addEventListener('click', (e) => {
+        e.stopPropagation();
+        document.getElementById('profilePanel').classList.toggle('show');
+      });
+      
+      // Close with X button
+      document.getElementById('closeProfileXBtn').addEventListener('click', () => {
+        document.getElementById('profilePanel').classList.remove('show');
+      });
+      
+      // Removed closeProfileBtn event listener
+      
+      document.getElementById('profileForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        saveProfileEdits();
+      });
+      
+      // Avatar selection + change detection
+      document.querySelectorAll('.avatar-option-small').forEach(avatar => {
+        avatar.addEventListener('click', function() {
+          const container = this.closest('.avatar-options');
+          container.querySelectorAll('.avatar-option-small').forEach(a => {
+            a.classList.remove('selected', 'teacher-selected');
+          });
+          if (isTeacherMode) {
+            this.classList.add('teacher-selected');
+          } else {
+            this.classList.add('selected');
+          }
+          checkFormChanges(); // detect change after avatar click
+        });
+      });
+
+      // Input change listeners
+      ['editName', 'editAge', 'editFirstName', 'editLastName', 'editTeacherAge', 'editRollNo'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('input', checkFormChanges);
+      });
+      
+      // Logout with confirm
+      document.getElementById('profileLogoutBtn').addEventListener('click', showLogoutConfirm);
+      
+      document.getElementById('cancelLogout').addEventListener('click', hideLogoutConfirm);
+      document.getElementById('confirmLogout').addEventListener('click', () => {
+        SessionManager.clearProfile();
+        showToast("Logged Out", "You have been successfully logged out.", "success");
+        hideLogoutConfirm();
+        setTimeout(() => { window.location.href = 'index.html'; }, 1000);
+      });
+      
+      // Close panel when clicking outside
+      document.addEventListener('click', (e) => {
+        const panel = document.getElementById('profilePanel');
+        const icon = document.getElementById('profileIcon');
+        if (panel.classList.contains('show') && !panel.contains(e.target) && !icon.contains(e.target)) {
+          panel.classList.remove('show');
+        }
+      });
+      
+      window.addEventListener('resize', () => { if (userProfile) loadLanguages(); });
+    });
+  </script>
+</body>
+</html>

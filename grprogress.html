@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinguaKids - Progress in German</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       LINGUAKIDS PROGRESS — MEGA FUN CSS
+    ============================================================ */
+
+    body {
+      font-family: 'Nunito', 'Quicksand', sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background-color: #fffbf0;
+      background-image:
+        radial-gradient(circle at 8%  12%, #ff6bb540 0%, transparent 28%),
+        radial-gradient(circle at 92% 8%,  #43e97b40 0%, transparent 28%),
+        radial-gradient(circle at 50% 50%, #f9ca2440 0%, transparent 40%),
+        radial-gradient(circle at 15% 88%, #38f9d740 0%, transparent 28%),
+        radial-gradient(circle at 88% 85%, #4facfe40 0%, transparent 28%),
+        radial-gradient(circle at 70% 30%, #fa709a30 0%, transparent 22%);
+      overflow-x: hidden;
+    }
+
+    /* Floating confetti dots */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        radial-gradient(circle, #ff6bb5 2px, transparent 2px),
+        radial-gradient(circle, #43e97b 2px, transparent 2px),
+        radial-gradient(circle, #f9ca24 2px, transparent 2px),
+        radial-gradient(circle, #4facfe 2px, transparent 2px),
+        radial-gradient(circle, #fa709a 2px, transparent 2px),
+        radial-gradient(circle, #ff6b6b 2px, transparent 2px);
+      background-size: 120px 120px, 97px 97px, 143px 143px, 83px 83px, 107px 107px, 131px 131px;
+      background-position: 10px 15px, 55px 70px, 30px 40px, 80px 10px, 50px 100px, 100px 55px;
+      opacity: 0.45;
+      animation: driftDots 18s linear infinite alternate;
+    }
+
+    @keyframes driftDots {
+      from { background-position: 10px 15px, 55px 70px, 30px 40px, 80px 10px, 50px 100px, 100px 55px; }
+      to   { background-position: 22px 38px, 44px 52px, 52px 62px, 62px 28px, 68px 82px, 82px 72px; }
+    }
+
+    /* ---- APP CONTAINER ---- */
+    #app {
+      max-width: 800px;
+      margin: auto;
+      padding: 15px 18px 30px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ---- HEADINGS ---- */
+    h2 {
+      text-align: center;
+      font-family: 'Baloo 2', cursive;
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: #f9ca24;
+      text-shadow: 3px 3px 0 #d4a800, 5px 5px 0 rgba(249,202,36,0.2);
+      margin: 10px 0 6px;
+      animation: titleWobble 3.5s ease-in-out infinite;
+    }
+
+    @keyframes titleWobble {
+      0%,100% { transform: rotate(-1deg) scale(1); }
+      25%      { transform: rotate(1.5deg) scale(1.02); }
+      75%      { transform: rotate(-0.5deg) scale(0.98); }
+    }
+
+    h3 {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #0ea5e9;
+      margin: 0 0 14px;
+    }
+
+    /* ---- DASHBOARD CARD ---- */
+    .dashboard {
+      background: rgba(255,255,255,0.92);
+      border-radius: 28px;
+      padding: 24px 22px;
+      margin: 16px 0;
+      border: 3px solid #fde68a;
+      box-shadow: 0 8px 0 #d4a800, 0 14px 30px rgba(249,202,36,0.15);
+      backdrop-filter: blur(6px);
+      animation: cardPop 0.4s cubic-bezier(.34,1.56,.64,1) both;
+    }
+
+    @keyframes cardPop {
+      from { transform: scale(0.85) rotate(-2deg); opacity: 0; }
+      to   { transform: scale(1)    rotate(0deg);  opacity: 1; }
+    }
+
+    /* ---- STREAK ---- */
+    .streak-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+    }
+
+    .streak-box {
+      background: linear-gradient(160deg, #fb923c, #ff5a5f);
+      border: none;
+      border-bottom: 5px solid #c0392b;
+      color: white;
+      padding: 12px 28px;
+      border-radius: 999px;
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.3rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 6px 20px rgba(251,146,60,0.4);
+      animation: streakPulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes streakPulse {
+      0%,100% { transform: scale(1); }
+      50%      { transform: scale(1.04); }
+    }
+
+    /* ---- PROGRESS SECTION ---- */
+    .progress-section {
+      margin: 20px 0;
+    }
+
+    .progress-label {
+      font-weight: 700;
+      margin-bottom: 5px;
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Baloo 2', cursive;
+      color: #444;
+    }
+
+    .progress-bar {
+      height: 22px;
+      background: #f0f0f0;
+      border-radius: 999px;
+      margin: 8px 0 14px;
+      overflow: hidden;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(to right, #43e97b, #38f9d7);
+      border-radius: 999px;
+      width: 0%;
+      transition: width 0.8s cubic-bezier(.34,1.2,.64,1);
+      text-align: center;
+      color: white;
+      font-weight: 800;
+      font-size: 0.85rem;
+      line-height: 22px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 8px rgba(67,233,123,0.4);
+    }
+
+    /* Level-specific progress bar colors */
+    #level1Progress { background: linear-gradient(to right, #43e97b, #38f9d7); box-shadow: 0 2px 8px rgba(67,233,123,0.4); }
+    #level2Progress { background: linear-gradient(to right, #4facfe, #38f9d7); box-shadow: 0 2px 8px rgba(79,172,254,0.4); }
+    #level3Progress { background: linear-gradient(to right, #f472b6, #fb923c); box-shadow: 0 2px 8px rgba(244,114,182,0.4); }
+
+    /* ---- ACHIEVEMENTS GRID ---- */
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .achievement-card {
+      background: white;
+      padding: 15px 10px;
+      border-radius: 20px;
+      text-align: center;
+      border: 3px solid #e5e7eb;
+      box-shadow: 0 5px 0 #d1d5db, 0 8px 16px rgba(0,0,0,0.06);
+      transition: transform 0.22s cubic-bezier(.34,1.7,.64,1), box-shadow 0.2s;
+      animation: cardPop 0.4s cubic-bezier(.34,1.56,.64,1) both;
+    }
+
+    .achievement-card.unlocked {
+      border-color: #f9ca24;
+      background: linear-gradient(135deg, #fffbeb, #ffffff);
+      box-shadow: 0 5px 0 #d4a800, 0 8px 16px rgba(249,202,36,0.2);
+    }
+
+    .achievement-card.locked {
+      filter: grayscale(1);
+      opacity: 0.55;
+      background: #f5f5f5;
+    }
+
+    .achievement-card.unlocked:hover {
+      transform: translateY(-7px) rotate(-1deg) scale(1.05);
+      box-shadow: 0 10px 0 #d4a800, 0 14px 24px rgba(249,202,36,0.25);
+    }
+
+    .achievement-icon {
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+    }
+
+    .achievement-card.unlocked .achievement-icon { color: #f9ca24; }
+    .achievement-card.locked  .achievement-icon { color: #bbb; }
+
+    .achievement-title {
+      font-weight: 800;
+      font-size: 0.88rem;
+      margin-bottom: 4px;
+      font-family: 'Baloo 2', cursive;
+      color: #333;
+    }
+
+    .achievement-desc {
+      font-size: 0.75rem;
+      color: #888;
+      line-height: 1.3;
+    }
+
+    .english-translation {
+      font-size: 0.7rem;
+      color: #aaa;
+      font-style: italic;
+      margin-bottom: 4px;
+    }
+
+    /* ---- BUTTONS ---- */
+    .btn {
+      background: linear-gradient(160deg, #43e97b, #38f9d7);
+      border: none;
+      border-bottom: 5px solid #1db863;
+      border-right: 3px solid #1db863;
+      color: white;
+      padding: 11px 26px;
+      border-radius: 999px;
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin: 8px 5px;
+      display: inline-block;
+      text-decoration: none;
+      text-align: center;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.15);
+      box-shadow: 0 6px 18px rgba(67,233,123,0.35);
+      transition: transform 0.15s cubic-bezier(.34,1.56,.64,1), box-shadow 0.15s, border-bottom 0.1s;
+    }
+
+    .btn:hover  { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 24px rgba(67,233,123,0.45); }
+    .btn:active { transform: translateY(4px) scale(0.97); border-bottom-width: 1px; border-right-width: 1px; box-shadow: none; }
+
+    .btn-danger {
+      background: linear-gradient(160deg, #ff6b6b, #ee5a24);
+      border-bottom-color: #c0392b;
+      border-right-color: #c0392b;
+      box-shadow: 0 6px 18px rgba(255,107,107,0.35);
+    }
+    .btn-danger:hover { box-shadow: 0 10px 24px rgba(255,107,107,0.45); }
+
+    .btn-secondary {
+      background: linear-gradient(160deg, #94a3b8, #64748b);
+      border-bottom-color: #475569;
+      border-right-color: #475569;
+      box-shadow: 0 6px 18px rgba(100,116,139,0.3);
+    }
+    .btn-secondary:hover { box-shadow: 0 10px 24px rgba(100,116,139,0.4); }
+
+    /* ---- BUTTON GROUP ---- */
+    .button-container, .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin: 22px 0;
+    }
+
+    /* ---- BACK BUTTON (legacy container support) ---- */
+    .back-button-container {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      z-index: 1000;
+    }
+    .back-button-container .btn { margin: 0; }
+
+    /* ---- SYNC STATUS ---- */
+    .sync-status {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: linear-gradient(135deg, #43e97b, #38f9d7);
+      color: white;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 14px rgba(67,233,123,0.4);
+      z-index: 1000;
+      animation: syncPulse 2s infinite;
+    }
+    .sync-status i { font-size: 1rem; }
+
+    @keyframes syncPulse {
+      0%,100% { opacity: 0.85; }
+      50%      { opacity: 1; }
+    }
+
+    /* ---- MODAL ---- */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(14,165,233,0.15);
+      backdrop-filter: blur(8px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+
+    .modal-content {
+      background: linear-gradient(160deg, #fffef0 0%, #f0fffe 100%);
+      padding: 32px 28px;
+      border-radius: 32px;
+      box-shadow: 0 0 0 5px #f9ca24, 0 0 0 9px #43e97b, 0 25px 60px rgba(0,0,0,0.15);
+      max-width: 90%;
+      width: 380px;
+      text-align: center;
+      font-family: 'Nunito', sans-serif;
+      animation: modalBounceIn 0.45s cubic-bezier(.34,1.56,.64,1) both;
+    }
+
+    @keyframes modalBounceIn {
+      0%   { transform: scale(0.4) rotate(-8deg); opacity: 0; }
+      70%  { transform: scale(1.06) rotate(2deg); opacity: 1; }
+      100% { transform: scale(1)    rotate(0deg); opacity: 1; }
+    }
+
+    .modal-content h3 {
+      font-family: 'Baloo 2', cursive;
+      color: #ff5a5f;
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin: 0 0 14px;
+      text-shadow: 2px 2px 0 #ffe0e1;
+    }
+
+    .modal-content p {
+      font-size: 1.1rem;
+      margin-bottom: 24px;
+      color: #555;
+      line-height: 1.5;
+      font-weight: 700;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+    }
+
+    .modal-actions .btn {
+      padding: 10px 28px;
+      font-size: 1.05rem;
+      margin: 0;
+      min-width: 100px;
+    }
+
+    /* ---- TOAST ---- */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #43e97b, #38f9d7);
+      color: white;
+      padding: 14px 20px;
+      border-radius: 20px;
+      border-bottom: 4px solid #1db863;
+      box-shadow: 0 6px 20px rgba(67,233,123,0.4);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-family: 'Baloo 2', cursive;
+      transform: translateY(120px);
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(.34,1.56,.64,1), opacity 0.4s ease-out;
+      max-width: 350px;
+    }
+    .toast i { font-size: 1.2rem; }
+
+    @media(max-width:600px){
+      .achievements-grid {
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+      }
+      #app { padding: 15px 12px 30px; }
+      h2 { font-size: 1.9rem; }
+      .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <div style="text-align:left; margin-bottom:10px;">
+    <a href="german.html" class="btn" id="backBtn">Back</a>
+  </div>
+
+  <h2 id="progressTitle">My Progress</h2>
+  
+  <div class="dashboard">
+    <div class="streak-container">
+      <div class="streak-box">
+        <i class="fas fa-fire"></i>
+        <span id="streakCount">0</span> <span id="dayStreakLabel">Day Streak</span>
+      </div>
+    </div>
+    
+    <div class="progress-section">
+      <h3 id="levelProgressTitle">Level Progress</h3>
+      <div>
+        <div class="progress-label" id="level1Label">
+          Level 1: Alphabets & Numbers
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="level1Progress"></div>
+        </div>
+      </div>
+      <div>
+        <div class="progress-label" id="level2Label">
+          Level 2: Basic Words
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="level2Progress"></div>
+        </div>
+      </div>
+      <div>
+        <div class="progress-label" id="level3Label">
+          Level 3: Sentences & Expressions
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="level3Progress"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="progress-section">
+      <h3 id="achievementsTitle">Achievements</h3>
+      <div class="achievements-grid" id="achievementsContainer">
+        </div>
+    </div>
+  </div>
+  
+  <div class="button-group">
+    <a href="german.html" class="btn" id="continueBtn">Continue Learning</a>
+    <button class="btn btn-danger" onclick="resetProgress()" id="resetBtn">Reset Progress</button>
+  </div>
+</div>
+
+<!-- Reset Confirmation Modal -->
+<div id="customResetModal" class="modal-overlay">
+  <div class="modal-content">
+    <p id="modalMessage">All your progress will be reset. Are you sure you want to continue?</p>
+    <div class="modal-actions">
+      <button class="btn btn-danger" onclick="performReset()" id="modalYesBtn">Yes</button>
+      <button class="btn" onclick="document.getElementById('customResetModal').style.display='none'" id="modalNoBtn">No</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// === TRANSLATIONS ===
+const translations = {
+  english: {
+    back: "Back",
+    progressTitle: "My Progress",
+    dayStreak: "Day Streak",
+    levelProgressTitle: "Level Progress",
+    level1Label: "Level 1: Alphabets & Numbers",
+    level2Label: "Level 2: Basic Words",
+    level3Label: "Level 3: Sentences & Expressions",
+    achievementsTitle: "Achievements",
+    continueBtn: "Continue Learning",
+    resetBtn: "Reset Progress",
+    modalMessage: "All your progress will be reset. Are you sure you want to continue?",
+    modalYes: "Yes",
+    modalNo: "No",
+    achievements: {
+      firstSteps: { title: "Erste Schritte", desc: "Complete your first activity", english: "First Steps" },
+      alphabetMaster: { title: "Alphabet-Meister", desc: "Learn all letters", english: "Alphabet Master" },
+      numberWhiz: { title: "Zahlen-Ass", desc: "Know 50+ numbers", english: "Number Whiz" },
+      wordExpert: { title: "Wort-Experte", desc: "Master 3 word categories", english: "Word Expert" },
+      sentenceBuilder: { title: "Satz-Bauer", desc: "Complete 2 sentence categories", english: "Sentence Builder" },
+      weekStreak: { title: "7-Tage-Serie", desc: "7-day learning streak", english: "7-Day Streak" },
+      monthStreak: { title: "30-Tage-Serie", desc: "30-day learning streak", english: "30-Day Streak" }
+    }
+  },
+  marathi: {
+    back: "मागे",
+    progressTitle: "माझी प्रगती",
+    dayStreak: "दिवसांची साखळी",
+    levelProgressTitle: "स्तर प्रगती",
+    level1Label: "स्तर १: अक्षरे आणि संख्या",
+    level2Label: "स्तर २: मूलभूत शब्द",
+    level3Label: "स्तर ३: वाक्ये आणि अभिव्यक्ती",
+    achievementsTitle: "यशे",
+    continueBtn: "शिक्षण सुरू ठेवा",
+    resetBtn: "प्रगती रीसेट करा",
+    modalMessage: "तुमची सर्व प्रगती रीसेट केली जाईल. तुम्हाला खात्री आहे का?",
+    modalYes: "होय",
+    modalNo: "नाही",
+    achievements: {
+      firstSteps: { title: "पहिली पावले", desc: "तुमची पहिली क्रियाकलाप पूर्ण करा", english: "First Steps" },
+      alphabetMaster: { title: "अक्षर मास्टर", desc: "सर्व अक्षरे शिका", english: "Alphabet Master" },
+      numberWhiz: { title: "संख्या तज्ञ", desc: "५०+ संख्या जाणून घ्या", english: "Number Whiz" },
+      wordExpert: { title: "शब्द तज्ञ", desc: "३ शब्द श्रेणी पारंगत करा", english: "Word Expert" },
+      sentenceBuilder: { title: "वाक्य निर्माता", desc: "२ वाक्य श्रेणी पूर्ण करा", english: "Sentence Builder" },
+      weekStreak: { title: "७ दिवसांची साखळी", desc: "७ दिवस सलग शिक्षण", english: "7-Day Streak" },
+      monthStreak: { title: "३० दिवसांची साखळी", desc: "३० दिवस सलग शिक्षण", english: "30-Day Streak" }
+    }
+  },
+  hindi: {
+    back: "वापस",
+    progressTitle: "मेरी प्रगति",
+    dayStreak: "दिनों की स्ट्रीक",
+    levelProgressTitle: "स्तर प्रगति",
+    level1Label: "स्तर १: वर्णमाला और संख्याएँ",
+    level2Label: "स्तर २: मूल शब्द",
+    level3Label: "स्तर ३: वाक्य और अभिव्यक्तियाँ",
+    achievementsTitle: "उपलब्धियाँ",
+    continueBtn: "सीखना जारी रखें",
+    resetBtn: "प्रगति रीसेट करें",
+    modalMessage: "आपकी सारी प्रगति रीसेट हो जाएगी। क्या आप जारी रखना चाहते हैं?",
+    modalYes: "हाँ",
+    modalNo: "नहीं",
+    achievements: {
+      firstSteps: { title: "पहला कदम", desc: "अपनी पहली गतिविधि पूरी करें", english: "First Steps" },
+      alphabetMaster: { title: "वर्णमाला मास्टर", desc: "सभी अक्षर सीखें", english: "Alphabet Master" },
+      numberWhiz: { title: "संख्या विशेषज्ञ", desc: "५०+ संख्याएँ जानें", english: "Number Whiz" },
+      wordExpert: { title: "शब्द विशेषज्ञ", desc: "३ शब्द श्रेणियाँ पूरी करें", english: "Word Expert" },
+      sentenceBuilder: { title: "वाक्य निर्माता", desc: "२ वाक्य श्रेणियाँ पूरी करें", english: "Sentence Builder" },
+      weekStreak: { title: "७ दिन की स्ट्रीक", desc: "लगातार ७ दिन सीखें", english: "7-Day Streak" },
+      monthStreak: { title: "३० दिन की स्ट्रीक", desc: "लगातार ३० दिन सीखें", english: "30-Day Streak" }
+    }
+  }
+};
+
+// === USER MANAGEMENT FUNCTIONS ===
+function getUserLanguageKey() {
+  const username = getCurrentUser();
+  return `linguaKids_${username}_germanInterfaceLang`;
+}
+
+function getCurrentUser() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlUser = urlParams.get('user');
+  if (urlUser) {
+    sessionStorage.setItem('currentUser', urlUser);
+    return urlUser;
+  }
+  
+  const sessionUser = sessionStorage.getItem('currentUser');
+  if (sessionUser) {
+    return sessionUser;
+  }
+  
+  return 'guest';
+}
+
+let interfaceLang = 'english';
+
+function loadInterfaceLanguage() {
+  const storageKey = getUserLanguageKey();
+  const savedLang = localStorage.getItem(storageKey);
+  
+  if (savedLang && (savedLang === 'english' || savedLang === 'marathi' || savedLang === 'hindi')) {
+    interfaceLang = savedLang;
+  } else {
+    interfaceLang = 'english';
+  }
+  
+  // Check URL for language parameter
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlLang = urlParams.get('lang');
+  if (urlLang && (urlLang === 'english' || urlLang === 'marathi' || urlLang === 'hindi')) {
+    interfaceLang = urlLang;
+  }
+  
+  // Update UI text
+  updateUIText();
+  
+  return interfaceLang;
+}
+
+function updateUIText() {
+  const t = translations[interfaceLang];
+  
+  // Update back button
+  document.getElementById('backBtn').textContent = t.back;
+  
+  // Update page title
+  document.getElementById('progressTitle').textContent = t.progressTitle;
+  
+  // Update streak label
+  document.getElementById('dayStreakLabel').textContent = t.dayStreak;
+  
+  // Update level progress section
+  document.getElementById('levelProgressTitle').textContent = t.levelProgressTitle;
+  document.getElementById('level1Label').textContent = t.level1Label;
+  document.getElementById('level2Label').textContent = t.level2Label;
+  document.getElementById('level3Label').textContent = t.level3Label;
+  
+  // Update achievements title
+  document.getElementById('achievementsTitle').textContent = t.achievementsTitle;
+  
+  // Update buttons
+  document.getElementById('continueBtn').textContent = t.continueBtn;
+  document.getElementById('resetBtn').textContent = t.resetBtn;
+  
+  // Update modal texts
+  document.getElementById('modalMessage').textContent = t.modalMessage;
+  document.getElementById('modalYesBtn').textContent = t.modalYes;
+  document.getElementById('modalNoBtn').textContent = t.modalNo;
+  
+  // Refresh achievements display to update achievement texts
+  const progress = getProgressData();
+  displayAchievements(progress.achievements);
+}
+
+// === PROGRESS DATA FUNCTIONS ===
+function getDefaultProgress() {
+  return {
+    level1: {
+      alphabets: { completed: 0, total: 30 },
+      numbers: { completed: 0, total: 100 }
+    },
+    level2: {
+      fruits: { completed: 0, total: 10 },
+      vegetables: { completed: 0, total: 10 },
+      animals: { completed: 0, total: 10 },
+      birds: { completed: 0, total: 10 },
+      vehicles: { completed: 0, total: 10 },
+      colors: { completed: 0, total: 10 }
+    },
+    level3: {
+      greetings: { completed: 0, total: 10 },
+      activities: { completed: 0, total: 10 },
+      questions: { completed: 0, total: 5 }
+    },
+    achievements: {
+      firstSteps: false,
+      alphabetMaster: false,
+      numberWhiz: false,
+      wordExpert: false,
+      sentenceBuilder: false,
+      weekStreak: false,
+      monthStreak: false
+    },
+    streak: {
+      count: 0,
+      lastDate: null
+    },
+    sessionDate: new Date().toDateString()
+  };
+}
+
+function getProgressData() {
+  try {
+    const stored = localStorage.getItem('grprogress');
+    return stored ? JSON.parse(stored) : getDefaultProgress();
+  } catch (e) {
+    console.error("Error parsing progress data:", e);
+    return getDefaultProgress();
+  }
+}
+
+// === UPDATE STREAK ===
+function updateStreak() {
+  const progress = getProgressData();
+  const today = new Date().toDateString();
+  
+  console.log("Streak update - Current:", progress.streak.count, "Last date:", progress.streak.lastDate, "Today:", today);
+  
+  // If no last date, start streak
+  if (!progress.streak.lastDate) {
+    progress.streak.count = 1;
+    progress.streak.lastDate = today;
+    progress.sessionDate = today;
+    localStorage.setItem('grprogress', JSON.stringify(progress));
+    console.log("New streak started: 1 day");
+    return;
+  }
+  
+  // If already visited today, no change needed
+  if (progress.streak.lastDate === today) {
+    console.log("Already visited today, streak unchanged:", progress.streak.count);
+    return;
+  }
+  
+  // Calculate day difference
+  const lastDate = new Date(progress.streak.lastDate);
+  const todayDate = new Date(today);
+  const diffTime = Math.abs(todayDate - lastDate);
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  
+  console.log("Days since last visit:", diffDays);
+  
+  if (diffDays === 1) {
+    // Consecutive day - increment streak
+    progress.streak.count++;
+    console.log("Consecutive day! Streak increased to:", progress.streak.count);
+    checkStreakAchievements(progress.streak.count, progress);
+  } else if (diffDays > 1) {
+    // Broken streak - reset to 1
+    progress.streak.count = 1;
+    console.log("Streak broken. Reset to 1");
+  }
+  
+  // Update dates
+  progress.streak.lastDate = today;
+  progress.sessionDate = today;
+  localStorage.setItem('grprogress', JSON.stringify(progress));
+  
+  console.log("Final streak:", progress.streak.count);
+}
+
+// === CHECK STREAK ACHIEVEMENTS ===
+function checkStreakAchievements(streak, progress) {
+  let earnedAchievement = false;
+  
+  if (streak >= 7 && !progress.achievements.weekStreak) {
+    progress.achievements.weekStreak = true;
+    earnedAchievement = true;
+    showAchievementToast("7-Tage-Serie! (7-Day Streak!)", "You've practiced for 7 days in a row!");
+  }
+  
+  if (streak >= 30 && !progress.achievements.monthStreak) {
+    progress.achievements.monthStreak = true;
+    earnedAchievement = true;
+    showAchievementToast("30-Tage-Serie! (30-Day Streak!)", "You're a dedicated learner!");
+  }
+  
+  if (earnedAchievement) {
+    localStorage.setItem('grprogress', JSON.stringify(progress));
+  }
+}
+
+// === SHOW ACHIEVEMENT TOAST ===
+function showAchievementToast(title, description) {
+  let toast = document.getElementById('achievementToast');
+  
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'achievementToast';
+    toast.style.cssText = `
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #58cc02;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Quicksand', Arial, sans-serif;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: transform 0.3s, opacity 0.3s;
+      max-width: 400px;
+    `;
+    document.body.appendChild(toast);
+  }
+  
+  toast.innerHTML = `
+    <i class="fas fa-trophy"></i>
+    <div>
+      <div style="font-weight: bold;">${title}</div>
+      <div>${description}</div>
+    </div>
+  `;
+  
+  // Show toast
+  toast.style.transform = 'translateY(0)';
+  toast.style.opacity = '1';
+  
+  setTimeout(() => {
+    toast.style.transform = 'translateY(100px)';
+    toast.style.opacity = '0';
+  }, 4000);
+}
+
+// Display progress data on the page
+function displayProgress() {
+  const progress = getProgressData();
+  
+  // Update streak first
+  updateStreak();
+  
+  // Get updated progress after streak update
+  const updatedProgress = getProgressData();
+  
+  // Update streak display
+  const streakCount = document.getElementById('streakCount');
+  if (streakCount) {
+    streakCount.textContent = updatedProgress.streak ? updatedProgress.streak.count : 0;
+  }
+  
+  // Calculate and display level progress
+  updateLevelProgress('level1', updatedProgress.level1);
+  updateLevelProgress('level2', updatedProgress.level2);
+  updateLevelProgress('level3', updatedProgress.level3);
+  
+  // Display achievements
+  displayAchievements(updatedProgress.achievements);
+}
+
+// Update progress for Level 1, 2, 3
+function updateLevelProgress(levelId, levelData) {
+  let totalCompleted = 0;
+  let totalItems = 0;
+  
+  // Calculate totals for the level
+  if (levelData) {
+    Object.keys(levelData).forEach(category => {
+      if (levelData[category] && typeof levelData[category].completed === 'number' && typeof levelData[category].total === 'number') {
+        totalCompleted += levelData[category].completed;
+        totalItems += levelData[category].total;
+      }
+    });
+  }
+  
+  // Calculate percentage (cap at 100%)
+  const percentage = totalItems > 0 ? Math.min(100, Math.round((totalCompleted / totalItems) * 100)) : 0;
+  
+  // Update progress bar
+  const progressFill = document.getElementById(`${levelId}Progress`);
+  if (progressFill) {
+    progressFill.style.width = `${percentage}%`;
+    progressFill.textContent = `${percentage}%`;
+  }
+}
+
+// Display achievements
+function displayAchievements(achievements) {
+  const achievementsContainer = document.getElementById('achievementsContainer');
+  if (!achievementsContainer) return;
+  
+  const t = translations[interfaceLang];
+  
+  const achievementsData = [
+    {
+      id: 'firstSteps',
+      icon: '👣',
+      title: t.achievements.firstSteps.title,
+      description: t.achievements.firstSteps.desc,
+      english: t.achievements.firstSteps.english
+    },
+    {
+      id: 'alphabetMaster',
+      icon: '🔤',
+      title: t.achievements.alphabetMaster.title,
+      description: t.achievements.alphabetMaster.desc,
+      english: t.achievements.alphabetMaster.english
+    },
+    {
+      id: 'numberWhiz',
+      icon: '🔢',
+      title: t.achievements.numberWhiz.title,
+      description: t.achievements.numberWhiz.desc,
+      english: t.achievements.numberWhiz.english
+    },
+    {
+      id: 'wordExpert',
+      icon: '📚',
+      title: t.achievements.wordExpert.title,
+      description: t.achievements.wordExpert.desc,
+      english: t.achievements.wordExpert.english
+    },
+    {
+      id: 'sentenceBuilder',
+      icon: '🗣️',
+      title: t.achievements.sentenceBuilder.title,
+      description: t.achievements.sentenceBuilder.desc,
+      english: t.achievements.sentenceBuilder.english
+    },
+    {
+      id: 'weekStreak',
+      icon: '🔥',
+      title: t.achievements.weekStreak.title,
+      description: t.achievements.weekStreak.desc,
+      english: t.achievements.weekStreak.english
+    },
+    {
+      id: 'monthStreak',
+      icon: '🏆',
+      title: t.achievements.monthStreak.title,
+      description: t.achievements.monthStreak.desc,
+      english: t.achievements.monthStreak.english
+    }
+  ];
+  
+  achievementsContainer.innerHTML = achievementsData.map(achievement => {
+    const isUnlocked = achievements && achievements[achievement.id] === true;
+    return `
+      <div class="achievement-card ${isUnlocked ? 'unlocked' : 'locked'}">
+        <div class="achievement-icon">${achievement.icon}</div>
+        <div class="achievement-title">${achievement.title}</div>
+        <div class="english-translation">${achievement.english}</div>
+        <div class="achievement-desc">${achievement.description}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function resetProgress() {
+  // Show the custom modal
+  const modal = document.getElementById('customResetModal');
+  if (modal) {
+    modal.style.display = 'flex';
+  }
+}
+
+function performReset() {
+  try {
+    // 1. Clear the progress data
+    localStorage.removeItem('grprogress');
+    
+    // 2. Clear session storage (for daily lock keys)
+    sessionStorage.clear();
+    
+    // 3. Hide the modal
+    const modal = document.getElementById('customResetModal');
+    if (modal) {
+      modal.style.display = 'none';
+    }
+
+    // 4. Refresh the display with default progress
+    displayProgress();
+    
+    // 5. Show success message
+    showAchievementToast("Progress reset!", "Your learning progress has been deleted.");
+    
+  } catch (error) {
+    console.error("Error resetting progress:", error);
+    alert("Error resetting progress. Please try again.");
+  }
+}
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', function() {
+  // Load language preference
+  loadInterfaceLanguage();
+  
+  // Display the current progress
+  displayProgress();
+  
+  // Set up periodic progress updates (in case of real-time changes)
+  setInterval(displayProgress, 2000);
+});
+
+// Make functions globally accessible
+window.resetProgress = resetProgress;
+window.performReset = performReset;
+window.getProgressData = getProgressData;
+window.displayProgress = displayProgress;
+window.showAchievementToast = showAchievementToast;
+</script>
+</body>
+</html>

@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinguaKids - Level 3</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       LINGUAKIDS LEVEL 3 — MEGA FUN CSS
+    ============================================================ */
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Nunito', 'Quicksand', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+      background-color: #fffbf0;
+      background-image:
+        radial-gradient(circle at 8%  12%, #ff6bb540 0%, transparent 28%),
+        radial-gradient(circle at 92% 8%,  #43e97b40 0%, transparent 28%),
+        radial-gradient(circle at 50% 50%, #f9ca2440 0%, transparent 40%),
+        radial-gradient(circle at 15% 88%, #38f9d740 0%, transparent 28%),
+        radial-gradient(circle at 88% 85%, #4facfe40 0%, transparent 28%),
+        radial-gradient(circle at 70% 30%, #fa709a30 0%, transparent 22%);
+    }
+
+    /* Floating confetti dots */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        radial-gradient(circle, #ff6bb5 2px, transparent 2px),
+        radial-gradient(circle, #43e97b 2px, transparent 2px),
+        radial-gradient(circle, #f9ca24 2px, transparent 2px),
+        radial-gradient(circle, #4facfe 2px, transparent 2px),
+        radial-gradient(circle, #fa709a 2px, transparent 2px),
+        radial-gradient(circle, #ff6b6b 2px, transparent 2px);
+      background-size: 120px 120px, 97px 97px, 143px 143px, 83px 83px, 107px 107px, 131px 131px;
+      background-position: 10px 15px, 55px 70px, 30px 40px, 80px 10px, 50px 100px, 100px 55px;
+      opacity: 0.45;
+      animation: driftDots 18s linear infinite alternate;
+    }
+
+    @keyframes driftDots {
+      from { background-position: 10px 15px, 55px 70px, 30px 40px, 80px 10px, 50px 100px, 100px 55px; }
+      to   { background-position: 22px 38px, 44px 52px, 52px 62px, 62px 28px, 68px 82px, 82px 72px; }
+    }
+
+    /* ---- HEADING ---- */
+    h2 {
+      text-align: center;
+      font-family: 'Baloo 2', cursive;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #f472b6;
+      text-shadow: 3px 3px 0 #fce7f3, 5px 5px 0 rgba(244,114,182,0.15);
+      margin: 16px 0 8px;
+      position: relative;
+      z-index: 1;
+      animation: titleWobble 3.5s ease-in-out infinite;
+    }
+
+    @keyframes titleWobble {
+      0%,100% { transform: rotate(-1deg) scale(1); }
+      25%      { transform: rotate(1.5deg) scale(1.02); }
+      75%      { transform: rotate(-0.5deg) scale(0.98); }
+    }
+
+    /* ---- GRID ---- */
+    .item-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin: 20px auto;
+      padding: 0 18px;
+      max-width: 1000px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ---- ITEM CARDS ---- */
+    .item-card {
+      background: white;
+      padding: 20px 16px 16px;
+      border-radius: 24px;
+      text-align: center;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border: 3px solid transparent;
+      transition: transform 0.22s cubic-bezier(.34,1.7,.64,1), box-shadow 0.2s;
+      box-shadow: 0 7px 0 #c0c0c0, 0 10px 20px rgba(0,0,0,0.08);
+      animation: cardPop 0.4s cubic-bezier(.34,1.56,.64,1) both;
+    }
+
+    @keyframes cardPop {
+      from { transform: scale(0.5) rotate(-8deg); opacity: 0; }
+      to   { transform: scale(1)   rotate(0deg);  opacity: 1; }
+    }
+
+    /* Rainbow card colors cycling through 6 themes */
+    .item-card:nth-child(6n+1) { background:#fff0f6; border-color:#ff6bb5; box-shadow:0 7px 0 #e05a9f, 0 10px 20px rgba(255,107,181,0.15); }
+    .item-card:nth-child(6n+2) { background:#f0fff4; border-color:#43e97b; box-shadow:0 7px 0 #28c25e, 0 10px 20px rgba(67,233,123,0.15);  }
+    .item-card:nth-child(6n+3) { background:#fffbf0; border-color:#f9ca24; box-shadow:0 7px 0 #d4a800, 0 10px 20px rgba(249,202,36,0.15);  }
+    .item-card:nth-child(6n+4) { background:#f0f8ff; border-color:#4facfe; box-shadow:0 7px 0 #2280d4, 0 10px 20px rgba(79,172,254,0.15);  }
+    .item-card:nth-child(6n+5) { background:#fff0f9; border-color:#f472b6; box-shadow:0 7px 0 #be185d, 0 10px 20px rgba(244,114,182,0.15); }
+    .item-card:nth-child(6n+6) { background:#fff4ee; border-color:#fb923c; box-shadow:0 7px 0 #c2620d, 0 10px 20px rgba(251,146,60,0.15);  }
+
+    /* Stagger pop-in animation */
+    .item-card:nth-child(1)  { animation-delay:.02s }
+    .item-card:nth-child(2)  { animation-delay:.05s }
+    .item-card:nth-child(3)  { animation-delay:.08s }
+    .item-card:nth-child(4)  { animation-delay:.11s }
+    .item-card:nth-child(5)  { animation-delay:.14s }
+    .item-card:nth-child(6)  { animation-delay:.17s }
+    .item-card:nth-child(7)  { animation-delay:.20s }
+    .item-card:nth-child(8)  { animation-delay:.23s }
+    .item-card:nth-child(9)  { animation-delay:.26s }
+    .item-card:nth-child(10) { animation-delay:.29s }
+
+    .item-card:hover {
+      transform: translateY(-8px) rotate(-1deg) scale(1.06);
+    }
+
+    .item-card:active {
+      transform: translateY(5px) scale(0.96);
+      box-shadow: 0 2px 0 #aaa, 0 4px 8px rgba(0,0,0,0.1) !important;
+      transition: transform 0.07s, box-shadow 0.07s;
+    }
+
+    /* ---- QUESTION & ANSWER ---- */
+    .question {
+      font-weight: 800;
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.1rem;
+      color: #0ea5e9;
+      margin-bottom: 8px;
+    }
+
+    .answer {
+      margin-bottom: 10px;
+      color: #444;
+      font-weight: 700;
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+
+    /* ---- TRANSLATION ---- */
+    .translation {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: #fb923c;
+      margin-top: 4px;
+      margin-bottom: 6px;
+    }
+
+    /* ---- SPEAK BUTTONS ---- */
+    .speak-btn {
+      background: linear-gradient(160deg, #f9ca24, #f0932b);
+      border: none;
+      border-bottom: 4px solid #c07800;
+      border-right: 2px solid #c07800;
+      color: white;
+      padding: 6px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-family: 'Baloo 2', cursive;
+      font-weight: 700;
+      margin: 4px;
+      min-width: 50px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      box-shadow: 0 3px 10px rgba(249,202,36,0.35);
+      transition: transform 0.15s cubic-bezier(.34,1.56,.64,1), border-bottom 0.1s;
+    }
+
+    .speak-btn:hover  { transform: translateY(-2px) scale(1.08); }
+    .speak-btn:active { transform: translateY(2px); border-bottom-width: 1px; border-right-width: 1px; }
+    .speak-btn i      { font-size: 0.9rem; }
+
+    /* ---- BACK BUTTON ---- */
+    .btn {
+      background: linear-gradient(160deg, #43e97b, #38f9d7);
+      border: none;
+      border-bottom: 5px solid #1db863;
+      border-right: 3px solid #1db863;
+      color: white;
+      padding: 11px 26px;
+      border-radius: 999px;
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin: 12px 8px;
+      display: inline-block;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.15);
+      box-shadow: 0 6px 18px rgba(67,233,123,0.35);
+      transition: transform 0.15s cubic-bezier(.34,1.56,.64,1), box-shadow 0.15s, border-bottom 0.1s;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn:hover  { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 24px rgba(67,233,123,0.45); }
+    .btn:active { transform: translateY(4px) scale(0.97); border-bottom-width: 1px; border-right-width: 1px; box-shadow: none; }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 600px) {
+      .item-grid { grid-template-columns: 1fr; }
+      h2 { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <button onclick="goBack()" class="btn" id="backBtn">Back</button>
+  <h2 id="categoryTitle"></h2>
+  <div id="content" class="item-grid"></div>
+
+<script>
+// ===== TRANSLATIONS =====
+const translations = {
+  hindi: {
+    back: "वापस",
+    category: "श्रेणी",
+    greetings: "अभिवादन",
+    activities: "गतिविधियाँ",
+    questions: "प्रश्न"
+  },
+  marathi: {
+    back: "मागे",
+    category: "श्रेणी",
+    greetings: "अभिवादन",
+    activities: "क्रियाकलाप",
+    questions: "प्रश्न"
+  }
+};
+
+// ===== TRANSLATION DATA FOR SENTENCES =====
+const SENTENCE_TRANSLATIONS = {
+  hindi: {
+    greetings: {
+      "Hello!": "नमस्ते!",
+      "Good morning": "शुभ प्रभात",
+      "Good afternoon": "नमस्कार",
+      "Good evening": "शुभ संध्या",
+      "Good night": "शुभ रात्रि",
+      "How are you?": "आप कैसे हैं?",
+      "I'm fine, thank you!": "मैं ठीक हूँ, धन्यवाद!",
+      "What's your name?": "आपका नाम क्या है?",
+      "My name is [Your Name].": "मेरा नाम [आपका नाम] है।",
+      "Nice to meet you": "आपसे मिलकर अच्छा लगा",
+      "Nice to meet you too!": "आपसे मिलकर भी अच्छा लगा!",
+      "See you later": "फिर मिलते हैं",
+      "See you!": "फिर मिलेंगे!",
+      "Thank you": "धन्यवाद",
+      "You're welcome!": "आपका स्वागत है!",
+      "Hi there!": "नमस्ते!",
+      "Hi!": "नमस्ते!",
+      "How's your day?": "आपका दिन कैसा है?",
+      "My day is good!": "मेरा दिन अच्छा है!",
+      "Long time no see": "बहुत दिनों बाद मुलाकात हुई",
+      "Yes! It's been a while!": "हाँ! बहुत दिन हो गए!",
+      "May I come in?": "क्या मैं अंदर आ सकता हूँ?",
+      "Yes, please come in!": "हाँ, कृपया अंदर आइए!",
+      "Have a nice day": "आपका दिन शुभ हो",
+      "You too!": "आपका भी!",
+      "Goodbye": "अलविदा",
+      "Take care": "अपना ख्याल रखना",
+      "I will!": "मैं रखूँगा!"
+    },
+    activities: {
+      "I eat food": "मैं खाना खाता हूँ",
+      "I go to school": "मैं स्कूल जाता हूँ",
+      "I play with friends": "मैं दोस्तों के साथ खेलता हूँ",
+      "I read books": "मैं किताबें पढ़ता हूँ",
+      "I watch TV": "मैं टीवी देखता हूँ",
+      "I help my mom": "मैं अपनी माँ की मदद करता हूँ",
+      "I take a bath": "मैं नहाता हूँ",
+      "I brush my teeth": "मैं अपने दाँत साफ करता हूँ",
+      "I sleep at night": "मैं रात में सोता हूँ",
+      "I drink water": "मैं पानी पीता हूँ",
+      "I draw pictures": "मैं चित्र बनाता हूँ",
+      "I ride my bicycle": "मैं साइकिल चलाता हूँ",
+      "I play games": "मैं खेल खेलता हूँ",
+      "I sing songs": "मैं गाने गाता हूँ",
+      "I dance": "मैं नाचता हूँ",
+      "I clean my room": "मैं अपना कमरा साफ करता हूँ",
+      "I cook with my mom": "मैं अपनी माँ के साथ खाना बनाता हूँ",
+      "I water the plants": "मैं पौधों को पानी देता हूँ",
+      "I play in the park": "मैं पार्क में खेलता हूँ",
+      "I feed my pet": "मैं अपने पालतू जानवर को खाना खिलाता हूँ"
+    },
+    questions: {
+      "What is your name?": "आपका नाम क्या है?",
+      "My name is John.": "मेरा नाम जॉन है।",
+      "How old are you?": "आपकी उम्र क्या है?",
+      "I am 6 years old.": "मैं 6 साल का हूँ।",
+      "Where do you live?": "आप कहाँ रहते हैं?",
+      "I live in India.": "मैं भारत में रहता हूँ।",
+      "Do you like fruits?": "क्या आपको फल पसंद हैं?",
+      "Yes, I like apples.": "हाँ, मुझे सेब पसंद हैं।",
+      "What is this?": "यह क्या है?",
+      "This is an apple.": "यह एक सेब है।",
+      "What is your favorite color?": "आपका पसंदीदा रंग क्या है?",
+      "My favorite color is blue.": "मेरा पसंदीदा रंग नीला है।",
+      "What did you eat today?": "आपने आज क्या खाया?",
+      "I ate rice and vegetables.": "मैंने चावल और सब्जियाँ खाईं।",
+      "Do you have a pet?": "क्या आपके पास पालतू जानवर है?",
+      "Yes, I have a dog.": "हाँ, मेरे पास एक कुत्ता है।",
+      "What do you like to do?": "आप क्या करना पसंद करते हैं?",
+      "I like to play and draw.": "मुझे खेलना और चित्र बनाना पसंद है।",
+      "Where are you going?": "आप कहाँ जा रहे हैं?",
+      "I am going to school.": "मैं स्कूल जा रहा हूँ।",
+      "Are you happy?": "क्या आप खुश हैं?",
+      "Yes, I am very happy!": "हाँ, मैं बहुत खुश हूँ!",
+      "What time do you sleep?": "आप कितने बजे सोते हैं?",
+      "I sleep at 9 PM.": "मैं रात 9 बजे सोता हूँ।",
+      "Who is your best friend?": "आपका सबसे अच्छा दोस्त कौन है?",
+      "My best friend is [Friend's Name].": "मेरा सबसे अच्छा दोस्त [दोस्त का नाम] है।",
+      "What is your favorite food?": "आपका पसंदीदा भोजन क्या है?",
+      "My favorite food is pizza.": "मेरा पसंदीदा भोजन पिज़्ज़ा है।",
+      "Can you help me?": "क्या आप मेरी मदद कर सकते हैं?",
+      "Yes, I can help you!": "हाँ, मैं आपकी मदद कर सकता हूँ!"
+    }
+  },
+  marathi: {
+    greetings: {
+      "Hello!": "नमस्कार!",
+      "Good morning": "शुभ प्रभात",
+      "Good afternoon": "शुभ दुपार",
+      "Good evening": "शुभ संध्या",
+      "Good night": "शुभ रात्री",
+      "How are you?": "तू कसा आहेस?",
+      "I'm fine, thank you!": "मी ठीक आहे, धन्यवाद!",
+      "What's your name?": "तुझं नाव काय आहे?",
+      "My name is [Your Name].": "माझं नाव [तुमचं नाव] आहे.",
+      "Nice to meet you": "तुला भेटून आनंद झाला",
+      "Nice to meet you too!": "मलाही तुला भेटून आनंद झाला!",
+      "See you later": "पुन्हा भेटू",
+      "See you!": "भेटू!",
+      "Thank you": "धन्यवाद",
+      "You're welcome!": "आपले स्वागत आहे!",
+      "Hi there!": "नमस्कार!",
+      "Hi!": "नमस्कार!",
+      "How's your day?": "तुझा दिवस कसा आहे?",
+      "My day is good!": "माझा दिवस चांगला आहे!",
+      "Long time no see": "बराच वेळ झाला भेट न होऊन",
+      "Yes! It's been a while!": "हो! खूप दिवस झाले!",
+      "May I come in?": "मी आत येऊ का?",
+      "Yes, please come in!": "हो, कृपया आत या!",
+      "Have a nice day": "तुझा दिवस चांगला जावो",
+      "You too!": "तुझासुद्धा!",
+      "Goodbye": "अच्छा",
+      "Take care": "काळजी घे",
+      "I will!": "मी घेईन!"
+    },
+    activities: {
+      "I eat food": "मी जेवण खातो",
+      "I go to school": "मी शाळेत जातो",
+      "I play with friends": "मी मित्रांसोबत खेळतो",
+      "I read books": "मी पुस्तके वाचतो",
+      "I watch TV": "मी टीव्ही पाहतो",
+      "I help my mom": "मी माझ्या आईला मदत करतो",
+      "I take a bath": "मी आंघोळ करतो",
+      "I brush my teeth": "मी दात घासतो",
+      "I sleep at night": "मी रात्री झोपतो",
+      "I drink water": "मी पाणी पितो",
+      "I draw pictures": "मी चित्रे काढतो",
+      "I ride my bicycle": "मी सायकल चालवतो",
+      "I play games": "मी खेळ खेळतो",
+      "I sing songs": "मी गाणी गातो",
+      "I dance": "मी नाचतो",
+      "I clean my room": "मी माझी खोली स्वच्छ करतो",
+      "I cook with my mom": "मी आईबरोबर स्वयंपाक करतो",
+      "I water the plants": "मी झाडांना पाणी घालतो",
+      "I play in the park": "मी उद्यानात खेळतो",
+      "I feed my pet": "मी माझ्या पाळीव प्राण्याला खाऊ घालतो"
+    },
+    questions: {
+      "What is your name?": "तुझं नाव काय आहे?",
+      "My name is John.": "माझं नाव जॉन आहे.",
+      "How old are you?": "तुझं वय किती आहे?",
+      "I am 6 years old.": "मी ६ वर्षांचा आहे.",
+      "Where do you live?": "तू कुठे राहतोस?",
+      "I live in India.": "मी भारतात राहतो.",
+      "Do you like fruits?": "तुला फळे आवडतात का?",
+      "Yes, I like apples.": "हो, मला सफरचंद आवडतात.",
+      "What is this?": "हे काय आहे?",
+      "This is an apple.": "हे सफरचंद आहे.",
+      "What is your favorite color?": "तुझा आवडता रंग कोणता?",
+      "My favorite color is blue.": "माझा आवडता रंग निळा आहे.",
+      "What did you eat today?": "तू आज काय खाल्लेस?",
+      "I ate rice and vegetables.": "मी भात आणि भाज्या खाल्ल्या.",
+      "Do you have a pet?": "तुझ्याकडे पाळीव प्राणी आहे का?",
+      "Yes, I have a dog.": "हो, माझ्याकडे कुत्रा आहे.",
+      "What do you like to do?": "तुला काय करायला आवडते?",
+      "I like to play and draw.": "मला खेळायला आणि चित्र काढायला आवडते.",
+      "Where are you going?": "तू कुठे जात आहेस?",
+      "I am going to school.": "मी शाळेत जात आहे.",
+      "Are you happy?": "तू आनंदी आहेस का?",
+      "Yes, I am very happy!": "हो, मी खूप आनंदी आहे!",
+      "What time do you sleep?": "तू किती वाजता झोपतोस?",
+      "I sleep at 9 PM.": "मी रात्री ९ वाजता झोपतो.",
+      "Who is your best friend?": "तुझा सर्वात चांगला मित्र कोण आहे?",
+      "My best friend is [Friend's Name].": "माझा सर्वात चांगला मित्र [मित्राचं नाव] आहे.",
+      "What is your favorite food?": "तुझं आवडतं जेवण कोणतं?",
+      "My favorite food is pizza.": "माझं आवडतं जेवण पिझ्झा आहे.",
+      "Can you help me?": "तू मला मदत करू शकतोस का?",
+      "Yes, I can help you!": "हो, मी तुला मदत करू शकतो!"
+    }
+  }
+};
+
+const DATA = {
+  greetings: [
+    { q: "Hello!", a: "Hello! 👋" },
+    { q: "Good morning", a: "Good morning! ☀️" },
+    { q: "Good afternoon", a: "Good afternoon! 🌞" },
+    { q: "Good evening", a: "Good evening! 🌙" },
+    { q: "Good night", a: "Good night! 🌜" },
+    { q: "How are you?", a: "I'm fine, thank you! 😊" },
+    { q: "What's your name?", a: "My name is [Your Name]." },
+    { q: "Nice to meet you", a: "Nice to meet you too! 🤝" },
+    { q: "See you later", a: "See you! 👋" },
+    { q: "Thank you", a: "You're welcome! 😊" },
+    { q: "Hi there!", a: "Hi! 👋" },
+    { q: "How's your day?", a: "My day is good! 😄" },
+    { q: "Long time no see", a: "Yes! It's been a while! 😊" },
+    { q: "May I come in?", a: "Yes, please come in! 🚪" },
+    { q: "Have a nice day", a: "You too! 🌈" },
+    { q: "Goodbye", a: "Goodbye! 👋" },
+    { q: "Take care", a: "I will! ❤️" }
+  ],
+
+  activities: [
+    { q: "I eat food 🍎" },
+    { q: "I go to school 🏫" },
+    { q: "I play with friends 👫" },
+    { q: "I read books 📚" },
+    { q: "I watch TV 📺" },
+    { q: "I help my mom 👩" },
+    { q: "I take a bath 🛁" },
+    { q: "I brush my teeth 🦷" },
+    { q: "I sleep at night 😴" },
+    { q: "I drink water 💧" },
+    { q: "I draw pictures 🎨" },
+    { q: "I ride my bicycle 🚲" },
+    { q: "I play games 🎮" },
+    { q: "I sing songs 🎤" },
+    { q: "I dance 💃" },
+    { q: "I clean my room 🧹" },
+    { q: "I cook with my mom 🍳" },
+    { q: "I water the plants 🌱" },
+    { q: "I play in the park 🌳" },
+    { q: "I feed my pet 🐶" }
+  ],
+
+  questions: [
+    { q: "What is your name?", a: "My name is John." },
+    { q: "How old are you?", a: "I am 6 years old." },
+    { q: "Where do you live?", a: "I live in India." },
+    { q: "Do you like fruits?", a: "Yes, I like apples." },
+    { q: "What is this?🍎", a: "This is an apple." },
+    { q: "What is your favorite color?", a: "My favorite color is blue." },
+    { q: "What did you eat today?", a: "I ate rice and vegetables." },
+    { q: "Do you have a pet?", a: "Yes, I have a dog." },
+    { q: "What do you like to do?", a: "I like to play and draw." },
+    { q: "Where are you going?", a: "I am going to school." },
+    { q: "Are you happy?", a: "Yes, I am very happy! 😄" },
+    { q: "What time do you sleep?", a: "I sleep at 9 PM." },
+    { q: "Who is your best friend?", a: "My best friend is [Friend's Name]." },
+    { q: "What is your favorite food?", a: "My favorite food is pizza." },
+    { q: "Can you help me?", a: "Yes, I can help you!" }
+  ]
+};
+
+// Track which items have been interacted with in this session
+const interactedItems = new Set();
+let currentCategory = null;
+let interfaceLang = 'en';
+
+// ===== USER MANAGEMENT FUNCTIONS (copied from english.html) =====
+function getCurrentUser() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlUser = urlParams.get('user');
+  if (urlUser) {
+    sessionStorage.setItem('currentUser', urlUser);
+    return urlUser;
+  }
+  
+  const sessionUser = sessionStorage.getItem('currentUser');
+  if (sessionUser) {
+    return sessionUser;
+  }
+  
+  return 'guest';
+}
+
+function getUserLanguageKey() {
+  const username = getCurrentUser();
+  return `linguaKids_${username}_englishInterfaceLang`;
+}
+
+function getUserProfile() {
+  try {
+    const profileStr = localStorage.getItem('linguaKidsProfile');
+    return profileStr ? JSON.parse(profileStr) : null;
+  } catch (e) {
+    return null;
+  }
+}
+
+// ===== GET INTERFACE LANGUAGE FROM URL OR STORAGE =====
+function getInterfaceLanguage() {
+  // First check URL parameter
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlLang = urlParams.get('lang');
+  if (urlLang && (urlLang === 'hindi' || urlLang === 'marathi')) {
+    return urlLang;
+  }
+  
+  // Then check from english.html's saved preference
+  const storageKey = getUserLanguageKey();
+  const savedLang = localStorage.getItem(storageKey);
+  if (savedLang === 'hindi' || savedLang === 'marathi') {
+    return savedLang;
+  }
+  
+  // Default to English
+  return 'en';
+}
+
+function getCategory(){ 
+  const urlParams = new URLSearchParams(window.location.search);
+  const category = urlParams.get("category");
+  console.log("Retrieved category from URL:", category);
+  return category;
+}
+
+function loadCategory(){
+  const cat = getCategory();
+  console.log("Loading category:", cat, "Current category:", currentCategory);
+
+  if (cat === currentCategory) return;
+  currentCategory = cat;
+
+  if (!cat || !DATA[cat]) { 
+    document.getElementById("content").innerHTML = "<p>Category not found.</p>"; 
+    return; 
+  }
+
+  // Update interface language
+  interfaceLang = getInterfaceLanguage();
+  
+  // Update back button text
+  const backBtn = document.getElementById("backBtn");
+  if (interfaceLang !== 'en' && translations[interfaceLang]) {
+    backBtn.textContent = translations[interfaceLang].back;
+  } else {
+    backBtn.textContent = "Back";
+  }
+
+  // Translate category title
+  let categoryTitle = `Category: ${cat.charAt(0).toUpperCase() + cat.slice(1)}`;
+  if (interfaceLang !== 'en' && translations[interfaceLang] && translations[interfaceLang][cat]) {
+    categoryTitle = `${translations[interfaceLang].category}: ${translations[interfaceLang][cat]}`;
+  }
+  
+  document.getElementById("categoryTitle").textContent = categoryTitle;
+
+  document.getElementById("content").innerHTML = DATA[cat].map((item, index) => {
+    // Get translations for question and answer
+    let qTranslation = '';
+    let aTranslation = '';
+    
+    if (interfaceLang !== 'en' && 
+        SENTENCE_TRANSLATIONS[interfaceLang] && 
+        SENTENCE_TRANSLATIONS[interfaceLang][cat]) {
+      
+      // Clean the text for translation lookup (remove emojis)
+      const cleanQ = item.q.replace(/[^\w\s?.,!]/gi, '').trim();
+      const cleanA = item.a ? item.a.replace(/[^\w\s?.,!]/gi, '').trim() : '';
+      
+      qTranslation = SENTENCE_TRANSLATIONS[interfaceLang][cat][cleanQ] || 
+                     SENTENCE_TRANSLATIONS[interfaceLang][cat][item.q] || '';
+      
+      if (cleanA) {
+        aTranslation = SENTENCE_TRANSLATIONS[interfaceLang][cat][cleanA] || 
+                       SENTENCE_TRANSLATIONS[interfaceLang][cat][item.a] || '';
+      }
+    }
+    
+    return `
+    <div class="item-card">
+      <div class="question">Q: ${item.q}</div>
+      ${qTranslation ? `<div class="translation">${qTranslation}</div>` : ''}
+      ${item.a ? `<div class="answer">A: ${item.a}</div>` : ""}
+      ${aTranslation ? `<div class="translation">${aTranslation}</div>` : ''}
+      <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+        <button class="speak-btn" onclick="handleSpeak('${cat}', ${index}, 'question', event)">
+          <i class="fas fa-volume-up"></i> Q
+        </button>
+        ${item.a ? `
+        <button class="speak-btn" onclick="handleSpeak('${cat}', ${index}, 'answer', event)">
+          <i class="fas fa-volume-up"></i> A
+        </button>` : ""}
+      </div>
+    </div>`;
+  }).join("");
+
+  console.log(`Loaded ${DATA[cat].length} items for category: ${cat}`);
+}
+
+function handleSpeak(category, index, type, event) {
+  if (event) event.stopPropagation();
+  
+  const item = DATA[category][index];
+  const textToSpeak = (type === 'question') ? item.q : item.a;
+
+  if (textToSpeak) {
+    const itemKey = `${category}_${index}`;
+    if (!interactedItems.has(itemKey)) {
+      interactedItems.add(itemKey);
+      if (typeof updateProgress === 'function') updateProgress('level3', category, index);
+    }
+    speak(textToSpeak);
+  }
+}
+
+function speak(text){
+  const cleanText = text.replace(/[^\w\s]/gi, ' ').trim();
+  if ('speechSynthesis' in window) {
+    const utterance = new SpeechSynthesisUtterance(cleanText);
+    utterance.lang = "en-US";
+    utterance.rate = 0.8;
+    utterance.pitch = 1.2;
+    speechSynthesis.speak(utterance);
+  } else {
+    console.log("Speech synthesis not supported");
+  }
+}
+
+function goBack(){ 
+  const lang = getInterfaceLanguage();
+  window.location.href = `english.html?lang=${lang}&t=${new Date().getTime()}`;
+}
+
+function handleVisibilityChange() {
+  if (!document.hidden) loadCategory();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  console.log("Level 3 page loaded");
+  document.addEventListener('visibilitychange', handleVisibilityChange);
+  window.addEventListener('pageshow', function(event) {
+    if (event.persisted) loadCategory();
+  });
+  if (typeof initProgress === 'function') initProgress();
+  loadCategory();
+});
+
+window.addEventListener('load', loadCategory);
+</script>
+
+<script src="progress.js"></script>
+
+</body>
+</html>

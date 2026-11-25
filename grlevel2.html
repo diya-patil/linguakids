@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="google" content="notranslate">
+  <meta http-equiv="Content-Language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinguaKids - Level 2</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       LINGUAKIDS LEVEL 2 — MEGA FUN CSS
+    ============================================================ */
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Nunito', 'Quicksand', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+      background-color: #fffbf0;
+      background-image:
+        radial-gradient(circle at 8%  12%, #ff6bb540 0%, transparent 28%),
+        radial-gradient(circle at 92% 8%,  #43e97b40 0%, transparent 28%),
+        radial-gradient(circle at 50% 50%, #f9ca2440 0%, transparent 40%),
+        radial-gradient(circle at 15% 88%, #38f9d740 0%, transparent 28%),
+        radial-gradient(circle at 88% 85%, #4facfe40 0%, transparent 28%),
+        radial-gradient(circle at 70% 30%, #fa709a30 0%, transparent 22%);
+    }
+
+    /* Floating confetti dots */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        radial-gradient(circle, #ff6bb5 2px, transparent 2px),
+        radial-gradient(circle, #43e97b 2px, transparent 2px),
+        radial-gradient(circle, #f9ca24 2px, transparent 2px),
+        radial-gradient(circle, #4facfe 2px, transparent 2px),
+        radial-gradient(circle, #fa709a 2px, transparent 2px),
+        radial-gradient(circle, #ff6b6b 2px, transparent 2px);
+      background-size: 120px 120px, 97px 97px, 143px 143px, 83px 83px, 107px 107px, 131px 131px;
+      background-position: 10px 15px, 55px 70px, 30px 40px, 80px 10px, 50px 100px, 100px 55px;
+      opacity: 0.45;
+      animation: driftDots 18s linear infinite alternate;
+    }
+
+    @keyframes driftDots {
+      from { background-position: 10px 15px, 55px 70px, 30px 40px, 80px 10px, 50px 100px, 100px 55px; }
+      to   { background-position: 22px 38px, 44px 52px, 52px 62px, 62px 28px, 68px 82px, 82px 72px; }
+    }
+
+    /* ---- HEADING ---- */
+    h2 {
+      text-align: center;
+      font-family: 'Baloo 2', cursive;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0ea5e9;
+      text-shadow: 3px 3px 0 #bae6fd, 5px 5px 0 rgba(14,165,233,0.15);
+      margin: 16px 0 8px;
+      position: relative;
+      z-index: 1;
+      animation: titleWobble 3.5s ease-in-out infinite;
+    }
+
+    @keyframes titleWobble {
+      0%,100% { transform: rotate(-1deg) scale(1); }
+      25%      { transform: rotate(1.5deg) scale(1.02); }
+      75%      { transform: rotate(-0.5deg) scale(0.98); }
+    }
+
+    /* ---- GRID ---- */
+    .item-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+      margin: 20px auto;
+      padding: 0 18px;
+      max-width: 1200px;
+      box-sizing: border-box;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ---- ITEM CARDS ---- */
+    .item-card {
+      background: white;
+      padding: 16px 10px 14px;
+      border-radius: 24px;
+      text-align: center;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      position: relative;
+      border: 3px solid transparent;
+      transition: transform 0.22s cubic-bezier(.34,1.7,.64,1), box-shadow 0.2s;
+      box-shadow: 0 7px 0 #c0c0c0, 0 10px 20px rgba(0,0,0,0.08);
+      animation: cardPop 0.4s cubic-bezier(.34,1.56,.64,1) both;
+    }
+
+    @keyframes cardPop {
+      from { transform: scale(0.5) rotate(-8deg); opacity: 0; }
+      to   { transform: scale(1)   rotate(0deg);  opacity: 1; }
+    }
+
+    /* Rainbow card colors cycling through 6 themes */
+    .item-card:nth-child(6n+1) { background:#fff0f6; border-color:#ff6bb5; box-shadow:0 7px 0 #e05a9f, 0 10px 20px rgba(255,107,181,0.15); }
+    .item-card:nth-child(6n+2) { background:#f0fff4; border-color:#43e97b; box-shadow:0 7px 0 #28c25e, 0 10px 20px rgba(67,233,123,0.15);  }
+    .item-card:nth-child(6n+3) { background:#fffbf0; border-color:#f9ca24; box-shadow:0 7px 0 #d4a800, 0 10px 20px rgba(249,202,36,0.15);  }
+    .item-card:nth-child(6n+4) { background:#f0f8ff; border-color:#4facfe; box-shadow:0 7px 0 #2280d4, 0 10px 20px rgba(79,172,254,0.15);  }
+    .item-card:nth-child(6n+5) { background:#fff0f9; border-color:#f472b6; box-shadow:0 7px 0 #be185d, 0 10px 20px rgba(244,114,182,0.15); }
+    .item-card:nth-child(6n+6) { background:#fff4ee; border-color:#fb923c; box-shadow:0 7px 0 #c2620d, 0 10px 20px rgba(251,146,60,0.15);  }
+
+    /* Stagger pop-in animation */
+    .item-card:nth-child(1)  { animation-delay:.02s }
+    .item-card:nth-child(2)  { animation-delay:.05s }
+    .item-card:nth-child(3)  { animation-delay:.08s }
+    .item-card:nth-child(4)  { animation-delay:.11s }
+    .item-card:nth-child(5)  { animation-delay:.14s }
+    .item-card:nth-child(6)  { animation-delay:.17s }
+    .item-card:nth-child(7)  { animation-delay:.20s }
+    .item-card:nth-child(8)  { animation-delay:.23s }
+    .item-card:nth-child(9)  { animation-delay:.26s }
+    .item-card:nth-child(10) { animation-delay:.29s }
+
+    .item-card:hover {
+      transform: translateY(-8px) rotate(-1deg) scale(1.06);
+    }
+
+    .item-card:active {
+      transform: translateY(5px) scale(0.96);
+      box-shadow: 0 2px 0 #aaa, 0 4px 8px rgba(0,0,0,0.1) !important;
+      transition: transform 0.07s, box-shadow 0.07s;
+    }
+
+    /* Card emoji */
+    .item-card > div:first-child {
+      font-size: 2.4rem;
+      line-height: 1.2;
+    }
+
+    /* Card name */
+    .item-card > div:nth-child(2) {
+      font-weight: 800;
+      font-size: 1rem;
+      color: #333;
+      font-family: 'Baloo 2', cursive;
+    }
+
+    /* ---- TRANSLATION ---- */
+    .item-card > div:nth-child(3) {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: #fb923c;
+      margin-top: 2px;
+    }
+
+    /* ---- SPEAK BUTTON ---- */
+    .speak-btn {
+      background: linear-gradient(160deg, #f9ca24, #f0932b);
+      border: none;
+      border-bottom: 4px solid #c07800;
+      border-right: 2px solid #c07800;
+      color: white;
+      padding: 6px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-family: 'Baloo 2', cursive;
+      font-weight: 700;
+      margin-top: 4px;
+      box-shadow: 0 3px 10px rgba(249,202,36,0.35);
+      transition: transform 0.15s cubic-bezier(.34,1.56,.64,1), border-bottom 0.1s;
+    }
+
+    .speak-btn:hover  { transform: translateY(-2px) scale(1.08); }
+    .speak-btn:active { transform: translateY(2px); border-bottom-width: 1px; border-right-width: 1px; }
+
+    /* ---- BACK BUTTON ---- */
+    .btn {
+      background: linear-gradient(160deg, #43e97b, #38f9d7);
+      border: none;
+      border-bottom: 5px solid #1db863;
+      border-right: 3px solid #1db863;
+      color: white;
+      padding: 11px 26px;
+      border-radius: 999px;
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin: 12px 8px;
+      display: inline-block;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.15);
+      box-shadow: 0 6px 18px rgba(67,233,123,0.35);
+      transition: transform 0.15s cubic-bezier(.34,1.56,.64,1), box-shadow 0.15s, border-bottom 0.1s;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn:hover  { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 24px rgba(67,233,123,0.45); }
+    .btn:active { transform: translateY(4px) scale(0.97); border-bottom-width: 1px; border-right-width: 1px; box-shadow: none; }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 900px) {
+      .item-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .item-grid { grid-template-columns: repeat(2, 1fr); }
+      h2 { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <button onclick="goBack()" class="btn">Back</button>
+  <h2 id="categoryTitle"></h2>
+  <div id="content" class="item-grid"></div>
+
+<script>
+// ===== TRANSLATIONS =====
+const translations = {
+  english: {
+    back: "Back",
+    categoryTitles: {
+      fruits: "Fruits",
+      vegetables: "Vegetables",
+      animals: "Animals",
+      birds: "Birds",
+      vehicles: "Vehicles",
+      colors: "Colors"
+    }
+  },
+  marathi: {
+    back: "मागे",
+    categoryTitles: {
+      fruits: "फळे",
+      vegetables: "भाज्या",
+      animals: "प्राणी",
+      birds: "पक्षी",
+      vehicles: "वाहने",
+      colors: "रंग"
+    }
+  },
+  hindi: {
+    back: "वापस",
+    categoryTitles: {
+      fruits: "फल",
+      vegetables: "सब्जियाँ",
+      animals: "जानवर",
+      birds: "पक्षी",
+      vehicles: "वाहन",
+      colors: "रंग"
+    }
+  }
+};
+
+const DATA = {
+  fruits: [
+    {name: "Apfel", icon: "🍎", english: "Apple", marathi: "सफरचंद", hindi: "सेब"},
+    {name: "Banane", icon: "🍌", english: "Banana", marathi: "केळ", hindi: "केला"},
+    {name: "Orange", icon: "🍊", english: "Orange", marathi: "संत्रे", hindi: "संतरा"},
+    {name: "Mango", icon: "🥭", english: "Mango", marathi: "आंबा", hindi: "आम"},
+    {name: "Trauben", icon: "🍇", english: "Grapes", marathi: "द्राक्षे", hindi: "अंगूर"},
+    {name: "Ananas", icon: "🍍", english: "Pineapple", marathi: "अननस", hindi: "अनानास"},
+    {name: "Erdbeere", icon: "🍓", english: "Strawberry", marathi: "स्ट्रॉबेरी", hindi: "स्ट्रॉबेरी"},
+    {name: "Wassermelone", icon: "🍉", english: "Watermelon", marathi: "टरबूज", hindi: "तरबूज"},
+    {name: "Kirsche", icon: "🍒", english: "Cherry", marathi: "चेरी", hindi: "चेरी"},
+    {name: "Pfirsich", icon: "🍑", english: "Peach", marathi: "पीच", hindi: "आड़ू"},
+    {name: "Birne", icon: "🍐", english: "Pear", marathi: "नाशपाती", hindi: "नाशपाती"},
+    {name: "Kiwi", icon: "🥝", english: "Kiwi", marathi: "कीवी", hindi: "कीवी"},
+    {name: "Zitrone", icon: "🍋", english: "Lemon", marathi: "लिंबू", hindi: "नींबू"},
+    {name: "Melone", icon: "🍈", english: "Melon", marathi: "खरबूज", hindi: "खरबूजा"},
+    {name: "Kokosnuss", icon: "🥥", english: "Coconut", marathi: "नारळ", hindi: "नारियल"},
+    {name: "Granatapfel", icon: "🍎", english: "Pomegranate", marathi: "डाळिंब", hindi: "अनार"},
+    {name: "Aprikose", icon: "🍑", english: "Apricot", marathi: "जर्दाळू", hindi: "खुबानी"}
+  ],
+  vegetables: [
+    {name: "Karotte", icon: "🥕", english: "Carrot", marathi: "गाजर", hindi: "गाजर"},
+    {name: "Kartoffel", icon: "🥔", english: "Potato", marathi: "बटाटा", hindi: "आलू"},
+    {name: "Tomate", icon: "🍅", english: "Tomato", marathi: "टोमॅटो", hindi: "टमाटर"},
+    {name: "Kohl", icon: "🥬", english: "Cabbage", marathi: "कोबी", hindi: "पत्ता गोभी"},
+    {name: "Mais", icon: "🌽", english: "Corn", marathi: "मका", hindi: "मक्का"},
+    {name: "Zwiebel", icon: "🧅", english: "Onion", marathi: "कांदा", hindi: "प्याज"},
+    {name: "Knoblauch", icon: "🧄", english: "Garlic", marathi: "लसूण", hindi: "लहसुन"},
+    {name: "Brokkoli", icon: "🥦", english: "Broccoli", marathi: "ब्रोकोली", hindi: "ब्रोकोली"},
+    {name: "Gurke", icon: "🥒", english: "Cucumber", marathi: "काकडी", hindi: "खीरा"},
+    {name: "Paprika", icon: "🌶️", english: "Pepper", marathi: "मिरची", hindi: "मिर्च"},
+    {name: "Spinat", icon: "🥬", english: "Spinach", marathi: "पालक", hindi: "पालक"},
+    {name: "Pilz", icon: "🍄", english: "Mushroom", marathi: "अळंबी", hindi: "मशरूम"},
+    {name: "Kürbis", icon: "🎃", english: "Pumpkin", marathi: "भोपळा", hindi: "कद्दू"},
+    {name: "Sellerie", icon: "🥬", english: "Celery", marathi: "सेलेरी", hindi: "अजवाइन"},
+    {name: "Aubergine", icon: "🍆", english: "Eggplant", marathi: "वांगे", hindi: "बैंगन"},
+    {name: "Blumenkohl", icon: "🥦", english: "Cauliflower", marathi: "फुलकोबी", hindi: "फूलगोभी"},
+    {name: "Fenchel", icon: "🌿", english: "Fennel", marathi: "बडीशेप", hindi: "सौंफ"}
+  ],
+  animals: [
+    {name: "Löwe", icon: "🦁", english: "Lion", marathi: "सिंह", hindi: "शेर"},
+    {name: "Tiger", icon: "🐯", english: "Tiger", marathi: "वाघ", hindi: "बाघ"},
+    {name: "Elefant", icon: "🐘", english: "Elephant", marathi: "हत्ती", hindi: "हाथी"},
+    {name: "Hund", icon: "🐶", english: "Dog", marathi: "कुत्रा", hindi: "कुत्ता"},
+    {name: "Katze", icon: "🐱", english: "Cat", marathi: "मांजर", hindi: "बिल्ली"},
+    {name: "Pferd", icon: "🐴", english: "Horse", marathi: "घोडा", hindi: "घोड़ा"},
+    {name: "Affe", icon: "🐵", english: "Monkey", marathi: "माकड", hindi: "बंदर"},
+    {name: "Kuh", icon: "🐄", english: "Cow", marathi: "गाय", hindi: "गाय"},
+    {name: "Hase", icon: "🐇", english: "Rabbit", marathi: "ससा", hindi: "खरगोश"},
+    {name: "Schaf", icon: "🐑", english: "Sheep", marathi: "मेंढी", hindi: "भेड़"},
+    {name: "Fuchs", icon: "🦊", english: "Fox", marathi: "कोल्हा", hindi: "लोमड़ी"},
+    {name: "Wolf", icon: "🐺", english: "Wolf", marathi: "लांडगा", hindi: "भेड़िया"},
+    {name: "Schwein", icon: "🐷", english: "Pig", marathi: "डुक्कर", hindi: "सूअर"},
+    {name: "Bär", icon: "🐻", english: "Bear", marathi: "अस्वल", hindi: "भालू"},
+    {name: "Kamel", icon: "🐫", english: "Camel", marathi: "उंट", hindi: "ऊंट"},
+    {name: "Zebra", icon: "🦓", english: "Zebra", marathi: "झेब्रा", hindi: "ज़ेबरा"},
+    {name: "Giraffe", icon: "🦒", english: "Giraffe", marathi: "जिराफ", hindi: "जिराफ़"},
+    {name: "Känguru", icon: "🦘", english: "Kangaroo", marathi: "कांगारू", hindi: "कंगारू"},
+    {name: "Nilpferd", icon: "🦛", english: "Hippo", marathi: "पाणघोडा", hindi: "दरियाई घोड़ा"},
+    {name: "Panda", icon: "🐼", english: "Panda", marathi: "पांडा", hindi: "पांडा"}
+  ],
+  birds: [
+    {name: "Papagei", icon: "🦜", english: "Parrot", marathi: "पोपट", hindi: "तोता"},
+    {name: "Krähe", icon: "🐦", english: "Crow", marathi: "कावळा", hindi: "कौआ"},
+    {name: "Pfau", icon: "🦚", english: "Peacock", marathi: "मोर", hindi: "मोर"},
+    {name: "Sperling", icon: "🐤", english: "Sparrow", marathi: "चिमणी", hindi: "गौरैया"},
+    {name: "Eule", icon: "🦉", english: "Owl", marathi: "घुबड", hindi: "उल्लू"},
+    {name: "Pinguin", icon: "🐧", english: "Penguin", marathi: "पेंग्विन", hindi: "पेंगुइन"},
+    {name: "Ente", icon: "🦆", english: "Duck", marathi: "बदक", hindi: "बत्तख"},
+    {name: "Adler", icon: "🦅", english: "Eagle", marathi: "गरुड", hindi: "चील"},
+    {name: "Taube", icon: "🕊️", english: "Dove", marathi: "कबूतर", hindi: "कबूतर"},
+    {name: "Flamingo", icon: "🦩", english: "Flamingo", marathi: "फ्लेमिंगो", hindi: "राजहंस"},
+    {name: "Kanarienvogel", icon: "🐤", english: "Canary", marathi: "कॅनरी", hindi: "कनारी"},
+    {name: "Schwan", icon: "🦢", english: "Swan", marathi: "हंस", hindi: "हंस"},
+    {name: "Geier", icon: "🦅", english: "Vulture", marathi: "गिधाड", hindi: "गिद्ध"},
+    {name: "Specht", icon: "🐦", english: "Woodpecker", marathi: "सुतारपक्षी", hindi: "कठफोड़वा"},
+    {name: "Huhn", icon: "🐔", english: "Hen", marathi: "कोंबडी", hindi: "मुर्गी"}
+  ],
+  vehicles: [
+    {name: "Auto", icon: "🚗", english: "Car", marathi: "कार", hindi: "कार"},
+    {name: "Bus", icon: "🚌", english: "Bus", marathi: "बस", hindi: "बस"},
+    {name: "Zug", icon: "🚆", english: "Train", marathi: "ट्रेन", hindi: "ट्रेन"},
+    {name: "Flugzeug", icon: "✈️", english: "Airplane", marathi: "विमान", hindi: "हवाई जहाज"},
+    {name: "Fahrrad", icon: "🚲", english: "Bike", marathi: "सायकल", hindi: "साइकिल"},
+    {name: "LKW", icon: "🚚", english: "Truck", marathi: "ट्रक", hindi: "ट्रक"},
+    {name: "Schiff", icon: "🚢", english: "Ship", marathi: "जहाज", hindi: "जहाज"},
+    {name: "Helikopter", icon: "🚁", english: "Helicopter", marathi: "हेलिकॉप्टर", hindi: "हेलिकॉप्टर"},
+    {name: "Taxi", icon: "🚖", english: "Taxi", marathi: "टॅक्सी", hindi: "टैक्सी"},
+    {name: "Traktor", icon: "🚜", english: "Tractor", marathi: "ट्रॅक्टर", hindi: "ट्रैक्टर"},
+    {name: "Motorrad", icon: "🏍️", english: "Motorcycle", marathi: "मोटरसायकल", hindi: "मोटरसाइकिल"},
+    {name: "Roller", icon: "🛵", english: "Scooter", marathi: "स्कूटर", hindi: "स्कूटर"},
+    {name: "Rakete", icon: "🚀", english: "Rocket", marathi: "रॉकेट", hindi: "रॉकेट"},
+    {name: "U-Boot", icon: "🚢", english: "Submarine", marathi: "पाणबुडी", hindi: "पनडुब्बी"},
+    {name: "Polizeiauto", icon: "🚓", english: "Police Car", marathi: "पोलिस गाडी", hindi: "पुलिस गाड़ी"},
+    {name: "Feuerwehrauto", icon: "🚒", english: "Fire Truck", marathi: "अग्निशमन गाडी", hindi: "दमकल गाड़ी"},
+    {name: "Ambulanz", icon: "🚑", english: "Ambulance", marathi: "रुग्णवाहिका", hindi: "एम्बुलेंस"},
+    {name: "Bagger", icon: "🚧", english: "Excavator", marathi: "उत्खनन यंत्र", hindi: "खुदाई मशीन"},
+    {name: "Kran", icon: "🏗️", english: "Crane", marathi: "क्रेन", hindi: "क्रेन"},
+    {name: "Boot", icon: "⛵", english: "Boat", marathi: "होडी", hindi: "नाव"}
+  ],
+  colors: [
+    {name: "Rot", icon: "🔴", english: "Red", marathi: "लाल", hindi: "लाल"},
+    {name: "Blau", icon: "🔵", english: "Blue", marathi: "निळा", hindi: "नीला"},
+    {name: "Grün", icon: "🟢", english: "Green", marathi: "हिरवा", hindi: "हरा"},
+    {name: "Gelb", icon: "🟡", english: "Yellow", marathi: "पिवळा", hindi: "पीला"},
+    {name: "Lila", icon: "🟣", english: "Purple", marathi: "जांभळा", hindi: "बैंगनी"},
+    {name: "Orange", icon: "🟠", english: "Orange", marathi: "नारिंगी", hindi: "नारंगी"},
+    {name: "Braun", icon: "🟤", english: "Brown", marathi: "तपकिरी", hindi: "भूरा"},
+    {name: "Schwarz", icon: "⚫", english: "Black", marathi: "काळा", hindi: "काला"},
+    {name: "Weiß", icon: "⚪", english: "White", marathi: "पांढरा", hindi: "सफेद"},
+    {name: "Rosa", icon: "🌸", english: "Pink", marathi: "गुलाबी", hindi: "गुलाबी"}
+  ]
+};
+
+let interfaceLang = 'english';
+
+// ===== USER MANAGEMENT FUNCTIONS =====
+function getUserLanguageKey() {
+  const username = getCurrentUser();
+  return `linguaKids_${username}_germanInterfaceLang`;
+}
+
+function getCurrentUser() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlUser = urlParams.get('user');
+  if (urlUser) {
+    sessionStorage.setItem('currentUser', urlUser);
+    return urlUser;
+  }
+  
+  const sessionUser = sessionStorage.getItem('currentUser');
+  if (sessionUser) {
+    return sessionUser;
+  }
+  
+  return 'guest';
+}
+
+function loadInterfaceLanguage() {
+  const storageKey = getUserLanguageKey();
+  const savedLang = localStorage.getItem(storageKey);
+  
+  if (savedLang && (savedLang === 'english' || savedLang === 'marathi' || savedLang === 'hindi')) {
+    interfaceLang = savedLang;
+  } else {
+    interfaceLang = 'english';
+  }
+  
+  return interfaceLang;
+}
+
+function getCategory() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("category");
+}
+
+function getTranslatedWord(item) {
+  if (interfaceLang === 'marathi') {
+    return item.marathi || item.english;
+  } else if (interfaceLang === 'hindi') {
+    return item.hindi || item.english;
+  }
+  return item.english;
+}
+
+function getCategoryTitle(category) {
+  const t = translations[interfaceLang];
+  if (category && t.categoryTitles[category]) {
+    return t.categoryTitles[category];
+  }
+  return category ? category.charAt(0).toUpperCase() + category.slice(1) : "Category";
+}
+
+function loadCategory() {
+  const cat = getCategory();
+  const items = DATA[cat] || [];
+
+  document.getElementById("categoryTitle").textContent = getCategoryTitle(cat);
+  
+  document.getElementById("content").innerHTML = items.map((i, index) => `
+    <div class="item-card">
+      <div style="font-size:2rem;">
+        ${i.icon.includes("images/") ? `<img src="${i.icon}" alt="${i.name}">` : i.icon}
+      </div>
+      <div style="font-weight:bold;">${i.name}</div>
+      <div style="font-size:0.8rem; color:#666;">${getTranslatedWord(i)}</div>
+      <button class="speak-btn" onclick="speak('${i.name}', '${cat}', ${index})">🔊</button>
+    </div>
+  `).join("");
+}
+
+function speak(text, category, index){
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = "de-DE";
+  speechSynthesis.speak(utter);
+
+  if (typeof updateLevel2WordProgress === 'function') {
+    updateLevel2WordProgress(category, index);
+  }
+}
+
+function goBack(){
+  window.location.href = "german.html";
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  loadInterfaceLanguage();
+  
+  // Check URL for language parameter
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlLang = urlParams.get('lang');
+  if (urlLang && (urlLang === 'english' || urlLang === 'marathi' || urlLang === 'hindi')) {
+    interfaceLang = urlLang;
+  }
+  
+  loadCategory();
+});
+
+loadCategory();
+</script>
+<script src="grprogress.js"></script>
+</body>
+</html>

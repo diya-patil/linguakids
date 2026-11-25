@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="google" content="notranslate">
+  <meta http-equiv="Content-Language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinguaKids - Hindi Level 2</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       LINGUAKIDS LEVEL 2 — MEGA FUN CSS (Same as englevel2.html)
+    ============================================================ */
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Nunito', 'Quicksand', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+      background-color: #fffbf0;
+      background-image:
+        radial-gradient(circle at 8%  12%, #ff6bb540 0%, transparent 28%),
+        radial-gradient(circle at 92% 8%,  #43e97b40 0%, transparent 28%),
+        radial-gradient(circle at 50% 50%, #f9ca2440 0%, transparent 40%),
+        radial-gradient(circle at 15% 88%, #38f9d740 0%, transparent 28%),
+        radial-gradient(circle at 88% 85%, #4facfe40 0%, transparent 28%),
+        radial-gradient(circle at 70% 30%, #fa709a30 0%, transparent 22%);
+    }
+
+    /* Floating confetti dots */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        radial-gradient(circle, #ff6bb5 2px, transparent 2px),
+        radial-gradient(circle, #43e97b 2px, transparent 2px),
+        radial-gradient(circle, #f9ca24 2px, transparent 2px),
+        radial-gradient(circle, #4facfe 2px, transparent 2px),
+        radial-gradient(circle, #fa709a 2px, transparent 2px),
+        radial-gradient(circle, #ff6b6b 2px, transparent 2px);
+      background-size: 120px 120px, 97px 97px, 143px 143px, 83px 83px, 107px 107px, 131px 131px;
+      background-position: 10px 15px, 55px 70px, 30px 40px, 80px 10px, 50px 100px, 100px 55px;
+      opacity: 0.45;
+      animation: driftDots 18s linear infinite alternate;
+    }
+
+    @keyframes driftDots {
+      from { background-position: 10px 15px, 55px 70px, 30px 40px, 80px 10px, 50px 100px, 100px 55px; }
+      to   { background-position: 22px 38px, 44px 52px, 52px 62px, 62px 28px, 68px 82px, 82px 72px; }
+    }
+
+    /* ---- HEADING ---- */
+    h2 {
+      text-align: center;
+      font-family: 'Baloo 2', cursive;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0ea5e9;
+      text-shadow: 3px 3px 0 #bae6fd, 5px 5px 0 rgba(14,165,233,0.15);
+      margin: 16px 0 8px;
+      position: relative;
+      z-index: 1;
+      animation: titleWobble 3.5s ease-in-out infinite;
+    }
+
+    @keyframes titleWobble {
+      0%,100% { transform: rotate(-1deg) scale(1); }
+      25%      { transform: rotate(1.5deg) scale(1.02); }
+      75%      { transform: rotate(-0.5deg) scale(0.98); }
+    }
+
+    /* ---- GRID ---- */
+    .item-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+      margin: 20px auto;
+      padding: 0 18px;
+      max-width: 1200px;
+      box-sizing: border-box;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ---- ITEM CARDS ---- */
+    .item-card {
+      background: white;
+      padding: 16px 10px 14px;
+      border-radius: 24px;
+      text-align: center;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      position: relative;
+      border: 3px solid transparent;
+      transition: transform 0.22s cubic-bezier(.34,1.7,.64,1), box-shadow 0.2s;
+      box-shadow: 0 7px 0 #c0c0c0, 0 10px 20px rgba(0,0,0,0.08);
+      animation: cardPop 0.4s cubic-bezier(.34,1.56,.64,1) both;
+    }
+
+    @keyframes cardPop {
+      from { transform: scale(0.5) rotate(-8deg); opacity: 0; }
+      to   { transform: scale(1)   rotate(0deg);  opacity: 1; }
+    }
+
+    /* Rainbow card colors cycling through 6 themes */
+    .item-card:nth-child(6n+1) { background:#fff0f6; border-color:#ff6bb5; box-shadow:0 7px 0 #e05a9f, 0 10px 20px rgba(255,107,181,0.15); }
+    .item-card:nth-child(6n+2) { background:#f0fff4; border-color:#43e97b; box-shadow:0 7px 0 #28c25e, 0 10px 20px rgba(67,233,123,0.15);  }
+    .item-card:nth-child(6n+3) { background:#fffbf0; border-color:#f9ca24; box-shadow:0 7px 0 #d4a800, 0 10px 20px rgba(249,202,36,0.15);  }
+    .item-card:nth-child(6n+4) { background:#f0f8ff; border-color:#4facfe; box-shadow:0 7px 0 #2280d4, 0 10px 20px rgba(79,172,254,0.15);  }
+    .item-card:nth-child(6n+5) { background:#fff0f9; border-color:#f472b6; box-shadow:0 7px 0 #be185d, 0 10px 20px rgba(244,114,182,0.15); }
+    .item-card:nth-child(6n+6) { background:#fff4ee; border-color:#fb923c; box-shadow:0 7px 0 #c2620d, 0 10px 20px rgba(251,146,60,0.15);  }
+
+    /* Stagger pop-in animation */
+    .item-card:nth-child(1)  { animation-delay:.02s }
+    .item-card:nth-child(2)  { animation-delay:.05s }
+    .item-card:nth-child(3)  { animation-delay:.08s }
+    .item-card:nth-child(4)  { animation-delay:.11s }
+    .item-card:nth-child(5)  { animation-delay:.14s }
+    .item-card:nth-child(6)  { animation-delay:.17s }
+    .item-card:nth-child(7)  { animation-delay:.20s }
+    .item-card:nth-child(8)  { animation-delay:.23s }
+    .item-card:nth-child(9)  { animation-delay:.26s }
+    .item-card:nth-child(10) { animation-delay:.29s }
+
+    .item-card:hover {
+      transform: translateY(-8px) rotate(-1deg) scale(1.06);
+    }
+
+    .item-card:active {
+      transform: translateY(5px) scale(0.96);
+      box-shadow: 0 2px 0 #aaa, 0 4px 8px rgba(0,0,0,0.1) !important;
+      transition: transform 0.07s, box-shadow 0.07s;
+    }
+
+    /* Card emoji */
+    .item-card > div:first-child {
+      font-size: 2.4rem;
+      line-height: 1.2;
+    }
+
+    /* Card name (Hindi) */
+    .item-card > div:nth-child(2) {
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: #333;
+      font-family: 'Baloo 2', cursive;
+    }
+
+    /* English translation */
+    .item-card > div:nth-child(3) {
+      font-size: 0.95rem;
+      color: #666;
+      font-weight: 500;
+    }
+
+    /* Marathi translation (if present) */
+    .translation {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: #fb923c;
+      margin-top: 2px;
+    }
+
+    /* ---- SPEAK BUTTON ---- */
+    .speak-btn {
+      background: linear-gradient(160deg, #f9ca24, #f0932b);
+      border: none;
+      border-bottom: 4px solid #c07800;
+      border-right: 2px solid #c07800;
+      color: white;
+      padding: 6px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-family: 'Baloo 2', cursive;
+      font-weight: 700;
+      margin-top: 4px;
+      box-shadow: 0 3px 10px rgba(249,202,36,0.35);
+      transition: transform 0.15s cubic-bezier(.34,1.56,.64,1), border-bottom 0.1s;
+    }
+
+    .speak-btn:hover  { transform: translateY(-2px) scale(1.08); }
+    .speak-btn:active { transform: translateY(2px); border-bottom-width: 1px; border-right-width: 1px; }
+
+    /* ---- BACK BUTTON ---- */
+    .btn {
+      background: linear-gradient(160deg, #43e97b, #38f9d7);
+      border: none;
+      border-bottom: 5px solid #1db863;
+      border-right: 3px solid #1db863;
+      color: white;
+      padding: 11px 26px;
+      border-radius: 999px;
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin: 12px 8px;
+      display: inline-block;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.15);
+      box-shadow: 0 6px 18px rgba(67,233,123,0.35);
+      transition: transform 0.15s cubic-bezier(.34,1.56,.64,1), box-shadow 0.15s, border-bottom 0.1s;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn:hover  { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 24px rgba(67,233,123,0.45); }
+    .btn:active { transform: translateY(4px) scale(0.97); border-bottom-width: 1px; border-right-width: 1px; box-shadow: none; }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 900px) {
+      .item-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .item-grid { grid-template-columns: repeat(2, 1fr); }
+      h2 { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <button onclick="goBack()" class="btn" id="backBtn">Back</button>
+  <h2 id="categoryTitle"></h2>
+  <div id="content" class="item-grid"></div>
+
+  <!-- Achievement Toast - HIDDEN -->
+  <div id="achievementToast" class="toast" style="display: none;">
+    <i class="fas fa-check-circle"></i>
+    <div>
+      <div id="toastTitle">Great job!</div>
+      <div id="toastDesc">Progress saved.</div>
+    </div>
+  </div>
+
+<script>
+// === DATA CONSTANTS ===
+const VOWELS_LENGTH = 12;
+const CONSONANTS_LENGTH = 37;
+const NUMBERS_1_TO_100_LENGTH = 100;
+const LEVEL2_CATEGORY_LENGTH = 10;
+const LEVEL3_CATEGORY_LENGTH = 10;
+const GAMES_LENGTHS = { 'fill-blanks': 5, 'match-words': 2, 'count-apples': 5 };
+
+// Get interface language from URL parameter
+const urlParams = new URLSearchParams(window.location.search);
+const category = urlParams.get('category');
+const interfaceLang = urlParams.get('lang') || 'english'; // Default to english
+
+// ===== MARATHI TRANSLATIONS FOR LEVEL 2 WORDS =====
+const marathiTranslations = {
+  // Fruits - Marathi translations
+  "सेब": "सफरचंद (Apple) 🍎",
+  "केला": "केळे (Banana) 🍌",
+  "संतरा": "संत्रे (Orange) 🍊",
+  "आम": "आंबा (Mango) 🥭",
+  "अंगूर": "द्राक्षे (Grapes) 🍇",
+  "अनानास": "अननस (Pineapple) 🍍",
+  "स्ट्रॉबेरी": "स्ट्रॉबेरी (Strawberry) 🍓",
+  "तरबूज": "टरबूज (Watermelon) 🍉",
+  "चेरी": "चेरी (Cherry) 🍒",
+  "आड़ू": "साळूंक (Peach) 🍑",
+  "कीवी": "कीवी (Kiwi) 🥝",
+  "नींबू": "लिंबू (Lemon) 🍋",
+  "पपीता": "पपई (Papaya) 🍈",
+  "नाशपाती": "नाशपाती (Pear) 🍐",
+  "खरबूज": "खरबूज (Melon) 🍈",
+  "नारियल": "नारळ (Coconut) 🥥",
+
+  // Vegetables - Marathi translations
+  "गाजर": "गाजर (Carrot) 🥕",
+  "आलू": "बटाटा (Potato) 🥔",
+  "टमाटर": "टोमॅटो (Tomato) 🍅",
+  "पत्तागोभी": "कोबी (Cabbage) 🥬",
+  "मक्का": "मका (Corn) 🌽",
+  "प्याज": "कांदा (Onion) 🧅",
+  "लहसुन": "लसूण (Garlic) 🧄",
+  "ब्रोकली": "ब्रोकोली (Broccoli) 🥦",
+  "खीरा": "काकडी (Cucumber) 🥒",
+  "शिमला मिर्च": "ढोबळी मिरची (Pepper) 🌶️",
+  "कद्दू": "भोपळा (Pumpkin) 🎃",
+  "पालक": "पालक (Spinach) 🌿",
+  "बैंगन": "वांगे (Eggplant) 🍆",
+  "चिली": "मिरची (Chili) 🌶️",
+  "सलाद पत्ता": "कोशिंबिरीचे पान (Lettuce) 🥬",
+  "मशरूम": "अळंबी (Mushroom) 🍄",
+  "मूली": "मुळा (Radish) 🥗",
+
+  // Animals - Marathi translations
+  "शेर": "सिंह (Lion) 🦁",
+  "बाघ": "वाघ (Tiger) 🐯",
+  "हाथी": "हत्ती (Elephant) 🐘",
+  "कुत्ता": "कुत्रा (Dog) 🐶",
+  "बिल्ली": "मांजर (Cat) 🐱",
+  "घोड़ा": "घोडा (Horse) 🐴",
+  "बंदर": "माकड (Monkey) 🐵",
+  "गाय": "गाय (Cow) 🐄",
+  "खरगोश": "ससा (Rabbit) 🐇",
+  "भेड़": "मेंढी (Sheep) 🐑",
+  "लोमड़ी": "कोल्हा (Fox) 🦊",
+  "पांडा": "पांडा (Panda) 🐼",
+  "भालू": "अस्वल (Bear) 🐻",
+  "ऊँट": "उंट (Camel) 🐪",
+  "हिरण": "हरिण (Deer) 🦌",
+  "कछुआ": "कासव (Turtle) 🐢",
+  "डॉल्फ़िन": "डॉल्फिन (Dolphin) 🐬",
+  "मछली": "मासा (Fish) 🐟",
+  "साँप": "साप (Snake) 🐍",
+  "सुअर": "डुक्कर (Pig) 🐷",
+
+  // Birds - Marathi translations
+  "तोता": "पोपट (Parrot) 🦜",
+  "कौआ": "कावळा (Crow) 🐦",
+  "मोर": "मोर (Peacock) 🦚",
+  "गौरैया": "चिमणी (Sparrow) 🐤",
+  "उल्लू": "घुबड (Owl) 🦉",
+  "बत्तख": "बदक (Duck) 🦆",
+  "हंस": "हंस (Swan) 🦢",
+  "कबूतर": "कबुतर (Pigeon) 🕊️",
+  "बाज": "गरुड (Eagle) 🦅",
+  "फ्लेमिंगो": "फ्लेमिंगो (Flamingo) 🦩",
+  "पेंगुइन": "पेंग्विन (Penguin) 🐧",
+  "मुर्गा": "कोंबडा (Rooster) 🐓",
+  "मुर्गी": "कोंबडी (Hen) 🐔",
+  "टर्की": "टर्की (Turkey) 🦃",
+  "हमिंगबर्ड": "हमिंगबर्ड (Hummingbird) 🐦",
+  "सीगल": "सीगल (Seagull) 🕊️",
+  "वुडपेकर": "सुतारपक्षी (Woodpecker) 🐦",
+
+  // Vehicles - Marathi translations
+  "कार": "गाडी (Car) 🚗",
+  "बस": "बस (Bus) 🚌",
+  "ट्रक": "ट्रक (Truck) 🚚",
+  "ट्रेन": "आगगाडी (Train) 🚆",
+  "विमान": "विमान (Airplane) ✈️",
+  "साइकिल": "सायकल (Bicycle) 🚲",
+  "मोटरसाइकिल": "मोटरसायकल (Motorcycle) 🏍️",
+  "नाव": "होडी (Boat) ⛵",
+  "हेलीकॉप्टर": "हेलिकॉप्टर (Helicopter) 🚁",
+  "ट्रैक्टर": "ट्रॅक्टर (Tractor) 🚜",
+  "ऑटो": "रिक्षा (Auto Rickshaw) 🛺",
+  "टैक्सी": "टॅक्सी (Taxi) 🚕",
+  "पुलिस कार": "पोलिस गाडी (Police Car) 🚓",
+  "एंबुलेंस": "रुग्णवाहिका (Ambulance) 🚑",
+  "फायर ट्रक": "अग्निशमन गाडी (Fire Truck) 🚒",
+  "मेट्रो": "मेट्रो (Metro) 🚇",
+  "रॉकेट": "रॉकेट (Rocket) 🚀",
+  "स्कूटर": "स्कूटर (Scooter) 🛵",
+  "शिप": "जहाज (Ship) 🚢",
+  "स्लेज": "स्लेज (Sledge) 🛷",
+
+  // Colors - Marathi translations
+  "लाल": "लाल (Red) 🔴",
+  "नीला": "निळा (Blue) 🔵",
+  "हरा": "हिरवा (Green) 🟢",
+  "पीला": "पिवळा (Yellow) 🟡",
+  "नारंगी": "नारिंगी (Orange) 🟠",
+  "बैंगनी": "जांभळा (Purple) 🟣",
+  "गुलाबी": "गुलाबी (Pink) 🌸",
+  "भूरा": "तपकिरी (Brown) 🟤",
+  "काला": "काळा (Black) ⚫",
+  "सफेद": "पांढरा (White) ⚪"
+};
+
+// === CORE PROGRESS AND STREAK LOGIC (SELF-CONTAINED) ===
+function initHindiProgress() {
+  let progress = JSON.parse(localStorage.getItem('linguaKidsHindiProgress'));
+  if (!progress) {
+    const defaultProgress = {
+      level1: { alphabets: { completed: 0, total: VOWELS_LENGTH + CONSONANTS_LENGTH }, numbers: { completed: 0, total: NUMBERS_1_TO_100_LENGTH }},
+      level2: { fruits: { completed: 0, total: LEVEL2_CATEGORY_LENGTH }, vegetables: { completed: 0, total: LEVEL2_CATEGORY_LENGTH }, animals: { completed: 0, total: LEVEL2_CATEGORY_LENGTH }, birds: { completed: 0, total: LEVEL2_CATEGORY_LENGTH }, vehicles: { completed: 0, total: LEVEL2_CATEGORY_LENGTH }, colors: { completed: 0, total: LEVEL2_CATEGORY_LENGTH }},
+      level3: { greetings: { completed: 0, total: LEVEL3_CATEGORY_LENGTH }, activities: { completed: 0, total: LEVEL3_CATEGORY_LENGTH }, questions: { completed: 0, total: LEVEL3_CATEGORY_LENGTH }},
+      games: { 'fill-blanks': { completed: 0, total: GAMES_LENGTHS['fill-blanks'] }, 'match-words': { completed: 0, total: GAMES_LENGTHS['match-words'] }, 'count-apples': { completed: 0, total: GAMES_LENGTHS['count-apples'] }},
+      achievements: { firstSteps: false, alphabetMaster: false, numberWhiz: false, wordExpert: false, sentenceBuilder: false, gameChampion: false, weekStreak: false, monthStreak: false },
+      streak: { count: 0, lastDate: null }, sessionDate: null
+    };
+    localStorage.setItem('linguaKidsHindiProgress', JSON.stringify(defaultProgress));
+  }
+}
+
+function updateHindiStreak() {
+  const progress = JSON.parse(localStorage.getItem('linguaKidsHindiProgress'));
+  if (!progress) return;
+  const today = new Date().toDateString();
+  if (progress.sessionDate !== today) {
+    const lastDate = progress.streak.lastDate ? new Date(progress.streak.lastDate) : null;
+    const todayDate = new Date();
+    if (lastDate) {
+      const diffTime = todayDate.getTime() - lastDate.getTime();
+      const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
+      if (diffDays === 1) { progress.streak.count++; } 
+      else if (diffDays > 1) { progress.streak.count = 1; }
+    } else { progress.streak.count = 1; }
+    progress.streak.lastDate = today;
+    progress.sessionDate = today;
+    localStorage.setItem('linguaKidsHindiProgress', JSON.stringify(progress));
+  }
+}
+
+function updateHindiProgress(level, category, increment = 1, itemIdentifier = null) {
+  const progress = JSON.parse(localStorage.getItem('linguaKidsHindiProgress'));
+  if (!progress || !progress[level] || !progress[level][category]) return false;
+  const today = new Date().toDateString();
+  const sessionKey = itemIdentifier ? `${level}_${category}_${itemIdentifier}_${today}` : null;
+  if (sessionKey && sessionStorage.getItem(sessionKey)) { return false; }
+  if (progress[level][category].completed < progress[level][category].total) {
+    progress[level][category].completed = Math.min(progress[level][category].completed + increment, progress[level][category].total);
+  } else { return false; }
+  localStorage.setItem('linguaKidsHindiProgress', JSON.stringify(progress));
+  if (sessionKey) { sessionStorage.setItem(sessionKey, 'true'); }
+  updateHindiStreak();
+  // No toast shown
+  return true;
+}
+
+// Empty function - no toast messages shown
+function showToast(title, description) {
+  // Do nothing - toast messages disabled
+}
+
+// === PAGE-SPECIFIC DATA AND FUNCTIONS ===
+const DATA = {
+  fruits: [
+  {name: "सेब", english: "Apple", icon: "🍎"},
+  {name: "केला", english: "Banana", icon: "🍌"},
+  {name: "संतरा", english: "Orange", icon: "🍊"},
+  {name: "आम", english: "Mango", icon: "🥭"},
+  {name: "अंगूर", english: "Grapes", icon: "🍇"},
+  {name: "अनानास", english: "Pineapple", icon: "🍍"},
+  {name: "स्ट्रॉबेरी", english: "Strawberry", icon: "🍓"},
+  {name: "तरबूज", english: "Watermelon", icon: "🍉"},
+  {name: "चेरी", english: "Cherry", icon: "🍒"},
+  {name: "आड़ू", english: "Peach", icon: "🍑"},
+  {name: "कीवी", english: "Kiwi", icon: "🥝"},
+  {name: "नींबू", english: "Lemon", icon: "🍋"},
+  {name: "पपीता", english: "Papaya", icon: "🍈"},
+  {name: "नाशपाती", english: "Pear", icon: "🍐"},
+  {name: "खरबूज", english: "Melon", icon: "🍈"},
+  {name: "नारियल", english: "Coconut", icon: "🥥"},
+],
+
+  vegetables: [
+  {name: "गाजर", english: "Carrot", icon: "🥕"},
+  {name: "आलू", english: "Potato", icon: "🥔"},
+  {name: "टमाटर", english: "Tomato", icon: "🍅"},
+  {name: "पत्तागोभी", english: "Cabbage", icon: "🥬"},
+  {name: "मक्का", english: "Corn", icon: "🌽"},
+  {name: "प्याज", english: "Onion", icon: "🧅"},
+  {name: "लहसुन", english: "Garlic", icon: "🧄"},
+  {name: "ब्रोकली", english: "Broccoli", icon: "🥦"},
+  {name: "खीरा", english: "Cucumber", icon: "🥒"},
+  {name: "शिमला मिर्च", english: "Pepper", icon: "🌶️"},
+  {name: "कद्दू", english: "Pumpkin", icon: "🎃"},
+  {name: "पालक", english: "Spinach", icon: "🌿"},
+  {name: "बैंगन", english: "Eggplant", icon: "🍆"},
+  {name: "चिली", english: "Chili", icon: "🌶️"},
+  {name: "सलाद पत्ता", english: "Lettuce", icon: "🥬"},
+  {name: "मशरूम", english: "Mushroom", icon: "🍄"},
+  {name: "मूली", english: "Radish", icon: "🥗"}
+],
+
+  animals: [
+  {name: "शेर", english: "Lion", icon: "🦁"},
+  {name: "बाघ", english: "Tiger", icon: "🐯"},
+  {name: "हाथी", english: "Elephant", icon: "🐘"},
+  {name: "कुत्ता", english: "Dog", icon: "🐶"},
+  {name: "बिल्ली", english: "Cat", icon: "🐱"},
+  {name: "घोड़ा", english: "Horse", icon: "🐴"},
+  {name: "बंदर", english: "Monkey", icon: "🐵"},
+  {name: "गाय", english: "Cow", icon: "🐄"},
+  {name: "खरगोश", english: "Rabbit", icon: "🐇"},
+  {name: "भेड़", english: "Sheep", icon: "🐑"},
+  {name: "लोमड़ी", english: "Fox", icon: "🦊"},
+  {name: "पांडा", english: "Panda", icon: "🐼"},
+  {name: "भालू", english: "Bear", icon: "🐻"},
+  {name: "ऊँट", english: "Camel", icon: "🐪"},
+  {name: "हिरण", english: "Deer", icon: "🦌"},
+  {name: "कछुआ", english: "Turtle", icon: "🐢"},
+  {name: "डॉल्फ़िन", english: "Dolphin", icon: "🐬"},
+  {name: "मछली", english: "Fish", icon: "🐟"},
+  {name: "साँप", english: "Snake", icon: "🐍"},
+  {name: "सुअर", english: "Pig", icon: "🐷"}
+],
+
+  birds: [
+  {name: "तोता", english: "Parrot", icon: "🦜"},
+  {name: "कौआ", english: "Crow", icon: "🐦"},
+  {name: "मोर", english: "Peacock", icon: "🦚"},
+  {name: "गौरैया", english: "Sparrow", icon: "🐤"},
+  {name: "उल्लू", english: "Owl", icon: "🦉"},
+  {name: "बत्तख", english: "Duck", icon: "🦆"},
+  {name: "हंस", english: "Swan", icon: "🦢"},
+  {name: "कबूतर", english: "Pigeon", icon: "🕊️"},
+  {name: "बाज", english: "Eagle", icon: "🦅"},
+  {name: "फ्लेमिंगो", english: "Flamingo", icon: "🦩"},
+  {name: "पेंगुइन", english: "Penguin", icon: "🐧"},
+  {name: "मुर्गा", english: "Rooster", icon: "🐓"},
+  {name: "मुर्गी", english: "Hen", icon: "🐔"},
+  {name: "टर्की", english: "Turkey", icon: "🦃"},
+  {name: "हमिंगबर्ड", english: "Hummingbird", icon: "🐦"},
+  {name: "सीगल", english: "Seagull", icon: "🕊️"},
+  {name: "वुडपेकर", english: "Woodpecker", icon: "🐦"}
+],
+
+  vehicles: [
+  {name: "कार", english: "Car", icon: "🚗"},
+  {name: "बस", english: "Bus", icon: "🚌"},
+  {name: "ट्रक", english: "Truck", icon: "🚚"},
+  {name: "ट्रेन", english: "Train", icon: "🚆"},
+  {name: "विमान", english: "Airplane", icon: "✈️"},
+  {name: "साइकिल", english: "Bicycle", icon: "🚲"},
+  {name: "मोटरसाइकिल", english: "Motorcycle", icon: "🏍️"},
+  {name: "नाव", english: "Boat", icon: "⛵"},
+  {name: "हेलीकॉप्टर", english: "Helicopter", icon: "🚁"},
+  {name: "ट्रैक्टर", english: "Tractor", icon: "🚜"},
+  {name: "ऑटो", english: "Auto Rickshaw", icon: "🛺"},
+  {name: "टैक्सी", english: "Taxi", icon: "🚕"},
+  {name: "पुलिस कार", english: "Police Car", icon: "🚓"},
+  {name: "एंबुलेंस", english: "Ambulance", icon: "🚑"},
+  {name: "फायर ट्रक", english: "Fire Truck", icon: "🚒"},
+  {name: "मेट्रो", english: "Metro", icon: "🚇"},
+  {name: "रॉकेट", english: "Rocket", icon: "🚀"},
+  {name: "स्कूटर", english: "Scooter", icon: "🛵"},
+  {name: "शिप", english: "Ship", icon: "🚢"},
+  {name: "स्लेज", english: "Sledge", icon: "🛷"}
+],
+
+  colors: [
+  {name: "लाल", english: "Red", icon: "🔴"},
+  {name: "नीला", english: "Blue", icon: "🔵"},
+  {name: "हरा", english: "Green", icon: "🟢"},
+  {name: "पीला", english: "Yellow", icon: "🟡"},
+  {name: "नारंगी", english: "Orange", icon: "🟠"},
+  {name: "बैंगनी", english: "Purple", icon: "🟣"},
+  {name: "गुलाबी", english: "Pink", icon: "🌸"},
+  {name: "भूरा", english: "Brown", icon: "🟤"},
+  {name: "काला", english: "Black", icon: "⚫"},
+  {name: "सफेद", english: "White", icon: "⚪"},
+]
+
+};
+
+const CATEGORY_NAMES = {
+  fruits: "फल (Fruits)",
+  vegetables: "सब्जियाँ (Vegetables)",
+  animals: "जानवर (Animals)",
+  birds: "पक्षी (Birds)",
+  vehicles: "वाहन (Vehicles)",
+  colors: "रंग (Colors)"
+};
+
+// Get translated display text for a word based on interface language
+function getTranslatedDisplay(item) {
+  if (interfaceLang === 'marathi') {
+    // Return Marathi translation if available, otherwise fall back to Hindi + English
+    return marathiTranslations[item.name] || `${item.name} (${item.english})`;
+  } else {
+    // Default to English display
+    return item.english;
+  }
+}
+
+function trackWordProgress(category, wordName) {
+  updateHindiProgress('level2', category, 1, wordName);
+}
+
+function initializePage() {
+    if (category && DATA[category]) {
+        document.getElementById('categoryTitle').textContent = CATEGORY_NAMES[category];
+        
+        document.getElementById('content').innerHTML = DATA[category].map(item => `
+        <div class="item-card" onclick="trackWordProgress('${category}', '${item.name}')">
+            <div style="font-size: 2rem;">${item.icon}</div>
+            <div>${item.name}</div>
+            <div>${getTranslatedDisplay(item)}</div>
+            <button class="speak-btn" onclick="event.stopPropagation(); speakText('${item.name}'); trackWordProgress('${category}', '${item.name}')">
+              <i class="fas fa-volume-up"></i>
+            </button>
+        </div>
+        `).join('');
+    } else {
+        document.getElementById('content').innerHTML = '<p>Category not found. Please return to the Hindi main menu.</p>';
+    }
+}
+
+function speakText(text) {
+  if ('speechSynthesis' in window) {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'hi-IN';
+    utterance.rate = 0.8;
+    speechSynthesis.speak(utterance);
+  } else {
+    alert('Speech synthesis not supported in this browser.');
+  }
+}
+
+function goBack() {
+  const lang = getInterfaceLanguage();
+  window.location.href = 'hindi.html';
+}
+
+// ===== USER MANAGEMENT FUNCTIONS (from english.html) =====
+function getCurrentUser() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlUser = urlParams.get('user');
+  if (urlUser) {
+    sessionStorage.setItem('currentUser', urlUser);
+    return urlUser;
+  }
+  
+  const sessionUser = sessionStorage.getItem('currentUser');
+  if (sessionUser) {
+    return sessionUser;
+  }
+  
+  return 'guest';
+}
+
+function getUserLanguageKey() {
+  const username = getCurrentUser();
+  return `linguaKids_${username}_hindiInterfaceLang`;
+}
+
+function getUserProfile() {
+  try {
+    const profileStr = localStorage.getItem('linguaKidsProfile');
+    return profileStr ? JSON.parse(profileStr) : null;
+  } catch (e) {
+    return null;
+  }
+}
+
+// ===== GET INTERFACE LANGUAGE FROM URL OR STORAGE =====
+function getInterfaceLanguage() {
+  // First check URL parameter
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlLang = urlParams.get('lang');
+  if (urlLang && (urlLang === 'english' || urlLang === 'marathi')) {
+    return urlLang;
+  }
+  
+  // Then check from hindi.html's saved preference
+  const storageKey = getUserLanguageKey();
+  const savedLang = localStorage.getItem(storageKey);
+  if (savedLang === 'english' || savedLang === 'marathi') {
+    return savedLang;
+  }
+  
+  // Default to English
+  return 'english';
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  initHindiProgress();
+  initializePage();
+});
+</script>
+</body>
+</html>

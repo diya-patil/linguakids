@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>LinguaKids - Level 2</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       LINGUAKIDS LEVEL 2 — MEGA FUN CSS
+    ============================================================ */
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Nunito', 'Quicksand', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+      background-color: #fffbf0;
+      background-image:
+        radial-gradient(circle at 8%  12%, #ff6bb540 0%, transparent 28%),
+        radial-gradient(circle at 92% 8%,  #43e97b40 0%, transparent 28%),
+        radial-gradient(circle at 50% 50%, #f9ca2440 0%, transparent 40%),
+        radial-gradient(circle at 15% 88%, #38f9d740 0%, transparent 28%),
+        radial-gradient(circle at 88% 85%, #4facfe40 0%, transparent 28%),
+        radial-gradient(circle at 70% 30%, #fa709a30 0%, transparent 22%);
+    }
+
+    /* Floating confetti dots */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        radial-gradient(circle, #ff6bb5 2px, transparent 2px),
+        radial-gradient(circle, #43e97b 2px, transparent 2px),
+        radial-gradient(circle, #f9ca24 2px, transparent 2px),
+        radial-gradient(circle, #4facfe 2px, transparent 2px),
+        radial-gradient(circle, #fa709a 2px, transparent 2px),
+        radial-gradient(circle, #ff6b6b 2px, transparent 2px);
+      background-size: 120px 120px, 97px 97px, 143px 143px, 83px 83px, 107px 107px, 131px 131px;
+      background-position: 10px 15px, 55px 70px, 30px 40px, 80px 10px, 50px 100px, 100px 55px;
+      opacity: 0.45;
+      animation: driftDots 18s linear infinite alternate;
+    }
+
+    @keyframes driftDots {
+      from { background-position: 10px 15px, 55px 70px, 30px 40px, 80px 10px, 50px 100px, 100px 55px; }
+      to   { background-position: 22px 38px, 44px 52px, 52px 62px, 62px 28px, 68px 82px, 82px 72px; }
+    }
+
+    /* ---- HEADING ---- */
+    h2 {
+      text-align: center;
+      font-family: 'Baloo 2', cursive;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0ea5e9;
+      text-shadow: 3px 3px 0 #bae6fd, 5px 5px 0 rgba(14,165,233,0.15);
+      margin: 16px 0 8px;
+      position: relative;
+      z-index: 1;
+      animation: titleWobble 3.5s ease-in-out infinite;
+    }
+
+    @keyframes titleWobble {
+      0%,100% { transform: rotate(-1deg) scale(1); }
+      25%      { transform: rotate(1.5deg) scale(1.02); }
+      75%      { transform: rotate(-0.5deg) scale(0.98); }
+    }
+
+    /* ---- GRID ---- */
+    .item-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+      margin: 20px auto;
+      padding: 0 18px;
+      max-width: 1200px;
+      box-sizing: border-box;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ---- ITEM CARDS ---- */
+    .item-card {
+      background: white;
+      padding: 16px 10px 14px;
+      border-radius: 24px;
+      text-align: center;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      position: relative;
+      border: 3px solid transparent;
+      transition: transform 0.22s cubic-bezier(.34,1.7,.64,1), box-shadow 0.2s;
+      box-shadow: 0 7px 0 #c0c0c0, 0 10px 20px rgba(0,0,0,0.08);
+      animation: cardPop 0.4s cubic-bezier(.34,1.56,.64,1) both;
+    }
+
+    @keyframes cardPop {
+      from { transform: scale(0.5) rotate(-8deg); opacity: 0; }
+      to   { transform: scale(1)   rotate(0deg);  opacity: 1; }
+    }
+
+    /* Rainbow card colors cycling through 6 themes */
+    .item-card:nth-child(6n+1) { background:#fff0f6; border-color:#ff6bb5; box-shadow:0 7px 0 #e05a9f, 0 10px 20px rgba(255,107,181,0.15); }
+    .item-card:nth-child(6n+2) { background:#f0fff4; border-color:#43e97b; box-shadow:0 7px 0 #28c25e, 0 10px 20px rgba(67,233,123,0.15);  }
+    .item-card:nth-child(6n+3) { background:#fffbf0; border-color:#f9ca24; box-shadow:0 7px 0 #d4a800, 0 10px 20px rgba(249,202,36,0.15);  }
+    .item-card:nth-child(6n+4) { background:#f0f8ff; border-color:#4facfe; box-shadow:0 7px 0 #2280d4, 0 10px 20px rgba(79,172,254,0.15);  }
+    .item-card:nth-child(6n+5) { background:#fff0f9; border-color:#f472b6; box-shadow:0 7px 0 #be185d, 0 10px 20px rgba(244,114,182,0.15); }
+    .item-card:nth-child(6n+6) { background:#fff4ee; border-color:#fb923c; box-shadow:0 7px 0 #c2620d, 0 10px 20px rgba(251,146,60,0.15);  }
+
+    /* Stagger pop-in animation */
+    .item-card:nth-child(1)  { animation-delay:.02s }
+    .item-card:nth-child(2)  { animation-delay:.05s }
+    .item-card:nth-child(3)  { animation-delay:.08s }
+    .item-card:nth-child(4)  { animation-delay:.11s }
+    .item-card:nth-child(5)  { animation-delay:.14s }
+    .item-card:nth-child(6)  { animation-delay:.17s }
+    .item-card:nth-child(7)  { animation-delay:.20s }
+    .item-card:nth-child(8)  { animation-delay:.23s }
+    .item-card:nth-child(9)  { animation-delay:.26s }
+    .item-card:nth-child(10) { animation-delay:.29s }
+
+    .item-card:hover {
+      transform: translateY(-8px) rotate(-1deg) scale(1.06);
+    }
+
+    .item-card:active {
+      transform: translateY(5px) scale(0.96);
+      box-shadow: 0 2px 0 #aaa, 0 4px 8px rgba(0,0,0,0.1) !important;
+      transition: transform 0.07s, box-shadow 0.07s;
+    }
+
+    /* Card emoji */
+    .item-card > div:first-child {
+      font-size: 2.4rem;
+      line-height: 1.2;
+    }
+
+    /* Card name */
+    .item-card > div:nth-child(2) {
+      font-weight: 800;
+      font-size: 1rem;
+      color: #333;
+      font-family: 'Baloo 2', cursive;
+    }
+
+    /* ---- TRANSLATION ---- */
+    .translation {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: #fb923c;
+      margin-top: 2px;
+    }
+
+    /* ---- SPEAK BUTTON ---- */
+    .speak-btn {
+      background: linear-gradient(160deg, #f9ca24, #f0932b);
+      border: none;
+      border-bottom: 4px solid #c07800;
+      border-right: 2px solid #c07800;
+      color: white;
+      padding: 6px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-family: 'Baloo 2', cursive;
+      font-weight: 700;
+      margin-top: 4px;
+      box-shadow: 0 3px 10px rgba(249,202,36,0.35);
+      transition: transform 0.15s cubic-bezier(.34,1.56,.64,1), border-bottom 0.1s;
+    }
+
+    .speak-btn:hover  { transform: translateY(-2px) scale(1.08); }
+    .speak-btn:active { transform: translateY(2px); border-bottom-width: 1px; border-right-width: 1px; }
+
+    /* ---- BACK BUTTON ---- */
+    .btn {
+      background: linear-gradient(160deg, #43e97b, #38f9d7);
+      border: none;
+      border-bottom: 5px solid #1db863;
+      border-right: 3px solid #1db863;
+      color: white;
+      padding: 11px 26px;
+      border-radius: 999px;
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin: 12px 8px;
+      display: inline-block;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.15);
+      box-shadow: 0 6px 18px rgba(67,233,123,0.35);
+      transition: transform 0.15s cubic-bezier(.34,1.56,.64,1), box-shadow 0.15s, border-bottom 0.1s;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn:hover  { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 24px rgba(67,233,123,0.45); }
+    .btn:active { transform: translateY(4px) scale(0.97); border-bottom-width: 1px; border-right-width: 1px; box-shadow: none; }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 900px) {
+      .item-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .item-grid { grid-template-columns: repeat(2, 1fr); }
+      h2 { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <button onclick="goBack()" class="btn" id="backBtn">Back</button>
+  <h2 id="categoryTitle"></h2>
+  <div id="content" class="item-grid"></div>
+
+<script>
+// ===== TRANSLATIONS =====
+const translations = {
+  hindi: {
+    back: "वापस",
+    category: "श्रेणी",
+    fruits: "फल",
+    vegetables: "सब्जियाँ",
+    animals: "जानवर",
+    birds: "पक्षी",
+    vehicles: "वाहन",
+    colors: "रंग"
+  },
+  marathi: {
+    back: "मागे",
+    category: "श्रेणी",
+    fruits: "फळे",
+    vegetables: "भाज्या",
+    animals: "प्राणी",
+    birds: "पक्षी",
+    vehicles: "वाहने",
+    colors: "रंग"
+  }
+};
+
+// ===== TRANSLATION DATA FOR ITEMS =====
+const ITEM_TRANSLATIONS = {
+  hindi: {
+    fruits: {
+      "Apple": "सेब", "Banana": "केला", "Orange": "संतरा",
+      "Mango": "आम", "Grapes": "अंगूर", "Pineapple": "अनानास",
+      "Strawberry": "स्ट्रॉबेरी", "Watermelon": "तरबूज", "Cherry": "चेरी",
+      "Peach": "आड़ू", "Kiwi": "कीवी", "Lemon": "नींबू",
+      "Coconut": "नारियल", "Avocado": "एवोकाडो", "Pear": "नाशपाती"
+    },
+    vegetables: {
+      "Carrot": "गाजर", "Potato": "आलू", "Tomato": "टमाटर",
+      "Cabbage": "पत्ता गोभी", "Corn": "मक्का", "Onion": "प्याज",
+      "Garlic": "लहसुन", "Broccoli": "ब्रोकोली", "Cucumber": "खीरा",
+      "Pepper": "मिर्च", "Mushroom": "मशरूम", "Sweet Potato": "शकरकंद",
+      "Brinjal": "बैंगन", "Spinach": "पालक"
+    },
+    animals: {
+      "Lion": "शेर", "Tiger": "बाघ", "Elephant": "हाथी",
+      "Dog": "कुत्ता", "Cat": "बिल्ली", "Horse": "घोड़ा",
+      "Monkey": "बंदर", "Cow": "गाय", "Rabbit": "खरगोश",
+      "Sheep": "भेड़", "Fox": "लोमड़ी", "Panda": "पांडा",
+      "Kangaroo": "कंगारू", "Zebra": "ज़ेबरा", "Giraffe": "जिराफ़",
+      "Bear": "भालू", "Koala": "कोआला", "Camel": "ऊंट",
+      "Bat": "चमगादड़", "Turtle": "कछुआ"
+    },
+    birds: {
+      "Parrot": "तोता", "Crow": "कौआ", "Peacock": "मोर",
+      "Sparrow": "गौरैया", "Owl": "उल्लू", "Penguin": "पेंगुइन",
+      "Duck": "बत्तख", "Eagle": "चील", "Dove": "कबूतर",
+      "Flamingo": "राजहंस", "Swan": "हंस", "Turkey": "टर्की",
+      "Rooster": "मुर्गा", "Hen": "मुर्गी"
+    },
+    vehicles: {
+      "Car": "कार", "Bus": "बस", "Train": "ट्रेन",
+      "Airplane": "हवाई जहाज", "Bike": "बाइक", "Truck": "ट्रक",
+      "Ship": "जहाज", "Helicopter": "हेलिकॉप्टर", "Taxi": "टैक्सी",
+      "Tractor": "ट्रैक्टर", "Scooter": "स्कूटर", "Ambulance": "एम्बुलेंस",
+      "Fire Truck": "दमकल गाड़ी", "Police Car": "पुलिस गाड़ी", "Subway": "मेट्रो",
+      "Rocket": "रॉकेट", "Van": "वैन", "Bullet Train": "बुलेट ट्रेन",
+      "Sailboat": "सेलबोट"
+    },
+    colors: {
+      "Red": "लाल", "Blue": "नीला", "Green": "हरा",
+      "Yellow": "पीला", "Purple": "बैंगनी", "Orange": "नारंगी",
+      "Brown": "भूरा", "Black": "काला", "White": "सफेद",
+      "Pink": "गुलाबी"
+    }
+  },
+  marathi: {
+    fruits: {
+      "Apple": "सफरचंद", "Banana": "केळ", "Orange": "संत्रे",
+      "Mango": "आंबा", "Grapes": "द्राक्षे", "Pineapple": "अननस",
+      "Strawberry": "स्ट्रॉबेरी", "Watermelon": "टरबूज", "Cherry": "चेरी",
+      "Peach": "पीच", "Kiwi": "कीवी", "Lemon": "लिंबू",
+      "Coconut": "नारळ", "Avocado": "एवोकॅडो", "Pear": "नाशपाती"
+    },
+    vegetables: {
+      "Carrot": "गाजर", "Potato": "बटाटा", "Tomato": "टोमॅटो",
+      "Cabbage": "कोबी", "Corn": "मका", "Onion": "कांदा",
+      "Garlic": "लसूण", "Broccoli": "ब्रोकोली", "Cucumber": "काकडी",
+      "Pepper": "मिरची", "Mushroom": "अळंबी", "Sweet Potato": "रताळे",
+      "Brinjal": "वांगे", "Spinach": "पालक"
+    },
+    animals: {
+      "Lion": "सिंह", "Tiger": "वाघ", "Elephant": "हत्ती",
+      "Dog": "कुत्रा", "Cat": "मांजर", "Horse": "घोडा",
+      "Monkey": "माकड", "Cow": "गाय", "Rabbit": "ससा",
+      "Sheep": "शेळी", "Fox": "कोल्हा", "Panda": "पांडा",
+      "Kangaroo": "कांगारू", "Zebra": "झेब्रा", "Giraffe": "जिराफ",
+      "Bear": "अस्वल", "Koala": "कोआला", "Camel": "उंट",
+      "Bat": "वटवाघूळ", "Turtle": "कासव"
+    },
+    birds: {
+      "Parrot": "पोपट", "Crow": "कावळा", "Peacock": "मोर",
+      "Sparrow": "चिमणी", "Owl": "घुबड", "Penguin": "पेंग्विन",
+      "Duck": "बदक", "Eagle": "गरुड", "Dove": "कबुतर",
+      "Flamingo": "राजहंस", "Swan": "हंस", "Turkey": "टर्की",
+      "Rooster": "कोंबडा", "Hen": "कोंबडी"
+    },
+    vehicles: {
+      "Car": "कार", "Bus": "बस", "Train": "आगगाडी",
+      "Airplane": "विमान", "Bike": "बाइक", "Truck": "ट्रक",
+      "Ship": "जहाज", "Helicopter": "हेलिकॉप्टर", "Taxi": "टॅक्सी",
+      "Tractor": "ट्रॅक्टर", "Scooter": "स्कूटर", "Ambulance": "रुग्णवाहिका",
+      "Fire Truck": "अग्निशामक गाडी", "Police Car": "पोलिस गाडी", "Subway": "भूमिगत रेल्वे",
+      "Rocket": "रॉकेट", "Van": "व्हॅन", "Bullet Train": "बुलेट ट्रेन",
+      "Sailboat": "सेलबोट"
+    },
+    colors: {
+      "Red": "लाल", "Blue": "निळा", "Green": "हिरवा",
+      "Yellow": "पिवळा", "Purple": "जांभळा", "Orange": "केशरी",
+      "Brown": "तपकिरी", "Black": "काळा", "White": "पांढरा",
+      "Pink": "गुलाबी"
+    }
+  }
+};
+
+const DATA = {
+  fruits: [
+    {name: "Apple", icon: "🍎"}, {name: "Banana", icon: "🍌"}, {name: "Orange", icon: "🍊"},
+    {name: "Mango", icon: "🥭"}, {name: "Grapes", icon: "🍇"}, {name: "Pineapple", icon: "🍍"},
+    {name: "Strawberry", icon: "🍓"}, {name: "Watermelon", icon: "🍉"}, {name: "Cherry", icon: "🍒"},
+    {name: "Peach", icon: "🍑"}, {name: "Kiwi", icon: "🥝"}, {name: "Lemon", icon: "🍋"},
+    {name: "Coconut", icon: "🥥"}, {name: "Avocado", icon: "🥑"}, {name: "Pear", icon: "🍐"}
+  ],
+  vegetables: [
+    {name: "Carrot", icon: "🥕"}, {name: "Potato", icon: "🥔"}, {name: "Tomato", icon: "🍅"},
+    {name: "Cabbage", icon: "🥬"}, {name: "Corn", icon: "🌽"}, {name: "Onion", icon: "🧅"},
+    {name: "Garlic", icon: "🧄"}, {name: "Broccoli", icon: "🥦"}, {name: "Cucumber", icon: "🥒"},
+    {name: "Pepper", icon: "🌶️"}, {name: "Mushroom", icon: "🍄"}, {name: "Sweet Potato", icon: "🍠"},
+    {name: "Brinjal", icon: "🍆"}, {name: "Spinach", icon: "🌿"}
+  ],
+  animals: [
+    {name: "Lion", icon: "🦁"}, {name: "Tiger", icon: "🐯"}, {name: "Elephant", icon: "🐘"},
+    {name: "Dog", icon: "🐶"}, {name: "Cat", icon: "🐱"}, {name: "Horse", icon: "🐴"},
+    {name: "Monkey", icon: "🐵"}, {name: "Cow", icon: "🐄"}, {name: "Rabbit", icon: "🐇"},
+    {name: "Sheep", icon: "🐑"}, {name: "Fox", icon: "🦊"}, {name: "Panda", icon: "🐼"},
+    {name: "Kangaroo", icon: "🦘"}, {name: "Zebra", icon: "🦓"}, {name: "Giraffe", icon: "🦒"},
+    {name: "Bear", icon: "🐻"}, {name: "Koala", icon: "🐨"}, {name: "Camel", icon: "🐪"},
+    {name: "Bat", icon: "🦇"}, {name: "Turtle", icon: "🐢"}
+  ],
+  birds: [
+    {name: "Parrot", icon: "🦜"}, {name: "Crow", icon: "🐦"}, {name: "Peacock", icon: "🦚"},
+    {name: "Sparrow", icon: "🐤"}, {name: "Owl", icon: "🦉"}, {name: "Penguin", icon: "🐧"},
+    {name: "Duck", icon: "🦆"}, {name: "Eagle", icon: "🦅"}, {name: "Dove", icon: "🕊️"},
+    {name: "Flamingo", icon: "🦩"}, {name: "Swan", icon: "🦢"}, {name: "Turkey", icon: "🦃"},
+    {name: "Rooster", icon: "🐓"}, {name: "Hen", icon: "🐔"}
+  ],
+  vehicles: [
+    {name: "Car", icon: "🚗"}, {name: "Bus", icon: "🚌"}, {name: "Train", icon: "🚆"},
+    {name: "Airplane", icon: "✈️"}, {name: "Bike", icon: "🚲"}, {name: "Truck", icon: "🚚"},
+    {name: "Ship", icon: "🚢"}, {name: "Helicopter", icon: "🚁"}, {name: "Taxi", icon: "🚖"},
+    {name: "Tractor", icon: "🚜"}, {name: "Scooter", icon: "🛵"}, {name: "Ambulance", icon: "🚑"},
+    {name: "Fire Truck", icon: "🚒"}, {name: "Police Car", icon: "🚓"}, {name: "Subway", icon: "🚇"},
+    {name: "Rocket", icon: "🚀"}, {name: "Van", icon: "🚐"}, {name: "Bullet Train", icon: "🚄"},
+    {name: "Sailboat", icon: "⛵"}
+  ],
+  colors: [
+    {name: "Red", icon: "🔴"}, {name: "Blue", icon: "🔵"}, {name: "Green", icon: "🟢"},
+    {name: "Yellow", icon: "🟡"}, {name: "Purple", icon: "🟣"}, {name: "Orange", icon: "🟠"},
+    {name: "Brown", icon: "🟤"}, {name: "Black", icon: "⚫"}, {name: "White", icon: "⚪"},
+    {name: "Pink", icon: "🌸"}
+  ]
+};
+
+let currentCategory = null;
+let interfaceLang = 'en';
+
+// ===== USER MANAGEMENT FUNCTIONS (copied from english.html) =====
+function getCurrentUser() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlUser = urlParams.get('user');
+  if (urlUser) {
+    sessionStorage.setItem('currentUser', urlUser);
+    return urlUser;
+  }
+  
+  const sessionUser = sessionStorage.getItem('currentUser');
+  if (sessionUser) {
+    return sessionUser;
+  }
+  
+  return 'guest';
+}
+
+function getUserLanguageKey() {
+  const username = getCurrentUser();
+  return `linguaKids_${username}_englishInterfaceLang`;
+}
+
+function getUserProfile() {
+  try {
+    const profileStr = localStorage.getItem('linguaKidsProfile');
+    return profileStr ? JSON.parse(profileStr) : null;
+  } catch (e) {
+    return null;
+  }
+}
+
+// ===== GET INTERFACE LANGUAGE FROM URL OR STORAGE =====
+function getInterfaceLanguage() {
+  // First check URL parameter
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlLang = urlParams.get('lang');
+  if (urlLang && (urlLang === 'hindi' || urlLang === 'marathi')) {
+    return urlLang;
+  }
+  
+  // Then check from english.html's saved preference
+  const storageKey = getUserLanguageKey();
+  const savedLang = localStorage.getItem(storageKey);
+  if (savedLang === 'hindi' || savedLang === 'marathi') {
+    return savedLang;
+  }
+  
+  // Default to English
+  return 'en';
+}
+
+function getCategory() {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get("category");
+}
+
+function loadCategory() {
+  const cat = getCategory();
+  if (cat === currentCategory) return;
+  currentCategory = cat;
+
+  if (!cat || !DATA[cat]) {
+    document.getElementById("content").innerHTML = "<p>Category not found.</p>";
+    return;
+  }
+
+  // Update interface language
+  interfaceLang = getInterfaceLanguage();
+  
+  // Update back button text
+  const backBtn = document.getElementById("backBtn");
+  if (interfaceLang !== 'en' && translations[interfaceLang]) {
+    backBtn.textContent = translations[interfaceLang].back;
+  } else {
+    backBtn.textContent = "Back";
+  }
+
+  const items = DATA[cat];
+  const categoryDisplay = cat.charAt(0).toUpperCase() + cat.slice(1);
+  
+  // Translate category title if needed
+  let categoryTitle = `Category: ${categoryDisplay}`;
+  if (interfaceLang !== 'en' && translations[interfaceLang] && translations[interfaceLang][cat]) {
+    categoryTitle = `${translations[interfaceLang].category}: ${translations[interfaceLang][cat]}`;
+  }
+  
+  document.getElementById("categoryTitle").textContent = categoryTitle;
+  
+  document.getElementById("content").innerHTML = items.map((item, index) => {
+    // Get translation for the item if available
+    let translation = '';
+    if (interfaceLang !== 'en' && 
+        ITEM_TRANSLATIONS[interfaceLang] && 
+        ITEM_TRANSLATIONS[interfaceLang][cat] && 
+        ITEM_TRANSLATIONS[interfaceLang][cat][item.name]) {
+      translation = ITEM_TRANSLATIONS[interfaceLang][cat][item.name];
+    }
+    
+    return `
+    <div class="item-card" onclick="speak('${item.name}', '${cat}', ${index})">
+      <div style="font-size:2rem;">${item.icon}</div>
+      <div style="font-weight:bold;">${item.name}</div>
+      ${translation ? `<div class="translation">${translation}</div>` : ''}
+      <button class="speak-btn" onclick="event.stopPropagation(); speak('${item.name}', '${cat}', ${index})">🔊</button>
+    </div>
+  `}).join("");
+}
+
+function speak(text, category, index) {
+  if (typeof updateProgress === 'function') updateProgress('level2', category, index);
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = "en-US";
+  speechSynthesis.speak(utter);
+}
+
+function goBack() {
+  const lang = getInterfaceLanguage();
+  window.location.href = `english.html?lang=${lang}&t=${new Date().getTime()}`;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('visibilitychange', function() {
+    if (!document.hidden) loadCategory();
+  });
+  window.addEventListener('pageshow', function(event) {
+    if (event.persisted) loadCategory();
+  });
+  if (typeof initProgress === 'function') initProgress();
+  loadCategory();
+});
+
+window.addEventListener('load', loadCategory);
+</script>
+
+<script src="progress.js"></script>
+</body>
+</html>

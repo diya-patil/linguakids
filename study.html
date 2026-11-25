@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>LinguaKids - Study Mode</title>
+  <!-- Font Awesome with offline fallback -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+  <!-- Google Fonts with offline fallback -->
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;500;600;700&display=swap');
+
+    :root {
+      --primary: #58cc02;
+      --primary-dark: #46a302;
+      --primary-light: #edfcd6;
+      --secondary: #1cb0f6;
+      --secondary-light: #e0f6ff;
+      --teacher: #9c27b0;
+      --teacher-dark: #7b1fa2;
+      --teacher-light: #f5eaff;
+      --danger: #ff4b4b;
+      --warning: #ff9600;
+      --dark: #2d2d2d;
+      --mid: #666;
+      --light: #f8f9fa;
+      --white: #ffffff;
+      --border: #e8ecf0;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.07);
+      --shadow-md: 0 6px 24px rgba(0,0,0,0.10);
+      --shadow-lg: 0 16px 48px rgba(0,0,0,0.13);
+      --radius-sm: 12px;
+      --radius-md: 20px;
+      --radius-lg: 28px;
+      --radius-xl: 40px;
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      /* Font stack with system fonts as fallbacks for offline mode */
+      font-family: 'Nunito', 'Segoe UI', 'Arial Rounded', 'Helvetica Neue', Arial, sans-serif;
+      min-height: 100vh;
+      color: var(--dark);
+      line-height: 1.6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: linear-gradient(135deg, #ffd1dc, #ffe5b4, #fff5ba, #d7f9f1, #dbeafe, #e9d5ff);
+      background-size: 300% 300%;
+      animation: gradientFlow 40s linear infinite;
+    }
+
+    @keyframes gradientFlow {
+      0%   { background-position: 0% 0%; }
+      50%  { background-position: 100% 100%; }
+      100% { background-position: 0% 0%; }
+    }
+
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes popIn {
+      0%   { transform: scale(0.85); opacity: 0; }
+      70%  { transform: scale(1.03); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    #app {
+      width: 100%;
+      max-width: 860px;
+    }
+
+    .hidden { display: none !important; }
+
+    /* ── Shared screen shell ── */
+    .screen {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      padding: 48px 48px 40px;
+      position: relative;
+      overflow: hidden;
+      animation: fadeSlideUp 0.35s ease both;
+    }
+
+    /* Subtle decorative top stripe */
+    .screen::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+
+    /* ── Back button ── */
+    .app-header {
+      position: absolute;
+      top: 22px;
+      left: 22px;
+      z-index: 10;
+    }
+
+    .back-btn {
+      background: var(--light);
+      border: 2px solid var(--border);
+      color: var(--mid);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .back-btn:hover {
+      background: var(--border);
+      color: var(--dark);
+      transform: translateX(-2px);
+    }
+
+    /* ── Session info chip ── */
+    .session-info {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      background: var(--light);
+      border: 2px solid var(--border);
+      padding: 8px 16px;
+      border-radius: var(--radius-xl);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 10;
+    }
+
+    .session-avatar { font-size: 1.4rem; line-height: 1; }
+    .session-name { font-weight: 700; font-size: 0.9rem; color: var(--dark); }
+    .session-mode { font-size: 0.75rem; color: var(--primary); font-weight: 600; }
+    .session-mode.teacher { color: var(--teacher); }
+
+    /* ── Mode Selection Screen ── */
+    .mode-selection {
+      text-align: center;
+      padding: 56px 32px 40px;
+    }
+
+    .mode-selection .screen-eyebrow {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      /* Font stack with offline fallbacks */
+      font-family: 'Baloo 2', 'Segoe UI', 'Arial Rounded', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: var(--radius-xl);
+      margin-bottom: 16px;
+    }
+
+    .mode-selection h2 {
+      /* Font stack with offline fallbacks */
+      font-family: 'Baloo 2', 'Segoe UI', 'Arial Rounded', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--dark);
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+
+    .mode-selection > p {
+      color: var(--mid);
+      font-size: 1.05rem;
+      margin-bottom: 44px;
+    }
+
+    /* Mode cards grid */
+    .mode-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 36px;
+    }
+
+    .mode-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 36px 28px 28px;
+      border: 2px solid var(--border);
+      transition: var(--transition);
+      cursor: pointer;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mode-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transform: scaleX(0);
+      transition: var(--transition);
+      transform-origin: left;
+    }
+
+    .mode-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .mode-card:hover::after { transform: scaleX(1); }
+
+    .mode-card.teacher-mode:hover { border-color: var(--teacher); }
+
+    .mode-card.teacher-mode::after {
+      background: linear-gradient(90deg, var(--teacher), #ce93d8);
+    }
+
+    .mode-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin: 0 auto 20px;
+      transition: var(--transition);
+    }
+
+    .mode-card:hover .mode-icon { transform: scale(1.1); }
+    .mode-card.teacher-mode .mode-icon { background: var(--teacher-light); color: var(--teacher); }
+
+    .mode-card h3 {
+      /* Font stack with offline fallbacks */
+      font-family: 'Baloo 2', 'Segoe UI', 'Arial Rounded', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+
+    .mode-card p {
+      color: var(--mid);
+      font-size: 0.9rem;
+      line-height: 1.55;
+      margin-bottom: 24px;
+    }
+
+    /* Teacher portal section */
+    .teacher-portal-section {
+      padding: 20px 0 0;
+      border-top: 2px dashed var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .teacher-portal-section p {
+      color: var(--mid);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    /* ── Buttons ── */
+    .btn {
+      background: linear-gradient(135deg, var(--primary), #32b800);
+      border: none;
+      color: white;
+      padding: 14px 28px;
+      border-radius: var(--radius-xl);
+      font-size: 1rem;
+      /* Font stack with offline fallbacks */
+      font-family: 'Baloo 2', 'Segoe UI', 'Arial Rounded', 'Helvetica Neue', Arial, sans-serif;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(88,204,2,0.30);
+      letter-spacing: 0.01em;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(88,204,2,0.38);
+    }
+
+    .btn:active { transform: translateY(1px); }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, var(--warning), var(--danger));
+      box-shadow: 0 4px 14px rgba(255,150,0,0.28);
+    }
+
+    .btn-secondary:hover { box-shadow: 0 6px 20px rgba(255,150,0,0.38); }
+
+    .btn-teacher {
+      background: linear-gradient(135deg, var(--teacher), #ba68c8);
+      box-shadow: 0 4px 14px rgba(156,39,176,0.28);
+      text-decoration: none;
+    }
+
+    .btn-teacher:hover { box-shadow: 0 6px 20px rgba(156,39,176,0.38); }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--border);
+      color: var(--mid);
+      box-shadow: none;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--dark);
+      color: var(--dark);
+      box-shadow: none;
+      transform: translateY(-1px);
+    }
+
+    /* ── Form Screens ── */
+    .form-screen-inner {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 48px 0 8px;
+    }
+
+    .form-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      /* Font stack with offline fallbacks */
+      font-family: 'Baloo 2', 'Segoe UI', 'Arial Rounded', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: var(--radius-xl);
+      margin-bottom: 14px;
+    }
+
+    .form-badge.teacher { background: var(--teacher-light); color: var(--teacher); }
+
+    .form-title {
+      /* Font stack with offline fallbacks */
+      font-family: 'Baloo 2', 'Segoe UI', 'Arial Rounded', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+
+    .form-description {
+      color: var(--mid);
+      font-size: 0.95rem;
+      margin-bottom: 28px;
+    }
+
+    /* Two-column form layout */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      font-weight: 700;
+      color: var(--dark);
+      font-size: 0.85rem;
+      letter-spacing: 0.02em;
+    }
+
+    .form-group input,
+    .form-group select {
+      padding: 12px 16px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      /* Font stack with offline fallbacks */
+      font-family: 'Nunito', 'Segoe UI', 'Arial Rounded', 'Helvetica Neue', Arial, sans-serif;
+      color: var(--dark);
+      background: var(--light);
+      transition: var(--transition);
+      width: 100%;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--primary);
+      background: var(--white);
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(88,204,2,0.12);
+    }
+
+    .form-group input.error { border-color: var(--danger); }
+    .form-group input.error:focus { box-shadow: 0 0 0 4px rgba(255,75,75,0.12); }
+
+    .error-message {
+      color: var(--danger);
+      font-size: 0.78rem;
+      font-weight: 600;
+      display: none;
+    }
+
+    /* ── Class ID banner ── */
+    .class-id-display {
+      background: linear-gradient(135deg, var(--teacher), var(--teacher-dark));
+      color: white;
+      padding: 18px 20px;
+      border-radius: var(--radius-md);
+      margin-bottom: 24px;
+      text-align: center;
+      display: none;
+      animation: popIn 0.3s ease both;
+    }
+
+    .class-id-display h4 {
+      /* Font stack with offline fallbacks */
+      font-family: 'Baloo 2', 'Segoe UI', 'Arial Rounded', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 1rem;
+      margin-bottom: 8px;
+      opacity: 0.9;
+    }
+
+    .class-id-code {
+      /* Font stack with offline fallbacks */
+      font-family: 'Baloo 2', 'Segoe UI', 'Arial Rounded', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 1.7rem;
+      font-weight: 800;
+      letter-spacing: 4px;
+      background: rgba(255,255,255,0.2);
+      padding: 6px 20px;
+      border-radius: var(--radius-sm);
+      display: inline-block;
+      margin: 4px 0 8px;
+    }
+
+    .class-id-display p { font-size: 0.82rem; opacity: 0.85; }
+
+    /* ── Avatar picker ── */
+    .avatar-label {
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--dark);
+      margin-bottom: 10px;
+      display: block;
+      letter-spacing: 0.02em;
+    }
+
+    .avatar-options {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 16px;
+      background: var(--light);
+      border-radius: var(--radius-sm);
+      border: 2px solid var(--border);
+      margin-bottom: 16px;
+    }
+
+    .avatar-option {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2.5px solid transparent;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .avatar-option:hover { transform: scale(1.15); box-shadow: var(--shadow-md); }
+
+    .avatar-option.selected {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      transform: scale(1.12);
+    }
+
+    .avatar-option.teacher-selected {
+      border-color: var(--teacher);
+      background: var(--teacher-light);
+      transform: scale(1.12);
+    }
+
+    /* ── Form actions ── */
+    .form-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      justify-content: flex-start;
+    }
+
+    /* ── Continue session card ── */
+    .continue-session {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      padding: 48px;
+      text-align: center;
+      display: none;
+      animation: fadeSlideUp 0.35s ease both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .continue-session::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+    }
+
+    .continue-session h3 {
+      /* Font stack with offline fallbacks */
+      font-family: 'Baloo 2', 'Segoe UI', 'Arial Rounded', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+
+    .continue-session > p {
+      color: var(--mid);
+      font-size: 1rem;
+      margin-bottom: 32px;
+    }
+
+    .continue-info {
+      display: inline-flex;
+      align-items: center;
+      gap: 18px;
+      background: var(--light);
+      border: 2px solid var(--border);
+      padding: 18px 28px;
+      border-radius: var(--radius-md);
+      margin-bottom: 32px;
+    }
+
+    .continue-avatar { font-size: 3rem; line-height: 1; }
+
+    .continue-details { text-align: left; }
+
+    .continue-name {
+      /* Font stack with offline fallbacks */
+      font-family: 'Baloo 2', 'Segoe UI', 'Arial Rounded', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .continue-language {
+      color: var(--mid);
+      font-size: 0.9rem;
+      margin-top: 2px;
+    }
+
+    .continue-language i { color: var(--primary); margin-right: 4px; }
+
+    .continue-session .form-actions { justify-content: center; }
+
+    /* ── Toast ── */
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: var(--dark);
+      color: white;
+      padding: 16px 22px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      z-index: 9999;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      transform: translateY(120px);
+      opacity: 0;
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease;
+      max-width: 380px;
+    }
+
+    .toast i { font-size: 1.2rem; margin-top: 2px; flex-shrink: 0; }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast.error   { background: #c62828; }
+    .toast.warning { background: #e65100; }
+    .toast.info    { background: #0277bd; }
+    .toast.success { background: #2e7d32; }
+
+    #toastTitle { font-weight: 700; font-size: 0.95rem; }
+    #toastDesc  { font-size: 0.83rem; opacity: 0.88; margin-top: 2px; }
+
+    /* Font Awesome icon fallbacks for offline mode */
+    .fa-user-graduate:before { content: "👨‍🎓"; font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", "Android Emoji", sans-serif; }
+    .fa-chalkboard-teacher:before { content: "👨‍🏫"; font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", "Android Emoji", sans-serif; }
+    .fa-play:before { content: "▶️"; font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", "Android Emoji", sans-serif; }
+    .fa-sign-in-alt:before { content: "📥"; font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", "Android Emoji", sans-serif; }
+    .fa-user-plus:before { content: "👤➕"; font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", "Android Emoji", sans-serif; }
+    .fa-times:before { content: "❌"; font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", "Android Emoji", sans-serif; }
+    .fa-check-circle:before { content: "✅"; font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", "Android Emoji", sans-serif; }
+    .fa-exclamation-circle:before { content: "⚠️"; font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", "Android Emoji", sans-serif; }
+    .fa-exclamation-triangle:before { content: "⚠️"; font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", "Android Emoji", sans-serif; }
+    .fa-info-circle:before { content: "ℹ️"; font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", "Android Emoji", sans-serif; }
+    .fa-arrow-left:before { content: "←"; font-family: "Segoe UI", "Arial", sans-serif; font-weight: bold; }
+    .fa-play-circle:before { content: "▶️"; font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", "Android Emoji", sans-serif; }
+    .fa-language:before { content: "🔤"; font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", "Android Emoji", sans-serif; }
+
+    /* Offline mode indicator */
+    .offline-status {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(255, 152, 0, 0.9);
+      color: white;
+      padding: 8px 15px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-family: 'Segoe UI', 'Arial Rounded', Arial, sans-serif;
+      display: none;
+      align-items: center;
+      gap: 5px;
+      z-index: 10000;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .offline-status.show {
+      display: flex;
+    }
+
+    /* Loading state for fonts */
+    .wf-loading .mode-selection h2,
+    .wf-loading .mode-card h3,
+    .wf-loading .btn,
+    .wf-loading .form-title {
+      visibility: hidden;
+    }
+
+    .wf-active .mode-selection h2,
+    .wf-active .mode-card h3,
+    .wf-active .btn,
+    .wf-active .form-title {
+      visibility: visible;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 640px) {
+      body { padding: 12px; }
+
+      .screen { padding: 40px 20px 28px; border-radius: var(--radius-md); }
+
+      .mode-selection { padding: 44px 0 24px; }
+      .mode-selection h2 { font-size: 1.8rem; }
+      .mode-selection > p { margin-bottom: 28px; }
+
+      .mode-cards { grid-template-columns: 1fr; gap: 16px; margin-bottom: 24px; }
+      .mode-card { padding: 28px 24px 22px; }
+      .mode-card p { display: none; }
+      .mode-icon { width: 60px; height: 60px; font-size: 1.5rem; margin-bottom: 14px; }
+      .mode-card h3 { font-size: 1.15rem; }
+
+      .teacher-portal-section { flex-direction: column; gap: 10px; }
+
+      .form-screen-inner { padding-top: 44px; }
+      .form-title { font-size: 1.6rem; }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      .form-group input, .form-group select { padding: 10px 14px; }
+      .avatar-option { width: 46px; height: 46px; font-size: 1.4rem; }
+      .form-actions { flex-direction: column; }
+      .form-actions .btn { width: 100%; justify-content: center; }
+
+      .continue-session { padding: 40px 20px 28px; }
+      .continue-session h3 { font-size: 1.6rem; }
+      .continue-info { flex-direction: column; text-align: center; padding: 18px; }
+      .continue-details { text-align: center; }
+      .continue-session .form-actions { flex-direction: column; }
+      .continue-session .form-actions .btn { width: 100%; justify-content: center; }
+    }
+
+    @media (max-width: 400px) {
+      .avatar-option { width: 40px; height: 40px; font-size: 1.2rem; }
+      .mode-selection h2 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Firebase Import (will fail offline but that's okay) -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { 
+      getFirestore, 
+      doc, 
+      setDoc,
+      collection,
+      addDoc,
+      query,
+      where,
+      getDocs,
+      getDoc,
+      updateDoc,
+      deleteDoc,
+      onSnapshot
+    } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAvZvyRsoIsdjA82vMAPApOsgZlfHf4-NU",
+      authDomain: "linguakids-16043.firebaseapp.com",
+      projectId: "linguakids-16043",
+      storageBucket: "linguakids-16043.firebasestorage.app",
+      messagingSenderId: "468346007955",
+      appId: "1:468346007955:web:e47618b29c321c7bafb866"
+    };
+
+    try {
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      window.db = db;
+      window.setDoc = setDoc;
+      window.doc = doc;
+      window.addDoc = addDoc;
+      window.getDoc = getDoc;
+      window.getDocs = getDocs;
+      window.query = query;
+      window.where = where;
+      window.updateDoc = updateDoc;
+      window.onSnapshot = onSnapshot;
+      console.log("Firebase initialized successfully");
+    } catch (error) {
+      console.log("Firebase initialization failed (offline mode)", error);
+      window.db = null;
+    }
+  </script>
+
+  <div id="app">
+    <header class="app-header">
+      <button id="backBtn" class="back-btn" title="Go Back">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+    </header>
+
+    <!-- Offline Status Indicator -->
+    <div id="offlineStatus" class="offline-status">
+      <i class="fas fa-wifi" style="opacity: 0.5;"></i> Offline Mode
+    </div>
+
+    <section id="continueSession" class="continue-session">
+      <h3>Welcome Back!</h3>
+      <div class="continue-info">
+        <div class="continue-avatar" id="continueAvatar">🦄</div>
+        <div class="continue-details">
+          <div class="continue-name" id="continueName">Guest</div>
+          <div class="continue-language" id="continueLanguage">
+            <i class="fas fa-language"></i> Learning: English
+          </div>
+        </div>
+      </div>
+      <p>You have an active learning session. Do you want to continue?</p>
+      <div class="form-actions">
+        <button class="btn" id="continueBtn">
+          <i class="fas fa-play-circle"></i> Continue Learning
+        </button>
+        <button class="btn btn-secondary" id="newSessionBtn">
+          <i class="fas fa-user-plus"></i> Start New Session
+        </button>
+      </div>
+    </section>
+
+    <!-- MODE SELECTION -->
+    <section id="modeSelection" class="screen">
+      <div class="mode-selection">
+        <span class="screen-eyebrow">🌍 LinguaKids</span>
+        <h2>How do you want to learn?</h2>
+        <p>Choose your learning path to get started</p>
+
+        <div class="mode-cards">
+          <!-- Self Study Card -->
+          <div class="mode-card" id="selfStudyCard">
+            <div class="mode-icon">
+              <i class="fas fa-user-graduate"></i>
+            </div>
+            <h3>Self Study</h3>
+            <p>Learn at your own pace with interactive lessons and games. Perfect for independent learners.</p>
+            <button class="btn" id="selfStudyBtn">
+              <i class="fas fa-play"></i> Start Learning
+            </button>
+          </div>
+
+          <!-- Learn with Teacher Card -->
+          <div class="mode-card teacher-mode" id="teacherStudyCard">
+            <div class="mode-icon">
+              <i class="fas fa-chalkboard-teacher"></i>
+            </div>
+            <h3>Learn with Teacher</h3>
+            <p>Join a teacher's class with a class code. Your progress will be visible to your teacher.</p>
+            <button class="btn btn-teacher" id="teacherStudyBtn">
+              <i class="fas fa-sign-in-alt"></i> Join Class
+            </button>
+          </div>
+        </div>
+
+        <div class="teacher-portal-section">
+          <p>Are you a teacher?</p>
+          <a href="teacher-portal.html" class="btn btn-teacher" style="text-decoration: none;">
+            <i class="fas fa-chalkboard-teacher"></i> Teacher Portal
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SELF STUDY PROFILE FORM -->
+    <section id="selfStudyForm" class="screen hidden">
+      <div class="form-screen-inner">
+        <div class="form-badge"><i class="fas fa-user-graduate"></i> Self Study</div>
+        <h2 class="form-title">Create Your Profile</h2>
+        <p class="form-description">Just a few details to get you started</p>
+        
+        <form class="profile-form" id="selfProfileForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="selfKidName">Your Name *</label>
+              <input type="text" id="selfKidName" placeholder="Enter your name" required>
+              <div class="error-message" id="selfNameError">Please enter your name</div>
+            </div>
+            <div class="form-group">
+              <label for="selfKidAge">Your Age *</label>
+              <input type="number" id="selfKidAge" min="2" max="10" placeholder="Age (2–10)" required>
+              <div class="error-message" id="selfAgeError">Age must be between 2 and 10</div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <span class="avatar-label">Choose Your Avatar</span>
+            <div class="avatar-options">
+              <div class="avatar-option selected" data-avatar="🦄">🦄</div>
+              <div class="avatar-option" data-avatar="🐱">🐱</div>
+              <div class="avatar-option" data-avatar="🐰">🐰</div>
+              <div class="avatar-option" data-avatar="🐶">🐶</div>
+              <div class="avatar-option" data-avatar="🦌">🦌</div>
+              <div class="avatar-option" data-avatar="🦉">🦉</div>
+              <div class="avatar-option" data-avatar="🐨">🐨</div>
+              <div class="avatar-option" data-avatar="🐼">🐼</div>
+              <div class="avatar-option" data-avatar="🦊">🦊</div>
+              <div class="avatar-option" data-avatar="🐸">🐸</div>
+              <div class="avatar-option" data-avatar="🐧">🐧</div>
+              <div class="avatar-option" data-avatar="🦁">🦁</div>
+              <div class="avatar-option" data-avatar="🐘">🐘</div>
+              <div class="avatar-option" data-avatar="🦒">🦒</div>
+            </div>
+          </div>
+          
+          <div class="form-actions">
+            <button type="submit" class="btn">
+              <i class="fas fa-user-plus"></i> Create Profile
+            </button>
+            <button type="button" id="cancelSelfBtn" class="btn btn-outline">
+              <i class="fas fa-times"></i> Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- TEACHER MODE PROFILE FORM -->
+    <section id="teacherModeForm" class="screen hidden">
+      <div class="form-screen-inner">
+        <div class="form-badge teacher"><i class="fas fa-chalkboard-teacher"></i> Teacher Mode</div>
+        <h2 class="form-title">Join Teacher's Class</h2>
+        <p class="form-description">Enter your class code and personal details</p>
+        
+        <div class="class-id-display" id="autoClassIdDisplay">
+          <h4><i class="fas fa-check-circle"></i> Class Code Detected!</h4>
+          <div class="class-id-code" id="autoClassIdCode"></div>
+          <p>Fill in your details below to join.</p>
+        </div>
+        
+        <form class="profile-form" id="teacherProfileForm">
+          <div class="form-group">
+            <label for="teacherClassId">Class Code *</label>
+            <input type="text" id="teacherClassId" placeholder="e.g., ENG2024A" required>
+            <div class="error-message" id="classIdError">Please enter a valid class code</div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="teacherKidName">First Name *</label>
+              <input type="text" id="teacherKidName" placeholder="First name" required>
+              <div class="error-message" id="teacherNameError">Please enter your name</div>
+            </div>
+            <div class="form-group">
+              <label for="teacherKidSurname">Surname *</label>
+              <input type="text" id="teacherKidSurname" placeholder="Surname" required>
+              <div class="error-message" id="teacherSurnameError">Please enter your surname</div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="teacherKidAge">Age *</label>
+              <input type="number" id="teacherKidAge" min="2" max="10" placeholder="Age (2–10)" required>
+              <div class="error-message" id="teacherAgeError">Age must be between 2 and 10</div>
+            </div>
+            <div class="form-group">
+              <label for="teacherRollNo">Roll Number *</label>
+              <input type="text" id="teacherRollNo" placeholder="Roll number" required>
+              <div class="error-message" id="rollNoError">Please enter your roll number</div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <span class="avatar-label">Choose Your Avatar</span>
+            <div class="avatar-options">
+              <div class="avatar-option teacher-selected" data-avatar="🦄">🦄</div>
+              <div class="avatar-option" data-avatar="🐱">🐱</div>
+              <div class="avatar-option" data-avatar="🐰">🐰</div>
+              <div class="avatar-option" data-avatar="🐶">🐶</div>
+              <div class="avatar-option" data-avatar="🦌">🦌</div>
+              <div class="avatar-option" data-avatar="🦉">🦉</div>
+              <div class="avatar-option" data-avatar="🐨">🐨</div>
+              <div class="avatar-option" data-avatar="🐼">🐼</div>
+              <div class="avatar-option" data-avatar="🦊">🦊</div>
+              <div class="avatar-option" data-avatar="🐸">🐸</div>
+              <div class="avatar-option" data-avatar="🐧">🐧</div>
+              <div class="avatar-option" data-avatar="🦁">🦁</div>
+              <div class="avatar-option" data-avatar="🐘">🐘</div>
+              <div class="avatar-option" data-avatar="🦒">🦒</div>
+            </div>
+          </div>
+          
+          <div class="form-actions">
+            <button type="submit" class="btn btn-teacher">
+              <i class="fas fa-sign-in-alt"></i> Join Class
+            </button>
+            <button type="button" id="cancelTeacherBtn" class="btn btn-outline">
+              <i class="fas fa-times"></i> Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <div id="toast" class="toast">
+    <i class="fas fa-check-circle"></i>
+    <div>
+      <div id="toastTitle">Success!</div>
+      <div id="toastDesc">Operation completed successfully.</div>
+    </div>
+  </div>
+
+  <script>
+    // Font loading detection
+    document.documentElement.classList.add('wf-loading');
+    
+    // Check if fonts are loaded (with timeout)
+    setTimeout(function() {
+      document.documentElement.classList.remove('wf-loading');
+      document.documentElement.classList.add('wf-active');
+    }, 2000);
+
+    // Check online/offline status
+    function updateOnlineStatus() {
+      const offlineStatus = document.getElementById('offlineStatus');
+      if (!navigator.onLine) {
+        offlineStatus.classList.add('show');
+      } else {
+        offlineStatus.classList.remove('show');
+      }
+    }
+
+    // Session Manager Class
+    class SessionManager {
+      static PROFILE_KEY = 'linguaKidsProfile';
+      static SESSION_KEY = 'linguaKidsSession';
+      
+      static hasProfile() { return localStorage.getItem(this.PROFILE_KEY) !== null; }
+      static getProfile() { const profile = localStorage.getItem(this.PROFILE_KEY); return profile ? JSON.parse(profile) : null; }
+      static saveProfile(profile) { localStorage.setItem(this.PROFILE_KEY, JSON.stringify(profile)); }
+      static clearProfile() { localStorage.removeItem(this.PROFILE_KEY); }
+      static isTeacherMode() { const profile = this.getProfile(); return profile && profile.studyMode === 'teacher'; }
+      static getCurrentLanguage() { const profile = this.getProfile(); return profile ? profile.currentLanguage : null; }
+      static setCurrentLanguage(language) { const profile = this.getProfile(); if (profile) { profile.currentLanguage = language; this.saveProfile(profile); } }
+      static updateProgress(language, progress) { const profile = this.getProfile(); if (profile && profile.progress) { profile.progress[language] = progress; this.saveProfile(profile); } }
+      static getAssignedLanguage() { const profile = this.getProfile(); return profile ? (profile.assignedLanguage || 'english') : 'english'; }
+    }
+
+    let studyMode = null;
+    let currentClassId = null;
+    let userProfile = null;
+    
+    const modeSelection = document.getElementById('modeSelection');
+    const selfStudyForm = document.getElementById('selfStudyForm');
+    const teacherModeForm = document.getElementById('teacherModeForm');
+    const backBtn = document.getElementById('backBtn');
+    const autoClassIdDisplay = document.getElementById('autoClassIdDisplay');
+    const autoClassIdCode = document.getElementById('autoClassIdCode');
+    const continueSession = document.getElementById('continueSession');
+    
+    // Add online/offline listeners
+    window.addEventListener('online', updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
+    updateOnlineStatus(); // Check initial status
+    
+    function checkExistingSession() {
+      userProfile = SessionManager.getProfile();
+      if (userProfile) { showContinueSession(userProfile); return true; }
+      return false;
+    }
+    
+    function showContinueSession(profile) {
+      modeSelection.classList.add('hidden');
+      continueSession.style.display = 'block';
+      document.getElementById('continueAvatar').textContent = profile.avatar || '🦄';
+      document.getElementById('continueName').textContent = profile.name || 'Guest';
+      const currentLang = profile.currentLanguage || profile.assignedLanguage || 'English';
+      document.getElementById('continueLanguage').innerHTML = `<i class="fas fa-language"></i> Learning: ${currentLang.charAt(0).toUpperCase() + currentLang.slice(1)}`;
+    }
+    
+    function initApp() {
+      if (checkExistingSession()) { setupContinueSession(); return; }
+      const urlParams = new URLSearchParams(window.location.search);
+      const classIdFromUrl = urlParams.get('classId');
+      if (classIdFromUrl) {
+        currentClassId = validateAndFormatClassId(classIdFromUrl);
+        autoClassIdDisplay.style.display = 'block';
+        autoClassIdCode.textContent = currentClassId;
+        document.getElementById('teacherClassId').value = currentClassId;
+        document.getElementById('teacherClassId').readOnly = true;
+        goToScreen('teacherModeForm');
+        studyMode = "teacher";
+      }
+      setupEventListeners();
+    }
+    
+    function setupContinueSession() {
+      document.getElementById('continueBtn').addEventListener('click', () => {
+        const profile = SessionManager.getProfile();
+        if (profile.studyMode === 'teacher') { window.location.href = `${profile.assignedLanguage || 'english'}.html`; } 
+        else { window.location.href = 'language-selection.html'; }
+      });
+      document.getElementById('newSessionBtn').addEventListener('click', () => {
+        SessionManager.clearProfile();
+        showToast("Session Cleared", "Starting new session...", "info");
+        continueSession.style.display = 'none';
+        modeSelection.classList.remove('hidden');
+        setupEventListeners();
+      });
+    }
+    
+    function setupAvatarSelection() {
+      document.querySelectorAll('#selfStudyForm .avatar-option').forEach(avatar => {
+        avatar.addEventListener('click', function() {
+          this.closest('.avatar-options').querySelectorAll('.avatar-option').forEach(a => a.classList.remove('selected'));
+          this.classList.add('selected');
+        });
+      });
+      document.querySelectorAll('#teacherModeForm .avatar-option').forEach(avatar => {
+        avatar.addEventListener('click', function() {
+          this.closest('.avatar-options').querySelectorAll('.avatar-option').forEach(a => a.classList.remove('selected', 'teacher-selected'));
+          this.classList.add('teacher-selected');
+        });
+      });
+    }
+    
+    function setupEventListeners() {
+      document.getElementById('selfStudyBtn').addEventListener('click', () => { studyMode = "self"; goToScreen('selfStudyForm'); });
+      document.getElementById('teacherStudyBtn').addEventListener('click', () => { studyMode = "teacher"; goToScreen('teacherModeForm'); });
+      backBtn.addEventListener('click', handleBack);
+      document.getElementById('selfProfileForm').addEventListener('submit', (e) => { e.preventDefault(); saveSelfProfile(); });
+      document.getElementById('teacherProfileForm').addEventListener('submit', async (e) => { e.preventDefault(); await saveTeacherProfile(); });
+      document.getElementById('cancelSelfBtn').addEventListener('click', () => { goToScreen('modeSelection'); });
+      document.getElementById('cancelTeacherBtn').addEventListener('click', () => { if (currentClassId) { window.history.replaceState({}, document.title, window.location.pathname); currentClassId = null; } goToScreen('modeSelection'); });
+      setupAvatarSelection();
+    }
+    
+    function handleBack() {
+      const currentScreen = document.querySelector('.screen:not(.hidden)')?.id;
+      if (!currentScreen) return;
+      if (currentScreen === 'selfStudyForm' || currentScreen === 'teacherModeForm') goToScreen('modeSelection');
+      else if (currentScreen === 'modeSelection') window.location.href = 'index.html';
+    }
+    
+    async function saveSelfProfile() {
+      const kidName = document.getElementById('selfKidName').value.trim();
+      const kidAge = document.getElementById('selfKidAge').value;
+      const selectedAvatarElement = document.querySelector('#selfStudyForm .avatar-option.selected');
+      const selectedAvatar = selectedAvatarElement ? selectedAvatarElement.getAttribute('data-avatar') : '🦄';
+      let isValid = true;
+      
+      if (!kidName) { 
+        document.getElementById('selfNameError').style.display = 'block'; 
+        document.getElementById('selfKidName').classList.add('error'); 
+        isValid = false; 
+      } else { 
+        document.getElementById('selfNameError').style.display = 'none'; 
+        document.getElementById('selfKidName').classList.remove('error'); 
+      }
+      
+      if (!kidAge || kidAge < 2 || kidAge > 10) { 
+        document.getElementById('selfAgeError').style.display = 'block'; 
+        document.getElementById('selfKidAge').classList.add('error'); 
+        isValid = false; 
+      } else { 
+        document.getElementById('selfAgeError').style.display = 'none'; 
+        document.getElementById('selfKidAge').classList.remove('error'); 
+      }
+      
+      if (!isValid) return;
+      
+      // Generate unique user ID for self-study student
+      const userId = generateSelfUserId();
+      
+      const userProfile = { 
+        userId: userId, 
+        name: kidName, 
+        age: parseInt(kidAge), 
+        avatar: selectedAvatar, 
+        studyMode: "self", 
+        createdAt: new Date().toISOString(), 
+        currentLanguage: null, 
+        progress: { 
+          english: { lessons: 0, games: 0, percent: 0 }, 
+          hindi: { lessons: 0, games: 0, percent: 0 }, 
+          marathi: { lessons: 0, games: 0, percent: 0 }, 
+          chinese: { lessons: 0, games: 0, percent: 0 }, 
+          german: { lessons: 0, games: 0, percent: 0 } 
+        },
+        profileType: "self-study",
+        lastActive: new Date().toISOString(),
+        deviceInfo: navigator.userAgent.substring(0, 100) // Store basic device info for analytics
+      };
+      
+      // Save to localStorage
+      SessionManager.saveProfile(userProfile);
+      
+      // Save to Firebase Firestore (will fail offline, but that's okay)
+      try { 
+        if (window.db && navigator.onLine) { 
+          // Save to profiles collection (all users)
+          await setDoc(doc(window.db, "profiles", userId), userProfile, { merge: true }); 
+          
+          // Save to selfStudyStudents collection for easier querying and management
+          await setDoc(doc(window.db, "selfStudyStudents", userId), { 
+            userId: userId,
+            studentName: kidName, 
+            age: parseInt(kidAge), 
+            avatar: selectedAvatar, 
+            joinedAt: new Date().toISOString(), 
+            lastActive: new Date().toISOString(),
+            progress: { 
+              english: { lessons: 0, games: 0, percent: 0 }, 
+              hindi: { lessons: 0, games: 0, percent: 0 }, 
+              marathi: { lessons: 0, games: 0, percent: 0 }, 
+              chinese: { lessons: 0, games: 0, percent: 0 }, 
+              german: { lessons: 0, games: 0, percent: 0 } 
+            },
+            studyMode: "self",
+            totalSessions: 0,
+            lastLanguage: null
+          }, { merge: true }); 
+          
+          showToast("Profile Created", "Your profile has been saved to the cloud!", "success");
+        } else {
+          showToast("Profile Created", "Working in offline mode. Cloud sync unavailable.", "info");
+        }
+      } catch (error) { 
+        console.error("Firebase save error:", error); 
+        showToast("Warning", "Profile saved locally. Cloud save failed.", "warning"); 
+      }
+      
+      showToast("Profile Created", "Welcome to LinguaKids! Let's choose a language to learn.", "success");
+      setTimeout(() => { window.location.href = 'language-selection.html'; }, 1500);
+    }
+    
+    async function saveTeacherProfile() {
+      const classId = validateAndFormatClassId(document.getElementById('teacherClassId').value.trim());
+      const kidName = document.getElementById('teacherKidName').value.trim();
+      const kidSurname = document.getElementById('teacherKidSurname').value.trim();
+      const kidAge = document.getElementById('teacherKidAge').value;
+      const rollNo = document.getElementById('teacherRollNo').value.trim();
+      const selectedAvatarElement = document.querySelector('#teacherModeForm .avatar-option.teacher-selected') || document.querySelector('#teacherModeForm .avatar-option.selected');
+      const selectedAvatar = selectedAvatarElement ? selectedAvatarElement.getAttribute('data-avatar') : '🦄';
+      let isValid = true;
+      
+      // Validation
+      if (!classId) { document.getElementById('classIdError').style.display = 'block'; document.getElementById('teacherClassId').classList.add('error'); isValid = false; } else { document.getElementById('classIdError').style.display = 'none'; document.getElementById('teacherClassId').classList.remove('error'); }
+      if (!kidName) { document.getElementById('teacherNameError').style.display = 'block'; document.getElementById('teacherKidName').classList.add('error'); isValid = false; } else { document.getElementById('teacherNameError').style.display = 'none'; document.getElementById('teacherKidName').classList.remove('error'); }
+      if (!kidSurname) { document.getElementById('teacherSurnameError').style.display = 'block'; document.getElementById('teacherKidSurname').classList.add('error'); isValid = false; } else { document.getElementById('teacherSurnameError').style.display = 'none'; document.getElementById('teacherKidSurname').classList.remove('error'); }
+      if (!kidAge || kidAge < 2 || kidAge > 10) { document.getElementById('teacherAgeError').style.display = 'block'; document.getElementById('teacherKidAge').classList.add('error'); isValid = false; } else { document.getElementById('teacherAgeError').style.display = 'none'; document.getElementById('teacherKidAge').classList.remove('error'); }
+      if (!rollNo) { document.getElementById('rollNoError').style.display = 'block'; document.getElementById('teacherRollNo').classList.add('error'); isValid = false; } else { document.getElementById('rollNoError').style.display = 'none'; document.getElementById('teacherRollNo').classList.remove('error'); }
+      if (!isValid) return;
+      
+      const fullName = `${kidName} ${kidSurname}`;
+      const studentAge = parseInt(kidAge);
+      let assignedLanguage = 'english', className = classId, teacherName = "Your Teacher";
+      
+      // Get class details from Firebase (will work offline if cached, otherwise use defaults)
+      try {
+        if (window.db && navigator.onLine) {
+          const classDoc = await getDoc(doc(window.db, "classes", classId));
+          if (classDoc.exists()) {
+            const classData = classDoc.data();
+            if (classData.language) assignedLanguage = classData.language;
+            else { 
+              const p = classId.substring(0,3).toLowerCase(); 
+              if(p==='hin') assignedLanguage='hindi'; 
+              else if(p==='mar') assignedLanguage='marathi'; 
+              else if(p==='chi') assignedLanguage='chinese'; 
+              else if(p==='ger') assignedLanguage='german'; 
+            }
+            if (classData.className) className = classData.className;
+            if (classData.teacherName) teacherName = classData.teacherName;
+          } else {
+            showToast("Class Not Found", "This class code doesn't exist. Please check with your teacher.", "error");
+            const p = classId.substring(0,3).toLowerCase(); 
+            if(p==='hin') assignedLanguage='hindi'; 
+            else if(p==='mar') assignedLanguage='marathi'; 
+            else if(p==='chi') assignedLanguage='chinese'; 
+            else if(p==='ger') assignedLanguage='german'; 
+            else assignedLanguage='english';
+          }
+        } else {
+          // Offline mode - guess language from class code prefix
+          const p = classId.substring(0,3).toLowerCase(); 
+          if(p==='hin') assignedLanguage='hindi'; 
+          else if(p==='mar') assignedLanguage='marathi'; 
+          else if(p==='chi') assignedLanguage='chinese'; 
+          else if(p==='ger') assignedLanguage='german'; 
+          else assignedLanguage='english';
+          showToast("Offline Mode", "Using default class settings", "info");
+        }
+      } catch (error) { 
+        console.error(error); 
+        showToast("Connection Error", "Could not verify class. Using default language.", "warning"); 
+        const p = classId.substring(0,3).toLowerCase(); 
+        if(p==='hin') assignedLanguage='hindi'; 
+        else if(p==='mar') assignedLanguage='marathi'; 
+        else if(p==='chi') assignedLanguage='chinese'; 
+        else if(p==='ger') assignedLanguage='german'; 
+      }
+      
+      const studentId = generateTeacherUserId(classId, rollNo);
+      
+      const userProfile = { 
+        userId: studentId, 
+        name: fullName, 
+        firstName: kidName, 
+        lastName: kidSurname, 
+        age: studentAge, 
+        avatar: selectedAvatar, 
+        studyMode: "teacher", 
+        classId, 
+        className, 
+        teacherName, 
+        rollNo, 
+        assignedLanguage, 
+        currentLanguage: assignedLanguage, 
+        createdAt: new Date().toISOString(), 
+        progress: { 
+          english: { lessons: 0, games: 0, percent: 0 }, 
+          hindi: { lessons: 0, games: 0, percent: 0 }, 
+          marathi: { lessons: 0, games: 0, percent: 0 }, 
+          chinese: { lessons: 0, games: 0, percent: 0 }, 
+          german: { lessons: 0, games: 0, percent: 0 } 
+        },
+        profileType: "teacher-led",
+        lastActive: new Date().toISOString()
+      };
+      
+      // Save to localStorage
+      SessionManager.saveProfile(userProfile);
+      
+      // Save to Firebase Firestore (if online)
+      try { 
+        if (window.db && navigator.onLine) { 
+          // Save to profiles collection
+          await setDoc(doc(window.db, "profiles", studentId), userProfile, { merge: true }); 
+          
+          // Save to classStudents collection for teacher access
+          const classStudentId = `${classId}_${studentId}`; 
+          await setDoc(doc(window.db, "classStudents", classStudentId), { 
+            studentId, 
+            studentName: fullName, 
+            firstName: kidName, 
+            lastName: kidSurname, 
+            studentAge, 
+            rollNo, 
+            avatar: selectedAvatar, 
+            classId, 
+            className, 
+            teacherName, 
+            assignedLanguage, 
+            joinedAt: new Date().toISOString(), 
+            lastUpdated: new Date().toISOString(), 
+            progress: { [assignedLanguage]: { percent: 0, lessons: 0, games: 0 } } 
+          }, { merge: true }); 
+          
+          // Update class student count
+          try { 
+            const classDoc = await getDoc(doc(window.db, "classes", classId)); 
+            if (classDoc.exists()) { 
+              await updateDoc(doc(window.db, "classes", classId), { 
+                studentCount: (classDoc.data().studentCount || 0) + 1, 
+                lastUpdated: new Date().toISOString() 
+              }); 
+            } 
+          } catch(e){} 
+          
+          showToast("Success", "Your profile has been saved to the cloud!", "success");
+        } else {
+          showToast("Offline Mode", "Profile saved locally. Will sync when online.", "info");
+        }
+      } catch (error) { 
+        console.error(error); 
+        showToast("Warning", "Could not save to cloud. Working offline.", "warning"); 
+      }
+      
+      showToast("Welcome to Class!", `You've successfully joined ${className}. Starting ${assignedLanguage.charAt(0).toUpperCase()+assignedLanguage.slice(1)} lessons with ${teacherName}...`, "success");
+      setTimeout(() => { window.location.href = `${assignedLanguage}.html`; }, 1500);
+    }
+    
+    function validateAndFormatClassId(classId) { return classId.trim().toUpperCase().replace(/[^A-Z0-9_]/g, ''); }
+    
+    function generateSelfUserId() { 
+      return "self_" + Date.now().toString(36) + Math.random().toString(36).substr(2, 8); 
+    }
+    
+    function generateTeacherUserId(classId, rollNo) { 
+      const cleanRollNo = rollNo.replace(/[^a-zA-Z0-9]/g, '');
+      // Remove the timestamp part to ensure the same student gets the same ID
+      // Use a hash of the classId and rollNo for consistency
+      const baseString = `${classId}_${cleanRollNo}`;
+      let hash = 0;
+      for (let i = 0; i < baseString.length; i++) {
+        const char = baseString.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash;
+      }
+      return `student_${Math.abs(hash).toString(36).substr(0, 10)}`;
+    }
+    
+    function showToast(title, description, type = "success") {
+      const toast = document.getElementById('toast');
+      toast.className = 'toast ' + type;
+      const icon = toast.querySelector('i');
+      if (type==='error') icon.className='fas fa-exclamation-circle'; 
+      else if (type==='warning') icon.className='fas fa-exclamation-triangle'; 
+      else if (type==='info') icon.className='fas fa-info-circle'; 
+      else icon.className='fas fa-check-circle';
+      document.getElementById('toastTitle').textContent = title;
+      document.getElementById('toastDesc').textContent = description;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+    
+    function goToScreen(screenId) {
+      document.querySelectorAll('.screen').forEach(screen => screen.classList.add('hidden'));
+      document.getElementById(screenId).classList.remove('hidden');
+    }
+    
+    window.addEventListener('DOMContentLoaded', initApp);
+  </script>
+</body>
+</html>

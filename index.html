@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinguaKids - Language Learning for Children</title>
+  <link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<link rel="apple-touch-icon" sizes="192x192" href="/icon-192.png"><link rel="apple-touch-icon" href="icon-192.png">
+<meta name="theme-color" content="#ffffff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+  <!-- Google Fonts for kid-friendly fonts - with fallback system fonts -->
+  <!-- Preconnect only if online, but we'll have fallbacks -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Comic+Neue:wght@400;700&family=Baloo+2:wght@600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <!-- Font Awesome with fallback -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+  
+  <style>
+    :root {
+      --primary: #58cc02;
+      --primary-dark: #4ba500;
+      --secondary: #1cb0f6;
+      --light: #f9f9f9;
+      --dark: #333;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      /* Font stack with system fonts as fallbacks for offline mode */
+      font-family: 'Comic Neue', 'Comic Sans MS', 'Chalkboard SE', 'Arial Rounded', Arial, sans-serif;
+      font-weight: 400;
+      min-height: 100vh;
+      /* Use flexbox to center the main container */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      /* ===== MORE COLORFUL BACKGROUND ===== */
+      background: radial-gradient(circle at 10% 30%, #FFB6C1, #FFDAB9, #E6E6FA, #B0E0E6, #C1FFC1, #FFC3A0);
+      background-size: 400% 400%;
+      animation: playfulGradient 18s ease infinite;
+      overflow-x: hidden;
+    }
+
+    /* New vibrant gradient animation */
+    @keyframes playfulGradient {
+      0% { background-position: 0% 0%; }
+      25% { background-position: 50% 50%; }
+      50% { background-position: 100% 100%; }
+      75% { background-position: 50% 50%; }
+      100% { background-position: 0% 0%; }
+    }
+
+    /* ===== FALLING EMOJIS BACKGROUND with POP INTERACTION ===== */
+    .emoji-snow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: auto; /* enable clicking on emojis */
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .emoji {
+      position: absolute;
+      font-size: 2.2rem;
+      user-select: none;
+      opacity: 0.6; /* Slightly more visible on bright bg */
+      animation: fall linear infinite;
+      will-change: transform;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
+      cursor: pointer; /* show it's clickable */
+      transition: transform 0.1s;
+      /* pointer-events: auto by default */
+      z-index: 5;
+    }
+
+    /* Pop animation class */
+    .emoji-pop {
+      animation: pop 0.25s ease-out forwards !important;
+    }
+
+    @keyframes pop {
+      0% {
+        transform: scale(1) rotate(0deg);
+        opacity: 0.8;
+      }
+      50% {
+        transform: scale(1.8) rotate(15deg);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(0) rotate(30deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-20vh) rotate(0deg);
+        opacity: 0.7;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0.3;
+      }
+    }
+
+    /* Main content container - centered both axes */
+    .welcome-container {
+      text-align: center;
+      max-width: 800px;
+      width: 90%; /* good for mobile */
+      padding: 40px 20px;
+      animation: fadeInUp 0.8s ease-out forwards;
+      opacity: 0;
+      position: relative;
+      z-index: 10; /* above falling emojis */
+      background-color: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px); /* Safari support */
+      border-radius: 80px 80px 40px 40px;
+      margin: 20px; /* fallback, but centering handled by body flexbox */
+      box-shadow: 0 30px 50px -10px rgba(255, 100, 100, 0.5), inset 0 0 0 4px white, 0 0 0 4px #ffcc99;
+      /* Solid background fallback for browsers that don't support backdrop-filter */
+      background-color: rgba(255, 255, 255, 0.95);
+    }
+
+    /* Fallback for browsers without backdrop-filter support */
+    @supports not (backdrop-filter: blur(12px)) {
+      .welcome-container {
+        background-color: rgba(255, 255, 255, 0.98);
+        border: 4px solid rgba(255, 255, 255, 0.8);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .welcome-title {
+      /* Font stack with offline fallbacks */
+      font-family: 'Baloo 2', 'Fredoka One', 'Comic Sans MS', 'Arial Rounded', Arial, sans-serif;
+      font-size: 3.5rem;
+      color: var(--dark);
+      margin-bottom: 50px;
+      line-height: 1.2;
+      text-shadow: 3px 3px 0 #ffdba6, 5px 5px 0 rgba(255,200,150,0.5);
+    }
+
+    /* Start Learning Button */
+    .start-learning-btn {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      border: none;
+      color: white;
+      padding: 25px 60px;
+      border-radius: 60px;
+      /* Font stack with offline fallbacks */
+      font-family: 'Baloo 2', 'Fredoka One', 'Comic Sans MS', 'Arial Rounded', Arial, sans-serif;
+      font-size: 1.8rem;
+      cursor: pointer;
+      box-shadow: 0 12px 0 var(--primary-dark), 0 10px 25px #f9b81b80;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      min-width: 350px;
+      position: relative;
+      overflow: hidden;
+      border: 4px solid #ffecb3;
+    }
+
+    .start-learning-btn:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 0 var(--primary-dark), 0 15px 30px #fdad40;
+      background: linear-gradient(to right, #67d602, #2fb8f8);
+    }
+
+    .start-learning-btn:active {
+      transform: translateY(4px);
+      box-shadow: 0 6px 0 var(--primary-dark);
+    }
+
+    .start-learning-btn::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+      );
+      transform: rotate(30deg);
+      transition: transform 0.6s;
+    }
+
+    .start-learning-btn:hover::after {
+      transform: rotate(30deg) translate(50%, 50%);
+    }
+
+    /* Logout Button */
+    .logout-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 2px solid var(--primary);
+      color: var(--primary-dark);
+      padding: 10px 20px;
+      border-radius: 50px;
+      /* Font stack with system fonts */
+      font-family: 'Segoe UI', 'Arial Rounded', Arial, sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: var(--transition);
+      display: none;
+      align-items: center;
+      gap: 8px;
+      z-index: 110; /* above emojis and container */
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      box-shadow: 0 8px 12px rgba(0,0,0,0.1);
+    }
+
+    .logout-btn:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(88, 204, 2, 0.3);
+    }
+
+    .logout-btn.show {
+      display: flex;
+    }
+
+    /* User Info */
+    .user-info {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 10px 20px;
+      border-radius: 50px;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      z-index: 110;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      box-shadow: 0 8px 12px rgba(0,0,0,0.1);
+    }
+
+    .user-info.show {
+      display: flex;
+    }
+
+    .user-avatar {
+      font-size: 1.5rem;
+    }
+
+    .user-name {
+      /* Font stack with offline fallbacks */
+      font-family: 'Baloo 2', 'Fredoka One', 'Comic Sans MS', 'Arial Rounded', Arial, sans-serif;
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .user-mode {
+      font-size: 0.8rem;
+      color: var(--primary);
+      background: rgba(88, 204, 2, 0.1);
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-family: 'Segoe UI', 'Arial Rounded', Arial, sans-serif;
+    }
+
+    /* Toast notification styles */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #4caf50;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: transform 0.3s, opacity 0.3s;
+      max-width: 400px;
+      font-family: 'Segoe UI', 'Arial Rounded', Arial, sans-serif;
+    }
+    
+    .toast.error {
+      background: #f44336;
+    }
+    
+    .toast.warning {
+      background: #ff9800;
+    }
+    
+    .toast.info {
+      background: #2196f3;
+    }
+    
+    .toast.success {
+      background: #4caf50;
+    }
+    
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Font Awesome fallback - using system icons when offline */
+    .fa-rocket:before {
+      content: "🚀";
+      font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", "Android Emoji", "EmojiOne Color", "Twemoji Mozilla", sans-serif;
+    }
+
+    .fa-sign-out-alt:before {
+      content: "🚪";
+      font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", "Android Emoji", "EmojiOne Color", "Twemoji Mozilla", sans-serif;
+    }
+
+    .fa-check-circle:before {
+      content: "✅";
+      font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", "Android Emoji", "EmojiOne Color", "Twemoji Mozilla", sans-serif;
+    }
+
+    .fa-wifi:before {
+      content: "📶";
+      font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", "Android Emoji", sans-serif;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .welcome-title {
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+      }
+
+      .start-learning-btn {
+        padding: 20px 40px;
+        font-size: 1.5rem;
+        min-width: 280px;
+      }
+
+      .logout-btn {
+        top: 10px;
+        right: 10px;
+        padding: 8px 15px;
+        font-size: 0.8rem;
+      }
+
+      .user-info {
+        top: 10px;
+        left: 10px;
+        padding: 8px 15px;
+        font-size: 0.9rem;
+      }
+
+      .emoji {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .welcome-title {
+        font-size: 2rem;
+      }
+
+      .start-learning-btn {
+        padding: 16px 30px;
+        font-size: 1.3rem;
+        min-width: 240px;
+        gap: 8px;
+      }
+      
+      .welcome-container {
+        padding: 30px 15px;
+        border-radius: 60px 60px 30px 30px;
+      }
+
+      .user-info {
+        flex-direction: column;
+        gap: 5px;
+        padding: 8px 12px;
+        text-align: center;
+      }
+
+      .user-name {
+        font-size: 0.9rem;
+      }
+
+      .emoji {
+        font-size: 1.5rem;
+      }
+    }
+
+    /* Offline mode indicator */
+    .offline-status {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(255, 152, 0, 0.9);
+      color: white;
+      padding: 8px 15px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-family: 'Segoe UI', 'Arial Rounded', Arial, sans-serif;
+      display: none;
+      align-items: center;
+      gap: 5px;
+      z-index: 110;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .offline-status.show {
+      display: flex;
+    }
+
+    /* Loading spinner for navigation */
+    .navigation-spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s ease-in-out infinite;
+      margin-left: 10px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Loading state for fonts */
+    .wf-loading .welcome-title,
+    .wf-loading .start-learning-btn {
+      visibility: hidden;
+    }
+
+    .wf-active .welcome-title,
+    .wf-active .start-learning-btn {
+      visibility: visible;
+    }
+  </style>
+</head>
+<body>
+  <!-- Falling Emojis Background Layer (now clickable) -->
+  <div class="emoji-snow" id="emojiSnow"></div>
+
+  <!-- Logout Button (shown when user is logged in) -->
+  <button id="logoutBtn" class="logout-btn">
+    <i class="fas fa-sign-out-alt"></i> Logout
+  </button>
+
+  <!-- User Info (shown when user is logged in) -->
+  <div id="userInfo" class="user-info">
+    <div class="user-avatar" id="userAvatar">🦄</div>
+    <div>
+      <div class="user-name" id="userName">Guest</div>
+      <div class="user-mode" id="userMode">Self Study</div>
+    </div>
+  </div>
+
+  <!-- Offline Status Indicator -->
+  <div id="offlineStatus" class="offline-status">
+    <i class="fas fa-wifi" style="opacity: 0.5;"></i> Offline Mode
+  </div>
+
+  <!-- Welcome Container - will be perfectly centered by body flexbox -->
+  <div class="welcome-container">
+    <h1 class="welcome-title">Welcome to LinguaKids!</h1>
+    
+    <button id="startBtn" class="start-learning-btn">
+      <i class="fas fa-rocket"></i> Start Learning Now!
+    </button>
+  </div>
+
+  <script>
+    // Font loading detection
+    document.documentElement.classList.add('wf-loading');
+    
+    // Check if fonts are loaded (with timeout)
+    setTimeout(function() {
+      document.documentElement.classList.remove('wf-loading');
+      document.documentElement.classList.add('wf-active');
+    }, 2000);
+
+    // Session Manager Class
+    class SessionManager {
+      static PROFILE_KEY = 'linguaKidsProfile';
+      static SESSION_KEY = 'linguaKidsSession';
+      
+      // Check if user has a profile
+      static hasProfile() {
+        return localStorage.getItem(this.PROFILE_KEY) !== null;
+      }
+      
+      // Get user profile
+      static getProfile() {
+        const profile = localStorage.getItem(this.PROFILE_KEY);
+        return profile ? JSON.parse(profile) : null;
+      }
+      
+      // Save user profile
+      static saveProfile(profile) {
+        localStorage.setItem(this.PROFILE_KEY, JSON.stringify(profile));
+      }
+      
+      // Clear profile (logout)
+      static clearProfile() {
+        localStorage.removeItem(this.PROFILE_KEY);
+      }
+      
+      // Check if user is in teacher mode
+      static isTeacherMode() {
+        const profile = this.getProfile();
+        return profile && profile.studyMode === 'teacher';
+      }
+      
+      // Get current language (if any)
+      static getCurrentLanguage() {
+        const profile = this.getProfile();
+        return profile ? profile.currentLanguage : null;
+      }
+      
+      // Set current language
+      static setCurrentLanguage(language) {
+        const profile = this.getProfile();
+        if (profile) {
+          profile.currentLanguage = language;
+          this.saveProfile(profile);
+        }
+      }
+      
+      // Update progress
+      static updateProgress(language, progress) {
+        const profile = this.getProfile();
+        if (profile && profile.progress) {
+          if (!profile.progress[language]) {
+            profile.progress[language] = {};
+          }
+          Object.assign(profile.progress[language], progress);
+          this.saveProfile(profile);
+        }
+      }
+      
+      // Get assigned language for teacher mode
+      static getAssignedLanguage() {
+        const profile = this.getProfile();
+        return profile ? (profile.assignedLanguage || 'english') : 'english';
+      }
+    }
+
+    // ===== EMOJI SNOW GENERATOR with POP ON CLICK =====
+    function initEmojiSnow() {
+      const container = document.getElementById('emojiSnow');
+      // Clear any existing (if called again)
+      container.innerHTML = '';
+      
+      // LANGUAGE & STUDY RELATED EMOJIS — perfect for LinguaKids
+      const emojis = [
+        // World languages & communication
+        '🔤', '🔠', '🔡', '🔣', '🆎', '🌐', '🗺️', '📍', 
+        '📕', '📗', '📘', '📙', '📚', '📖', '📃', '📄', '📑',
+        '✏️', '✒️', '🖊️', '🖍️', '📝', '📌', '📍', '📎',
+        '🔍', '🔎', '📢', '🔊',
+        // Letters and symbols
+        '🇦', '🇧', '🇨', '🇩', '🇪', '🇫', '🇬', '🇭', '🇮', '🇯', '🇰', 
+        '🇱', '🇲', '🇳', '🇴', '🇵', '🇶', '🇷', '🇸', '🇹', '🇺', '🇻', '🇼', '🇽', '🇾', '🇿',
+        // School & study items
+        '🎒', '📓', '📔', '📒', '📏', '📐', '📋', '📁', '🗂️', '📎', '📌',
+        '☀️', '⭐', '🌟', '✨', '🎓', '📦', '🧮', '🔬', '🔭',
+        // Fun cultural / language symbols
+        '🈳', '🈹', '🈚', '🈯', '🈲', '🈶', '🈴', '🈺', '🈵', '™️',
+        // Animals & objects from stories (indirectly language)
+        '🐶', '🐱', '🐼', '🐰', '🦊', '🐻', '🌍', '🌎', '🌏'
+      ];
+
+      // Number of falling emojis (a bit more for variety)
+      const emojiCount = 30;
+
+      for (let i = 0; i < emojiCount; i++) {
+        const emoji = document.createElement('div');
+        emoji.className = 'emoji';
+        
+        // Random emoji from list
+        const randomIndex = Math.floor(Math.random() * emojis.length);
+        emoji.textContent = emojis[randomIndex];
+        
+        // Random size between 1.4rem and 3rem
+        const size = 1.4 + Math.random() * 1.8; // rem
+        emoji.style.fontSize = size + 'rem';
+        
+        // Random starting horizontal position (0-100%)
+        emoji.style.left = Math.random() * 100 + '%';
+        
+        // Random animation duration (between 8s and 22s)
+        const duration = 8 + Math.random() * 14;
+        emoji.style.animationDuration = duration + 's';
+        
+        // Random delay so they don't all start at once
+        emoji.style.animationDelay = Math.random() * -25 + 's'; // negative so some are already falling
+        
+        // Slight random opacity variation
+        emoji.style.opacity = 0.45 + Math.random() * 0.4;
+        
+        // Rotate slightly
+        emoji.style.transform = `rotate(${Math.random() * 30 - 15}deg)`;
+        
+        // ---- ADD CLICK HANDLER FOR POP ----
+        emoji.addEventListener('click', function(e) {
+          e.stopPropagation(); // Prevent event from bubbling (just in case)
+          
+          // Add pop animation class
+          this.classList.add('emoji-pop');
+          
+          // Play a fun "pop" sound (simple approach using Web Audio API)
+          playPopSound();
+          
+          // Remove the element after animation ends to clean up
+          setTimeout(() => {
+            if (this.parentNode) {
+              this.remove();
+            }
+          }, 250); // match animation duration
+        });
+        
+        container.appendChild(emoji);
+      }
+    }
+
+    // Simple pop sound using Web Audio API (no external files)
+    function playPopSound() {
+      try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        
+        // Create a short 'pop' sound
+        const oscillator = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(400, audioCtx.currentTime); // starting frequency
+        oscillator.frequency.exponentialRampToValueAtTime(150, audioCtx.currentTime + 0.1);
+        
+        gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.15);
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        
+        oscillator.start();
+        oscillator.stop(audioCtx.currentTime + 0.15);
+        
+        // Resume if suspended (browsers require user interaction to start audio context)
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+      } catch (e) {
+        // Fallback if Web Audio API fails (just ignore, still fun to pop visually)
+        console.log('Pop sound not supported, but visual pop works!');
+      }
+    }
+
+    // Check online/offline status
+    function updateOnlineStatus() {
+      const offlineStatus = document.getElementById('offlineStatus');
+      if (!navigator.onLine) {
+        offlineStatus.classList.add('show');
+      } else {
+        offlineStatus.classList.remove('show');
+      }
+    }
+
+    // Navigate to URL with offline support
+    function navigateTo(url, skipCache = false) {
+      // Show loading state on button
+      const btn = document.getElementById('startBtn');
+      const originalContent = btn.innerHTML;
+      btn.innerHTML = `<i class="fas fa-rocket"></i> Loading... <span class="navigation-spinner"></span>`;
+      btn.disabled = true;
+      
+      // Check if we're offline and trying to navigate
+      if (!navigator.onLine) {
+        console.log('Offline navigation to:', url);
+        
+        // Try to get from cache first, then navigate
+        if ('caches' in window) {
+          caches.match(url).then(function(response) {
+            if (response) {
+              // Page is cached, navigate directly
+              setTimeout(() => {
+                window.location.href = url;
+              }, 300);
+            } else {
+              // Page not in cache, but we'll still try to navigate
+              // The service worker might have it or fallback to offline page
+              console.log('Page not in cache, attempting navigation anyway');
+              setTimeout(() => {
+                window.location.href = url;
+              }, 300);
+            }
+          }).catch(() => {
+            // Cache check failed, just navigate
+            setTimeout(() => {
+              window.location.href = url;
+            }, 300);
+          });
+        } else {
+          // No cache API, just navigate
+          setTimeout(() => {
+            window.location.href = url;
+          }, 300);
+        }
+      } else {
+        // Online - navigate normally
+        setTimeout(() => {
+          window.location.href = url;
+        }, 150);
+      }
+    }
+
+    // Initialize the app
+    function initApp() {
+      console.log("Welcome to LinguaKids!");
+      
+      // Add online/offline listeners
+      window.addEventListener('online', updateOnlineStatus);
+      window.addEventListener('offline', updateOnlineStatus);
+      updateOnlineStatus(); // Check initial status
+      
+      const profile = SessionManager.getProfile();
+      
+      // Auto-redirect logic for returning users
+      if (profile) {
+        console.log("User already has profile, checking study mode...");
+        
+        if (profile.studyMode === 'teacher') {
+          // Teacher mode: Go directly to assigned language page
+          const targetLanguage = profile.assignedLanguage || 'english';
+          console.log(`Redirecting teacher mode user to ${targetLanguage}.html`);
+          navigateTo(`${targetLanguage}.html`);
+          return;
+        } else {
+          // Self-study mode: Go to language selection
+          console.log("Redirecting self-study user to language-selection.html");
+          navigateTo('language-selection.html');
+          return;
+        }
+      }
+      
+      // Show user info if logged in (this part only runs if profile null, but keep for consistency)
+      if (profile) {
+        document.getElementById('userInfo').classList.add('show');
+        document.getElementById('logoutBtn').classList.add('show');
+        
+        // Set user info
+        document.getElementById('userAvatar').textContent = profile.avatar || '🦄';
+        document.getElementById('userName').textContent = profile.name || 'Guest';
+        document.getElementById('userMode').textContent = 
+          profile.studyMode === 'teacher' ? 'Teacher Mode' : 'Self Study';
+        
+        // Update welcome message for returning users
+        const welcomeTitle = document.querySelector('.welcome-title');
+        if (profile.name) {
+          welcomeTitle.innerHTML = `Welcome back, ${profile.name}!`;
+        }
+      }
+      
+      // Start Learning Button Event Listener (for new users only)
+      document.getElementById('startBtn').addEventListener('click', () => {
+        navigateTo('study.html');
+      });
+      
+      // Logout button
+      document.getElementById('logoutBtn').addEventListener('click', () => {
+        SessionManager.clearProfile();
+        showToast("Logged Out", "You have been successfully logged out.", "success");
+        
+        setTimeout(() => {
+          // Refresh page to show welcome screen for new users
+          window.location.reload();
+        }, 1000);
+      });
+      
+      // Start animation
+      setTimeout(() => {
+        document.querySelector('.welcome-container').style.animationPlayState = 'running';
+      }, 100);
+    }
+
+    // Show toast notification
+    function showToast(title, description, type = "success") {
+      // Create toast element if it doesn't exist
+      let toast = document.getElementById('toast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'toast';
+        toast.className = 'toast';
+        toast.innerHTML = `
+          <i class="fas fa-check-circle"></i>
+          <div>
+            <div id="toastTitle">${title}</div>
+            <div id="toastDesc">${description}</div>
+          </div>
+        `;
+        document.body.appendChild(toast);
+      }
+      
+      const toastIcon = toast.querySelector('i');
+      
+      // Set toast type
+      toast.className = 'toast ' + type;
+      
+      // Set icon based on type
+      switch(type) {
+        case 'error':
+          toastIcon.className = 'fas fa-exclamation-circle';
+          break;
+        case 'warning':
+          toastIcon.className = 'fas fa-exclamation-triangle';
+          break;
+        case 'info':
+          toastIcon.className = 'fas fa-info-circle';
+          break;
+        default:
+          toastIcon.className = 'fas fa-check-circle';
+      }
+      
+      toast.querySelector('#toastTitle').textContent = title;
+      toast.querySelector('#toastDesc').textContent = description;
+      
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => {
+          if (toast.parentNode) {
+            toast.parentNode.removeChild(toast);
+          }
+        }, 300);
+      }, 3000);
+    }
+
+    // Pre-cache important pages when online
+    function preCachePages() {
+      if ('caches' in window && navigator.onLine) {
+        const pagesToCache = [
+          'study.html',
+          'language-selection.html',
+          'english.html',
+          'hindi.html',
+          'marathi.html',
+          'chinese.html',
+          'german.html',
+          'teacher-portal.html'
+        ];
+        
+        caches.open('linguakids-v1').then(cache => {
+          cache.addAll(pagesToCache).then(() => {
+            console.log('Pages pre-cached for offline use');
+          }).catch(err => {
+            console.log('Some pages could not be cached:', err);
+          });
+        });
+      }
+    }
+
+    // Initialize the emoji snowfall and the app when the page loads
+    window.addEventListener('DOMContentLoaded', () => {
+      initEmojiSnow();
+      initApp();
+      
+      // Pre-cache pages for offline use
+      setTimeout(preCachePages, 2000);
+    });
+
+    // Register Service Worker for PWA with offline support
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("/service-worker.js")
+          .then(reg => {
+            console.log("Service Worker Registered");
+            
+            // Check for updates
+            reg.addEventListener('updatefound', () => {
+              const newWorker = reg.installing;
+              console.log('Service Worker update found');
+              
+              newWorker.addEventListener('statechange', () => {
+                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                  // New version available
+                  showToast('Update Available', 'Refresh for the latest version', 'info');
+                }
+              });
+            });
+          })
+          .catch(err => console.log("Service Worker Failed", err));
+      });
+      
+      // Handle offline/online events for service worker
+      let refreshing = false;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (!refreshing) {
+          refreshing = true;
+          window.location.reload();
+        }
+      });
+    }
+
+    // Add network status monitoring
+    window.addEventListener('online', () => {
+      showToast('Back Online', 'You are connected to the internet', 'success');
+      // Try to sync any pending data
+      if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+        navigator.serviceWorker.controller.postMessage({ type: 'SYNC_DATA' });
+      }
+    });
+    
+    window.addEventListener('offline', () => {
+      showToast('Offline Mode', 'You are working offline', 'info');
+    });
+  </script>
+</body>
+</html>
